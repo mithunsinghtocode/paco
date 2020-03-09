@@ -1,0 +1,65 @@
+.clock-time {
+    color: #FFFFFF;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 21px;
+    margin-right: 5px;
+    margin-top: 0px;
+}
+
+.alert-icon {
+    color: #FFFFFF;
+    font-family: 'Open Sans', sans-serif;
+    text-align: right;
+}
+
+.pa-co-pax-conn-x-opt {
+    height: 25px;
+    width: 454px;
+    color: #FFFFFF;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: lighter;
+    font-size: 21px;
+    letter-spacing: 0.06px;
+    line-height: 25px;
+}
+
+.line-2-copy-1 {
+    box-sizing: border-box;
+    height: 37px;
+    width: 2px;
+    border: 1px solid #FFFFFF;
+    opacity: 0.15;
+}
+
+.icons-notification {
+    height: 28px;
+    width: 27px;
+    transform: rotate(21deg);
+}
+
+.bell.outline.icon {
+    cursor: pointer;
+    color: #BFBFBF;
+}
+
+.circle.icon {
+    color: red;
+}
+
+.img.sia-logo {
+    width: 99px;
+    height: 37px;
+}
+
+.navbar.navbar-light.justify-content-between {
+    background-color: #00266B;
+    color: white;
+    height: 63px;
+}
+
+.circle-icon-wrap {
+    font-size: 10px;
+    position: absolute;
+    top: 11px;
+    right: 105px;
+}
