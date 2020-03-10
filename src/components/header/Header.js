@@ -63,7 +63,7 @@ class Header extends React.Component {
             <div style={{ float: "right" }}>
               <a className="line-2-copy-1" href="#">
                 {/* to avoid warning */ ""}
-              </a>{" "}
+              </a>
               &nbsp; {this.state.time}
             </div>
           </div>
