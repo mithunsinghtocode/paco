@@ -18,8 +18,8 @@ class Filter extends React.Component {
             </label>
           </div>
           <div className="switch">
-            <input type="checkbox" id="switch1" className="switch__input" />
-            <label htmlFor="switch1" className="switch__label">
+            <input type="checkbox" id="switch2" className="switch__input" />
+            <label htmlFor="switch2" className="switch__label">
               Arriving within next 3 hours
             </label>
           </div>
