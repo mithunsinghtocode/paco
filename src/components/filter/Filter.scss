@@ -2,8 +2,22 @@
         background-color: #2E2E2E;
         color: white;
         height: 70px;
-        width: 1920px;
         box-shadow: 0 2px 17px 0 rgba(0, 0, 0, 0.5);
+    }
+    
+    .div-switch {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+    
+    .vl {
+        display: inline;
+        border: 1px solid #FFFFFF;
+        opacity: 0.15;
+        height: 60px;
+        margin-top: 10px;
     }
     
     *,

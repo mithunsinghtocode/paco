@@ -26,7 +26,7 @@
 .line-2-copy-1 {
     box-sizing: border-box;
     height: 50px;
-    width: 2px;
+    width: 1px;
     border: 1px solid #FFFFFF;
     opacity: 0.15;
 }

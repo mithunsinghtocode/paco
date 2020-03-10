@@ -6,17 +6,15 @@ class Filter extends React.Component {
     return (
       <div>
         <nav className="navbar navbar-light justify-content-between filter">
-        <div style={{ marginLeft: "30%" }}>
+        <div className="div-switch">
           <div className="switch">
             <input type="checkbox" id="switch1" className="switch__input" />
             <label htmlFor="switch1" className="switch__label">
               Potential misconnection only
-
-           &nbsp; <a className="line-2-copy-1" href="#">
-                {/* to avoid warning */ ""}
-              </a>
             </label>
           </div>
+
+&nbsp; <div class="vl"></div>
           <div className="switch">
             <input type="checkbox" id="switch2" className="switch__input" />
             <label htmlFor="switch2" className="switch__label">
