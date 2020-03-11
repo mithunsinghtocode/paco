@@ -1,6 +1,5 @@
 import React from "react";
 import "./sideMenu.scss";
-import ReactDOM from 'react-dom';
 
 class SideMenu extends React.Component {
   toggleButton = e => {

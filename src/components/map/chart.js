@@ -13,7 +13,7 @@ class MapChartLayer extends React.Component {
   componentDidMount() {
     // Create map instance
     let chart = am4core.create("chartdiv", am4maps.MapChart);
-
+    chart.seriesContainer.draggable = false;
     // Get the App Data for the Banner from Store
     this.props.initChart(chart);
   }
@@ -38,6 +38,11 @@ class MapChartLayer extends React.Component {
 
       // Make map load polygon (like country names) data from GeoJSON
       polygonSeries.useGeodata = true;
+
+
+      polygonSeries.calculateVisualCenter = true;
+      polygonSeries.mapPolygons.template.tooltipPosition = "fixed";
+
 
       // Configure series
       let polygonTemplate = polygonSeries.mapPolygons.template;
