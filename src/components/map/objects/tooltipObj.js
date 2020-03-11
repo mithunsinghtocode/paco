@@ -8,14 +8,14 @@ export const tooltipObj = (line, lineSeries, am4core, flight) => {
     {flightData.carrierCode} {flightData.fltNum} | ETA {flightData.eta} 
     </p>`;
   bullet.tooltip.label.interactionsEnabled = true;
-  bullet.tooltip.pointerOrientation = "left";
+  //bullet.tooltip.pointerOrientation = "left";
   bullet.tooltip.fitPointerToBounds = true;
   bullet.tooltip.background.pointerLength = 0;
   bullet.alwaysShowTooltip = true;
   bullet.tooltipY = 15;
-  bullet.dy = 1;
-  bullet.tooltip.dx = 10;
-  bullet.tooltip.dy = -10;
+  //bullet.dy = 1;
+  bullet.tooltip.dx = 80;
+  bullet.tooltip.dy = -20;
 
   let dropShadow = new am4core.DropShadowFilter();
   dropShadow.opacity = 0.5;
@@ -25,7 +25,8 @@ export const tooltipObj = (line, lineSeries, am4core, flight) => {
     carrierCode: flight.carrierCode,
     fltNum: flight.flightNum,
     fbpDate: flight.fbpDate,
-    sectorNum: flight.sectorNum
+    sectorNum: flight.sectorNum,
+    flightId: flight.flightId
   };
 
   bullet.tooltip.flightData = lineSeries.flightData;

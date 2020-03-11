@@ -5,3 +5,8 @@ export const getFlightDataForInbound = () => dispatch => {
     //console.log(flightData);
     dispatch({ type: 'GET_INBOUND_FLIGHT_DATA', payload: flightData});
 };
+
+export const showFocusViewForSelectedFlight = (flightObj) => dispatch => {
+
+    dispatch({ type: 'SHOW_FOCUS_VIEW_FOR_SELECTED_FLIGHT', payload: flightData});
+}

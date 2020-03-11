@@ -90,13 +90,7 @@ class MapChartLayer extends React.Component {
       chartObj.zoomControl.minusButton.strokeWidth = 1;
 
       chartObj.hideSeriesTooltipsOnSelection = true;
-
-      // set initial zoom and map points
-      chartObj.homeZoomLevel = 1.05;
-      chartObj.homeGeoPoint = {
-        latitude: 25,
-        longitude: 10
-      };
+      
 
     var home = chartObj.chartContainer.createChild(am4core.Button);
     home.padding(10, 10, 10, 10);

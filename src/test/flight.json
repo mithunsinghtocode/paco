@@ -1,103 +1,322 @@
 {
     "flightSchedule": {
         "flightList": [{
-            "carrierCode": "SQ",
-            "flightNum": "528",
-            "fbpDate": "09/03/2020 12:15",
-            "cancelled_Indicator": "Y",
-            "owner": "SIA",
-            "route": "SIN-MAA",
-            "serviceType": "J",
-            "sectorNum": 1,
-            "acReg": "9VSKA",
-            "plannedAcType": "388S",
-            "actualAcType": "388S",
-            "depStn": "SIN",
-            "arrStn": "MAA",
-            "blkTime": "0430",
-            "eet": "0415",
-            "depBayGateNo": "A13",
-            "depTerminal": "T3",
-            "arrBayGateNo": null,
-            "arrTerminal": "T1",
-            "std": "1215/09",
-            "rtd": null,
-            "etd": "1225/09",
-            "atd": "1230/09",
-            "ab": "1242/09",
-            "sta": "1645/09",
-            "rta": null,
-            "eta": "1712/09",
-            "lt": "1715/09",
-            "ata": "1725/09",
-            "updatedDatetime": "09/03/2020 11:50",
-            "status": {
-                "delayed": true,
-                "misconnection": true
+                "flightId": "SQ529202003091215MAASIN",
+                "carrierCode": "SQ",
+                "flightNum": "529",
+                "fbpDate": "09/03/2020 12:15",
+                "cancelled_Indicator": "Y",
+                "owner": "SIA",
+                "route": "MAA-SIN",
+                "serviceType": "J",
+                "sectorNum": 1,
+                "acReg": "9VSKA",
+                "plannedAcType": "388S",
+                "actualAcType": "388S",
+                "depStn": "MAA",
+                "arrStn": "SIN",
+                "blkTime": "0430",
+                "eet": "0415",
+                "depBayGateNo": "A13",
+                "depTerminal": "T3",
+                "arrBayGateNo": null,
+                "arrTerminal": "T1",
+                "std": "1215/09",
+                "rtd": null,
+                "etd": "1225/09",
+                "atd": "1230/09",
+                "ab": "1242/09",
+                "sta": "1645/09",
+                "rta": null,
+                "eta": "1712/09",
+                "lt": "1715/09",
+                "ata": "1725/09",
+                "updatedDatetime": "09/03/2020 11:50",
+                "status": {
+                    "delayed": true,
+                    "misconnection": true
+                },
+                "aircraft": {
+                    "required": true,
+                    "position": 0.2
+                },
+                "depcoordinates": {
+
+                    "latitude": "13.0827",
+                    "longitude": "80.2707"
+
+                },
+                "arrcoordinates": {
+                    "latitude": "1.3521",
+                    "longitude": "103.8198"
+                },
+                "config": {
+                    "linecolor": "#0483F8",
+                    "airplanecolor": "#0483F8",
+                    "tooltipcolor": "#0483F8",
+                    "tooltipTextColor": "#ffffff"
+                }
             },
-            "aircraft": {
-                "required": true,
-                "position": 0.2
+            {
+                "flightId": "SQ025202003091215FRASIN",
+                "carrierCode": "SQ",
+                "flightNum": "025",
+                "fbpDate": "09/03/2020 12:15",
+                "cancelled_Indicator": "Y",
+                "owner": "SIA",
+                "route": "FRA-SIN",
+                "serviceType": "J",
+                "sectorNum": 1,
+                "acReg": "9VSKA",
+                "plannedAcType": "388S",
+                "actualAcType": "388S",
+                "depStn": "FRA",
+                "arrStn": "SIN",
+                "blkTime": "0430",
+                "eet": "0415",
+                "depBayGateNo": "A13",
+                "depTerminal": "T3",
+                "arrBayGateNo": null,
+                "arrTerminal": "T1",
+                "std": "1215/09",
+                "rtd": null,
+                "etd": "1225/09",
+                "atd": "1230/09",
+                "ab": "1242/09",
+                "sta": "1645/09",
+                "rta": null,
+                "eta": "1805/09",
+                "lt": "1715/09",
+                "ata": "1725/09",
+                "updatedDatetime": "09/03/2020 11:50",
+                "status": {
+                    "delayed": true,
+                    "misconnection": true
+                },
+                "aircraft": {
+                    "required": true,
+                    "position": 0.2
+                },
+                "depcoordinates": {
+                    "latitude": "50.1109",
+                    "longitude": "8.6821"
+                },
+                "arrcoordinates": {
+                    "latitude": "1.3521",
+                    "longitude": "103.8198"
+                },
+                "config": {
+                    "linecolor": "#0483F8",
+                    "airplanecolor": "#0483F8",
+                    "tooltipcolor": "#0483F8",
+                    "tooltipTextColor": "#ffffff"
+                }
             },
-            "depcoordinates": {
-                "latitude": "1.3521",
-                "longitude": "103.8198"
+            {
+                "flightId": "SQ321202003091215LHRSIN",
+                "carrierCode": "SQ",
+                "flightNum": "321",
+                "fbpDate": "09/03/2020 12:15",
+                "cancelled_Indicator": "Y",
+                "owner": "SIA",
+                "route": "LHR-SIN",
+                "serviceType": "J",
+                "sectorNum": 1,
+                "acReg": "9VSKA",
+                "plannedAcType": "388S",
+                "actualAcType": "388S",
+                "depStn": "LHR",
+                "arrStn": "SIN",
+                "blkTime": "0430",
+                "eet": "0415",
+                "depBayGateNo": "A13",
+                "depTerminal": "T3",
+                "arrBayGateNo": null,
+                "arrTerminal": "T1",
+                "std": "1215/09",
+                "rtd": null,
+                "etd": "1225/09",
+                "atd": "1230/09",
+                "ab": "1242/09",
+                "sta": "1645/09",
+                "rta": null,
+                "eta": "1805/09",
+                "lt": "1715/09",
+                "ata": "1725/09",
+                "updatedDatetime": "09/03/2020 11:50",
+                "status": {
+                    "delayed": true,
+                    "misconnection": true
+                },
+                "aircraft": {
+                    "required": true,
+                    "position": 0.2
+                },
+                "depcoordinates": {
+                    "latitude": "51.5074",
+                    "longitude": "0.1278"
+                },
+                "arrcoordinates": {
+                    "latitude": "1.3521",
+                    "longitude": "103.8198"
+                },
+                "config": {
+                    "linecolor": "#0483F8",
+                    "airplanecolor": "#0483F8",
+                    "tooltipcolor": "#0483F8",
+                    "tooltipTextColor": "#ffffff"
+                }
             },
-            "arrcoordinates": {
-                "latitude": "13.0827",
-                "longitude": "80.2707"
+            {
+                "flightId": "SQ861202003091215HKGSIN",
+                "carrierCode": "SQ",
+                "flightNum": "861",
+                "fbpDate": "09/03/2020 12:15",
+                "cancelled_Indicator": "Y",
+                "owner": "SIA",
+                "route": "HKG-SIN",
+                "serviceType": "J",
+                "sectorNum": 1,
+                "acReg": "9VSKA",
+                "plannedAcType": "388S",
+                "actualAcType": "388S",
+                "depStn": "HKG",
+                "arrStn": "SIN",
+                "blkTime": "0430",
+                "eet": "0415",
+                "depBayGateNo": "A13",
+                "depTerminal": "T3",
+                "arrBayGateNo": null,
+                "arrTerminal": "T1",
+                "std": "1215/09",
+                "rtd": null,
+                "etd": "1225/09",
+                "atd": "1230/09",
+                "ab": "1242/09",
+                "sta": "1645/09",
+                "rta": null,
+                "eta": "1805/09",
+                "lt": "1715/09",
+                "ata": "1725/09",
+                "updatedDatetime": "09/03/2020 11:50",
+                "status": {
+                    "delayed": true,
+                    "misconnection": true
+                },
+                "aircraft": {
+                    "required": true,
+                    "position": 0.2
+                },
+                "depcoordinates": {
+                    "latitude": "22.3193",
+                    "longitude": "114.1694"
+                },
+                "arrcoordinates": {
+                    "latitude": "1.3521",
+                    "longitude": "103.8198"
+                },
+                "config": {
+                    "linecolor": "#0483F8",
+                    "airplanecolor": "#0483F8",
+                    "tooltipcolor": "#0483F8",
+                    "tooltipTextColor": "#ffffff"
+                }
             },
-            "config": {
-                "linecolor": "#0483F8",
-                "airplanecolor": "#0483F8",
-                "tooltipcolor": "#0483F8",
-                "tooltipTextColor": "#ffffff"
+            {
+                "flightId": "SQ637202003091215NRTSIN",
+                "carrierCode": "SQ",
+                "flightNum": "637",
+                "fbpDate": "09/03/2020 12:15",
+                "cancelled_Indicator": "Y",
+                "owner": "SIA",
+                "route": "NRT-SIN",
+                "serviceType": "J",
+                "sectorNum": 1,
+                "acReg": "9VSKA",
+                "plannedAcType": "388S",
+                "actualAcType": "388S",
+                "depStn": "NRT",
+                "arrStn": "SIN",
+                "blkTime": "0430",
+                "eet": "0415",
+                "depBayGateNo": "A13",
+                "depTerminal": "T3",
+                "arrBayGateNo": null,
+                "arrTerminal": "T1",
+                "std": "1215/09",
+                "rtd": null,
+                "etd": "1225/09",
+                "atd": "1230/09",
+                "ab": "1242/09",
+                "sta": "1645/09",
+                "rta": null,
+                "eta": "1805/09",
+                "lt": "1715/09",
+                "ata": "1725/09",
+                "updatedDatetime": "09/03/2020 11:50",
+                "status": {
+                    "delayed": true,
+                    "misconnection": true
+                },
+                "aircraft": {
+                    "required": true,
+                    "position": 0.2
+                },
+                "depcoordinates": {
+                    "latitude": "36.2048",
+                    "longitude": "138.2529"
+                },
+                "arrcoordinates": {
+                    "latitude": "1.3521",
+                    "longitude": "103.8198"
+                },
+                "config": {
+                    "linecolor": "#0483F8",
+                    "airplanecolor": "#0483F8",
+                    "tooltipcolor": "#0483F8",
+                    "tooltipTextColor": "#ffffff"
+                }
             }
-        }]
+        ]
     },
     "stationcoordinates": [{
-            "latitude": 50.1109,
-            "longitude": 8.6821,
+            "latitude": "50.1109",
+            "longitude": "8.6821",
             "title": "Frankfurt"
         },
         {
-            "latitude": 40.712775,
-            "longitude": -74.005973,
-            "title": "New York"
-        },
-        {
-            "latitude": 1.3521,
-            "longitude": 103.8198,
+            "latitude": "1.3521",
+            "longitude": "103.8198",
             "title": "Singapore"
         },
         {
-            "latitude": 13.0827,
-            "longitude": 80.2707,
+            "latitude": "13.0827",
+            "longitude": "80.2707",
             "title": "Chennai"
         },
         {
-            "latitude": 51.5074,
-            "longitude": 0.1278,
+            "latitude": "51.5074",
+            "longitude": "0.1278",
             "title": "London"
         },
         {
-            "latitude": 22.3193,
-            "longitude": 114.1694,
+            "latitude": "22.3193",
+            "longitude": "114.1694",
             "title": "Hong Kong"
         },
         {
-            "latitude": 28.7041,
-            "longitude": 77.1025,
+            "latitude": "28.7041",
+            "longitude": "77.1025",
             "title": "Delhi"
         },
         {
-            "latitude": 36.2048,
-            "longitude": 138.2529,
+            "latitude": "36.2048",
+            "longitude": "138.2529",
             "title": "Japan"
         },
         {
-            "latitude": -33.8688,
-            "longitude": 151.2093,
+            "latitude": "-33.8688",
+            "longitude": "151.2093",
             "title": "Sydney"
         }
     ]
