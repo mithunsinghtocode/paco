@@ -1,13 +1,15 @@
 export const lineObj = (am4core, flight,lineSeries) => {
 
-lineSeries.mapLines.template.strokeWidth = 2;
+lineSeries.mapLines.template.strokeWidth = 0.5;
 lineSeries.mapLines.template.stroke = am4core.color(
   flight.config.linecolor
 );
-lineSeries.mapLines.template.nonScalingStroke = true;
+//lineSeries.mapLines.template.nonScalingStroke = false;
 lineSeries.tooltip.background.stroke = am4core.color(
   flight.config.linecolor
 );
+
+lineSeries.mapLines.template.shortestDistance=true;
 
 var line = lineSeries.mapLines.create();
 line.multiGeoLine = [

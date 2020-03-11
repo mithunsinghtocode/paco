@@ -8,6 +8,7 @@ import { airplaneObj } from "../map/objects/airplaneObj";
 import { tooltipObj } from "../map/objects/tooltipObj";
 import { lineObj } from "../map/objects/lineObj";
 import { mapObjectEvents } from "../map/objects/events";
+import { plotStationObj } from "../map/objects/plotStationObj";
 import * as mapConst from "./mapConst";
 
 class PathFinder extends React.Component {
@@ -59,6 +60,9 @@ class PathFinder extends React.Component {
           mapConst.$_asia_longitude
         );
       }
+
+
+      plotStationObj( am4core, chartObj, flightObj );
 
       // Add line series
       flightObj.flightSchedule.flightList.forEach(flight => {

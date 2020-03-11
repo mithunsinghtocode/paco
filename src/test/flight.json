@@ -276,47 +276,157 @@
                     "tooltipcolor": "#0483F8",
                     "tooltipTextColor": "#ffffff"
                 }
+            },
+            {
+                "flightId": "SQ637202003091215NRTSIN",
+                "carrierCode": "SQ",
+                "flightNum": "222",
+                "fbpDate": "09/03/2020 12:15",
+                "cancelled_Indicator": "Y",
+                "owner": "SIA",
+                "route": "SYD-SIN",
+                "serviceType": "J",
+                "sectorNum": 1,
+                "acReg": "9VSKA",
+                "plannedAcType": "388S",
+                "actualAcType": "388S",
+                "depStn": "SYD",
+                "arrStn": "SIN",
+                "blkTime": "0430",
+                "eet": "0415",
+                "depBayGateNo": "A13",
+                "depTerminal": "T3",
+                "arrBayGateNo": null,
+                "arrTerminal": "T1",
+                "std": "1215/09",
+                "rtd": null,
+                "etd": "1225/09",
+                "atd": "1230/09",
+                "ab": "1242/09",
+                "sta": "1645/09",
+                "rta": null,
+                "eta": "1805/09",
+                "lt": "1715/09",
+                "ata": "1725/09",
+                "updatedDatetime": "09/03/2020 11:50",
+                "status": {
+                    "delayed": true,
+                    "misconnection": true
+                },
+                "aircraft": {
+                    "required": true,
+                    "position": 0.2
+                },
+                "depcoordinates": {
+                    "latitude": -33.8688,
+                    "longitude": 151.2093
+                },
+                "arrcoordinates": {
+                    "latitude": "1.3521",
+                    "longitude": "103.8198"
+                },
+                "config": {
+                    "linecolor": "#0483F8",
+                    "airplanecolor": "#0483F8",
+                    "tooltipcolor": "#0483F8",
+                    "tooltipTextColor": "#ffffff"
+                }
+            },
+            {
+                "flightId": "SQ637202003091215NRTSIN",
+                "carrierCode": "SQ",
+                "flightNum": "308",
+                "fbpDate": "09/03/2020 12:15",
+                "cancelled_Indicator": "Y",
+                "owner": "SIA",
+                "route": "DEL-SIN",
+                "serviceType": "J",
+                "sectorNum": 1,
+                "acReg": "9VSKA",
+                "plannedAcType": "388S",
+                "actualAcType": "388S",
+                "depStn": "DEL",
+                "arrStn": "SIN",
+                "blkTime": "0430",
+                "eet": "0415",
+                "depBayGateNo": "A13",
+                "depTerminal": "T3",
+                "arrBayGateNo": null,
+                "arrTerminal": "T1",
+                "std": "1215/09",
+                "rtd": null,
+                "etd": "1225/09",
+                "atd": "1230/09",
+                "ab": "1242/09",
+                "sta": "1645/09",
+                "rta": null,
+                "eta": "1805/09",
+                "lt": "1715/09",
+                "ata": "1725/09",
+                "updatedDatetime": "09/03/2020 11:50",
+                "status": {
+                    "delayed": true,
+                    "misconnection": true
+                },
+                "aircraft": {
+                    "required": true,
+                    "position": 0.2
+                },
+                "depcoordinates": {
+                    "latitude": 28.7041,
+                    "longitude": 77.1025
+                },
+                "arrcoordinates": {
+                    "latitude": "1.3521",
+                    "longitude": "103.8198"
+                },
+                "config": {
+                    "linecolor": "#0483F8",
+                    "airplanecolor": "#0483F8",
+                    "tooltipcolor": "#0483F8",
+                    "tooltipTextColor": "#ffffff"
+                }
             }
         ]
     },
     "stationcoordinates": [{
-            "latitude": "50.1109",
-            "longitude": "8.6821",
+            "latitude": 50.1109,
+            "longitude": 8.6821,
             "title": "Frankfurt"
         },
         {
-            "latitude": "1.3521",
-            "longitude": "103.8198",
+            "latitude": 1.3521,
+            "longitude": 103.8198,
             "title": "Singapore"
         },
         {
-            "latitude": "13.0827",
-            "longitude": "80.2707",
+            "latitude": 13.0827,
+            "longitude": 80.2707,
             "title": "Chennai"
         },
         {
-            "latitude": "51.5074",
-            "longitude": "0.1278",
+            "latitude": 51.5074,
+            "longitude": 0.1278,
             "title": "London"
         },
         {
-            "latitude": "22.3193",
-            "longitude": "114.1694",
+            "latitude": 22.3193,
+            "longitude": 114.1694,
             "title": "Hong Kong"
         },
         {
-            "latitude": "28.7041",
-            "longitude": "77.1025",
+            "latitude": 28.7041,
+            "longitude": 77.1025,
             "title": "Delhi"
         },
         {
-            "latitude": "36.2048",
-            "longitude": "138.2529",
+            "latitude": 36.2048,
+            "longitude": 138.2529,
             "title": "Japan"
         },
         {
-            "latitude": "-33.8688",
-            "longitude": "151.2093",
+            "latitude": -33.8688,
+            "longitude": 151.2093,
             "title": "Sydney"
         }
     ]
