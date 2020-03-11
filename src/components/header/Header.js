@@ -75,7 +75,7 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = (state, ownprops) => {
-  console.log(state);
+  //console.log(state);
   return { appData: state.appData };
 };
 

@@ -1,6 +1,7 @@
-export default (state = [], action) => {
+export default (state = null, action) => {
     switch (action.type) {
-      case "NO_ACTION_TAKEN":
+      case "CHART_INIT":
+        //console.log("Chart Reducer");
         //console.log(action.payload);
         return action.payload;
       default:

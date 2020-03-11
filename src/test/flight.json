@@ -1,0 +1,93 @@
+{
+    "flightSchedule": {
+        "flightList": [{
+            "carrierCode": "SQ",
+            "flightNum": "528",
+            "fbpDate": "09/03/2020 12:15",
+            "cancelled_Indicator": "Y",
+            "noOfSector": "1",
+            "owner": "SIA",
+            "route": "SIN-MAA",
+            "sectorList": [{
+                "serviceType": "J",
+                "sectorNum": 1,
+                "acReg": "9VSKA",
+                "plannedAcType": "388S",
+                "actualAcType": "388S",
+                "depStn": "SIN",
+                "arrStn": "MAA",
+                "blkTime": "0430",
+                "eet": "0415",
+                "depBayGateNo": "A13",
+                "depTerminal": "T3",
+                "arrBayGateNo": null,
+                "arrTerminal": "T1",
+                "std": "1215/09",
+                "rtd": null,
+                "etd": "1225/09",
+                "atd": "1230/09",
+                "ab": "1242/09",
+                "sta": "1645/09",
+                "rta": null,
+                "eta": "1712/09",
+                "lt": "1715/09",
+                "ata": "1725/09",
+                "updatedDatetime": "09/03/2020 11:50",
+                "status": {
+                    "delayed": true,
+                    "misconnection": true
+                },
+                "aircraftposition": [{
+                    "required": true,
+                    "position": 0.2
+                }]
+            }],
+            "depcoordinates": {
+                "latitude": "1.3521",
+                "longitude": "103.8198"
+            },
+            "arrcoordinates": {
+                "latitude": "13.0827",
+                "longitude": "80.2707"
+            }
+        }]
+    },
+    "stationcoordinates": [{
+        "latitude": 50.1109,
+        "longitude": 8.6821,
+        "title": "Frankfurt"
+    }, {
+        "latitude": 40.712775,
+        "longitude": -74.005973,
+        "title": "New York"
+    }, {
+        "latitude": 1.3521,
+        "longitude": 103.8198,
+        "title": "Singapore"
+    }, {
+        "latitude": 13.0827,
+        "longitude": 80.2707,
+        "title": "Chennai"
+    }, {
+        "latitude": 51.5074,
+        "longitude": 0.1278,
+        "title": "London"
+    }, {
+        "latitude": 22.3193,
+        "longitude": 114.1694,
+        "title": "Hong Kong"
+    }, {
+        "latitude": 28.7041,
+        "longitude": 77.1025,
+        "title": "Delhi"
+    }, {
+        "latitude": 36.2048,
+        "longitude": 138.2529,
+        "title": "Japan"
+    }, {
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "title": "Sydney"
+    }]
+
+}

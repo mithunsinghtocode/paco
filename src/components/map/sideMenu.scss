@@ -1,41 +1,40 @@
-.rotate,
-.rotate1 {
-    /* Safari */
-    -webkit-transform: rotate(-90deg);
-    /* Firefox */
-    -moz-transform: rotate(-90deg);
-    /* IE */
-    -ms-transform: rotate(-90deg);
-    /* Opera */
-    -o-transform: rotate(-90deg);
-}
-
-.ui.toggle.button.rotate {
-    right: -24%;
-    position: absolute;
-    height: 60px;
-    width: 408%;
-    top: 6%;
-    left: -160%;
-    background-color: #2E2E2E;
-    color: white;
-    text-align: center;
-    display: flex;
-    border-bottom: 5px solid #87C039;
-    border-left: 2px solid black;
-}
-
-.ui.toggle.button.rotate1 {
-    right: -20%;
-    position: absolute;
-    height: 60px;
-    width: 408%;
-    top: 22%;
-    left: -160%;
-    background-color: #2E2E2E;
-    color: white;
-    text-align: center;
-    display: flex;
-    //border-bottom: 5px solid #87C039;
-    border-left: 2px solid black;
-}
+    .rotate,
+    .rotate1 {
+        /* Safari */
+        -webkit-transform: rotate(-90deg);
+        /* Firefox */
+        -moz-transform: rotate(-90deg);
+        /* IE */
+        -ms-transform: rotate(-90deg);
+        /* Opera */
+        -o-transform: rotate(-90deg);
+    }
+    
+    .ui.toggle.button.rotate {
+        right: -20%;
+        position: absolute;
+        height: 44px;
+        width: 686%;
+        top: 11%;
+        left: -300%;
+        background-color: #2E2E2E;
+        color: white;
+        text-align: center;
+        display: flex;
+        border-bottom: 5px solid #87C039;
+        border-left: 2px solid black;
+    }
+    
+    .ui.toggle.button.rotate1 {
+        right: -20%;
+        position: absolute;
+        height: 40px;
+        width: 686%;
+        top: 38%;
+        left: -300%;
+        background-color: #2E2E2E;
+        color: white;
+        text-align: center;
+        display: flex;
+        border-left: 2px solid black;
+    }
