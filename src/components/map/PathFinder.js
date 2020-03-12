@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 
-import { getFlightDataForInbound } from "../../actions/chartDataAction";
+import { getFlightDataForInbound, showFocusViewForSelectedFlight } from "../../actions/chartDataAction";
 import { airplaneObj } from "../map/objects/airplaneObj";
 import { tooltipObj } from "../map/objects/tooltipObj";
 import { lineObj } from "../map/objects/lineObj";
@@ -71,10 +71,10 @@ class PathFinder extends React.Component {
         let line = lineObj(am4core, flight, lineSeries);
 
         // adds tooltip for the flights
-        let bullet = tooltipObj(line, lineSeries, am4core, flight);
+        let bullet = tooltipObj(line, lineSeries, am4core, flight) ;
 
         // Adds click event on the tooltip, icon and line
-        mapObjectEvents(bullet, line, lineSeries);
+        mapObjectEvents(bullet, line, lineSeries, flight, this.props.showFocusViewForSelectedFlight);
 
         // Adds the position of the airplane object with svg
         airplaneObj(am4core, bullet, flight);
@@ -91,10 +91,9 @@ class PathFinder extends React.Component {
 }
 
 const mapStateToProps = (state, ownprops) => {
-  console.log(state);
   return { chartObj: state.chartInit, inboundFlights: state.flightData };
 };
 
-export default connect(mapStateToProps, { getFlightDataForInbound })(
+export default connect(mapStateToProps, { getFlightDataForInbound, showFocusViewForSelectedFlight })(
   PathFinder
 );

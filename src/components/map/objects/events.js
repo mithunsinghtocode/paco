@@ -1,9 +1,9 @@
-export const mapObjectEvents = ( bullet, line, lineSeries ) => {
+export const mapObjectEvents = ( bullet, line, lineSeries, flight, dispatchFunc ) => {
     bullet.tooltip.events.on(
         "hit",
         ev => {
           let a = ev.target;
-          console.log(ev.target.flightData);
+          dispatchFunc(flight);
         },
         this
       );
@@ -11,7 +11,7 @@ export const mapObjectEvents = ( bullet, line, lineSeries ) => {
         "hit",
         ev => {
           let a = ev.target;
-          console.log(ev.target.flightData);
+          dispatchFunc(flight);
         },
         this
       );
@@ -19,7 +19,7 @@ export const mapObjectEvents = ( bullet, line, lineSeries ) => {
         "hit",
         ev => {
           let a = ev.target;
-          console.log(ev.target.flightData);
+          dispatchFunc(flight);
         },
         this
       );

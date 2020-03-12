@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../images/Group@2x.svg"; // Tell Webpack this JS file uses this image
-import "./Header.scss";
+import "./header.scss";
 import { connect } from "react-redux";
 import { fetchAppData } from "../../actions";
 
@@ -75,7 +75,6 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = (state, ownprops) => {
-  //console.log(state);
   return { appData: state.appData };
 };
 
