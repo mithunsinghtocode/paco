@@ -12,5 +12,11 @@ export const selectedFlightReducer = (selectFlight=null, action) => {
       console.log(action.payload);
         return action.payload;
     }
+    if(action.type === 'REMOVE_FOCUS_VIEW_FOR_SELECTED_FLIGHT'){
+      console.log(action.payload);
+        return action.payload;
+    }
     return selectFlight;
 };
+
+

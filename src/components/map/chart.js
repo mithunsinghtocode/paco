@@ -33,8 +33,6 @@ class MapChartLayer extends React.Component {
 
       // render home object to default zoom
       homeObjectRender(chartObj, am4core);
-    }else{
-      //return <Loader loader="Season Loading..." />;
     }
   };
 
