@@ -1,5 +1,9 @@
 import flightData from '../test/flight.json';
 
+export const getFlightData = () => dispatch => {
+    dispatch({ type: 'GET_FLIGHT_DATA', payload: flightData});
+};
+
 export const getFlightDataForInbound = () => dispatch => {
     dispatch({ type: 'GET_INBOUND_FLIGHT_DATA', payload: flightData});
 };
@@ -13,3 +17,13 @@ export const removeFocusViewForSelectedFlight = selectedFlt => dispatch => {
     console.log(selectedFlt);
     dispatch({ type: 'REMOVE_FOCUS_VIEW_FOR_SELECTED_FLIGHT', payload: selectedFlt});
 }
+
+
+export const showCorrespondingOutBoundFlights = selectedFlt => dispatch => {
+    dispatch({ type: 'SHOW_CORRESPONDING_OUTBOUND_FLIGHTS_FOR_SELECTED_INBOUND_FLIGHTS', payload: selectedFlt});
+}
+
+export const switchFlightsViewByInBoundOrOutbound = screenViewSelected => dispatch => {
+    console.log(screenViewSelected);
+    dispatch({ type: 'TOGGLE_INBOUND_OUTBOUND_VIEW', payload: screenViewSelected});
+} 

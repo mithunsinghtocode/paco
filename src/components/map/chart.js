@@ -36,6 +36,22 @@ class MapChartLayer extends React.Component {
     }
   };
 
+  clearChartComponents(){
+    let chartObj = this.props.chartObj;
+    this.renderLoading();
+    if(chartObj !== null && chartObj.series !== null){
+      console.log(chartObj.series.length);
+      while(chartObj.series.length !== 0){
+      chartObj.series.values.forEach((inObj) => {
+        chartObj.series.removeIndex(
+          chartObj.series.indexOf(inObj)
+        ).dispose();
+      });
+    }
+      console.log(chartObj.series);
+    }
+  }
+
   renderLoading = () => {
      return <Loader loader="Map Loading..." />;
   }
@@ -46,14 +62,16 @@ class MapChartLayer extends React.Component {
         <SideMenu />
         {this.props.chartObj === null ? this.renderLoading() : ""}
         <div className="chartdiv"> {this.renderChart()}</div>
-        <PathFinder chartObj={this.props.chartObj} />
+        {this.props.displayView === "INBOUND" && <div>{ this.clearChartComponents() } {this.renderChart()} <PathFinder chartObj={this.props.chartObj} /> </div>}
+        {this.props.displayView === "OUTBOUND" && <div>{ this.clearChartComponents() } {this.renderChart()}  </div>}
+        
       </div>
     );
   }
 }
 
 const mapStateToProps = (state, ownprops) => {
-  return { chartObj: state.chartInit };
+  return { chartObj: state.chartInit, displayView: state.getDisplayView };
 };
 
 export default connect(mapStateToProps, { initChart })(MapChartLayer);

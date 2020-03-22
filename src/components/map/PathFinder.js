@@ -10,11 +10,13 @@ import { lineObj } from "../map/objects/lineObj";
 import { mapObjectEvents } from "../map/objects/events";
 import { plotStationObj } from "../map/objects/plotStationObj";
 import * as mapConst from "./mapConst";
+import { initChart } from "../../actions/chartAction";
 
 class PathFinder extends React.Component {
   componentDidMount() {
     this.props.getFlightDataForInbound();
   }
+
   getChartObj = () => {
     return this.props.chartObj;
   };
@@ -65,7 +67,7 @@ class PathFinder extends React.Component {
       plotStationObj( am4core, chartObj, flightObj );
 
       // Add line series
-      flightObj.flightSchedule.flightList.forEach(flight => {
+      flightObj.flightList.forEach(flight => {
         // Adds line or arc based on the coordinates
         let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
         let line = lineObj(am4core, flight, lineSeries);
@@ -79,21 +81,21 @@ class PathFinder extends React.Component {
         // Adds the position of the airplane object with svg
         airplaneObj(am4core, bullet, flight);
       });
+      // Restore the state of the chart object to store
+      this.props.initChart(chartObj);
     }
+
   };
 
-  onChennai = () => {
-    alert();
-  };
   render() {
     return <div className=""> {this.renderFlightDataForInbound()}</div>;
   }
 }
 
 const mapStateToProps = (state, ownprops) => {
-  return { chartObj: state.chartInit, inboundFlights: state.flightData };
+  return { chartObj: state.chartInit, inboundFlights: state.inboundFlightData, displayView: state.getDisplayView };
 };
 
-export default connect(mapStateToProps, { getFlightDataForInbound, showFocusViewForSelectedFlight })(
+export default connect(mapStateToProps, { getFlightDataForInbound, showFocusViewForSelectedFlight, initChart })(
   PathFinder
 );

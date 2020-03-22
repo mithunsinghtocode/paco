@@ -15,14 +15,16 @@
         position: absolute;
         height: 44px;
         width: 686%;
-        top: 11%;
+        top: 12%;
         left: -300%;
         background-color: #2E2E2E;
         color: white;
         text-align: center;
+        align-content: center;
         display: flex;
         border-bottom: 5px solid #87C039;
         border-left: 2px solid black;
+        padding: 14px 0px 10px 82px;
     }
     
     .ui.toggle.button.rotate1 {
@@ -30,11 +32,16 @@
         position: absolute;
         height: 40px;
         width: 686%;
-        top: 38%;
+        top: 42%;
         left: -300%;
         background-color: #2E2E2E;
         color: white;
         text-align: center;
         display: flex;
         border-left: 2px solid black;
+        padding: 14px 0px 10px 82px;
+    }
+    
+    .overlay.sidemenu {
+        height: 90% !important;
     }

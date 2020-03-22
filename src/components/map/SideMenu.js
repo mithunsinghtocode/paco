@@ -1,41 +1,56 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import "./sideMenu.scss";
+import { switchFlightsViewByInBoundOrOutbound } from "../../actions/chartDataAction";
 
 class SideMenu extends React.Component {
-  toggleButton = e => {
-    console.log(e.target.value);
+
+  componentDidMount(){
+    this.selectButtonView(this.props.displayView);
+  }
+
+  selectButtonView = (inValue) => {
     let inboundButton = document.getElementById('INBOUND');
     let outboundButton = document.getElementById('OUTBOUND');
+    switch(inValue) {
+      case "INBOUND":
+          this.props.switchFlightsViewByInBoundOrOutbound("INBOUND");
+          outboundButton.style.borderBottom= "0px";
+          inboundButton.style.borderBottom = "5px solid #87C039";
+          break;
+      case "OUTBOUND":
+        this.props.switchFlightsViewByInBoundOrOutbound("OUTBOUND");
+          inboundButton.style.borderBottom = "0px";
+          outboundButton.style.borderBottom = "5px solid #87C039";
+          break;
+      default:
+        this.props.switchFlightsViewByInBoundOrOutbound("INBOUND");
+          inboundButton.style.borderBottom = "5px solid #87C039";
+    }
+  }
 
-      switch(e.target.value) {
-        case "INBOUND":
-            outboundButton.style.borderBottom= "0px";
-            inboundButton.style.borderBottom = "5px solid #87C039";
-            break;
-        case "OUTBOUND":
-            inboundButton.style.borderBottom = "0px";
-            outboundButton.style.borderBottom = "5px solid #87C039";
-            break;
-        default:
-            console.log("sdfgasdgfs");
-            inboundButton.style.borderBottom = "5px solid #87C039";
-            //outboundButton.style.borderBottom = "5px solid #87C039";
-        
-      }
-
+  toggleButton = e => {
+    console.log(e.target.value);
+    this.selectButtonView(e.target.value);
   };
 
   render() {
     return (
-      <div className="overlay" style={{ display: "inline" }}>
-        <button className="ui toggle button rotate" onClick={e => this.toggleButton(e)} id="INBOUND" value="INBOUND">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INBOUND
+      <div className="overlay sidemenu" style={{ display: "inline", height: "90% !important" }}>
+        <button className="ui toggle button rotate" onClick={e => this.toggleButton(e)} id="INBOUND" value="INBOUND" style={{ textAlign : "left", marginBottom : "100px" }}>
+          INBOUND 
         </button>
         <button className="ui toggle button rotate1" onClick={e => this.toggleButton(e)} id="OUTBOUND" value="OUTBOUND"> 
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OUTBOUND </button>
+          OUTBOUND 
+        </button>
       </div>
     );
   }
 }
 
-export default SideMenu;
+const mapStateToProps = (state, ownprops) => {
+  return { displayView: state.getDisplayView };
+};
+
+export default connect(mapStateToProps, { switchFlightsViewByInBoundOrOutbound })(SideMenu);

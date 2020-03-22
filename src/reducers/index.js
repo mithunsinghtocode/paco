@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 import bannerReducer from './bannerReducer';
 import chartReducer from './chartReducer';
-import { chartDataReducer, selectedFlightReducer } from './chartDataReducer';
+import { allFlightDataReducer, inboundFlightDataReducer, selectedFlightReducer, setFlightsViewByInBoundOrOutbound } from './chartDataReducer';
 
 export default combineReducers({
     appData: bannerReducer,
     chartInit : chartReducer,
-    flightData: chartDataReducer,
-    selectedFlight: selectedFlightReducer
+    allFlightData : allFlightDataReducer,
+    inboundFlightData: inboundFlightDataReducer,
+    selectedFlight: selectedFlightReducer,
+    getDisplayView : setFlightsViewByInBoundOrOutbound
 });

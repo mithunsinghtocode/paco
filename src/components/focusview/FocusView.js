@@ -2,12 +2,18 @@ import React from  'react';
 import "./focusView.scss";
 import { connect } from "react-redux";
 import { showFocusViewForSelectedFlight, removeFocusViewForSelectedFlight } from "../../actions/chartDataAction";
+import { getHoursAndMinutesAfterFormat, getUTCDate } from "../../utils/dateUtils";
 
 class FocusView extends React.Component {
 
     off = () => {
         this.props.removeFocusViewForSelectedFlight(null);
     }
+
+    getBayGateTerminalDetails = (selectedFlight) => {
+        return selectedFlight.depBayGateNo !== null ? `${selectedFlight.depTerminal} / ${selectedFlight.depBayGateNo}` : "-";
+    }
+
     renderSelectedFlightInFocusView = () => {
         console.log("Into Focus View");
         let selectedFlight = this.props.selectedFlightObj;
@@ -18,7 +24,7 @@ class FocusView extends React.Component {
                 <div id="showHide">
                 <div id="overlay">
             <div className="card text-white mb-3">
-              <div className="card-header">{selectedFlight.carrierCode}{selectedFlight.flightNum}</div>
+              <div className="card-header">{selectedFlight.fltNum}</div>
               
               <div className="card-body"  style={{ marginLeft: "10px" }}>
                   <div className="row">
@@ -27,8 +33,8 @@ class FocusView extends React.Component {
                     <div className="col-3 col-md-5">PAX</div>
                   </div>
                   <div className="row value">
-                    <div className="col-2 col-md-3">{selectedFlight.std}</div>
-                    <div className="col-1 col-md-3">{selectedFlight.depTerminal} / {selectedFlight.depBayGateNo}</div>
+                    <div className="col-2 col-md-3">{getHoursAndMinutesAfterFormat(selectedFlight.std)}</div>
+                    <div className="col-1 col-md-3">{ this.getBayGateTerminalDetails(selectedFlight) }</div>
                     <div className="col-3 col-md-5">J14 Y183</div>
                   </div>
           
@@ -39,8 +45,8 @@ class FocusView extends React.Component {
                   </div>
           
                   <div className="row value"  style={{fontSize: "20px"}}>
-                    <div className="col-2 col-md-3">{selectedFlight.sta}</div>
-                    <div className="col-1 col-md-3">{selectedFlight.eta}</div>
+                    <div className="col-2 col-md-3">{getHoursAndMinutesAfterFormat(selectedFlight.sta)}</div>
+                    <div className="col-1 col-md-3">{getHoursAndMinutesAfterFormat(selectedFlight.eta)}</div>
                     <div className="col-3 col-md-5">4 Flights</div>
                   </div>
           
@@ -51,14 +57,14 @@ class FocusView extends React.Component {
                   </div>
           
                   <div className="row option">
-                    <div className="col-5">
+                    <div className="col-6">
                       <button type="button" className="btn btn-block cost">
                         <bigfont className="big-font"> 0 min </bigfont> 
                       <br/> 
                       <smallfont className="small-font">21,768.00 SGD</smallfont>
                     </button>
                   </div>
-                    <div className="col-5">
+                    <div className="col-6">
                       <button type="button" className="btn btn-primary btn-block"> 
                         <bigfont className="big-font"> +30 min </bigfont> 
                           <br/> 
@@ -126,7 +132,7 @@ class FocusView extends React.Component {
             </div>
             <div className="overlay-arrow">
 
-<i class="big arrow alternate circle down outline icon"  onClick={this.off} style={{ color: "#fff" }}></i>
+              <i class="big arrow alternate circle down outline icon"  onClick={this.off} style={{ color: "#fff" }}></i>
             </div>
             </div>
         );
@@ -145,6 +151,7 @@ class FocusView extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(state);
   return { selectedFlightObj : state.selectedFlight };
 }
 
