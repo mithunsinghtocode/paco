@@ -48,6 +48,16 @@ export const selectedFlightReducer = (selectFlight = null, action) => {
   return selectFlight;
 };
 
+export const selectedFlightInMapReducer = (selectFlight = null, action) => {
+  if (action.type === "SHOW_SELECTED_FLIGHT_IN_MAP") {
+    return action.payload;
+  }
+  if (action.type === "REMOVE_SELECTED_FLIGHT_SHOW_ALL_FLTS") {
+    return action.payload;
+  }
+  return selectFlight;
+};
+
 const getStationCoordinatesFromTheFlightList = flightData => {
   let stationCoordinatesList = [];
   flightData.forEach(sectorObj => {
