@@ -27,3 +27,11 @@ export const switchFlightsViewByInBoundOrOutbound = screenViewSelected => dispat
     console.log(screenViewSelected);
     dispatch({ type: 'TOGGLE_INBOUND_OUTBOUND_VIEW', payload: screenViewSelected});
 } 
+
+export const showSelectedFlightInMap = selectedFlt => dispatch => {
+    dispatch({ type: 'SHOW_SELECTED_FLIGHT_IN_MAP', payload: selectedFlt});
+}
+
+export const removeSelectedFlightFromMap = selectedFlt => dispatch => {
+    dispatch({ type: 'REMOVE_SELECTED_FLIGHT_SHOW_ALL_FLTS', payload: selectedFlt});
+}

@@ -43,6 +43,7 @@ class MapChartLayer extends React.Component {
       console.log(chartObj.series.length);
       while(chartObj.series.length !== 0){
       chartObj.series.values.forEach((inObj) => {
+        console.log(inObj);
         chartObj.series.removeIndex(
           chartObj.series.indexOf(inObj)
         ).dispose();
@@ -60,7 +61,7 @@ class MapChartLayer extends React.Component {
     return (
       <div>
         <SideMenu />
-        {this.props.chartObj === null ? this.renderLoading() : ""}
+        {this.props.chartObj != null ? (this.props.chartObj.series == null ? this.renderLoading() : "") : ""}
         <div className="chartdiv"> {this.renderChart()}</div>
         {this.props.displayView === "INBOUND" && <div>{ this.clearChartComponents() } {this.renderChart()} <PathFinder chartObj={this.props.chartObj} /> </div>}
         {this.props.displayView === "OUTBOUND" && <div>{ this.clearChartComponents() } {this.renderChart()}  </div>}

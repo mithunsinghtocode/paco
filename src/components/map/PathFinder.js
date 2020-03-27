@@ -40,6 +40,10 @@ class PathFinder extends React.Component {
   renderFlightDataForInbound = () => {
     let chartObj = this.getChartObj();
     let flightObj = this.getInboundFlightData();
+    if(this.props.fltToDisplayInMap != null){
+
+    }else{
+
     if (chartObj !== null && flightObj !== null) {
       console.log("State re-renders the flight data component");
 
@@ -66,10 +70,11 @@ class PathFinder extends React.Component {
 
       plotStationObj( am4core, chartObj, flightObj );
 
-      // Add line series
-      flightObj.flightList.forEach(flight => {
         // Adds line or arc based on the coordinates
         let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
+        lineSeries.STATUS = "DELAYED";
+      // Add line series
+      flightObj.flightList.forEach(flight => {
         let line = lineObj(am4core, flight, lineSeries);
 
         // adds tooltip for the flights
@@ -83,17 +88,19 @@ class PathFinder extends React.Component {
       });
       // Restore the state of the chart object to store
       this.props.initChart(chartObj);
+
+    }
     }
 
   };
 
   render() {
-    return <div className=""> {this.renderFlightDataForInbound()}</div>;
+    return <div className=""> {this.renderFlightDataForInbound()} </div>;
   }
 }
 
 const mapStateToProps = (state, ownprops) => {
-  return { chartObj: state.chartInit, inboundFlights: state.inboundFlightData, displayView: state.getDisplayView };
+  return { chartObj: state.chartInit, inboundFlights: state.inboundFlightData, displayView: state.getDisplayView, fltToDisplayInMap : state.getFltToShowInMap };
 };
 
 export default connect(mapStateToProps, { getFlightDataForInbound, showFocusViewForSelectedFlight, initChart })(

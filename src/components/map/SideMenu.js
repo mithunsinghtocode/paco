@@ -31,12 +31,12 @@ class SideMenu extends React.Component {
   }
 
   toggleButton = e => {
-    console.log(e.target.value);
     this.selectButtonView(e.target.value);
   };
 
   render() {
     return (
+      
       <div className="overlay sidemenu" style={{ display: "inline", height: "90% !important" }}>
         <button className="ui toggle button rotate" onClick={e => this.toggleButton(e)} id="INBOUND" value="INBOUND" style={{ textAlign : "left", marginBottom : "100px" }}>
           INBOUND 
