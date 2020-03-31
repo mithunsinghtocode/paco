@@ -1,10 +1,12 @@
+import { getHoursAndMinutesAfterFormat, getUTCDate } from "../../../utils/dateUtils";
+
 export const tooltipObj = (line, lineSeries, am4core, flight) => {
   // Add a map object to line
   let bullet = line.lineObjects.create();
   bullet.nonScaling = true;
   bullet.position = flight.aircraft.position;
   bullet.fill = am4core.color(flight.config.tooltipcolor);
-  bullet.tooltipHTML = `<p style="margin-bottom:-4px;margin-top:-4px;color:#fff;height:25px">
+  bullet.tooltipHTML = `<p style="margin-bottom:-2px;margin-top:-2px;color:#fff;height:26px">
     ${getFltNume(flight)} ${getETA(flight)}
     </p>`;
   bullet.tooltip.label.interactionsEnabled = true;
@@ -19,6 +21,14 @@ export const tooltipObj = (line, lineSeries, am4core, flight) => {
   (getETA(flight) === "" || flight.depcoordinates.longitude > 100) ? bullet.tooltip.dx = 70 : bullet.tooltip.dx = -80;
   if(getETA(flight) === "") bullet.tooltip.dx = 40;
   flight.depcoordinates.longitude > 100 ? bullet.tooltip.dy = 45 : bullet.tooltip.dy = 35;
+
+  if(flight.tooltip != null && flight.tooltip === "OUTBOUND")
+  {
+    bullet.tooltip.dy = 0;
+    bullet.tooltip.dx = 0;
+    bullet.dy = 0;
+    bullet.dx = 0;
+  }
 
   let dropShadow = new am4core.DropShadowFilter();
   dropShadow.opacity = 0.5;
@@ -39,7 +49,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight) => {
   return bullet;
 };
 
-const getETA = (flight) => flight.eta !== null ? `| ETA ${flight.eta}` : "";
+const getETA = (flight) => flight.eta !== null ? `| ETA ${getHoursAndMinutesAfterFormat(flight.eta)}` : "";
 
 
 const getFltNume = (flight) => `${flight.fltNum.substr(0,2)} ${flight.fltNum.substr(2,5)}`;  

@@ -10,6 +10,7 @@ import { homeObjectRender } from "./objects/homeObject";
 import { zoomObjectRender } from "./objects/zoomObject";
 import { mapLayoutObj } from "./objects/mapLayoutObj";
 import Loader from '../loader/Loader';
+import FocusFlight from '../focusview/FocusFlight';
 
 import SideMenu from "./SideMenu";
 
@@ -17,7 +18,7 @@ class MapChartLayer extends React.Component {
   componentDidMount() {
     // Create map instance
     let chart = am4core.create("chartdiv", am4maps.MapChart);
-    chart.seriesContainer.draggable = false;
+    //chart.seriesContainer.draggable = false;
     // Get the App Data for the Banner from Store
     this.props.initChart(chart);
   }
@@ -63,8 +64,9 @@ class MapChartLayer extends React.Component {
         <SideMenu />
         {this.props.chartObj != null ? (this.props.chartObj.series == null ? this.renderLoading() : "") : ""}
         <div className="chartdiv"> {this.renderChart()}</div>
-        {this.props.displayView === "INBOUND" && <div>{ this.clearChartComponents() } {this.renderChart()} <PathFinder chartObj={this.props.chartObj} /> </div>}
+        {this.props.displayView === "INBOUND" && <div>{ this.clearChartComponents() } {this.renderChart()} <PathFinder chartObj={this.props.chartObj} /> < FocusFlight /></div>}
         {this.props.displayView === "OUTBOUND" && <div>{ this.clearChartComponents() } {this.renderChart()}  </div>}
+
         
       </div>
     );

@@ -1,6 +1,10 @@
 export const lineObj = (am4core, flight,lineSeries) => {
 
 lineSeries.mapLines.template.strokeWidth = 0.5;
+
+if(flight.config == null){
+  console.log(flight.flightId);
+}
 lineSeries.mapLines.template.stroke = am4core.color(
   flight.config.linecolor
 );

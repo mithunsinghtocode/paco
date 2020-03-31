@@ -151,7 +151,7 @@ class FocusView extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state);
+  //console.log(state);
   return { selectedFlightObj : state.selectedFlight };
 }
 

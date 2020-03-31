@@ -1,16 +1,20 @@
-export const clearChartComponents = (chartObj, ObjectToBeCleared) => {
+export const clearChartComponents = (chartObj, objectsToBeCleared) => {
   if (chartObj !== null && chartObj.series !== null) {
-    if (ObjectToBeCleared === "ALL") {
-      while (chartObj.series.length !== 0) {
-        chartObj.series.values.forEach(inObj => {
-          console.log(inObj);
-          chartObj.series.removeIndex(chartObj.series.indexOf(inObj)).dispose();
-        });
-      }
-    }else{
-        chartObj.series.values.forEach(inObj => {
-            inObj._className === ObjectToBeCleared ?  chartObj.series.removeIndex(chartObj.series.indexOf(inObj)).dispose() : "Finding Object to be removed..." ;
+    objectsToBeCleared.forEach( objectToBeCleared => {
+      if (objectToBeCleared === "ALL") {
+        while (chartObj.series.length !== 0) {
+          chartObj.series.values.forEach(inObj => {
+            console.log(inObj);
+            chartObj.series.removeIndex(chartObj.series.indexOf(inObj)).dispose();
           });
-    }
+        }
+      }
+      else{
+          chartObj.series.values.forEach(inObj => {
+            console.log(inObj._className);
+              inObj._className === objectToBeCleared ?  chartObj.series.removeIndex(chartObj.series.indexOf(inObj)).dispose() : console.log("Finding Object to be removed...") ;
+            });
+      }
+    })
   }
 };

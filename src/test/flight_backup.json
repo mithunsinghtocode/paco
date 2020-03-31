@@ -1,0 +1,929 @@
+{
+    "flightSchedule": {
+        "flightList": [{
+                "flightId": "SQ529202003091215MAASIN",
+                "carrierCode": "SQ",
+                "fltNum": "SQ529",
+                "fbpDate": "09/03/2020 12:15",
+                "cancelled_Indicator": "Y",
+                "owner": "SIA",
+                "route": "MAA-SIN",
+                "serviceType": "J",
+                "sectorNum": 1,
+                "acReg": "9VSKA",
+                "plannedAcType": "388S",
+                "actualAcType": "388S",
+                "depStn": "MAA",
+                "arrStn": "SIN",
+                "blkTime": "0430",
+                "eet": "0415",
+                "depBayGateNo": "A13",
+                "depTerminal": "T3",
+                "arrBayGateNo": null,
+                "arrTerminal": "T1",
+                "std": "12:15",
+                "rtd": null,
+                "etd": "1225/09",
+                "atd": "1230/09",
+                "ab": "1242/09",
+                "sta": "16:45",
+                "rta": null,
+                "eta": "17:12",
+                "lt": "1715/09",
+                "ata": "1725/09",
+                "updatedDatetime": "09/03/2020 11:50",
+                "status": {
+                    "delayed": true,
+                    "misconnection": true
+                },
+                "aircraft": {
+                    "required": true,
+                    "position": 0.6
+                },
+                "depcoordinates": {
+                    "latitude": "13.0827",
+                    "longitude": "80.2707"
+                },
+                "arrcoordinates": {
+                    "latitude": "1.3521",
+                    "longitude": "103.8198"
+                },
+                "config": {
+                    "linecolor": "#777777",
+                    "airplanecolor": "#E55541",
+                    "tooltipcolor": "#E55541",
+                    "tooltipTextColor": "#ffffff"
+                }
+            },
+            {
+                "flightId": "MI607202003191150PNHSIN1",
+                "carrierCode": null,
+                "fltNum": "MI607",
+                "fbpDate": "2020-03-19 11:50:00",
+                "sectorNum": "1",
+                "cancelledIndicator": "N",
+                "owner": "MI",
+                "route": "PNHSIN",
+                "serviceType": "J",
+                "acReg": "9VMGJ",
+                "plannedAcType": "738",
+                "actualAcType": "738",
+                "depStn": "PNH",
+                "arrStn": "SIN",
+                "blkTime": "0145",
+                "eet": null,
+                "depBayGateNo": null,
+                "depTerminal": null,
+                "arrBayGateNo": "F37",
+                "arrTerminal": "T2",
+                "std": "2020-03-19T03:50:00.000+0000",
+                "rtd": null,
+                "etd": null,
+                "atd": null,
+                "ab": null,
+                "sta": "2020-03-19T05:35:00.000+0000",
+                "rta": null,
+                "eta": null,
+                "lt": null,
+                "ata": null,
+                "updatedDatetime": "2020-03-19 17:32:18",
+                "aircraft": {
+                    "required": true,
+                    "position": 0.1
+                },
+                "depcoordinates": {
+                    "latitude": "11.54660034",
+                    "longitude": "104.8440018",
+                    "title": "PHNOM PENH"
+                },
+                "arrcoordinates": {
+                    "latitude": "1.35019",
+                    "longitude": "103.994003",
+                    "title": "SINGAPORE"
+                },
+                "paxDetWrapperVo": {
+                    "updatedDateTime": null,
+                    "bais": null,
+                    "blobData": null,
+                    "paxDetailsVo": {
+                        "sectorPaxCountVos": [{
+                            "deptStn": "PNH",
+                            "arrStn": "SIN",
+                            "depTerminal": null,
+                            "secNum": null,
+                            "legArrStns": [
+                                "SIN"
+                            ],
+                            "joiningPaxCnt": {
+                                "transferToCntDet": {
+                                    "SIN": {
+                                        "bookedPaxCntVO": {
+                                            "infCnt": 0,
+                                            "vipPaxCnt": 0,
+                                            "medaPaxCnt": 0,
+                                            "errorMessage": null,
+                                            "sclassCnt": 0,
+                                            "fclassCnt": 0,
+                                            "jclassCnt": 0,
+                                            "yclassCnt": 1
+                                        },
+                                        "acceptedPaxCntVO": {
+                                            "infCnt": 0,
+                                            "vipPaxCnt": 0,
+                                            "medaPaxCnt": 0,
+                                            "errorMessage": null,
+                                            "sclassCnt": 0,
+                                            "fclassCnt": 0,
+                                            "jclassCnt": 0,
+                                            "yclassCnt": 0
+                                        },
+                                        "standbyPaxCntVO": {
+                                            "infCnt": 0,
+                                            "vipPaxCnt": 0,
+                                            "medaPaxCnt": 0,
+                                            "errorMessage": null,
+                                            "sclassCnt": 0,
+                                            "fclassCnt": 0,
+                                            "jclassCnt": 0,
+                                            "yclassCnt": 0
+                                        }
+                                    }
+                                },
+                                "joiningToCntDet": {
+                                    "SIN": {
+                                        "bookedPaxCntVO": {
+                                            "infCnt": 0,
+                                            "vipPaxCnt": 0,
+                                            "medaPaxCnt": 0,
+                                            "errorMessage": null,
+                                            "sclassCnt": 0,
+                                            "fclassCnt": 0,
+                                            "jclassCnt": 6,
+                                            "yclassCnt": 93
+                                        },
+                                        "acceptedPaxCntVO": {
+                                            "infCnt": 0,
+                                            "vipPaxCnt": 0,
+                                            "medaPaxCnt": 0,
+                                            "errorMessage": null,
+                                            "sclassCnt": 0,
+                                            "fclassCnt": 0,
+                                            "jclassCnt": 0,
+                                            "yclassCnt": 0
+                                        },
+                                        "standbyPaxCntVO": {
+                                            "infCnt": 0,
+                                            "vipPaxCnt": 0,
+                                            "medaPaxCnt": 0,
+                                            "errorMessage": null,
+                                            "sclassCnt": 0,
+                                            "fclassCnt": 0,
+                                            "jclassCnt": 0,
+                                            "yclassCnt": 0
+                                        }
+                                    }
+                                },
+                                "transitToCntDet": null,
+                                "totalTransitCntDet": null,
+                                "ttlToDestCntDet": {
+                                    "SIN": {
+                                        "bookedPaxCntVO": {
+                                            "infCnt": 0,
+                                            "vipPaxCnt": 0,
+                                            "medaPaxCnt": 0,
+                                            "errorMessage": null,
+                                            "sclassCnt": 0,
+                                            "fclassCnt": 0,
+                                            "jclassCnt": 6,
+                                            "yclassCnt": 94
+                                        },
+                                        "acceptedPaxCntVO": {
+                                            "infCnt": 0,
+                                            "vipPaxCnt": 0,
+                                            "medaPaxCnt": 0,
+                                            "errorMessage": null,
+                                            "sclassCnt": 0,
+                                            "fclassCnt": 0,
+                                            "jclassCnt": 0,
+                                            "yclassCnt": 0
+                                        },
+                                        "standbyPaxCntVO": {
+                                            "infCnt": 0,
+                                            "vipPaxCnt": 0,
+                                            "medaPaxCnt": 0,
+                                            "errorMessage": null,
+                                            "sclassCnt": 0,
+                                            "fclassCnt": 0,
+                                            "jclassCnt": 0,
+                                            "yclassCnt": 0
+                                        }
+                                    }
+                                },
+                                "totalCntDet": {
+                                    "SIN": {
+                                        "bookedPaxCntVO": {
+                                            "infCnt": 0,
+                                            "vipPaxCnt": 0,
+                                            "medaPaxCnt": 0,
+                                            "errorMessage": null,
+                                            "sclassCnt": 0,
+                                            "fclassCnt": 0,
+                                            "jclassCnt": 6,
+                                            "yclassCnt": 94
+                                        },
+                                        "acceptedPaxCntVO": {
+                                            "infCnt": 0,
+                                            "vipPaxCnt": 0,
+                                            "medaPaxCnt": 0,
+                                            "errorMessage": null,
+                                            "sclassCnt": 0,
+                                            "fclassCnt": 0,
+                                            "jclassCnt": 0,
+                                            "yclassCnt": 0
+                                        },
+                                        "standbyPaxCntVO": {
+                                            "infCnt": 0,
+                                            "vipPaxCnt": 0,
+                                            "medaPaxCnt": 0,
+                                            "errorMessage": null,
+                                            "sclassCnt": 0,
+                                            "fclassCnt": 0,
+                                            "jclassCnt": 0,
+                                            "yclassCnt": 0
+                                        }
+                                    }
+                                }
+                            },
+                            "transitPaxCnt": null
+                        }],
+                        "sectorAvailVos": [{
+                            "secSeqNo": "1",
+                            "deptStn": "PNH",
+                            "arrvStn": "SIN",
+                            "sclassAvailability": "NA",
+                            "jclassAvailability": "6",
+                            "yclassAvailability": "56",
+                            "fclassAvailability": "NA"
+                        }],
+                        "acTypeMktConfig": {
+                            "acType": "738",
+                            "fclass": 0,
+                            "jclass": 12,
+                            "yclass": 150,
+                            "sclass": 0
+                        },
+                        "inboundFlt": [{
+                            "origin": "SIN",
+                            "destination": "PNH",
+                            "deptDate": "2020-03-18T16:00:00.000+0000",
+                            "carrier": "SQ",
+                            "flightNo": "SQ5004",
+                            "sta": "2020-03-19T00:35:00.000+0000",
+                            "std": null,
+                            "stdString": null,
+                            "staString": "19/03/20 08:35",
+                            "paxCountVo": {
+                                "infCnt": 0,
+                                "vipPaxCnt": 0,
+                                "medaPaxCnt": 0,
+                                "errorMessage": null,
+                                "sclassCnt": 0,
+                                "fclassCnt": 0,
+                                "jclassCnt": 0,
+                                "yclassCnt": 1
+                            },
+                            "sectors": null
+                        }],
+                        "outboundFlt": [{
+                                "origin": "SIN",
+                                "destination": "DME",
+                                "deptDate": "2020-03-19T16:00:00.000+0000",
+                                "carrier": "SQ",
+                                "flightNo": "SQ362",
+                                "sta": null,
+                                "std": "2020-03-19T16:05:00.000+0000",
+                                "stdString": "20/03/20 00:05",
+                                "staString": null,
+                                "paxCountVo": {
+                                    "infCnt": 0,
+                                    "vipPaxCnt": 0,
+                                    "medaPaxCnt": 0,
+                                    "errorMessage": null,
+                                    "sclassCnt": 0,
+                                    "fclassCnt": 0,
+                                    "jclassCnt": 1,
+                                    "yclassCnt": 2
+                                },
+                                "sectors": null
+                            },
+                            {
+                                "origin": "SIN",
+                                "destination": "ZRH",
+                                "deptDate": "2020-03-19T16:00:00.000+0000",
+                                "carrier": "SQ",
+                                "flightNo": "SQ346",
+                                "sta": null,
+                                "std": "2020-03-19T17:30:00.000+0000",
+                                "stdString": "20/03/20 01:30",
+                                "staString": null,
+                                "paxCountVo": {
+                                    "infCnt": 0,
+                                    "vipPaxCnt": 0,
+                                    "medaPaxCnt": 0,
+                                    "errorMessage": null,
+                                    "sclassCnt": 0,
+                                    "fclassCnt": 0,
+                                    "jclassCnt": 0,
+                                    "yclassCnt": 9
+                                },
+                                "sectors": null
+                            },
+                            {
+                                "origin": "SIN",
+                                "destination": "PER",
+                                "deptDate": "2020-03-19T16:00:00.000+0000",
+                                "carrier": "SQ",
+                                "flightNo": "SQ225",
+                                "sta": null,
+                                "std": "2020-03-19T16:10:00.000+0000",
+                                "stdString": "20/03/20 00:10",
+                                "staString": null,
+                                "paxCountVo": {
+                                    "infCnt": 0,
+                                    "vipPaxCnt": 0,
+                                    "medaPaxCnt": 0,
+                                    "errorMessage": null,
+                                    "sclassCnt": 0,
+                                    "fclassCnt": 0,
+                                    "jclassCnt": 0,
+                                    "yclassCnt": 9
+                                },
+                                "sectors": null
+                            },
+                            {
+                                "origin": "SIN",
+                                "destination": "MEL",
+                                "deptDate": "2020-03-19T16:00:00.000+0000",
+                                "carrier": "SQ",
+                                "flightNo": "SQ237",
+                                "sta": null,
+                                "std": "2020-03-19T16:25:00.000+0000",
+                                "stdString": "20/03/20 00:25",
+                                "staString": null,
+                                "paxCountVo": {
+                                    "infCnt": 0,
+                                    "vipPaxCnt": 0,
+                                    "medaPaxCnt": 0,
+                                    "errorMessage": null,
+                                    "sclassCnt": 0,
+                                    "fclassCnt": 0,
+                                    "jclassCnt": 0,
+                                    "yclassCnt": 11
+                                },
+                                "sectors": null
+                            },
+                            {
+                                "origin": "SIN",
+                                "destination": "ZRH",
+                                "deptDate": "2020-03-19T16:00:00.000+0000",
+                                "carrier": "SQ",
+                                "flightNo": "SQ2929",
+                                "sta": null,
+                                "std": "2020-03-19T16:05:00.000+0000",
+                                "stdString": "20/03/20 00:05",
+                                "staString": null,
+                                "paxCountVo": {
+                                    "infCnt": 0,
+                                    "vipPaxCnt": 0,
+                                    "medaPaxCnt": 0,
+                                    "errorMessage": null,
+                                    "sclassCnt": 0,
+                                    "fclassCnt": 0,
+                                    "jclassCnt": 0,
+                                    "yclassCnt": 2
+                                },
+                                "sectors": null
+                            },
+                            {
+                                "origin": "SIN",
+                                "destination": "SYD",
+                                "deptDate": "2020-03-19T16:00:00.000+0000",
+                                "carrier": "SQ",
+                                "flightNo": "SQ231",
+                                "sta": null,
+                                "std": "2020-03-19T16:45:00.000+0000",
+                                "stdString": "20/03/20 00:45",
+                                "staString": null,
+                                "paxCountVo": {
+                                    "infCnt": 0,
+                                    "vipPaxCnt": 0,
+                                    "medaPaxCnt": 0,
+                                    "errorMessage": null,
+                                    "sclassCnt": 0,
+                                    "fclassCnt": 0,
+                                    "jclassCnt": 2,
+                                    "yclassCnt": 4
+                                },
+                                "sectors": null
+                            },
+                            {
+                                "origin": "SIN",
+                                "destination": "BNE",
+                                "deptDate": "2020-03-19T16:00:00.000+0000",
+                                "carrier": "SQ",
+                                "flightNo": "SQ255",
+                                "sta": null,
+                                "std": "2020-03-19T16:55:00.000+0000",
+                                "stdString": "20/03/20 00:55",
+                                "staString": null,
+                                "paxCountVo": {
+                                    "infCnt": 0,
+                                    "vipPaxCnt": 0,
+                                    "medaPaxCnt": 0,
+                                    "errorMessage": null,
+                                    "sclassCnt": 0,
+                                    "fclassCnt": 0,
+                                    "jclassCnt": 0,
+                                    "yclassCnt": 3
+                                },
+                                "sectors": null
+                            },
+                            {
+                                "origin": "SIN",
+                                "destination": "ZRH",
+                                "deptDate": "2020-03-19T16:00:00.000+0000",
+                                "carrier": "LX",
+                                "flightNo": "LX177",
+                                "sta": null,
+                                "std": "2020-03-19T16:05:00.000+0000",
+                                "stdString": "20/03/20 00:05",
+                                "staString": null,
+                                "paxCountVo": {
+                                    "infCnt": 0,
+                                    "vipPaxCnt": 0,
+                                    "medaPaxCnt": 0,
+                                    "errorMessage": null,
+                                    "sclassCnt": 0,
+                                    "fclassCnt": 0,
+                                    "jclassCnt": 0,
+                                    "yclassCnt": 4
+                                },
+                                "sectors": null
+                            },
+                            {
+                                "origin": "SIN",
+                                "destination": "AKL",
+                                "deptDate": "2020-03-18T16:00:00.000+0000",
+                                "carrier": "SQ",
+                                "flightNo": "SQ285",
+                                "sta": null,
+                                "std": "2020-03-19T14:25:00.000+0000",
+                                "stdString": "19/03/20 22:25",
+                                "staString": null,
+                                "paxCountVo": {
+                                    "infCnt": 0,
+                                    "vipPaxCnt": 0,
+                                    "medaPaxCnt": 0,
+                                    "errorMessage": null,
+                                    "sclassCnt": 0,
+                                    "fclassCnt": 0,
+                                    "jclassCnt": 1,
+                                    "yclassCnt": 2
+                                },
+                                "sectors": null
+                            },
+                            {
+                                "origin": "SIN",
+                                "destination": "CEB",
+                                "deptDate": "2020-03-19T16:00:00.000+0000",
+                                "carrier": "SQ",
+                                "flightNo": "SQ5090",
+                                "sta": null,
+                                "std": "2020-03-20T04:00:00.000+0000",
+                                "stdString": "20/03/20 12:00",
+                                "staString": null,
+                                "paxCountVo": {
+                                    "infCnt": 0,
+                                    "vipPaxCnt": 0,
+                                    "medaPaxCnt": 0,
+                                    "errorMessage": null,
+                                    "sclassCnt": 0,
+                                    "fclassCnt": 0,
+                                    "jclassCnt": 0,
+                                    "yclassCnt": 2
+                                },
+                                "sectors": null
+                            },
+                            {
+                                "origin": "SIN",
+                                "destination": "KTM",
+                                "deptDate": "2020-03-19T16:00:00.000+0000",
+                                "carrier": "SQ",
+                                "flightNo": "SQ5416",
+                                "sta": null,
+                                "std": "2020-03-20T09:40:00.000+0000",
+                                "stdString": "20/03/20 17:40",
+                                "staString": null,
+                                "paxCountVo": {
+                                    "infCnt": 0,
+                                    "vipPaxCnt": 0,
+                                    "medaPaxCnt": 0,
+                                    "errorMessage": null,
+                                    "sclassCnt": 0,
+                                    "fclassCnt": 0,
+                                    "jclassCnt": 0,
+                                    "yclassCnt": 1
+                                },
+                                "sectors": null
+                            }
+                        ],
+                        "inboundFltMap": null,
+                        "outboundFltMap": null,
+                        "errorMessage": null,
+                        "updatedDateTime": null
+                    }
+                },
+                "status": null,
+                "config": {
+                    "linecolor": "#777777",
+                    "airplanecolor": "#E55541",
+                    "tooltipcolor": "#E55541",
+                    "tooltipTextColor": "#ffffff"
+                },
+                "paxDetails": null,
+                "connectingFlights": null
+            },
+            {
+                "flightId": "SQ025202003091215FRASIN",
+                "carrierCode": "SQ",
+                "fltNum": "SQ025",
+                "fbpDate": "09/03/2020 12:15",
+                "cancelled_Indicator": "Y",
+                "owner": "SIA",
+                "route": "FRA-SIN",
+                "serviceType": "J",
+                "sectorNum": 1,
+                "acReg": "9VSKA",
+                "plannedAcType": "388S",
+                "actualAcType": "388S",
+                "depStn": "FRA",
+                "arrStn": "SIN",
+                "blkTime": "0430",
+                "eet": "0415",
+                "depBayGateNo": "A13",
+                "depTerminal": "T3",
+                "arrBayGateNo": null,
+                "arrTerminal": "T1",
+                "std": "12:15",
+                "rtd": null,
+                "etd": "1225/09",
+                "atd": "1230/09",
+                "ab": "1242/09",
+                "sta": "16:45",
+                "rta": null,
+                "eta": "18:05",
+                "lt": "1715/09",
+                "ata": "1725/09",
+                "updatedDatetime": "09/03/2020 11:50",
+                "status": {
+                    "delayed": true,
+                    "misconnection": true
+                },
+                "aircraft": {
+                    "required": true,
+                    "position": 0.2
+                },
+                "depcoordinates": {
+                    "latitude": "50.1109",
+                    "longitude": "8.6821"
+                },
+                "arrcoordinates": {
+                    "latitude": "1.3521",
+                    "longitude": "103.8198"
+                },
+                "config": {
+                    "linecolor": "#777777",
+                    "airplanecolor": "#777777",
+                    "tooltipcolor": "#0483F8",
+                    "tooltipTextColor": "#ffffff"
+                }
+            },
+            {
+                "flightId": "SQ321202003091215LHRSIN",
+                "carrierCode": "SQ",
+                "fltNum": "SQ321",
+                "fbpDate": "09/03/2020 12:15",
+                "cancelled_Indicator": "Y",
+                "owner": "SIA",
+                "route": "LHR-SIN",
+                "serviceType": "J",
+                "sectorNum": 1,
+                "acReg": "9VSKA",
+                "plannedAcType": "388S",
+                "actualAcType": "388S",
+                "depStn": "LHR",
+                "arrStn": "SIN",
+                "blkTime": "0430",
+                "eet": "0415",
+                "depBayGateNo": "A13",
+                "depTerminal": "T3",
+                "arrBayGateNo": null,
+                "arrTerminal": "T1",
+                "std": "12:15",
+                "rtd": null,
+                "etd": "1225/09",
+                "atd": "1230/09",
+                "ab": "1242/09",
+                "sta": "16:45",
+                "rta": null,
+                "eta": "18:05",
+                "lt": "1715/09",
+                "ata": "1725/09",
+                "updatedDatetime": "09/03/2020 11:50",
+                "status": {
+                    "delayed": true,
+                    "misconnection": true
+                },
+                "aircraft": {
+                    "required": true,
+                    "position": 0.2
+                },
+                "depcoordinates": {
+                    "latitude": "51.5074",
+                    "longitude": "0.1278"
+                },
+                "arrcoordinates": {
+                    "latitude": "1.3521",
+                    "longitude": "103.8198"
+                },
+                "config": {
+                    "linecolor": "#777777",
+                    "airplanecolor": "#777777",
+                    "tooltipcolor": "#0483F8",
+                    "tooltipTextColor": "#ffffff"
+                }
+            },
+            {
+                "flightId": "SQ861202003091215HKGSIN",
+                "carrierCode": "SQ",
+                "fltNum": "SQ861",
+                "fbpDate": "09/03/2020 12:15",
+                "cancelled_Indicator": "Y",
+                "owner": "SIA",
+                "route": "HKG-SIN",
+                "serviceType": "J",
+                "sectorNum": 1,
+                "acReg": "9VSKA",
+                "plannedAcType": "388S",
+                "actualAcType": "388S",
+                "depStn": "HKG",
+                "arrStn": "SIN",
+                "blkTime": "0430",
+                "eet": "0415",
+                "depBayGateNo": "A13",
+                "depTerminal": "T3",
+                "arrBayGateNo": null,
+                "arrTerminal": "T1",
+                "std": "12:15",
+                "rtd": null,
+                "etd": "1225/09",
+                "atd": "1230/09",
+                "ab": "1242/09",
+                "sta": "16:45",
+                "rta": null,
+                "eta": "18:05",
+                "lt": "1715/09",
+                "ata": "1725/09",
+                "updatedDatetime": "09/03/2020 11:50",
+                "status": {
+                    "delayed": true,
+                    "misconnection": true
+                },
+                "aircraft": {
+                    "required": true,
+                    "position": 0.2
+                },
+                "depcoordinates": {
+                    "latitude": "22.3193",
+                    "longitude": "114.1694"
+                },
+                "arrcoordinates": {
+                    "latitude": "1.3521",
+                    "longitude": "103.8198"
+                },
+                "config": {
+                    "linecolor": "#777777",
+                    "airplanecolor": "#777777",
+                    "tooltipcolor": "#0483F8",
+                    "tooltipTextColor": "#ffffff"
+                }
+            },
+            {
+                "flightId": "SQ637202003091215NRTSIN",
+                "carrierCode": "SQ",
+                "fltNum": "SQ637",
+                "fbpDate": "09/03/2020 12:15",
+                "cancelled_Indicator": "Y",
+                "owner": "SIA",
+                "route": "NRT-SIN",
+                "serviceType": "J",
+                "sectorNum": 1,
+                "acReg": "9VSKA",
+                "plannedAcType": "388S",
+                "actualAcType": "388S",
+                "depStn": "NRT",
+                "arrStn": "SIN",
+                "blkTime": "0430",
+                "eet": "0415",
+                "depBayGateNo": "A13",
+                "depTerminal": "T3",
+                "arrBayGateNo": null,
+                "arrTerminal": "T1",
+                "std": "12:15",
+                "rtd": null,
+                "etd": "1225/09",
+                "atd": "1230/09",
+                "ab": "1242/09",
+                "sta": "16:45",
+                "rta": null,
+                "eta": "18:05",
+                "lt": "1715/09",
+                "ata": "1725/09",
+                "updatedDatetime": "09/03/2020 11:50",
+                "status": {
+                    "delayed": true,
+                    "misconnection": true
+                },
+                "aircraft": {
+                    "required": true,
+                    "position": 0.2
+                },
+                "depcoordinates": {
+                    "latitude": "36.2048",
+                    "longitude": "138.2529"
+                },
+                "arrcoordinates": {
+                    "latitude": "1.3521",
+                    "longitude": "103.8198"
+                },
+                "config": {
+                    "linecolor": "#777777",
+                    "airplanecolor": "#777777",
+                    "tooltipcolor": "#0483F8",
+                    "tooltipTextColor": "#ffffff"
+                }
+            },
+            {
+                "flightId": "SQ222202003091215SYDSIN",
+                "carrierCode": "SQ",
+                "fltNum": "SQ222",
+                "fbpDate": "09/03/2020 12:15",
+                "cancelled_Indicator": "Y",
+                "owner": "SIA",
+                "route": "SYD-SIN",
+                "serviceType": "J",
+                "sectorNum": 1,
+                "acReg": "9VSKA",
+                "plannedAcType": "388S",
+                "actualAcType": "388S",
+                "depStn": "SYD",
+                "arrStn": "SIN",
+                "blkTime": "0430",
+                "eet": "0415",
+                "depBayGateNo": "A13",
+                "depTerminal": "T3",
+                "arrBayGateNo": null,
+                "arrTerminal": "T1",
+                "std": "12:15",
+                "rtd": null,
+                "etd": "1225/09",
+                "atd": "1230/09",
+                "ab": "1242/09",
+                "sta": "16:45",
+                "rta": null,
+                "eta": "18:05",
+                "lt": "1715/09",
+                "ata": "1725/09",
+                "updatedDatetime": "09/03/2020 11:50",
+                "status": {
+                    "delayed": true,
+                    "misconnection": true
+                },
+                "aircraft": {
+                    "required": true,
+                    "position": 0.2
+                },
+                "depcoordinates": {
+                    "latitude": "-33.8688",
+                    "longitude": "151.2093"
+                },
+                "arrcoordinates": {
+                    "latitude": "1.3521",
+                    "longitude": "103.8198"
+                },
+                "config": {
+                    "linecolor": "#777777",
+                    "airplanecolor": "#777777",
+                    "tooltipcolor": "#0483F8",
+                    "tooltipTextColor": "#ffffff"
+                }
+            },
+            {
+                "flightId": "SQ308202003091215DELSIN",
+                "carrierCode": "SQ",
+                "fltNum": "SQ308",
+                "fbpDate": "09/03/2020 12:15",
+                "cancelled_Indicator": "Y",
+                "owner": "SIA",
+                "route": "DEL-SIN",
+                "serviceType": "J",
+                "sectorNum": 1,
+                "acReg": "9VSKA",
+                "plannedAcType": "388S",
+                "actualAcType": "388S",
+                "depStn": "DEL",
+                "arrStn": "SIN",
+                "blkTime": "0430",
+                "eet": "0415",
+                "depBayGateNo": "A13",
+                "depTerminal": "T3",
+                "arrBayGateNo": null,
+                "arrTerminal": "T1",
+                "std": "12:15",
+                "rtd": null,
+                "etd": "1225/09",
+                "atd": "1230/09",
+                "ab": "1242/09",
+                "sta": "16:45",
+                "rta": null,
+                "eta": "18:05",
+                "lt": "1715/09",
+                "ata": "1725/09",
+                "updatedDatetime": "09/03/2020 11:50",
+                "status": {
+                    "delayed": true,
+                    "misconnection": true
+                },
+                "aircraft": {
+                    "required": true,
+                    "position": 0.2
+                },
+                "depcoordinates": {
+                    "latitude": "28.7041",
+                    "longitude": "77.1025"
+                },
+                "arrcoordinates": {
+                    "latitude": "1.3521",
+                    "longitude": "103.8198"
+                },
+                "config": {
+                    "linecolor": "#777777",
+                    "airplanecolor": "#777777",
+                    "tooltipcolor": "#0483F8",
+                    "tooltipTextColor": "#ffffff"
+                }
+            }
+        ]
+    },
+    "stationcoordinates": [{
+            "latitude": 50.1109,
+            "longitude": 8.6821,
+            "title": "Frankfurt"
+        },
+        {
+            "latitude": 1.3521,
+            "longitude": 103.8198,
+            "title": "Singapore"
+        },
+        {
+            "latitude": 13.0827,
+            "longitude": 80.2707,
+            "title": "Chennai"
+        },
+        {
+            "latitude": 51.5074,
+            "longitude": 0.1278,
+            "title": "London"
+        },
+        {
+            "latitude": 22.3193,
+            "longitude": 114.1694,
+            "title": "Hong Kong"
+        },
+        {
+            "latitude": 28.7041,
+            "longitude": 77.1025,
+            "title": "Delhi"
+        },
+        {
+            "latitude": 36.2048,
+            "longitude": 138.2529,
+            "title": "Japan"
+        },
+        {
+            "latitude": -33.8688,
+            "longitude": 151.2093,
+            "title": "Sydney"
+        }
+    ]
+}
