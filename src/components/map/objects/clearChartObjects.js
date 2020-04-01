@@ -14,6 +14,10 @@ export const clearChartComponents = (chartObj, objectsToBeCleared) => {
             console.log(inObj._className);
               inObj._className === objectToBeCleared ?  chartObj.series.removeIndex(chartObj.series.indexOf(inObj)).dispose() : console.log("Finding Object to be removed...") ;
             });
+            chartObj.series.values.forEach(inObj => {
+            console.log(inObj._className);
+              inObj._className === objectToBeCleared ?  chartObj.series.removeIndex(chartObj.series.indexOf(inObj)).dispose() : console.log("Finding Object to be removed...") ;
+            });
       }
     })
   }

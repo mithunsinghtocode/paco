@@ -15,7 +15,7 @@ export const mapObjectEvents = ( bullet, line, lineSeries, flight, dispatchFunc 
         },
         this
       );
-      lineSeries.events.on(
+      lineSeries.mapLines.events.on(
         "hit",
         ev => {
           let a = ev.target;

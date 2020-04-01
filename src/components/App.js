@@ -6,13 +6,16 @@ import Filter from './filter/Filter';
 import MapChartLayer from './map/chart';
 import FocusView from './focusview/FocusView';
 import { removeSelectedFlightFromMap } from '../actions/chartDataAction';
+import { clearChartComponents } from "../components/map/objects/clearChartObjects";
+
+import { initChart } from "../actions/chartAction";
 
 class App extends React.Component {
     render(){
     return (
         <div>
             <Header />
-            <Filter goBackFunction={() => this.props.removeSelectedFlightFromMap(null)}/>
+            <Filter goBackFunction={() => {this.props.removeSelectedFlightFromMap(null); clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries"]);}}/>
             <MapChartLayer />
             < FocusView />
         </div>
@@ -21,7 +24,7 @@ class App extends React.Component {
 };
 
 const mapStateToProps = (state, ownProps) => {
-    return { state };
+    return { state, chartObj: state.chartInit };
   }
   
-  export default connect(mapStateToProps , { removeSelectedFlightFromMap })(App);
+  export default connect(mapStateToProps , { removeSelectedFlightFromMap, initChart })(App);

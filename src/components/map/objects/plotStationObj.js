@@ -1,6 +1,6 @@
 import * as am4maps from "@amcharts/amcharts4/maps";
 
-export const plotStationObj = (am4core, chartObj, flight) => {
+export const plotStationObj = (am4core, chartObj, objData) => {
   // Adds the circles to all the locations needed
   // Create image series
   var imageSeries = chartObj.series.push(new am4maps.MapImageSeries());
@@ -35,7 +35,7 @@ export const plotStationObj = (am4core, chartObj, flight) => {
   */
 
   // This shows the tooltip of the country at the circle.
-  imageSeries.data = flight.stationcoordinates;
+  imageSeries.data = objData.stationcoordinates ? objData.stationcoordinates : objData;
 
 
   // Create a circle image in image series template so it gets replicated to all new images

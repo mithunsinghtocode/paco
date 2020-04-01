@@ -14,6 +14,12 @@ class FocusView extends React.Component {
         return selectedFlight.depBayGateNo !== null ? `${selectedFlight.depTerminal} / ${selectedFlight.depBayGateNo}` : "-";
     }
 
+    getPaxDetailsFormat = (selectedFlight) => {
+      return this.frameCabinClass('F',selectedFlight.paxCountVo.fclassCnt) + this.frameCabinClass('J',selectedFlight.paxCountVo.jclassCnt) + this.frameCabinClass('S',selectedFlight.paxCountVo.sclassCnt) + this.frameCabinClass('Y',selectedFlight.paxCountVo.yclassCnt) ;
+    }
+
+    frameCabinClass = (cabinClass, count) =>  Number(count) > 0 ? ` ${cabinClass}${count}` : "";
+
     renderSelectedFlightInFocusView = () => {
         console.log("Into Focus View");
         let selectedFlight = this.props.selectedFlightObj;
@@ -35,7 +41,7 @@ class FocusView extends React.Component {
                   <div className="row value">
                     <div className="col-2 col-md-3">{getHoursAndMinutesAfterFormat(selectedFlight.std)}</div>
                     <div className="col-1 col-md-3">{ this.getBayGateTerminalDetails(selectedFlight) }</div>
-                    <div className="col-3 col-md-5">J14 Y183</div>
+                    <div className="col-3 col-md-5">{ this.getPaxDetailsFormat(selectedFlight) }</div>
                   </div>
           
                   <div className="row arrival">
@@ -47,7 +53,7 @@ class FocusView extends React.Component {
                   <div className="row value"  style={{fontSize: "20px"}}>
                     <div className="col-2 col-md-3">{getHoursAndMinutesAfterFormat(selectedFlight.sta)}</div>
                     <div className="col-1 col-md-3">{getHoursAndMinutesAfterFormat(selectedFlight.eta)}</div>
-                    <div className="col-3 col-md-5">4 Flights</div>
+                    <div className="col-3 col-md-5" style={{fontSize: "14px", marginTop: "6px"}}><i>Coming Soon</i></div>
                   </div>
           
                   <hr style={{borderTop: "1px solid #9b9696"}}/>
@@ -55,8 +61,19 @@ class FocusView extends React.Component {
                   <div className="row option">
                     <div className="col">COST BASED DELAY OPTIONS</div>
                   </div>
-          
                   <div className="row option">
+                    <div className="col-12">
+                    <button type="button" className="btn btn-block cost" style={{ backgroundColor: "Transparent"}}>
+                      <br/> 
+                      <i>Coming Soon</i>
+                      <br/> 
+                      <br/> 
+                      </button>
+                    </div>
+                  </div>
+                  <div className="row margin-high">
+                    </div>
+                  {/* <div className="row option">
                     <div className="col-6">
                       <button type="button" className="btn btn-block cost">
                         <bigfont className="big-font"> 0 min </bigfont> 
@@ -77,7 +94,7 @@ class FocusView extends React.Component {
                     <button type="button" className="btn btn-block details" style={{ width: "96%" }}>
                         <medfont className="med-font"> SHOW DETAILS </medfont> 
                   </button>
-                  </div>
+                  </div> */}
           
                   
                   <hr style={{ borderTop: "1px solid #9b9696",marginTop:"25px"}}/>
@@ -90,10 +107,11 @@ class FocusView extends React.Component {
                   </div>
           
                   <div className="row med-level-up-font">
-                    <div className="col">SQ 529</div>
+                    {/* <div className="col">SQ 529</div>
                     <div className="col">23:15</div>
                     <div className="col">1:00h</div>
-                    <div className="col">0:50h</div>
+                    <div className="col">0:50h</div> */}
+                   <center style={{fontSize: "14px", marginLeft: "35%"}}> <i>coming soon</i></center>
                   </div>
           
               </div>
@@ -132,7 +150,7 @@ class FocusView extends React.Component {
             </div>
             <div className="overlay-arrow">
 
-              <i class="big arrow alternate circle down outline icon"  onClick={this.off} style={{ color: "#fff" }}></i>
+              <i className="big arrow alternate circle down outline icon"  onClick={this.off} style={{ color: "#fff" }}></i>
             </div>
             </div>
         );
