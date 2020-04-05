@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import "./filter.scss";
+import { getFilteredFlightDataForInbound } from '../../actions/chartDataAction';
+import { clearChartComponents } from '../map/objects/clearChartObjects';
 
 export class Filter extends React.Component {
   renderBackButton(){
@@ -21,6 +23,61 @@ export class Filter extends React.Component {
           &nbsp; BACK </button>
           );
   }
+
+  filterInboundFlightBasedOnToggle = () => {
+    let misconnectionToggle = document.getElementById("switch1").checked;
+    let arrivWithin3HoursToggle = document.getElementById("switch2").checked;
+
+    console.log("misconnectionToggle :: "+misconnectionToggle);
+    console.log("arrivWithin3HoursToggle :: "+ arrivWithin3HoursToggle);
+
+    if(misconnectionToggle && arrivWithin3HoursToggle){
+      let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
+        if(flight.status === null){
+          return false;
+        }else{
+          return (flight.status.misconnection === true && (new Date(flight.eta).getTime() < (new Date().addHours(-5))))
+        }
+        });
+        clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries"]);
+        this.props.getFilteredFlightDataForInbound(flightList);
+    } else if (misconnectionToggle){
+      let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
+        if(flight.status === null){
+          return false;
+        }else{
+          return (flight.status.misconnection === true)
+        }
+        });
+        clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries"]);
+        this.props.getFilteredFlightDataForInbound(flightList);
+
+    } else if (arrivWithin3HoursToggle){
+      let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
+        if(flight.status === null){
+          return false;
+        }else{
+          Date.prototype.addHours = function(h) {
+            this.setHours(this.getHours()+h);
+            return this;
+          }
+          return (new Date(flight.eta).getTime() < (new Date().addHours(-5)));
+        }
+        });
+        clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries"]);
+        this.props.getFilteredFlightDataForInbound(flightList);
+    } else{
+      clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries"]);
+      this.props.getFilteredFlightDataForInbound(this.props.flightData);
+    }
+
+    Date.prototype.addHours = function(h) {
+      this.setHours(this.getHours()+h);
+      return this;
+    }
+
+  }
+
   render() {
     return (
       <div>
@@ -30,14 +87,14 @@ export class Filter extends React.Component {
           
           <div className="div-switch">
             <div className="switch">
-              <input type="checkbox" id="switch1" className="switch__input" />
+              <input type="checkbox" id="switch1" className="switch__input"  onClick={ this.filterInboundFlightBasedOnToggle } />
               <label htmlFor="switch1" className="switch__label">
                 Potential misconnection only
               </label>
             </div>
             &nbsp; <div className="vl"></div>
             <div className="switch">
-              <input type="checkbox" id="switch2" className="switch__input" />
+              <input type="checkbox" id="switch2" className="switch__input" onClick={ this.filterInboundFlightBasedOnToggle }/>
               <label htmlFor="switch2" className="switch__label">
                 Arriving within next 3 hours
               </label>
@@ -69,8 +126,8 @@ export class Filter extends React.Component {
 }
 
 const mapStateToProps = (state, ownprops) => {
-  console.log(ownprops.goBackFunction);
-  return { displayView: state.getDisplayView, goBackFunction : ownprops.goBackFunction, fltToDisplayInMap : state.getFltToShowInMap };
+  console.log(state);
+  return { chartObj: state.chartInit, displayView: state.getDisplayView, goBackFunction : ownprops.goBackFunction, fltToDisplayInMap : state.getFltToShowInMap, flightData : state.allFlightData };
 };
 
-export default connect(mapStateToProps)(Filter);
+export default connect(mapStateToProps, { getFilteredFlightDataForInbound })(Filter);

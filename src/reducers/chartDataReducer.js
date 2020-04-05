@@ -1,7 +1,8 @@
 export const inboundFlightDataReducer = (state = null, action) => {
   switch (action.type) {
     case "GET_INBOUND_FLIGHT_DATA":
-      let inboundFlightData = action.payload.flightSchedule.flightList.filter(
+      let flightList = Array.isArray(action.payload) ? action.payload : action.payload.flightSchedule.flightList;
+      let inboundFlightData = flightList.filter(
         flight => flight.arrStn === "SIN"
       );
       let payload = [];

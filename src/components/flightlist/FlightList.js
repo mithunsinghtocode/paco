@@ -7,7 +7,6 @@ import { showSelectedFlightInMap, removeSelectedFlightFromMap } from "../../acti
 class FlightList extends React.Component {
 
     getPaxDetailsFormat = (selectedFlight) => {
-        console.log(selectedFlight.paxCountVo);
         return this.frameCabinClass('F',selectedFlight.paxCountVo.fclassCnt) + this.frameCabinClass('J',selectedFlight.paxCountVo.jclassCnt) + this.frameCabinClass('S',selectedFlight.paxCountVo.sclassCnt) + this.frameCabinClass('Y',selectedFlight.paxCountVo.yclassCnt) ;
       }
   
@@ -15,14 +14,14 @@ class FlightList extends React.Component {
 
       getFormattedFltNum = (fltNum) => `${fltNum.substr(0,2)} ${fltNum.substr(2,5)}`;
 
+      getClassName = (flightObj) => flightObj.status.misconnection ? "rectangle-copy-2-1-misconnected" : "rectangle-copy-2-1-delay" ;
+
     renderFlightList = (flightList) => {
-        return flightList.map((flightObj) => {
-            console.log(flightObj);
-            
+        return flightList.map((flightObj) => {            
             return(
-                flightObj && <div>
-                     <div className="rectangle-copy-2" onClick={ () => alert("Helo")}>
-                         <div className="rectangle-copy-2-1">
+                flightObj && <div key={ flightObj.flightId } value={ flightObj.flightId } onClick={ (e) => this.props.showSelectedFlightInMap(flightObj)} >
+                     <div className="rectangle-copy-2" >
+                        <div className={ this.getClassName(flightObj) }>
                              <div className="flight-num" style={{ display: "inline-block" }}>{this.getFormattedFltNum(flightObj.fltNum)}</div>  <div className="cabin-class" style={{ display: "inline-block" }}>{this.getPaxDetailsFormat(flightObj)}</div>
                          </div>
                          <div className="rectangle-copy-2-2">
@@ -30,14 +29,14 @@ class FlightList extends React.Component {
                          </div>
                      </div>
                  </div>
-           )  
+           )
         })       
     }
 
     render(){
         return (
             <div className="legend">
-                { this.props.inboundFlights === null ? this.renderFlightList([this.props.fltToDisplayInMap]) : this.renderFlightList(this.props.inboundFlights.flightList) }
+                { this.props.fltToDisplayInMap !== null ? this.renderFlightList([this.props.fltToDisplayInMap]) : this.props.inboundFlights && this.renderFlightList(this.props.inboundFlights.flightList) }
            </div>
         );
     }
