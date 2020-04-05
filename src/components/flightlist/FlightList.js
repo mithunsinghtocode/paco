@@ -1,6 +1,7 @@
 import React from  'react';
 import "./flightList.scss";
 import { connect } from "react-redux";
+import { getHoursAndMinutesAfterFormat, getUTCDate } from "../../utils/dateUtils";
 
 import { showSelectedFlightInMap, removeSelectedFlightFromMap } from "../../actions/chartDataAction";
 
@@ -16,6 +17,14 @@ class FlightList extends React.Component {
 
       getClassName = (flightObj) => flightObj.status.misconnection ? "rectangle-copy-2-1-misconnected" : "rectangle-copy-2-1-delay" ;
 
+      getDelayInMin = (flightObj) => {
+            let dif = (new Date(flightObj.eta).getTime() - new Date(flightObj.sta).getTime()); 
+            console.log(dif);
+            if(dif !== NaN && dif > 0){
+                return  `${Math.round((dif/1000)/60)} min`; 
+            }
+      }
+
     renderFlightList = (flightList) => {
         return flightList.map((flightObj) => {            
             return(
@@ -25,7 +34,7 @@ class FlightList extends React.Component {
                              <div className="flight-num" style={{ display: "inline-block" }}>{this.getFormattedFltNum(flightObj.fltNum)}</div>  <div className="cabin-class" style={{ display: "inline-block" }}>{this.getPaxDetailsFormat(flightObj)}</div>
                          </div>
                          <div className="rectangle-copy-2-2">
-                         <p className="flight-details" style={{ display: "inline-block" }}> <b style={{ marginRight: "5px" }}>STA</b> 01:07 <b style={{ display: "inline-block", marginLeft: "1px" }} className="line"></b> <b style={{ marginLeft: "10px", marginRight: "5px"}}>ETA</b> 02:05 </p>  <p className="flight-delay" style={{ display: "inline-block" }}>58 min</p>
+                         <p className="flight-details" style={{ display: "inline-block" }}> <b style={{ marginRight: "5px" }}>STA</b> {getHoursAndMinutesAfterFormat(flightObj.sta)} <b style={{ display: "inline-block", marginLeft: "1px" }} className="line"></b> <b style={{ marginLeft: "10px", marginRight: "5px"}}>ETA</b> {getHoursAndMinutesAfterFormat(flightObj.eta)} </p>  <p className="flight-delay" style={{ display: "inline-block" }}> { this.getDelayInMin(flightObj) } </p>
                          </div>
                      </div>
                  </div>

@@ -24,7 +24,6 @@ class App extends React.Component {
             <MapChartLayer />
             <FlightList />
             <FocusView />
-            
         </div>
     );
     }
