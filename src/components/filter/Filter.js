@@ -3,13 +3,9 @@ import { connect } from "react-redux";
 import "./filter.scss";
 
 export class Filter extends React.Component {
-  render() {
-    return (
-      <div>
-      {this.props.displayView === "INBOUND" &&
-        <nav className="navbar navbar-light justify-content-between filter">
-          <button className="rectangle" onClick={this.props.goBackFunction}> 
-          <svg width="14px" height="14px">
+  renderBackButton(){
+    return (<button className="rectangle" onClick={this.props.goBackFunction}>
+      <svg width="14px" height="14px">
               <title>FA330ECD-E438-49D6-AEB5-DD2670AE9D78</title>
               <desc>Created with sketchtool.</desc>
               <g id="Design" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -23,6 +19,15 @@ export class Filter extends React.Component {
               </g>
           </svg>
           &nbsp; BACK </button>
+          );
+  }
+  render() {
+    return (
+      <div>
+      {this.props.displayView === "INBOUND" &&
+        <nav className="navbar navbar-light justify-content-between filter">
+        {this.props.fltToDisplayInMap !== null && this.renderBackButton()}
+          
           <div className="div-switch">
             <div className="switch">
               <input type="checkbox" id="switch1" className="switch__input" />
@@ -65,7 +70,7 @@ export class Filter extends React.Component {
 
 const mapStateToProps = (state, ownprops) => {
   console.log(ownprops.goBackFunction);
-  return { displayView: state.getDisplayView, goBackFunction : ownprops.goBackFunction };
+  return { displayView: state.getDisplayView, goBackFunction : ownprops.goBackFunction, fltToDisplayInMap : state.getFltToShowInMap };
 };
 
 export default connect(mapStateToProps)(Filter);

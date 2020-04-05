@@ -64,10 +64,10 @@
                     "medaPaxCnt": 0,
                     "errorMessage": null,
                     "paxUpdatedDateTime": "2020-03-17T03:20:06.000+0000",
-                    "fclassCnt": 0,
-                    "sclassCnt": 0,
-                    "jclassCnt": 5,
-                    "yclassCnt": 77
+                    "fclassCnt": 12,
+                    "sclassCnt": 50,
+                    "jclassCnt": 15,
+                    "yclassCnt": 177
                 },
                 "outboundFlt": [{
                         "flightId": "SQ362202003201605SINDME1",
@@ -802,7 +802,19 @@
                     "airplanecolor": "#E55541",
                     "tooltipcolor": "#E55541",
                     "tooltipTextColor": "#ffffff"
+                },
+                "paxCountVo": {
+                    "infCnt": 0,
+                    "vipPaxCnt": 0,
+                    "medaPaxCnt": 0,
+                    "errorMessage": null,
+                    "paxUpdatedDateTime": "2020-03-17T03:20:06.000+0000",
+                    "fclassCnt": 0,
+                    "sclassCnt": 0,
+                    "jclassCnt": 5,
+                    "yclassCnt": 77
                 }
+
             },
             {
                 "flightId": "MI607202003191150PNHSIN1",
@@ -1300,6 +1312,17 @@
                     "tooltipTextColor": "#ffffff"
                 },
                 "paxDetails": null,
+                "paxCountVo": {
+                    "infCnt": 0,
+                    "vipPaxCnt": 0,
+                    "medaPaxCnt": 0,
+                    "errorMessage": null,
+                    "paxUpdatedDateTime": "2020-03-17T03:20:06.000+0000",
+                    "fclassCnt": 0,
+                    "sclassCnt": 0,
+                    "jclassCnt": 5,
+                    "yclassCnt": 77
+                },
                 "connectingFlights": null
             },
             {
@@ -1355,6 +1378,17 @@
                     "airplanecolor": "#777777",
                     "tooltipcolor": "#0483F8",
                     "tooltipTextColor": "#ffffff"
+                },
+                "paxCountVo": {
+                    "infCnt": 0,
+                    "vipPaxCnt": 0,
+                    "medaPaxCnt": 0,
+                    "errorMessage": null,
+                    "paxUpdatedDateTime": "2020-03-17T03:20:06.000+0000",
+                    "fclassCnt": 0,
+                    "sclassCnt": 0,
+                    "jclassCnt": 5,
+                    "yclassCnt": 77
                 }
             },
             {
@@ -1410,6 +1444,17 @@
                     "airplanecolor": "#777777",
                     "tooltipcolor": "#0483F8",
                     "tooltipTextColor": "#ffffff"
+                },
+                "paxCountVo": {
+                    "infCnt": 0,
+                    "vipPaxCnt": 0,
+                    "medaPaxCnt": 0,
+                    "errorMessage": null,
+                    "paxUpdatedDateTime": "2020-03-17T03:20:06.000+0000",
+                    "fclassCnt": 0,
+                    "sclassCnt": 0,
+                    "jclassCnt": 5,
+                    "yclassCnt": 77
                 }
             },
             {
@@ -1465,6 +1510,17 @@
                     "airplanecolor": "#777777",
                     "tooltipcolor": "#0483F8",
                     "tooltipTextColor": "#ffffff"
+                },
+                "paxCountVo": {
+                    "infCnt": 0,
+                    "vipPaxCnt": 0,
+                    "medaPaxCnt": 0,
+                    "errorMessage": null,
+                    "paxUpdatedDateTime": "2020-03-17T03:20:06.000+0000",
+                    "fclassCnt": 0,
+                    "sclassCnt": 0,
+                    "jclassCnt": 5,
+                    "yclassCnt": 77
                 }
             },
             {
@@ -1520,6 +1576,17 @@
                     "airplanecolor": "#777777",
                     "tooltipcolor": "#0483F8",
                     "tooltipTextColor": "#ffffff"
+                },
+                "paxCountVo": {
+                    "infCnt": 0,
+                    "vipPaxCnt": 0,
+                    "medaPaxCnt": 0,
+                    "errorMessage": null,
+                    "paxUpdatedDateTime": "2020-03-17T03:20:06.000+0000",
+                    "fclassCnt": 0,
+                    "sclassCnt": 0,
+                    "jclassCnt": 5,
+                    "yclassCnt": 77
                 }
             },
             {
@@ -1575,6 +1642,17 @@
                     "airplanecolor": "#777777",
                     "tooltipcolor": "#0483F8",
                     "tooltipTextColor": "#ffffff"
+                },
+                "paxCountVo": {
+                    "infCnt": 0,
+                    "vipPaxCnt": 0,
+                    "medaPaxCnt": 0,
+                    "errorMessage": null,
+                    "paxUpdatedDateTime": "2020-03-17T03:20:06.000+0000",
+                    "fclassCnt": 0,
+                    "sclassCnt": 0,
+                    "jclassCnt": 5,
+                    "yclassCnt": 77
                 }
             },
             {
@@ -1630,6 +1708,17 @@
                     "airplanecolor": "#777777",
                     "tooltipcolor": "#0483F8",
                     "tooltipTextColor": "#ffffff"
+                },
+                "paxCountVo": {
+                    "infCnt": 0,
+                    "vipPaxCnt": 0,
+                    "medaPaxCnt": 0,
+                    "errorMessage": null,
+                    "paxUpdatedDateTime": "2020-03-17T03:20:06.000+0000",
+                    "fclassCnt": 0,
+                    "sclassCnt": 0,
+                    "jclassCnt": 5,
+                    "yclassCnt": 77
                 }
             }
         ]
