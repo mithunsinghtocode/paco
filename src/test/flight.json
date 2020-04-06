@@ -798,10 +798,11 @@
                     "longitude": "103.8198"
                 },
                 "config": {
-                    "linecolor": "#777777",
+                    "linecolor": "#E55541",
                     "airplanecolor": "#E55541",
                     "tooltipcolor": "#E55541",
-                    "tooltipTextColor": "#ffffff"
+                    "tooltipTextColor": "#FFFFFF",
+                    "bulletColor": "#E55541"
                 },
                 "paxCountVo": {
                     "infCnt": 0,
@@ -1018,10 +1019,11 @@
                     "misconnection": true
                 },
                 "config": {
-                    "linecolor": "#777777",
+                    "linecolor": "#E55541",
                     "airplanecolor": "#E55541",
                     "tooltipcolor": "#E55541",
-                    "tooltipTextColor": "#ffffff"
+                    "tooltipTextColor": "#FFFFFF",
+                    "bulletColor": "#E55541"
                 },
                 "paxDetails": null,
                 "paxCountVo": {
