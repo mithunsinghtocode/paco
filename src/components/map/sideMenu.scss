@@ -10,48 +10,31 @@
         -o-transform: rotate(-90deg);
     }
     
-    // .ui.toggle.button.rotate {
-    //     right: -20%;
-    //     position: absolute;
-    //     height: 44px;
-    //     width: 686%;
-    //     top: 12%;
-    //     left: -300%;
-    //     background-color: #2E2E2E;
-    //     color: white;
-    //     text-align: center;
-    //     align-content: center;
-    //     display: flex;
-    //     border-bottom: 5px solid #87C039;
-    //     border-left: 2px solid black;
-    //     padding: 14px 0px 10px 82px;
-    // }
-
     .ui.toggle.button.rotate {
-        left: -7%;
-        right: 0%;
-        position: fixed;
-        height: 40px;
-        width: 16%;
-        top: 260px;
-        /* left: -300%; */
+        //right: -20%;
+        position: absolute;
+        height: 44px;
+        width: 686%;
+        top: 13%;
+        left: -295%;
         background-color: #2E2E2E;
         color: white;
         text-align: center;
         align-content: center;
-        display: flex;
-        border-bottom: 5px solid #87C039;
+        //display: flex;
+       // border-bottom: 5px solid #87C039;
         border-left: 2px solid black;
         padding: 14px 0px 10px 82px;
     }
     
-    .ui.toggle.button.rotate1 {
-        right: -20%;
+    
+    .ui.toggle.button.rotate1 { 
+       // right: -20%;
         position: absolute;
-        height: 40px;
+        height: 42px;
         width: 686%;
-        top: 42%;
-        left: -300%;
+        top: 46%;
+        left: -295%;
         background-color: #2E2E2E;
         color: white;
         text-align: center;
