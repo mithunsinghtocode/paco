@@ -1,4 +1,18 @@
 import flightData from '../test/flight.json';
+import backend from '../api/backend';
+
+// export const getFlightData = () => async (dispatch, getState) => {
+//     console.log("About to fetch");
+//    await dispatch(fetchFlightData());
+// };
+
+// export const fetchFlightData = () => {
+//     // Bad Approach !!! - Breaking rules of redux if not used thunk as below
+//     return async (dispatch) => {
+//         const response = await backend.get('/paco-api/getFlightDetails');
+//         dispatch({ type: 'GET_FLIGHT_DATA', payload: response.data});
+//     };
+// };
 
 export const getFlightData = () => dispatch => {
     dispatch({ type: 'GET_FLIGHT_DATA', payload: flightData});

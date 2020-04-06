@@ -19,7 +19,7 @@ class FlightList extends React.Component {
 
       getDelayInMin = (flightObj) => {
             let dif = (new Date(flightObj.eta).getTime() - new Date(flightObj.sta).getTime()); 
-            console.log(dif);
+            //console.log(dif);
             if(dif !== NaN && dif > 0){
                 return  `${Math.round((dif/1000)/60)} min`; 
             }
@@ -44,7 +44,7 @@ class FlightList extends React.Component {
 
     render(){
         return (
-            <div className="legend">
+            <div className="legend" id="legend">
                 { this.props.fltToDisplayInMap !== null ? this.renderFlightList([this.props.fltToDisplayInMap]) : this.props.inboundFlights && this.renderFlightList(this.props.inboundFlights.flightList) }
            </div>
         );
