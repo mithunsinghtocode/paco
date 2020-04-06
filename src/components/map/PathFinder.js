@@ -97,9 +97,12 @@ class PathFinder extends React.Component {
 
   };
 
+  renderLoading = () => {
+    return <Loader loader="Map Loading..." />;
+ }
   render() {
     return <div className=""> 
-      {this.props.fltToDisplayInMap == null ? this.renderFlightDataForInbound() : ""} </div>;
+      {this.props.fltToDisplayInMap == null ?  (this.props.inboundFlights !== null ? this.renderFlightDataForInbound() : this.renderLoading()) : ""} </div>;
   }
 }
 
