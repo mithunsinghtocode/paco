@@ -16,6 +16,13 @@ export const fetchFlightData = () => {
     };
 };
 
+// export const getFlightData = () => (dispatch, getState) => {
+//     Promise.resolve( 
+//         dispatch({ type: 'GET_FLIGHT_DATA', payload: flightJSONData})
+//     ).then(
+//         (data) => dispatch(getFlightDataForInbound(data.payload.flightSchedule.flightList)));
+// };
+
 export const getFlightDataForInbound = (flightData) => dispatch => {
     console.log("Into inbound action");
     dispatch({ type: 'GET_INBOUND_FLIGHT_DATA', payload: flightData});
