@@ -1,24 +1,30 @@
-import flightData from '../test/flight.json';
+import flightJSONData from '../test/flight.json';
 import backend from '../api/backend';
 
-// export const getFlightData = () => async (dispatch, getState) => {
-//     console.log("About to fetch");
-//    await dispatch(fetchFlightData());
-// };
-
-// export const fetchFlightData = () => {
-//     // Bad Approach !!! - Breaking rules of redux if not used thunk as below
-//     return async (dispatch) => {
-//         const response = await backend.get('/paco-api/getFlightDetails');
-//         dispatch({ type: 'GET_FLIGHT_DATA', payload: response.data});
-//     };
-// };
-
-export const getFlightData = () => dispatch => {
-    dispatch({ type: 'GET_FLIGHT_DATA', payload: flightData});
+export const getFlightData = () => async (dispatch, getState) => {
+    console.log("About to fetch");
+    Promise.resolve(await dispatch(fetchFlightData())).then(
+        (data) => dispatch( getFlightDataForInbound(data.payload.flightSchedule.flightList))
+    );   
 };
 
-export const getFlightDataForInbound = () => dispatch => {
+export const fetchFlightData = () => {
+    // Bad Approach !!! - Breaking rules of redux if not used thunk as below
+    return async (dispatch) => {
+        const response = await backend.get('/paco-api/getFlightDetails');
+        dispatch({ type: 'GET_FLIGHT_DATA', payload: response.data});
+    };
+};
+
+// export const getFlightData = () => (dispatch, getState) => {
+//     Promise.resolve( 
+//         dispatch({ type: 'GET_FLIGHT_DATA', payload: flightJSONData})
+//     ).then(
+//         (data) => dispatch(getFlightDataForInbound(data.payload.flightSchedule.flightList)));
+// };
+
+export const getFlightDataForInbound = (flightData) => dispatch => {
+    console.log("Into inbound action");
     dispatch({ type: 'GET_INBOUND_FLIGHT_DATA', payload: flightData});
 };
 

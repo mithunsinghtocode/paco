@@ -11,14 +11,12 @@ import { mapObjectEvents } from "../map/objects/events";
 import { plotStationObj } from "../map/objects/plotStationObj";
 import * as mapConst from "./mapConst";
 import { initChart } from "../../actions/chartAction";
+import Loader from '../loader/Loader';
 
 import { clearChartComponents } from "../../components/map/objects/clearChartObjects";
 
 class PathFinder extends React.Component {
-  componentDidMount() {
-    this.props.getFlightDataForInbound();
-  }
-
+  
   getChartObj = () => {
     return this.props.chartObj;
   };
@@ -100,12 +98,13 @@ class PathFinder extends React.Component {
   };
 
   render() {
-    return <div className=""> {this.props.fltToDisplayInMap == null ? this.renderFlightDataForInbound() : ""} </div>;
+    return <div className=""> 
+      {this.props.fltToDisplayInMap == null ? this.renderFlightDataForInbound() : ""} </div>;
   }
 }
 
 const mapStateToProps = (state, ownprops) => {
-  return { chartObj: state.chartInit, inboundFlights: state.inboundFlightData, displayView: state.getDisplayView, fltToDisplayInMap : state.getFltToShowInMap };
+  return { chartObj: state.chartInit, inboundFlights: state.inboundFlightData, displayView: state.getDisplayView, fltToDisplayInMap : state.getFltToShowInMap, flightData : state.allFlightData };
 };
 
 export default connect(mapStateToProps, { getFlightDataForInbound, showFocusViewForSelectedFlight, showSelectedFlightInMap, initChart })(

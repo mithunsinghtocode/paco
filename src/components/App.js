@@ -6,7 +6,7 @@ import Filter from './filter/Filter';
 import MapChartLayer from './map/chart';
 import FocusView from './focusview/FocusView';
 import FlightList from './flightlist/FlightList';
-import { removeSelectedFlightFromMap, getFlightData, removeFocusViewForSelectedFlight } from '../actions/chartDataAction';
+import { removeSelectedFlightFromMap, getFlightData, removeFocusViewForSelectedFlight, getFlightDataForInbound } from '../actions/chartDataAction';
 import { clearChartComponents } from "../components/map/objects/clearChartObjects";
 
 import { initChart } from "../actions/chartAction";
@@ -14,7 +14,8 @@ import { initChart } from "../actions/chartAction";
 class App extends React.Component {
     componentDidMount(){
         // Get all the flight Data
-        this.props.getFlightData();
+        this.props.getFlightData();    
+        //this.props.flightData && this.props.getFlightDataForInbound(this.props.flightData);
     }
     render(){
     return (
@@ -30,7 +31,7 @@ class App extends React.Component {
 };
 
 const mapStateToProps = (state, ownProps) => {
-    return { state, chartObj: state.chartInit };
+    return { state, chartObj: state.chartInit, flightData : state.allFlightData };
   }
   
-  export default connect(mapStateToProps , { removeSelectedFlightFromMap, removeFocusViewForSelectedFlight, initChart, getFlightData })(App);
+  export default connect(mapStateToProps , { removeSelectedFlightFromMap, removeFocusViewForSelectedFlight, initChart, getFlightData, getFlightDataForInbound })(App);
