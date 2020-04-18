@@ -13,5 +13,9 @@
 			"path": "/Users/mithunsingh 1/workspace_ang/projects/react/pics"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"jshint.options": {
+			"esversion": 6
+		}
+	}
 }

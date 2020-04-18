@@ -17,12 +17,9 @@ import { clearChartComponents } from "../../components/map/objects/clearChartObj
 
 class PathFinder extends React.Component {
   
-  getChartObj = () => {
-    return this.props.chartObj;
-  };
-  getInboundFlightData = () => {
-    return this.props.inboundFlights;
-  };
+  getChartObj = () => this.props.chartObj;
+
+  getInboundFlightData = () => this.props.inboundFlights;
 
   setDefaultZoomAndGeoPointFocus = (
     chartObj,
@@ -82,7 +79,7 @@ class PathFinder extends React.Component {
         let line = lineObj(am4core, flight, lineSeries);
 
         // adds tooltip for the flights
-        let bullet = tooltipObj(line, lineSeries, am4core, flight) ;
+        let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView) ;
 
         // Adds click event on the tooltip, icon and line
         mapObjectEvents(bullet, line, lineSeries, flight, this.props.showSelectedFlightInMap);
@@ -94,7 +91,6 @@ class PathFinder extends React.Component {
       this.props.initChart(chartObj);
     }
     }
-
   };
 
   renderLoading = () => {

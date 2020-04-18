@@ -36,6 +36,7 @@ export class Filter extends React.Component {
         if(flight.status === null){
           return false;
         }else{
+          // Singapore variance is +8 and arriving within 3 hours => -8+3 = -5
           return (flight.status.misconnection === true && (new Date(flight.eta).getTime() < (new Date().addHours(-5))))
         }
         });
@@ -78,28 +79,39 @@ export class Filter extends React.Component {
 
   }
 
+  getFormattedHeading = (fltObj) => {
+    return (<div style={{display:"inline-block"}}><div style={{display:"inline-block"}} className="fltNum"> {fltObj.fltNum} </div> <div style={{display:"inline-block"}} className="flt-header">({fltObj.depStn} - {fltObj.arrStn})</div></div>)
+  };
+
+  getInBoundFilter = () => {
+      return ( <div className="div-switch" style={{ marginRight: "35%" }}>
+        <div className="switch">
+          <input type="checkbox" id="switch1" className="switch__input"  onClick={ this.filterInboundFlightBasedOnToggle } />
+          <label htmlFor="switch1" className="switch__label">
+            Potential misconnection only
+          </label>
+        </div>
+        &nbsp; <div className="vl"></div>
+        <div className="switch">
+          <input type="checkbox" id="switch2" className="switch__input" onClick={ this.filterInboundFlightBasedOnToggle }/>
+          <label htmlFor="switch2" className="switch__label">
+            Arriving within next 3 hours
+          </label>
+        </div>
+      </div>
+      )
+  };
+
   render() {
     return (
       <div>
       {this.props.displayView === "INBOUND" &&
         <nav className="navbar navbar-light justify-content-between filter">
         {this.props.fltToDisplayInMap !== null && this.renderBackButton()}
+        <label style={{ marginRight: "45%" }}> {this.props.fltToDisplayInMap !== null && this.getFormattedHeading(this.props.fltToDisplayInMap)} </label>
           
-          <div className="div-switch">
-            <div className="switch">
-              <input type="checkbox" id="switch1" className="switch__input"  onClick={ this.filterInboundFlightBasedOnToggle } />
-              <label htmlFor="switch1" className="switch__label">
-                Potential misconnection only
-              </label>
-            </div>
-            &nbsp; <div className="vl"></div>
-            <div className="switch">
-              <input type="checkbox" id="switch2" className="switch__input" onClick={ this.filterInboundFlightBasedOnToggle }/>
-              <label htmlFor="switch2" className="switch__label">
-                Arriving within next 3 hours
-              </label>
-            </div>
-          </div>
+          {this.props.fltToDisplayInMap === null && this.getInBoundFilter()}
+          
         </nav> }
 
         {this.props.displayView === "OUTBOUND" &&

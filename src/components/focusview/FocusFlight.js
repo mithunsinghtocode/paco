@@ -33,9 +33,7 @@ class FocusFlight extends React.Component {
             // Adds line or arc based on the coordinates
             let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
 
-            
-
-            plotFlightObj(selectedFlight, lineSeries, null , false, am4core);
+            plotFlightObj(selectedFlight, lineSeries, null , false, am4core, this.props.displayView);
 
             let stationCoordinates = getStationCoordinatesFromTheFlightList([selectedFlight]);
 
@@ -47,7 +45,7 @@ class FocusFlight extends React.Component {
                 console.log(outboundFlt);
                 outboundFlt.tooltip = "OUTBOUND";
                 outboundFlt.aircraft.position = 0.95;
-                plotFlightObj(outboundFlt, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core);
+                plotFlightObj(outboundFlt, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView);
             });
             console.log(stationCoordinates);
             plotStationObj( am4core, chartObj, stationCoordinates );
@@ -66,7 +64,7 @@ class FocusFlight extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   console.log(state);
-  return { fltToDisplayInMap : state.getFltToShowInMap, chartObj: state.chartInit };
+  return { fltToDisplayInMap : state.getFltToShowInMap, chartObj: state.chartInit, displayView: state.getDisplayView };
 }
 
 export default connect(mapStateToProps , { showFocusViewForSelectedFlight, showSelectedFlightInMap, removeSelectedFlightFromMap, initChart })(FocusFlight);

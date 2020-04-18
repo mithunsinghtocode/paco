@@ -2,13 +2,14 @@ import React from  'react';
 import "./flightList.scss";
 import { connect } from "react-redux";
 import { getHoursAndMinutesAfterFormat, getUTCDate } from "../../utils/dateUtils";
-
 import { showSelectedFlightInMap, removeSelectedFlightFromMap } from "../../actions/chartDataAction";
+import { getTotalPaxCountBasedGroupByClassForFlight } from "../../utils/paxUtils";
 
 class FlightList extends React.Component {
 
     getPaxDetailsFormat = (selectedFlight) => {
-        return this.frameCabinClass('F',selectedFlight.paxCountVo.fclassCnt) + this.frameCabinClass('J',selectedFlight.paxCountVo.jclassCnt) + this.frameCabinClass('S',selectedFlight.paxCountVo.sclassCnt) + this.frameCabinClass('Y',selectedFlight.paxCountVo.yclassCnt) ;
+        let paxObj = getTotalPaxCountBasedGroupByClassForFlight(selectedFlight, this.props.displayView);
+        return this.frameCabinClass('F',paxObj.totFClass) + this.frameCabinClass('J',paxObj.totJClass) + this.frameCabinClass('S',paxObj.totSClass) + this.frameCabinClass('Y',paxObj.totYClass) ;
       }
   
       frameCabinClass = (cabinClass, count) =>  Number(count) > 0 ? ` ${cabinClass}${count}` : "";
@@ -26,7 +27,7 @@ class FlightList extends React.Component {
       }
 
     renderFlightList = (flightList) => {
-        return flightList.map((flightObj) => {            
+        return flightList.map((flightObj) => {
             return(
                 flightObj && <div key={ flightObj.flightId } value={ flightObj.flightId } onClick={ (e) => this.props.showSelectedFlightInMap(flightObj)} >
                      <div className="rectangle-copy-2" >
@@ -42,18 +43,39 @@ class FlightList extends React.Component {
         })       
     }
 
+    shrink = () => {
+        let downArrow = document.getElementById("down-arrow");
+        downArrow.style.display = "none";
+        document.getElementById("legend").style.maxHeight= "5%";
+        document.getElementById("up-arrow").style.display = "block";
+    };
+
+    expand = () => {
+        let downArrow = document.getElementById("down-arrow");
+        downArrow.style.display = "block";
+        document.getElementById("legend").style.maxHeight= "50%";
+        document.getElementById("up-arrow").style.display = "none";
+    };
+
     render(){
         return (
+            <div>
             <div className="legend" id="legend">
                 { this.props.fltToDisplayInMap !== null ? this.renderFlightList([this.props.fltToDisplayInMap]) : this.props.inboundFlights && this.renderFlightList(this.props.inboundFlights.flightList) }
-           </div>
+            </div>
+
+            <div className="overlay-arrow">
+                    <i className="big arrow alternate circle down outline icon" id="down-arrow" style={{ color: "#fff" }} onClick={this.shrink}></i>
+                    <i className="big arrow alternate circle up outline icon" id="up-arrow" style={{ color: "#fff",display:"none" }} onClick={this.expand}></i>
+                </div>
+            </div>
         );
     }
 }
 
 const mapStateToProps = (state, ownProps) => {
     console.log(state);
-    return { fltToDisplayInMap : state.getFltToShowInMap, chartObj: state.chartInit, inboundFlights: state.inboundFlightData };
+    return { fltToDisplayInMap : state.getFltToShowInMap, chartObj: state.chartInit, inboundFlights: state.inboundFlightData, displayView: state.getDisplayView };
   }
 
 export default connect(mapStateToProps , { showSelectedFlightInMap, removeSelectedFlightFromMap })(FlightList);

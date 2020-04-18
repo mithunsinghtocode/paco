@@ -5,11 +5,11 @@ import { mapObjectEvents } from "./events";
 import { airplaneObj } from './airplaneObj';
 
 
-export const plotFlightObj = (flight, lineSeries, dispatchFuncforAction, isMapObjectEvents, am4core) => {
+export const plotFlightObj = (flight, lineSeries, dispatchFuncforAction, isMapObjectEvents, am4core, displayView) => {
     let line = lineObj(am4core, flight, lineSeries);
 
     // adds tooltip for the flights
-    let bullet = tooltipObj(line, lineSeries, am4core, flight) ;
+    let bullet = tooltipObj(line, lineSeries, am4core, flight, displayView) ;
 
     if(isMapObjectEvents){
         // Adds click event on the tooltip, icon and line

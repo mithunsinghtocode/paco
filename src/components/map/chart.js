@@ -11,6 +11,7 @@ import { zoomObjectRender } from "./objects/zoomObject";
 import { mapLayoutObj } from "./objects/mapLayoutObj";
 import Loader from '../loader/Loader';
 import FocusFlight from '../focusview/FocusFlight';
+import FlightList from '../flightlist/FlightList';
 
 import SideMenu from "./SideMenu";
 
@@ -64,8 +65,8 @@ class MapChartLayer extends React.Component {
         <SideMenu />
         {this.props.chartObj != null ? (this.props.chartObj.series == null ? this.renderLoading() : "") : ""}
         <div className="chartdiv"> {this.renderChart()}</div>
-        {this.props.displayView === "INBOUND" && <div>{ this.clearChartComponents() } {this.renderChart()} <PathFinder chartObj={this.props.chartObj} /> < FocusFlight /></div>}
-        {this.props.displayView === "OUTBOUND" && <div>{ this.clearChartComponents() } {this.renderChart()}  </div>}
+        {this.props.displayView === "INBOUND" && <div>{ this.clearChartComponents() } {this.renderChart()} <PathFinder chartObj={this.props.chartObj} /> < FocusFlight /> <FlightList /></div>}
+        {this.props.displayView === "OUTBOUND" && <div>{ this.clearChartComponents() } {this.renderChart()}   </div>}
 
         
       </div>
