@@ -11,7 +11,7 @@ import backend from '../api/backend';
 //             return data;
 //         }
 //     ).then(
-//         (data) => { dispatch( getFlightDataForOutbound(data.payload.flightSchedule.flightList))}
+//         (data) => { dispatch( getFlightDataForOutBound(data.payload.flightSchedule.flightList))}
 //     );
 // };
 
