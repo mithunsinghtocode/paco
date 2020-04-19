@@ -11,7 +11,7 @@ import reducers from './reducers';
 const routing = (
     <Router>
       <div>
-        <Route exact path="/paco" component={App} />
+        <Route exact path="/" component={App} />
       </div>
     </Router>
   )
@@ -20,7 +20,7 @@ const routing = (
 const store = createStore(reducers, applyMiddleware(thunk));
 ReactDOM.render(
     <Provider store = {store}>
-    {routing} 
+     <App />
     </Provider>,
     document.querySelector('#root')
 );
