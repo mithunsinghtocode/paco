@@ -5,13 +5,15 @@ import * as am4maps from "@amcharts/amcharts4/maps";
 import am4geodataWorldLow from "@amcharts/amcharts4-geodata/worldLow";
 import { connect } from "react-redux";
 import { initChart } from "../../actions/chartAction";
-import PathFinder from "./PathFinder";
+import InboundPathFinder from "./InboundPathFinder";
+import OutboundPathFinder from "./OutboundPathFinder";
 import { homeObjectRender } from "./objects/homeObject";
 import { zoomObjectRender } from "./objects/zoomObject";
 import { mapLayoutObj } from "./objects/mapLayoutObj";
 import Loader from '../loader/Loader';
 import FocusFlight from '../focusview/FocusFlight';
 import FlightList from '../flightlist/FlightList';
+import { removeSelectedFlightFromMap, removeFocusViewForSelectedFlight } from '../../actions/chartDataAction';
 
 import SideMenu from "./SideMenu";
 
@@ -65,10 +67,8 @@ class MapChartLayer extends React.Component {
         <SideMenu />
         {this.props.chartObj != null ? (this.props.chartObj.series == null ? this.renderLoading() : "") : ""}
         <div className="chartdiv"> {this.renderChart()}</div>
-        {this.props.displayView === "INBOUND" && <div>{ this.clearChartComponents() } {this.renderChart()} <PathFinder chartObj={this.props.chartObj} /> < FocusFlight /> <FlightList /></div>}
-        {this.props.displayView === "OUTBOUND" && <div>{ this.clearChartComponents() } {this.renderChart()}   </div>}
-
-        
+        {this.props.displayView === "INBOUND" && <div>{ this.props.removeSelectedFlightFromMap(null)} {this.props.removeFocusViewForSelectedFlight(null)} { this.clearChartComponents() } {this.renderChart()} <InboundPathFinder chartObj={this.props.chartObj} /> < FocusFlight /> <FlightList /></div>}
+        {this.props.displayView === "OUTBOUND" && <div>{ this.props.removeSelectedFlightFromMap(null)} {this.props.removeFocusViewForSelectedFlight(null)} {this.clearChartComponents() } {this.renderChart()} <OutboundPathFinder chartObj={this.props.chartObj} /> < FocusFlight /> <FlightList />  </div>}
       </div>
     );
   }
@@ -78,4 +78,4 @@ const mapStateToProps = (state, ownprops) => {
   return { chartObj: state.chartInit, displayView: state.getDisplayView };
 };
 
-export default connect(mapStateToProps, { initChart })(MapChartLayer);
+export default connect(mapStateToProps, { removeSelectedFlightFromMap, removeFocusViewForSelectedFlight, initChart })(MapChartLayer);

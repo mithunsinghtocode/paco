@@ -18,12 +18,13 @@ export const inboundFlightDataReducer = (state = null, action) => {
 export const outboundFlightDataReducer = (state = null, action) => {
   switch (action.type) {
     case "GET_OUTBOUND_FLIGHT_DATA":
-      let outboundFlightData = action.payload.flightSchedule.flightList.filter(
+      let flightList = Array.isArray(action.payload) ? action.payload : action.payload.flightSchedule.flightList;
+      let outboundFlightData = flightList.filter(
         flight => flight.depStn === "SIN"
       );
       let payload = [];
       payload.flightList = [...outboundFlightData];
-      payload.stationcoordinates = action.payload.stationcoordinates;
+      payload.stationcoordinates = getStationCoordinatesFromTheFlightList(outboundFlightData);;
       return payload;
     default:
       return state;

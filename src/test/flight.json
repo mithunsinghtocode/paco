@@ -1647,7 +1647,7 @@
                 "paxDetWrapperVo": null,
                 "status": {
                     "delayed": true,
-                    "misconnection": false
+                    "misconnection": true
                 },
                 "config": {
                     "linecolor": "#BFBFBF",
@@ -1716,7 +1716,7 @@
                         "paxDetWrapperVo": null,
                         "status": {
                             "delayed": true,
-                            "misconnection": false
+                            "misconnection": true
                         },
                         "config": {
                             "linecolor": "#BFBFBF",
@@ -1791,7 +1791,7 @@
                         "paxDetWrapperVo": null,
                         "status": {
                             "delayed": true,
-                            "misconnection": false
+                            "misconnection": true
                         },
                         "config": {
                             "linecolor": "#BFBFBF",
@@ -1866,7 +1866,7 @@
                         "paxDetWrapperVo": null,
                         "status": {
                             "delayed": true,
-                            "misconnection": false
+                            "misconnection": true
                         },
                         "config": {
                             "linecolor": "#BFBFBF",

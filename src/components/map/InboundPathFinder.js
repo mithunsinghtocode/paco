@@ -4,18 +4,18 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 
 import { getFlightDataForInbound, showFocusViewForSelectedFlight, showSelectedFlightInMap } from "../../actions/chartDataAction";
-import { airplaneObj } from "../map/objects/airplaneObj";
-import { tooltipObj } from "../map/objects/tooltipObj";
-import { lineObj } from "../map/objects/lineObj";
-import { mapObjectEvents } from "../map/objects/events";
-import { plotStationObj } from "../map/objects/plotStationObj";
+import { airplaneObj } from "./objects/airplaneObj";
+import { tooltipObj } from "./objects/tooltipObj";
+import { lineObj } from "./objects/lineObj";
+import { mapObjectEvents } from "./objects/events";
+import { plotStationObj } from "./objects/plotStationObj";
 import * as mapConst from "./mapConst";
 import { initChart } from "../../actions/chartAction";
 import Loader from '../loader/Loader';
 
-import { clearChartComponents } from "../../components/map/objects/clearChartObjects";
+import { clearChartComponents } from "./objects/clearChartObjects";
 
-class PathFinder extends React.Component {
+class InboundPathFinder extends React.Component {
   
   getChartObj = () => this.props.chartObj;
 
@@ -107,5 +107,5 @@ const mapStateToProps = (state, ownprops) => {
 };
 
 export default connect(mapStateToProps, { getFlightDataForInbound, showFocusViewForSelectedFlight, showSelectedFlightInMap, initChart })(
-  PathFinder
+  InboundPathFinder
 );

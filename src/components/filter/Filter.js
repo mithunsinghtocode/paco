@@ -102,21 +102,8 @@ export class Filter extends React.Component {
       )
   };
 
-  render() {
-    return (
-      <div>
-      {this.props.displayView === "INBOUND" &&
-        <nav className="navbar navbar-light justify-content-between filter">
-        {this.props.fltToDisplayInMap !== null && this.renderBackButton()}
-        <label style={{ marginRight: "45%" }}> {this.props.fltToDisplayInMap !== null && this.getFormattedHeading(this.props.fltToDisplayInMap)} </label>
-          
-          {this.props.fltToDisplayInMap === null && this.getInBoundFilter()}
-          
-        </nav> }
-
-        {this.props.displayView === "OUTBOUND" &&
-        <nav className="navbar navbar-light justify-content-between filter">
-          <div className="div-switch">
+  getOutBoundFilter = () => {
+     return ( <div className="div-switch" style={{ marginRight: "35%" }}>
             <div className="switch">
               <input type="checkbox" id="switch1" className="switch__input" />
               <label htmlFor="switch1" className="switch__label">
@@ -131,6 +118,26 @@ export class Filter extends React.Component {
               </label>
             </div>
           </div>
+     )
+  };
+
+  render() {
+    return (
+      <div>
+      {this.props.displayView === "INBOUND" &&
+        <nav className="navbar navbar-light justify-content-between filter">
+        {this.props.fltToDisplayInMap !== null && this.renderBackButton()}
+        <label style={{ marginRight: "45%" }}> {this.props.fltToDisplayInMap !== null && this.getFormattedHeading(this.props.fltToDisplayInMap)} </label>
+          
+          {this.props.fltToDisplayInMap === null && this.getInBoundFilter()}
+          
+        </nav> }
+
+        {this.props.displayView === "OUTBOUND" &&
+        <nav className="navbar navbar-light justify-content-between filter">
+        {this.props.fltToDisplayInMap !== null && this.renderBackButton()}
+        <label style={{ marginRight: "45%" }}> {this.props.fltToDisplayInMap !== null && this.getFormattedHeading(this.props.fltToDisplayInMap)} </label>
+        {this.props.fltToDisplayInMap === null && this.getOutBoundFilter()}
         </nav> }
       </div>
     );

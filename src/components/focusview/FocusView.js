@@ -43,7 +43,7 @@ class FocusView extends React.Component {
         <div id="showHide">
           <div id="overlay">
             <div className="card text-white mb-3">
-              <div className="card-header">{selectedFlight.fltNum}</div>
+              <div className="card-header" style={{ background:  selectedFlight.status.misconnection ? '#E55541' : '#0284f7' }}>{selectedFlight.fltNum}</div>
 
               <div className="card-body" style={{ marginLeft: "10px" }}>
                 <div className="row">
@@ -163,7 +163,7 @@ class FocusView extends React.Component {
               </div>
 
               <div class="card text-white mb-1" style={{ width: "365px" }}>
-                <div className="card-header inbound">
+                <div className="card-header inbound" style={{ background:  selectedFlight.status.misconnection ? '#E55541' : '#0284f7' }}>
                   <div className="row med-level-down-font">
                     <div className="col"></div>
                     <div className="col"></div>

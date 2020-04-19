@@ -33,21 +33,35 @@ class FocusFlight extends React.Component {
             // Adds line or arc based on the coordinates
             let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
 
-            plotFlightObj(selectedFlight, lineSeries, null , false, am4core, this.props.displayView);
 
             let stationCoordinates = getStationCoordinatesFromTheFlightList([selectedFlight]);
 
-            selectedFlight.outboundFlt && selectedFlight.outboundFlt.forEach( outboundFlt => {
-                getStationCoordinatesFromTheFlightList([outboundFlt]).forEach(stationObj => {
-                    stationCoordinates = [...stationCoordinates, stationObj];
+            if(this.props.displayView === "INBOUND"){
+                plotFlightObj(selectedFlight, lineSeries, null , false, am4core, this.props.displayView);
+                selectedFlight.outboundFlt && selectedFlight.outboundFlt.forEach( outboundFlt => {
+                    getStationCoordinatesFromTheFlightList([outboundFlt]).forEach(stationObj => {
+                        stationCoordinates = [...stationCoordinates, stationObj];
+                    });
+                    
+                    console.log(outboundFlt);
+                    outboundFlt.tooltip = "OUTBOUND";
+                    outboundFlt.aircraft.position = 0.95;
+                    plotFlightObj(outboundFlt, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView);
                 });
-                
-                console.log(outboundFlt);
-                outboundFlt.tooltip = "OUTBOUND";
-                outboundFlt.aircraft.position = 0.95;
-                plotFlightObj(outboundFlt, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView);
-            });
-            console.log(stationCoordinates);
+            }
+            if(this.props.displayView === "OUTBOUND"){
+                plotFlightObj(selectedFlight, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView);
+                selectedFlight.inboundFlt && selectedFlight.inboundFlt.forEach( inboundFlt => {
+                    getStationCoordinatesFromTheFlightList([inboundFlt]).forEach(stationObj => {
+                        stationCoordinates = [...stationCoordinates, stationObj];
+                    });
+                    
+                    console.log(inboundFlt);
+                    inboundFlt.tooltip = "INBOUND";
+                    plotFlightObj(inboundFlt, lineSeries, null , false, am4core, this.props.displayView);
+                });
+        }
+
             plotStationObj( am4core, chartObj, stationCoordinates );
         }else{
             return <div></div>;

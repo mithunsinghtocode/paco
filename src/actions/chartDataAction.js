@@ -2,10 +2,17 @@ import flightJSONData from '../test/flight.json';
 import backend from '../api/backend';
 
 // export const getFlightData = () => async (dispatch, getState) => {
-//     console.log("About to fetch");
-//     Promise.resolve(await dispatch(fetchFlightData())).then(
-//         (data) => { dispatch( getFlightDataForInbound(data.payload.flightSchedule.flightList))}
-//     );   
+//     console.log("<><><> About to fetch from Backend...");
+//     Promise.resolve(
+//         await dispatch(fetchFlightData())
+//     ).then(
+//         (data) => {
+//             dispatch( getFlightDataForInbound(data.payload.flightSchedule.flightList))
+//             return data;
+//         }
+//     ).then(
+//         (data) => { dispatch( getFlightDataForOutbound(data.payload.flightSchedule.flightList))}
+//     );
 // };
 
 // export const fetchFlightData = () => {
@@ -17,10 +24,22 @@ import backend from '../api/backend';
 // };
 
 export const getFlightData = () => (dispatch, getState) => {
+    console.log("<><><> About to fetch from Sample File...");
     Promise.resolve( 
         dispatch({ type: 'GET_FLIGHT_DATA', payload: flightJSONData})
     ).then(
-        (data) => dispatch(getFlightDataForInbound(data.payload.flightSchedule.flightList)));
+        (data) => { 
+           dispatch(getFlightDataForInbound(data.payload.flightSchedule.flightList));
+           return data;
+        }
+    ).then(
+        (data) => dispatch(getFlightDataForOutBound(data.payload.flightSchedule.flightList))
+    );
+};
+
+export const getFlightDataForOutBound = (flightData) => dispatch => {
+    console.log("Into outbound action");
+    dispatch({ type: 'GET_OUTBOUND_FLIGHT_DATA', payload: flightData});
 };
 
 export const getFlightDataForInbound = (flightData) => dispatch => {
