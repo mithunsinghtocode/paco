@@ -77,6 +77,7 @@ class OutboundPathFinder extends React.Component {
         lineSeries.STATUS = "DELAYED";
         // Add line series
         flightObj.flightList.forEach(flight => {
+          flight.aircraft.position = 0.95;
         let line = lineObj(am4core, flight, lineSeries);
 
         // adds tooltip for the flights

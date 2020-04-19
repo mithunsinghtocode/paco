@@ -162,7 +162,7 @@ class FocusView extends React.Component {
                 </div>
               </div>
 
-              <div class="card text-white mb-1" style={{ width: "365px" }}>
+              <div className="card text-white mb-1" style={{ width: "365px" }}>
                 <div className="card-header inbound" style={{ background:  selectedFlight.status.misconnection ? '#E55541' : '#0284f7' }}>
                   <div className="row med-level-down-font">
                     <div className="col"></div>
@@ -197,7 +197,7 @@ class FocusView extends React.Component {
                 </div>
               </div>
 
-              {/* <div class="card text-white mb-1" style={{width: "365px"}}>
+              {/* <div className="card text-white mb-1" style={{width: "365px"}}>
               <div className="card-header inbound">
                 <div className="row med-level-down-font">
                   <div className="col">&nbsp;&nbsp;&nbsp;&nbsp;<b>LH 758</b></div>

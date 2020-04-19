@@ -50,6 +50,7 @@ class FocusFlight extends React.Component {
                 });
             }
             if(this.props.displayView === "OUTBOUND"){
+                selectedFlight.aircraft.position = 0.95;
                 plotFlightObj(selectedFlight, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView);
                 selectedFlight.inboundFlt && selectedFlight.inboundFlt.forEach( inboundFlt => {
                     getStationCoordinatesFromTheFlightList([inboundFlt]).forEach(stationObj => {
