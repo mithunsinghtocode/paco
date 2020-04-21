@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "main": "index.js",
+    "homepage": "/paco",
     "dependencies": {
         "@amcharts/amcharts4": "^4.9.6",
         "@amcharts/amcharts4-geodata": "^4.1.12",

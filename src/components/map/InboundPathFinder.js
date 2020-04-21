@@ -73,6 +73,10 @@ class InboundPathFinder extends React.Component {
 
         // Adds line or arc based on the coordinates
         let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
+        
+        /** If you require full control of the arc drawn use  MapArcSeries*/
+        //let lineSeries = chartObj.series.push(new am4maps.MapArcSeries());
+        
         lineSeries.STATUS = "DELAYED";
         // Add line series
         flightObj.flightList.forEach(flight => {

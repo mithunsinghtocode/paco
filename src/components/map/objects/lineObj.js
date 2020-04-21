@@ -12,7 +12,7 @@ lineSeries.mapLines.template.stroke = am4core.color(
 // lineSeries.tooltip.background.stroke = am4core.color(
 //   flight.config.linecolor
 // );
-
+lineSeries.mapLines.template.calculatePercent = true;
 lineSeries.mapLines.template.shortestDistance=true;
 
 var line = lineSeries.mapLines.create();
@@ -28,6 +28,11 @@ line.multiGeoLine = [
     }
   ]
 ];
+
+/** For MapArcSeries props */
+//lineSeries.mapLines.template.line.controlPointDistance = 0.2;
+//lineSeries.mapLines.template.line.controlPointPosition = 0.5;
+
 
 return line;
 
