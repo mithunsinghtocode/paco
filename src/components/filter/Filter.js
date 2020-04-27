@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import "./filter.scss";
 import { getFilteredFlightDataForInbound } from '../../actions/chartDataAction';
 import { clearChartComponents } from '../map/objects/clearChartObjects';
-
+/** Filter Component */
 export class Filter extends React.Component {
   renderBackButton(){
     return (<button className="rectangle" onClick={this.props.goBackFunction}>
