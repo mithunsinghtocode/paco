@@ -80,7 +80,7 @@ class InboundPathFinder extends React.Component {
         lineSeries.STATUS = "DELAYED";
         // Add line series
         flightObj.flightList.forEach(flight => {
-        let line = lineObj(am4core, flight, lineSeries);
+        let line = lineObj(am4core, flight, lineSeries,chartObj,am4maps);
 
         // adds tooltip for the flights
         let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView) ;

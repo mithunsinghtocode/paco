@@ -1,4 +1,7 @@
-export const lineObj = (am4core, flight,lineSeries) => {
+export const lineObj = (am4core, flight,lineSeries, chartObj, am4maps) => {
+  if(flight.depcoordinates.latitude > 100 && flight.depcoordinates.longitude < 100) {
+    lineSeries = chartObj.series.push(new am4maps.MapArcSeries())
+  };
 
 lineSeries.mapLines.template.strokeWidth = 0.5;
 
@@ -13,7 +16,8 @@ lineSeries.mapLines.template.stroke = am4core.color(
 //   flight.config.linecolor
 // );
 lineSeries.mapLines.template.calculatePercent = true;
-lineSeries.mapLines.template.shortestDistance=true;
+(flight.depcoordinates.latitude > 100 && flight.depcoordinates.longitude < 100) ? lineSeries.mapLines.template.shortestDistance=false : lineSeries.mapLines.template.shortestDistance=true;
+
 
 var line = lineSeries.mapLines.create();
 line.multiGeoLine = [
@@ -30,8 +34,8 @@ line.multiGeoLine = [
 ];
 
 /** For MapArcSeries props */
-//lineSeries.mapLines.template.line.controlPointDistance = 0.2;
-//lineSeries.mapLines.template.line.controlPointPosition = 0.5;
+lineSeries.mapLines.template.line.controlPointDistance = 0.2;
+lineSeries.mapLines.template.line.controlPointPosition = 0.5;
 
 
 return line;
