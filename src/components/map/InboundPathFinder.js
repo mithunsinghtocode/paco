@@ -44,7 +44,7 @@ class InboundPathFinder extends React.Component {
 
     if (chartObj !== null && flightObj !== null) {
       // As a precautionary to remove unwanted objects in chart
-      //clearChartComponents(chartObj, ["MapLineSeries", "MapImageSeries"]);
+      //clearChartComponents(chartObj, ["MapLineSeries", "MapImageSeries","MapArcSeries"]);
 
       console.log("State re-renders the flight data component");
 

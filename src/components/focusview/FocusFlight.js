@@ -27,7 +27,7 @@ class FocusFlight extends React.Component {
         let selectedFlight = this.props.fltToDisplayInMap;
         if(chartObj != null && selectedFlight != null){         
             console.log(selectedFlight);
-            clearChartComponents(chartObj, ["MapLineSeries", "MapImageSeries"]);
+            clearChartComponents(chartObj, ["MapLineSeries", "MapImageSeries","MapArcSeries"]);
             //this.off();
 
             // Adds line or arc based on the coordinates

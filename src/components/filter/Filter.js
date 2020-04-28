@@ -40,7 +40,7 @@ export class Filter extends React.Component {
           return (flight.status.misconnection === true && (new Date(flight.eta).getTime() < (new Date().addHours(-5))))
         }
         });
-        clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries"]);
+        clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries","MapArcSeries","MapArcSeries"]);
         this.props.getFilteredFlightDataForInbound(flightList);
     } else if (misconnectionToggle){
       let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
@@ -50,7 +50,7 @@ export class Filter extends React.Component {
           return (flight.status.misconnection === true)
         }
         });
-        clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries"]);
+        clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries","MapArcSeries","MapArcSeries"]);
         this.props.getFilteredFlightDataForInbound(flightList);
 
     } else if (arrivWithin3HoursToggle){

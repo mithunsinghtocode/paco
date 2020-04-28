@@ -1,5 +1,5 @@
 export const lineObj = (am4core, flight,lineSeries, chartObj, am4maps) => {
-  if(flight.depcoordinates.latitude > 100 && flight.depcoordinates.longitude < 100) {
+  if((flight.depcoordinates.latitude > 100 && flight.depcoordinates.longitude < 100) || (flight.depcoordinates.longitude < -60 && flight.depcoordinates.latitude < 100)) {
     lineSeries = chartObj.series.push(new am4maps.MapArcSeries())
   };
 

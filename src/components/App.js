@@ -21,7 +21,7 @@ class App extends React.Component {
         return (
             <div>
                 <Header />
-                <Filter goBackFunction={() => {this.props.removeSelectedFlightFromMap(null); this.props.removeFocusViewForSelectedFlight(null); clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries"]);}}/>
+                <Filter goBackFunction={() => {this.props.removeSelectedFlightFromMap(null); this.props.removeFocusViewForSelectedFlight(null); clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries","MapArcSeries"]);}}/>
                 <MapChartLayer />
                 <FocusView />
             </div>
