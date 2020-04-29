@@ -8,6 +8,7 @@ export const clearChartComponents = (chartObj, objectsToBeCleared) => {
             chartObj.series.removeIndex(chartObj.series.indexOf(inObj)).dispose();
           });
         }
+        //removeChart();
       }
       else{
           chartObj.series.values.forEach(inObj => {
@@ -22,3 +23,8 @@ export const clearChartComponents = (chartObj, objectsToBeCleared) => {
     })
   }
 };
+
+const removeChart = () =>{
+  const myNode = document.getElementById("chartdiv");
+  if(myNode !=null) myNode.innerHTML = '';
+}

@@ -27,7 +27,9 @@ class FocusFlight extends React.Component {
         let selectedFlight = this.props.fltToDisplayInMap;
         if(chartObj != null && selectedFlight != null){         
             console.log(selectedFlight);
-            clearChartComponents(chartObj, ["MapLineSeries", "MapImageSeries","MapArcSeries"]);
+            //clearChartComponents(chartObj, ["MapLineSeries", "MapImageSeries","MapArcSeries"]);
+            clearChartComponents(chartObj, ["ALL"]);
+            renderChartLayout(chartObj);
             //this.off();
 
             // Adds line or arc based on the coordinates
@@ -37,7 +39,7 @@ class FocusFlight extends React.Component {
             let stationCoordinates = getStationCoordinatesFromTheFlightList([selectedFlight]);
 
             if(this.props.displayView === "INBOUND"){
-                plotFlightObj(selectedFlight, lineSeries, null , false, am4core, this.props.displayView);
+                plotFlightObj(selectedFlight, lineSeries, null , false, am4core, this.props.displayView, chartObj,am4maps);
                 selectedFlight.outboundFlt && selectedFlight.outboundFlt.forEach( outboundFlt => {
                     getStationCoordinatesFromTheFlightList([outboundFlt]).forEach(stationObj => {
                         stationCoordinates = [...stationCoordinates, stationObj];
@@ -46,12 +48,12 @@ class FocusFlight extends React.Component {
                     console.log(outboundFlt);
                     outboundFlt.tooltip = "OUTBOUND";
                     outboundFlt.aircraft.position = 0.95;
-                    plotFlightObj(outboundFlt, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView);
+                    plotFlightObj(outboundFlt, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView, chartObj,am4maps);
                 });
             }
             if(this.props.displayView === "OUTBOUND"){
                 selectedFlight.aircraft.position = 0.95;
-                plotFlightObj(selectedFlight, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView);
+                plotFlightObj(selectedFlight, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView, chartObj,am4maps);
                 selectedFlight.inboundFlt && selectedFlight.inboundFlt.forEach( inboundFlt => {
                     getStationCoordinatesFromTheFlightList([inboundFlt]).forEach(stationObj => {
                         stationCoordinates = [...stationCoordinates, stationObj];
@@ -59,7 +61,7 @@ class FocusFlight extends React.Component {
                     
                     console.log(inboundFlt);
                     inboundFlt.tooltip = "INBOUND";
-                    plotFlightObj(inboundFlt, lineSeries, null , false, am4core, this.props.displayView);
+                    plotFlightObj(inboundFlt, lineSeries, null , false, am4core, this.props.displayView, chartObj,am4maps);
                 });
         }
 

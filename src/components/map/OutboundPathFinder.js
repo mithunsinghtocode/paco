@@ -78,7 +78,7 @@ class OutboundPathFinder extends React.Component {
         // Add line series
         flightObj.flightList.forEach(flight => {
           flight.aircraft.position = 0.95;
-        let line = lineObj(am4core, flight, lineSeries);
+        let line = lineObj(am4core, flight, lineSeries, chartObj,am4maps);
 
         // adds tooltip for the flights
         let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView) ;

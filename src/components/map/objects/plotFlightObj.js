@@ -5,8 +5,8 @@ import { mapObjectEvents } from "./events";
 import { airplaneObj } from './airplaneObj';
 
 
-export const plotFlightObj = (flight, lineSeries, dispatchFuncforAction, isMapObjectEvents, am4core, displayView) => {
-    let line = lineObj(am4core, flight, lineSeries);
+export const plotFlightObj = (flight, lineSeries, dispatchFuncforAction, isMapObjectEvents, am4core, displayView, chartObj,am4maps) => {
+    let line = lineObj(am4core, flight, lineSeries, chartObj,am4maps);
 
     // adds tooltip for the flights
     let bullet = tooltipObj(line, lineSeries, am4core, flight, displayView) ;

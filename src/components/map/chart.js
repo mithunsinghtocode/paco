@@ -40,6 +40,11 @@ class MapChartLayer extends React.Component {
     }
   };
 
+  removeChart(){
+    const myNode = document.getElementById("chartdiv");
+    if(myNode !=null) myNode.innerHTML = '';
+  }
+
   clearChartComponents(){
     let chartObj = this.props.chartObj;
     this.renderLoading();
@@ -53,6 +58,7 @@ class MapChartLayer extends React.Component {
         ).dispose();
       });
     }
+      this.removeChart();
       console.log(chartObj.series);
     }
   }
