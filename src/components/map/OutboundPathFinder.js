@@ -13,8 +13,6 @@ import * as mapConst from "./mapConst";
 import { initChart } from "../../actions/chartAction";
 import Loader from '../loader/Loader';
 
-import { clearChartComponents } from "./objects/clearChartObjects";
-
 class OutboundPathFinder extends React.Component {
   
   getChartObj = () => this.props.chartObj;
@@ -44,10 +42,8 @@ class OutboundPathFinder extends React.Component {
     }else{
 
     if (chartObj !== null && flightObj !== null) {
-      // As a precautionary to remove unwanted objects in chart
-      //clearChartComponents(chartObj, ["MapLineSeries", "MapImageSeries","MapArcSeries"]);
 
-      console.log("State re-renders the flight data component");
+      console.log("<><><> Outbound Path Filter - State re-renders the flight data component");
 
       let isAmericaPresent = flightObj.stationcoordinates.filter(station =>
         station.longitude < -10 ? true : false

@@ -9,7 +9,6 @@ import { clearChartComponents } from "../map/objects/clearChartObjects";
 import { renderChartLayout } from "../../components/map/objects/renderChartLayOut";
 import { initChart } from "../../actions/chartAction";
 import { plotFlightObj } from "../../components/map/objects/plotFlightObj";
-import { Filter } from "../filter/Filter";
 
 import { plotStationObj } from "../map/objects/plotStationObj";
 
@@ -17,7 +16,6 @@ import { getStationCoordinatesFromTheFlightList } from "../../utils/stationUtils
 
 class FocusFlight extends React.Component {
     off = () => {
-        console.log("akgfhjwhdgfhagdfssfikghasdkfhsdwgfjkhfs");
         this.props.removeSelectedFlightFromMap(null);
     }
 
@@ -30,7 +28,6 @@ class FocusFlight extends React.Component {
             //clearChartComponents(chartObj, ["MapLineSeries", "MapImageSeries","MapArcSeries"]);
             clearChartComponents(chartObj, ["ALL"]);
             renderChartLayout(chartObj);
-            //this.off();
 
             // Adds line or arc based on the coordinates
             let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
@@ -45,7 +42,7 @@ class FocusFlight extends React.Component {
                         stationCoordinates = [...stationCoordinates, stationObj];
                     });
                     
-                    console.log(outboundFlt);
+                    //console.log(outboundFlt);
                     outboundFlt.tooltip = "OUTBOUND";
                     outboundFlt.aircraft.position = 0.95;
                     plotFlightObj(outboundFlt, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView, chartObj,am4maps);
@@ -59,7 +56,7 @@ class FocusFlight extends React.Component {
                         stationCoordinates = [...stationCoordinates, stationObj];
                     });
                     
-                    console.log(inboundFlt);
+                    //console.log(inboundFlt);
                     inboundFlt.tooltip = "INBOUND";
                     plotFlightObj(inboundFlt, lineSeries, null , false, am4core, this.props.displayView, chartObj,am4maps);
                 });
@@ -80,7 +77,7 @@ class FocusFlight extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state);
+  //console.log(state);
   return { fltToDisplayInMap : state.getFltToShowInMap, chartObj: state.chartInit, displayView: state.getDisplayView };
 }
 

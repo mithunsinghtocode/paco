@@ -28,7 +28,7 @@ export const getTotalPaxCountForFlight = (flight, displayView) => {
 };
 
 const sumPax = (paxObj) => {
-     console.log(paxObj);
+     //console.log(paxObj);
           return Number(paxObj.fclassCnt) + Number(paxObj.sclassCnt) + Number(paxObj.jclassCnt) + Number(paxObj.yclassCnt);
 };
 

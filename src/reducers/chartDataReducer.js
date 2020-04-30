@@ -8,7 +8,7 @@ export const inboundFlightDataReducer = (state = null, action) => {
       let payload = [];
       payload.flightList = [...inboundFlightData];
       payload.stationcoordinates = getStationCoordinatesFromTheFlightList(inboundFlightData);
-      console.log(payload.stationcoordinates);
+      //console.log(payload.stationcoordinates);
       return payload;
     default:
       return state;
@@ -66,7 +66,7 @@ const getStationCoordinatesFromTheFlightList = flightData => {
     stationCoordinatesList.push(prepareCoordinatesObject(sectorObj.depcoordinates));
     stationCoordinatesList.push(prepareCoordinatesObject(sectorObj.arrcoordinates));
   });
-  console.log(stationCoordinatesList);
+  //console.log(stationCoordinatesList);
   return stationCoordinatesList;
 };
 

@@ -6,8 +6,7 @@ import {
   removeFocusViewForSelectedFlight
 } from "../../actions/chartDataAction";
 import {
-  getHoursAndMinutesAfterFormat,
-  getUTCDate
+  getHoursAndMinutesAfterFormat
 } from "../../utils/dateUtils";
 
 class FocusView extends React.Component {
@@ -34,7 +33,7 @@ class FocusView extends React.Component {
     Number(count) > 0 ? ` ${cabinClass}${count}` : "";
 
   renderSelectedFlightInFocusView = () => {
-    console.log("Into Focus View");
+    //console.log("Into Focus View");
     let selectedFlight = this.props.selectedFlightObj;
     if (selectedFlight != null) {
       console.log(selectedFlight);

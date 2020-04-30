@@ -1,4 +1,4 @@
-import { getHoursAndMinutesAfterFormat, getUTCDate } from "../../../utils/dateUtils";
+import { getHoursAndMinutesAfterFormat } from "../../../utils/dateUtils";
 import { getTotalPaxCountForFlight } from "../../../utils/paxUtils";
 
 export const tooltipObj = (line, lineSeries, am4core, flight, displayView) => {

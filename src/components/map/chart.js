@@ -49,17 +49,16 @@ class MapChartLayer extends React.Component {
     let chartObj = this.props.chartObj;
     this.renderLoading();
     if(chartObj !== null && chartObj.series !== null){
-      console.log(chartObj.series.length);
+      //console.log(chartObj.series.length);
       while(chartObj.series.length !== 0){
       chartObj.series.values.forEach((inObj) => {
-        console.log(inObj);
+        //console.log(inObj);
         chartObj.series.removeIndex(
           chartObj.series.indexOf(inObj)
         ).dispose();
       });
     }
       this.removeChart();
-      console.log(chartObj.series);
     }
   }
 

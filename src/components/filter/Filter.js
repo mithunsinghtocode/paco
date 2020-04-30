@@ -29,8 +29,8 @@ export class Filter extends React.Component {
     let misconnectionToggle = document.getElementById("switch1").checked;
     let arrivWithin3HoursToggle = document.getElementById("switch2").checked;
 
-    console.log("misconnectionToggle :: "+misconnectionToggle);
-    console.log("arrivWithin3HoursToggle :: "+ arrivWithin3HoursToggle);
+    //console.log("misconnectionToggle :: "+misconnectionToggle);
+    //console.log("arrivWithin3HoursToggle :: "+ arrivWithin3HoursToggle);
 
     if(misconnectionToggle && arrivWithin3HoursToggle){
       let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
@@ -154,7 +154,7 @@ export class Filter extends React.Component {
 }
 
 const mapStateToProps = (state, ownprops) => {
-  console.log(state);
+  //console.log(state);
   return { chartObj: state.chartInit, displayView: state.getDisplayView, goBackFunction : ownprops.goBackFunction, fltToDisplayInMap : state.getFltToShowInMap, flightData : state.allFlightData };
 };
 

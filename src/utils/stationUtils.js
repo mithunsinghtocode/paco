@@ -4,7 +4,7 @@ export const getStationCoordinatesFromTheFlightList = flightData => {
       stationCoordinatesList.push(prepareCoordinatesObject(sectorObj.depcoordinates));
       stationCoordinatesList.push(prepareCoordinatesObject(sectorObj.arrcoordinates));
     });
-    console.log(stationCoordinatesList);
+    //console.log(stationCoordinatesList);
     return stationCoordinatesList;
   };
   

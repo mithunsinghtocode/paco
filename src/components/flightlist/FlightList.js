@@ -1,7 +1,7 @@
 import React from  'react';
 import "./flightList.scss";
 import { connect } from "react-redux";
-import { getHoursAndMinutesAfterFormat, getUTCDate } from "../../utils/dateUtils";
+import { getHoursAndMinutesAfterFormat } from "../../utils/dateUtils";
 import { showSelectedFlightInMap, removeSelectedFlightFromMap } from "../../actions/chartDataAction";
 import { getTotalPaxCountBasedGroupByClassForFlight } from "../../utils/paxUtils";
 
@@ -75,7 +75,7 @@ class FlightList extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state);
+    //console.log(state);
     return { fltToDisplayInMap : state.getFltToShowInMap, chartObj: state.chartInit, inboundFlights: state.inboundFlightData, outboundFlights: state.outboundFlightData, displayView: state.getDisplayView };
   }
 

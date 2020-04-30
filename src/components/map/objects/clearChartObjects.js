@@ -4,7 +4,7 @@ export const clearChartComponents = (chartObj, objectsToBeCleared) => {
       if (objectToBeCleared === "ALL") {
         while (chartObj.series.length !== 0) {
           chartObj.series.values.forEach(inObj => {
-            console.log(inObj);
+            //console.log(inObj);
             chartObj.series.removeIndex(chartObj.series.indexOf(inObj)).dispose();
           });
         }
@@ -12,11 +12,11 @@ export const clearChartComponents = (chartObj, objectsToBeCleared) => {
       }
       else{
           chartObj.series.values.forEach(inObj => {
-            console.log(inObj._className);
+            //console.log(inObj._className);
               inObj._className === objectToBeCleared ?  chartObj.series.removeIndex(chartObj.series.indexOf(inObj)).dispose() : console.log("Finding Object to be removed...") ;
             });
             chartObj.series.values.forEach(inObj => {
-            console.log(inObj._className);
+            //console.log(inObj._className);
               inObj._className === objectToBeCleared ?  chartObj.series.removeIndex(chartObj.series.indexOf(inObj)).dispose() : console.log("Finding Object to be removed...") ;
             });
       }
@@ -24,7 +24,7 @@ export const clearChartComponents = (chartObj, objectsToBeCleared) => {
   }
 };
 
-const removeChart = () =>{
-  const myNode = document.getElementById("chartdiv");
-  if(myNode !=null) myNode.innerHTML = '';
-}
+// const removeChart = () =>{
+//   const myNode = document.getElementById("chartdiv");
+//   if(myNode !=null) myNode.innerHTML = '';
+// }
