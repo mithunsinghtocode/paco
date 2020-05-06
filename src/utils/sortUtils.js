@@ -21,8 +21,12 @@ const read_prop = (obj, prop) => {
 const convertObj = (inputData, conversionType) => {
           switch (conversionType) {
                     case "date":
-                    return new Date(inputData);
+                              return new Date(inputData);
+                              break;
                     case "number":
-                    return Number(inputData);
+                              return Number(inputData);
+                              break;
+                    default:
+                              return inputData;
           }
 };
