@@ -1,5 +1,5 @@
 export const getHoursAndMinutesAfterFormat = (jsonDate) => {
-    return jsonDate !== null ? new Date(jsonDate).toGMTString().substr(17,5) : "-";
+    return jsonDate !== null ? new Date(jsonDate).toString().substr(16,5) : "-";
 };
 
 export const getUTCDate = (jsonDate) => {
