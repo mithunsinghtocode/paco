@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getHoursAndMinutesAfterFormat } from "../../utils/dateUtils";
 import { showSelectedFlightInMap, removeSelectedFlightFromMap } from "../../actions/chartDataAction";
 import { getTotalPaxCountBasedGroupByClassForFlight } from "../../utils/paxUtils";
+import { sort } from "../../utils/sortUtils";
 
 class FlightList extends React.Component {
 
@@ -27,6 +28,26 @@ class FlightList extends React.Component {
       }
 
     renderFlightList = (flightList) => {
+      
+        // sort the list of flights
+        this.props.displayView === 'INBOUND' ?  sort({
+            inputList: flightList, 
+            objectProp: 'eta', 
+            typeOfProp: 'date', 
+            conversionRequired: true, 
+            isAscending: false, 
+            isNewCopyOfArr: false
+        })
+        : 
+        sort({
+            inputList: flightList, 
+            objectProp: 'etd', 
+            typeOfProp: 'date', 
+            conversionRequired: true, 
+            isAscending: true, 
+            isNewCopyOfArr: false
+        });
+
         return flightList.map((flightObj) => {
             return(
                 flightObj && <div key={ flightObj.flightId } value={ flightObj.flightId } onClick={ (e) => this.props.showSelectedFlightInMap(flightObj)} >
