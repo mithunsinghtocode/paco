@@ -4,7 +4,7 @@ export const getHoursAndMinutesAfterFormat = (jsonDate) => {
 
 export const getUTCDate = (jsonDate) => {
     let dateParsed =  new Date(jsonDate);
-   return `${addZero(dateParsed.getUTCDate())}-${addZero(dateParsed.getUTCMonth())}-${addZero(dateParsed.getUTCFullYear())}`
+   return `${addZero(dateParsed.getDate())}-${addZero(dateParsed.getMonth())}-${addZero(dateParsed.getFullYear())}`
 };
 
 const addZero = (inData) => {
