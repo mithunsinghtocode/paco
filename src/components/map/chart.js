@@ -21,7 +21,7 @@ class MapChartLayer extends React.Component {
   componentDidMount() {
     // Create map instance
     let chart = am4core.create("chartdiv", am4maps.MapChart);
-    //chart.seriesContainer.draggable = false;
+    chart.seriesContainer.draggable = false;
     // Get the App Data for the Banner from Store
     this.props.initChart(chart);
   }
