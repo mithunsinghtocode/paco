@@ -48,21 +48,28 @@ class InboundPathFinder extends React.Component {
         station.longitude < -10 ? true : false
       );
       // set initial zoom and map points
-      if (isAmericaPresent !== undefined && isAmericaPresent.length > 0) {
-        this.setDefaultZoomAndGeoPointFocus(
-          chartObj,
-          mapConst.$_america_asian_continents_zoom_level,
-          mapConst.$_america_asia_latitude,
-          mapConst.$_america_asia_longitude
-        );
-      } else {
-        this.setDefaultZoomAndGeoPointFocus(
-          chartObj,
-          mapConst.$_asian_continents_zoom_level,
-          mapConst.$_asia_latitude,
-          mapConst.$_asia_longitude
-        );
-      }
+      this.setDefaultZoomAndGeoPointFocus(
+        chartObj,
+        mapConst.$_asian_continents_zoom_level,
+        mapConst.$_asia_latitude,
+        mapConst.$_asia_longitude
+      );
+      // commented as now the default zoom is based on Singapore
+      // if (isAmericaPresent !== undefined && isAmericaPresent.length > 0) {
+      //   this.setDefaultZoomAndGeoPointFocus(
+      //     chartObj,
+      //     mapConst.$_america_asian_continents_zoom_level,
+      //     mapConst.$_america_asia_latitude,
+      //     mapConst.$_america_asia_longitude
+      //   );
+      // } else {
+      //   this.setDefaultZoomAndGeoPointFocus(
+      //     chartObj,
+      //     mapConst.$_asian_continents_zoom_level,
+      //     mapConst.$_asia_latitude,
+      //     mapConst.$_asia_longitude
+      //   );
+      // }
 
 
       plotStationObj( am4core, chartObj, flightObj );
