@@ -2,6 +2,7 @@ import { getHoursAndMinutesAfterFormat } from "../../../utils/dateUtils";
 import { getTotalPaxCountForFlight } from "../../../utils/paxUtils";
 
 export const tooltipObj = (line, lineSeries, am4core, flight, displayView) => {
+  
   // Add a map object to line
   let bullet = line.lineObjects.create();
   bullet.nonScaling = true;
@@ -26,6 +27,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView) => {
   bullet.tooltip.background.stroke = am4core.color(flight.config.tooltipcolor);
   bullet.tooltip.background.strokeWidth = 2;
   bullet.alwaysShowTooltip = true;
+  
 
   let dropShadow = new am4core.DropShadowFilter();                                  
   dropShadow.dy = -30;  

@@ -21,9 +21,19 @@ class MapChartLayer extends React.Component {
   componentDidMount() {
     // Create map instance
     let chart = am4core.create("chartdiv", am4maps.MapChart);
-    chart.seriesContainer.draggable = false;
+    //chart.seriesContainer.draggable = false;
     // Get the App Data for the Banner from Store
     this.props.initChart(chart);
+    let toggle = true;
+    chart.seriesContainer.events.on(
+      "dragstop",
+      ev => {
+        let a = ev.target;
+        toggle ? chart.zoomLevel = chart.zoomLevel + 0.0001 :  chart.zoomLevel = chart.zoomLevel - 0.0001;
+        toggle = !toggle;
+      },
+      this
+    );
   }
 
   renderChart = () => {
