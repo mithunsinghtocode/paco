@@ -1,11 +1,10 @@
 export const clearChartComponents = (chartObj, objectsToBeCleared) => {
   if (chartObj !== null && chartObj.series !== null) {
-    objectsToBeCleared.forEach( objectToBeCleared => {
+    objectsToBeCleared.forEach( async objectToBeCleared => {
       if (objectToBeCleared === "ALL") {
         while (chartObj.series.length !== 0) {
-          chartObj.series.values.forEach(inObj => {
-            //console.log(inObj);
-            chartObj.series.removeIndex(chartObj.series.indexOf(inObj)).dispose();
+          chartObj.series.values.forEach(( inObj, index) => {
+            chartObj.series.removeIndex(index).dispose();
           });
         }
         //removeChart();
@@ -20,7 +19,7 @@ export const clearChartComponents = (chartObj, objectsToBeCleared) => {
               inObj._className === objectToBeCleared ?  chartObj.series.removeIndex(chartObj.series.indexOf(inObj)).dispose() : console.log("Finding Object to be removed...") ;
             });
       }
-    })
+    });
   }
 };
 

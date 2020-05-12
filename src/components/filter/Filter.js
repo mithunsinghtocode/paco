@@ -47,11 +47,7 @@ export class Filter extends React.Component {
         this.props.getFilteredFlightDataForInbound(flightList);
     } else if (misconnectionToggle){
       let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
-        if(flight.status === null){
-          return false;
-        }else{
-          return (flight.status.misconnection === true)
-        }
+        return flight.status && flight.status.misconnection === true;       
         });
         //clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries","MapArcSeries","MapArcSeries"]);
         clearChartComponents(this.props.chartObj, ["ALL"]);
