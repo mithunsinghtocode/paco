@@ -10,7 +10,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView) => {
   bullet.fill = am4core.color(flight.config.tooltipcolor);
   
   flight.status.misconnection ? 
-    bullet.tooltipHTML = `<div style="margin-bottom:2px;margin-top:-2px;color:#fff;height:20px;">
+    bullet.tooltipHTML = `<div style="margin-bottom:2px;margin-top:-2px;color:#fff;height:20px;" onHover="cursor: pointer">
       ${getFltNum(flight)} ${getETA(flight)} ${displayLine()} ${getTotMisconnectedPax(flight, displayView)}
     </div>`
       :

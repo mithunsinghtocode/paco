@@ -1,16 +1,17 @@
 import * as am4maps from "@amcharts/amcharts4/maps";
 
-export const plotStationObj = (am4core, chartObj, objData) => {
+export const plotStationObj = (am4core, chartObj, objData, imageSeries, imageSeriesTemplate) => {
   // Adds the circles to all the locations needed
-  // Create image series
-  var imageSeries = chartObj.series.push(new am4maps.MapImageSeries());
-
-  // Create a circle image in image series template so it gets replicated to all new images
-  var imageSeriesTemplate = imageSeries.mapImages.template;
+  if(imageSeriesTemplate === null || imageSeriesTemplate === undefined){
+    // Create image series
+    imageSeries = chartObj.series.push(new am4maps.MapImageSeries());
+    // Create a circle image in image series template so it gets replicated to all new images
+    imageSeriesTemplate = imageSeries.mapImages.template;
+  }
   var circle = imageSeriesTemplate.createChild(am4core.Circle);
   circle.radius = 1.5;
-  circle.fill = am4core.color("#FFFFFF");
-  circle.stroke = am4core.color("#FFFFFF");
+  circle.fill = objData.status ? (objData.status.misconnection ? objData.config.linecolor : "#FFFFFF") : "#FFFFFF";
+  circle.stroke = objData.status ? (objData.status.misconnection ? objData.config.linecolor : "#FFFFFF") : "#FFFFFF";
   circle.strokeWidth = 1;
   circle.nonScaling = true;
   circle.tooltipText = "{title}";
@@ -33,7 +34,6 @@ export const plotStationObj = (am4core, chartObj, objData) => {
   imageSeries.data = stationCoordinateDataAfterFilteringCountry;
 
   */
-
   // This shows the tooltip of the country at the circle.
   imageSeries.data = objData.stationcoordinates ? objData.stationcoordinates : objData;
 

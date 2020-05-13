@@ -43,7 +43,6 @@ class InboundPathFinder extends React.Component {
     if (chartObj !== null && flightObj !== null) {
 
       console.log("<><><> Inbound Path Filter - State re-renders the flight data component");
-
       let isAmericaPresent = flightObj.stationcoordinates.filter(station =>
         station.longitude < -10 ? true : false
       );
@@ -71,9 +70,6 @@ class InboundPathFinder extends React.Component {
       //   );
       // }
 
-
-      plotStationObj( am4core, chartObj, flightObj );
-
         // Adds line or arc based on the coordinates
         let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
         
@@ -93,6 +89,13 @@ class InboundPathFinder extends React.Component {
 
         // Adds the position of the airplane object with svg
         airplaneObj(am4core, bullet, flight);
+
+        // Create image series
+        let imageSeries = chartObj.series.push(new am4maps.MapImageSeries());
+        // Create a circle image in image series template so it gets replicated to all new images
+        let imageSeriesTemplate = imageSeries.mapImages.template;
+
+        plotStationObj( am4core, chartObj, flight, imageSeries, imageSeriesTemplate );
       });
       // Restore the state of the chart object to store
       this.props.initChart(chartObj);
