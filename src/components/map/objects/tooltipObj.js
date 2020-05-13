@@ -1,12 +1,21 @@
-import { getHoursAndMinutesAfterFormat } from "../../../utils/dateUtils";
+import { getHoursAndMinutesAfterFormat, getAircraftPositionBasedOnFlightObj } from "../../../utils/dateUtils";
 import { getTotalPaxCountForFlight } from "../../../utils/paxUtils";
+
+const TIME_TO_CHECK_AIRCRAFT_POSITION = 60000;
+const checkAircraftPosition = (aircraftPosition) => {
+  if(!isFinite(aircraftPosition)) {
+    return 1;
+  }
+  return (aircraftPosition < 0 ? 0 : aircraftPosition);
+}
 
 export const tooltipObj = (line, lineSeries, am4core, flight, displayView) => {
   
   // Add a map object to line
   let bullet = line.lineObjects.create();
   bullet.nonScaling = true;
-  bullet.position = flight.aircraft.position;
+  let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, true);
+  bullet.position =  flight.arrStn === 'SIN' ? checkAircraftPosition(aircraftPosition) : flight.aircraft.position;
   bullet.fill = am4core.color(flight.config.tooltipcolor);
   
   flight.status.misconnection ? 
@@ -20,13 +29,29 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView) => {
     ;
 
   bullet.tooltip.label.interactionsEnabled = true;
-  //bullet.tooltip.pointerOrientation = "left";
+  //bullet.tooltip.pointerOrientation = "down";
   bullet.tooltip.fitPointerToBounds = true;
   bullet.tooltip.background.pointerLength = 0;
   bullet.tooltip.background.cornerRadius = 0;
   bullet.tooltip.background.stroke = am4core.color(flight.config.tooltipcolor);
   bullet.tooltip.background.strokeWidth = 2;
   bullet.alwaysShowTooltip = true;
+  
+  if(flight.arrStn === 'SIN'){
+    // set the position of the aircraft.
+    // Logic to move airplane based on current time needs to be added on.
+    var setPositionOfPlane = setInterval(() => {
+      let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, true);
+      let bulletPosition = checkAircraftPosition(aircraftPosition);
+      bullet.position = bulletPosition;
+      
+    }, TIME_TO_CHECK_AIRCRAFT_POSITION);
+    setInterval(() => {
+      if(bullet.position >= 0.5){
+        clearInterval(setPositionOfPlane);
+      }
+    },TIME_TO_CHECK_AIRCRAFT_POSITION);
+  }
   
 
   let dropShadow = new am4core.DropShadowFilter();                                  
@@ -38,12 +63,9 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView) => {
   dropShadow.height = 130;
   (flight.depStn==='SIN' && flight.status.misconnection) && bullet.tooltip.filters.push(dropShadow);
   
-  //bullet.tooltipY = 10;
-  //bullet.tooltipX = -5;
-  //bullet.dy = 5;
-  (getETA(flight) === "" || flight.depcoordinates.longitude > 100) ? bullet.tooltip.dx = 70 : bullet.tooltip.dx = -80;
-  if(getETA(flight) === "") bullet.tooltip.dx = 40;
-  flight.depcoordinates.longitude > 100 ? bullet.tooltip.dy = 45 : bullet.tooltip.dy = 35;
+  //(getETA(flight) === "" || flight.depcoordinates.longitude > 100) ? bullet.tooltip.dx = 70 : bullet.tooltip.dx = -80;
+  //if(getETA(flight) === "") bullet.tooltip.dx = 40;
+  //flight.depcoordinates.longitude > 100 ? bullet.tooltip.dy = 45 : bullet.tooltip.dy = 35;
 
   if(flight.tooltip != null && flight.tooltip === "OUTBOUND")
   {
@@ -53,12 +75,8 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView) => {
     bullet.dx = 0;
   }
 
-  // let dropShadow = new am4core.DropShadowFilter();
-  // dropShadow.opacity = 0.5;
-  // bullet.filters.push(dropShadow);
-
-  bullet.tooltip.flightData = flight;
-  line.flightData = lineSeries.flightData;
+  //bullet.tooltip.flightData = flight;
+  //line.flightData = lineSeries.flightData;
 
   return bullet;
 };
