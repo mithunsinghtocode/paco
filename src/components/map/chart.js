@@ -32,6 +32,9 @@ class MapChartLayer extends React.Component {
     let chart = am4core.create("chartdiv", am4maps.MapChart);
     //chart.seriesContainer.draggable = false;
     chart.chartContainer.wheelable = false;
+    chart.paddingLeft = '0px';
+    chart.paddingRight = '50px';
+    
     // Get the App Data for the Banner from Store
     this.props.initChart(chart);
     let toggle = true;
