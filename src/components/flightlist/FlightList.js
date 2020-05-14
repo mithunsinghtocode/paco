@@ -87,8 +87,38 @@ class FlightList extends React.Component {
             </div>
 
             <div className="overlay-arrow">
-                    <i className="big arrow alternate circle down outline icon" id="down-arrow" style={{ color: "#fff" }} onClick={this.shrink}></i>
-                    <i className="big arrow alternate circle up outline icon" id="up-arrow" style={{ color: "#fff",display:"none" }} onClick={this.expand}></i>
+                    <button className="rectangle-down-arrow" id="down-arrow" style={{ color: "#fff" }} onClick={this.shrink}> 
+                    <svg width="14px" height="14px">
+                        <title>FA330ECD-E438-49D6-AEB5-DD2670AE9D78</title>
+                        <desc>Created with sketchtool.</desc>
+                        <g id="Design" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                            <g id="120-Selected-Critical-Flight" transform="translate(-43.000000, -91.000000)" fill="#FFFFFF" fillRule="nonzero">
+                                <g id="Button-/-Back" transform="translate(34.000000, 78.000000)">
+                                    <g id="Group-4">
+                                        <polygon id="Shape" transform="translate(16.000000, 20.000000) scale(-1, 1) translate(-16.000000, -20.000000) " points="16 13 14.76625 14.23375 19.64875 19.125 9 19.125 9 20.875 19.64875 20.875 14.76625 25.76625 16 27 23 20"></polygon>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                    </button>
+                    <button className="rectangle-up-arrow" id="up-arrow" style={{ color: "#fff",display:"none" }} onClick={this.expand}> 
+                    <svg width="14px" height="14px">
+                        <title>FA330ECD-E438-49D6-AEB5-DD2670AE9D78</title>
+                        <desc>Created with sketchtool.</desc>
+                        <g id="Design" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                            <g id="120-Selected-Critical-Flight" transform="translate(-43.000000, -91.000000)" fill="#FFFFFF" fillRule="nonzero">
+                                <g id="Button-/-Back" transform="translate(34.000000, 78.000000)">
+                                    <g id="Group-4">
+                                        <polygon id="Shape" transform="translate(16.000000, 20.000000) scale(-1, 1) translate(-16.000000, -20.000000) " points="16 13 14.76625 14.23375 19.64875 19.125 9 19.125 9 20.875 19.64875 20.875 14.76625 25.76625 16 27 23 20"></polygon>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                    </button>
+                    {/* <i className="big arrow alternate circle down outline icon" id="down-arrow" style={{ color: "#fff" }} onClick={this.shrink}></i>
+                    <i className="big arrow alternate circle up outline icon" id="up-arrow" style={{ color: "#fff",display:"none" }} onClick={this.expand}></i> */}
                 </div>
             </div>
         );
