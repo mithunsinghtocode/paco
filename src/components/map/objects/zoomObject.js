@@ -4,7 +4,7 @@ export const zoomObjectRender = ( chartObj, am4maps, am4core ) => {
       chartObj.zoomControl = new am4maps.ZoomControl();
       chartObj.zoomControl.align = "right";
       chartObj.zoomControl.valign = "top";
-      chartObj.zoomControl.marginRight = "-30px";
+      chartObj.zoomControl.marginRight = "-70px";
       chartObj.zoomControl.marginTop = "10px";
       chartObj.zoomControl.background.fill = am4core.color("#2E2E2E");
       chartObj.zoomControl.plusButton.background.cornerRadius(5, 5, 5, 5);

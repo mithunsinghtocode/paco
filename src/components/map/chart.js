@@ -33,8 +33,8 @@ class MapChartLayer extends React.Component {
     //chart.seriesContainer.draggable = false;
     chart.chartContainer.wheelable = false;
     chart.paddingLeft = '0px';
-    chart.paddingRight = '50px';
-    
+    chart.paddingRight = '80px';
+
     // Get the App Data for the Banner from Store
     this.props.initChart(chart);
     let toggle = true;
