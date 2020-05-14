@@ -70,7 +70,7 @@ class OutboundPathFinder extends React.Component {
 
         // Adds line or arc based on the coordinates
         let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
-        lineSeries.STATUS = "DELAYED";
+        lineSeries.STATUS = "LINESERIES";
         // Add line series
         flightObj.flightList.forEach(flight => {
           flight.aircraft.position = 0.95;

@@ -43,5 +43,8 @@
     }
     
     .overlay.sidemenu {
-        height: 90% !important;
+        //height: 84.5% !important;
+        display: flex;
+        flex-flow: column;
+        height: 90%;
     }

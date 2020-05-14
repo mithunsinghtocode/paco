@@ -76,7 +76,7 @@ class InboundPathFinder extends React.Component {
         /** If you require full control of the arc drawn use  MapArcSeries*/
         //let lineSeries = chartObj.series.push(new am4maps.MapArcSeries());
         
-        lineSeries.STATUS = "DELAYED";
+        lineSeries.STATUS = "LINESERIES";
         // Add line series
         flightObj.flightList.forEach(flight => {
         let line = lineObj(am4core, flight, lineSeries,chartObj,am4maps);

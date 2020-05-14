@@ -1,11 +1,9 @@
 import { getHoursAndMinutesAfterFormat, getAircraftPositionBasedOnFlightObj } from "../../../utils/dateUtils";
 import { getTotalPaxCountForFlight } from "../../../utils/paxUtils";
 
-const TIME_TO_CHECK_AIRCRAFT_POSITION = 60000;
+const TIME_TO_CHECK_AIRCRAFT_POSITION = 1000;
 const checkAircraftPosition = (aircraftPosition) => {
-  if(!isFinite(aircraftPosition)) {
-    return 1;
-  }
+  if(!isFinite(aircraftPosition)) return 1;
   return (aircraftPosition < 0 ? 0 : aircraftPosition);
 }
 
@@ -47,12 +45,11 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView) => {
       
     }, TIME_TO_CHECK_AIRCRAFT_POSITION);
     setInterval(() => {
-      if(bullet.position >= 0.5){
+      if(bullet.position >= 0.9){
         clearInterval(setPositionOfPlane);
       }
     },TIME_TO_CHECK_AIRCRAFT_POSITION);
   }
-  
 
   let dropShadow = new am4core.DropShadowFilter();                                  
   dropShadow.dy = -30;  
