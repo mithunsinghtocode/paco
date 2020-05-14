@@ -59,9 +59,15 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView) => {
   dropShadow.color = am4core.color("#E55541");
   dropShadow.height = 130;
   (flight.depStn==='SIN' && flight.status.misconnection) && bullet.tooltip.filters.push(dropShadow);
-  
-  //(getETA(flight) === "" || flight.depcoordinates.longitude > 100) ? bullet.tooltip.dx = 70 : bullet.tooltip.dx = -80;
-  //if(getETA(flight) === "") bullet.tooltip.dx = 40;
+  //bullet.tooltip.dx = 10;
+  //bullet.tooltip.dy = -10;
+  if(getETA(flight) === "" || flight.depcoordinates.longitude > 100) {
+    //bullet.tooltip.dy = -5;
+    bullet.tooltip.dx = 90 ;
+  } else{
+    bullet.tooltip.dx = -80;
+  } 
+  if(getETA(flight) === "") bullet.tooltip.dx = 40;
   //flight.depcoordinates.longitude > 100 ? bullet.tooltip.dy = 45 : bullet.tooltip.dy = 35;
 
   if(flight.tooltip != null && flight.tooltip === "OUTBOUND")
