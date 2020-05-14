@@ -1,8 +1,14 @@
 export const getStationCoordinatesFromTheFlightList = flightData => {
     let stationCoordinatesList = [];
     flightData.forEach(sectorObj => {
-      stationCoordinatesList.push(prepareCoordinatesObject(sectorObj.depcoordinates));
-      stationCoordinatesList.push(prepareCoordinatesObject(sectorObj.arrcoordinates));
+      let flightStationCoordinates = [];
+      let depCoordinates = prepareCoordinatesObject(sectorObj.depcoordinates);
+      let arrcoordinates = prepareCoordinatesObject(sectorObj.arrcoordinates);
+      stationCoordinatesList.push(depCoordinates);
+      stationCoordinatesList.push(arrcoordinates);
+      flightStationCoordinates.push(depCoordinates);
+      flightStationCoordinates.push(arrcoordinates);
+      sectorObj.stationcoordinates = flightStationCoordinates;
     });
     //console.log(stationCoordinatesList);
     return stationCoordinatesList;
