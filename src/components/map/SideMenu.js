@@ -17,16 +17,16 @@ class SideMenu extends React.Component {
       case "INBOUND":
           this.props.switchFlightsViewByInBoundOrOutbound("INBOUND");
           outboundButton.style.borderBottom= "0px";
-          inboundButton.style.borderBottom = "5px solid #87C039";
+          inboundButton.style.borderBottom = "5px solid #00DC88";
           break;
       case "OUTBOUND":
         this.props.switchFlightsViewByInBoundOrOutbound("OUTBOUND");
           inboundButton.style.borderBottom = "0px";
-          outboundButton.style.borderBottom = "5px solid #87C039";
+          outboundButton.style.borderBottom = "5px solid #00DC88";
           break;
       default:
         this.props.switchFlightsViewByInBoundOrOutbound("INBOUND");
-          inboundButton.style.borderBottom = "5px solid #87C039";
+          inboundButton.style.borderBottom = "5px solid #00DC88";
     }
   }
 
