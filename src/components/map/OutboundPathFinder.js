@@ -12,6 +12,8 @@ import { plotStationObj } from "./objects/plotStationObj";
 import * as mapConst from "./mapConst";
 import { initChart } from "../../actions/chartAction";
 import Loader from '../loader/Loader';
+import { freeUpMemory } from './objects/clearChartObjects';
+
 
 class OutboundPathFinder extends React.Component {
   
@@ -87,6 +89,8 @@ class OutboundPathFinder extends React.Component {
       });
       // Restore the state of the chart object to store
       this.props.initChart(chartObj);
+
+      freeUpMemory([chartObj, flightObj]);
     }
     }
   };

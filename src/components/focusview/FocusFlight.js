@@ -5,7 +5,7 @@ import * as am4maps from "@amcharts/amcharts4/maps";
 import * as am4core from "@amcharts/amcharts4/core";
 
 import { showSelectedFlightInMap, removeSelectedFlightFromMap, showFocusViewForSelectedFlight } from "../../actions/chartDataAction";
-import { clearChartComponents } from "../map/objects/clearChartObjects";
+import { clearChartComponents, freeUpMemory } from "../map/objects/clearChartObjects";
 import { renderChartLayout } from "../../components/map/objects/renderChartLayOut";
 import { initChart } from "../../actions/chartAction";
 import { plotFlightObj } from "../../components/map/objects/plotFlightObj";
@@ -63,8 +63,9 @@ class FocusFlight extends React.Component {
                     plotFlightObj(inboundFlt, lineSeries, null , false, am4core, this.props.displayView, chartObj,am4maps);
                 });
         }
-
             plotStationObj( am4core, chartObj, stationCoordinates );
+            freeUpMemory([chartObj, selectedFlight]);
+
         }else{
             return <div></div>;
         }        

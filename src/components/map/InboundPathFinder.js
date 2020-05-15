@@ -12,9 +12,10 @@ import { plotStationObj } from "./objects/plotStationObj";
 import * as mapConst from "./mapConst";
 import { initChart } from "../../actions/chartAction";
 import Loader from '../loader/Loader';
+import { freeUpMemory } from './objects/clearChartObjects';
 
 class InboundPathFinder extends React.Component {
-  
+ 
   getChartObj = () => this.props.chartObj;
 
   getInboundFlightData = () => this.props.inboundFlights;
@@ -41,7 +42,6 @@ class InboundPathFinder extends React.Component {
     }else{
 
     if (chartObj !== null && flightObj !== null) {
-
       console.log("<><><> Inbound Path Filter - State re-renders the flight data component");
       let isAmericaPresent = flightObj.stationcoordinates.filter(station =>
         station.longitude < -10 ? true : false
@@ -99,6 +99,8 @@ class InboundPathFinder extends React.Component {
       });
       // Restore the state of the chart object to store
       this.props.initChart(chartObj);
+
+      freeUpMemory([chartObj, flightObj]);
     }
     }
   };
