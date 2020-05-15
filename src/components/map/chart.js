@@ -29,6 +29,8 @@ const update = (a) => {
 class MapChartLayer extends React.Component {
   componentDidMount() {
     // Create map instance
+    am4core.options.queue = true;
+    am4core.options.onlyShowOnViewport = true;
     let chart = am4core.create("chartdiv", am4maps.MapChart);
     //chart.seriesContainer.draggable = false;
     chart.chartContainer.wheelable = false;

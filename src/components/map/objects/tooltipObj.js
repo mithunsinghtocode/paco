@@ -27,7 +27,6 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView) => {
     ;
 
   bullet.tooltip.label.interactionsEnabled = true;
-  //bullet.tooltip.pointerOrientation = "down";
   bullet.tooltip.fitPointerToBounds = true;
   bullet.tooltip.background.pointerLength = 0;
   bullet.tooltip.background.cornerRadius = 0;
@@ -59,15 +58,12 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView) => {
   dropShadow.color = am4core.color("#E55541");
   dropShadow.height = 130;
   (flight.depStn==='SIN' && flight.status.misconnection) && bullet.tooltip.filters.push(dropShadow);
-  //bullet.tooltip.dx = 10;
-  //bullet.tooltip.dy = -10;
-  if(getETA(flight) === "" || flight.depcoordinates.longitude > 100) {
-    //bullet.tooltip.dy = -5;
-    bullet.tooltip.dx = 90 ;
-  } else{
-    bullet.tooltip.dx = -80;
-  } 
-  if(getETA(flight) === "") bullet.tooltip.dx = 40;
+   if(getETA(flight) === "" || flight.depcoordinates.longitude > 100) {
+     bullet.tooltip.dx = 100 ;
+   } else{
+     bullet.tooltip.dx = -80;
+   } 
+  //if(getETA(flight) === "") bullet.tooltip.dx = 40;
   //flight.depcoordinates.longitude > 100 ? bullet.tooltip.dy = 45 : bullet.tooltip.dy = 35;
 
   if(flight.tooltip != null && flight.tooltip === "OUTBOUND")
@@ -77,10 +73,11 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView) => {
     bullet.dy = 0;
     bullet.dx = 0;
   }
-
-  //bullet.tooltip.flightData = flight;
-  //line.flightData = lineSeries.flightData;
-
+  bullet.tooltip.cursorOverStyle = am4core.MouseCursorStyle.pointer;  
+  bullet.cursorOverStyle = am4core.MouseCursorStyle.pointer;  
+  bullet.tooltip.dispatchImmediately("hit");
+  line.tooltip.dispatchImmediately("hit");
+  lineSeries.tooltip.dispatchImmediately("hit");
   return bullet;
 };
 
