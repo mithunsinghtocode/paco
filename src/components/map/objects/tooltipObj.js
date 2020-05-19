@@ -17,12 +17,16 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView) => {
   bullet.fill = am4core.color(flight.config.tooltipcolor);
   
   flight.status.misconnection ? 
-    bullet.tooltipHTML = `<div style="margin-bottom:2px;margin-top:-2px;color:#fff;height:20px;" onHover="cursor: pointer">
+  flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:2px;margin-top:-2px;color:#fff;height:20px;" onHover="cursor: pointer">
       ${getFltNum(flight)} ${getETA(flight)} ${displayLine()} ${getTotMisconnectedPax(flight, displayView)}
-    </div>`
+    </div>`) : bullet.tooltipHTML = `<p style="margin-bottom:2px;margin-top:-2px;color:#fff;height:20px;">
+      ${getFltNum(flight)} ${getDepTime(flight)} ${displayLine()} ${getTotMisconnectedPax(flight, displayView)}
+    </p>`
       :
-    bullet.tooltipHTML = `<p style="margin-bottom:2px;margin-top:-2px;color:#fff;height:20px">
+      flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<p style="margin-bottom:2px;margin-top:-2px;color:#fff;height:20px">
     ${getFltNum(flight)} ${getETA(flight)}
+    </p>`) : bullet.tooltipHTML = `<p style="margin-bottom:2px;margin-top:-2px;color:#fff;height:20px;opacity:0.3">
+    ${getFltNum(flight)} ${getDepTime(flight)}
     </p>`
     ;
 
@@ -78,10 +82,16 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView) => {
   bullet.tooltip.dispatchImmediately("hit");
   line.tooltip.dispatchImmediately("hit");
   lineSeries.tooltip.dispatchImmediately("hit");
+
+  if(flight.depStn==='SIN' && !flight.status.misconnection) { 
+    bullet.tooltip.opacity = 0.32;
+  }
   return bullet;
 };
 
 const getETA = (flight) => flight.eta !== null ? `${displayLine()} ETA ${getHoursAndMinutesAfterFormat(flight.eta)}` : "";
+
+const getDepTime = (flight) => flight.etd !== null ? `${displayLine()} ETD ${getHoursAndMinutesAfterFormat(flight.etd)}` : `${displayLine()} STD ${getHoursAndMinutesAfterFormat(flight.std)}`;
 
 const getTotMisconnectedPax = (flight, displayView) =>  ` ${displayPaxIcon()} ${getTotalPaxCountForFlight(flight, displayView)}`;
 
