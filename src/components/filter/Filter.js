@@ -8,7 +8,7 @@ import { renderChartLayout } from '../map/objects/renderChartLayOut';
 export class Filter extends React.Component {
   renderBackButton(){
     return (<button className="rectangle" onClick={this.props.goBackFunction}>
-      <svg width="14px" height="14px">
+      {/* <svg width="14px" height="14px">
               <title>FA330ECD-E438-49D6-AEB5-DD2670AE9D78</title>
               <desc>Created with sketchtool.</desc>
               <g id="Design" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -20,8 +20,8 @@ export class Filter extends React.Component {
                       </g>
                   </g>
               </g>
-          </svg>
-          &nbsp; BACK </button>
+          </svg> */}
+           SHOW ALL FLIGHTS </button>
           );
   }
 

@@ -6,6 +6,10 @@ import { showSelectedFlightInMap, removeSelectedFlightFromMap } from "../../acti
 import { getTotalPaxCountBasedGroupByClassForFlight } from "../../utils/paxUtils";
 import { sort } from "../../utils/sortUtils";
 
+var scrollHeight = 0;
+const MAX_HEIGHT = 86;
+const MIN_HEIGHT = 50;
+const TRANSITION_MULTIPLIER=1.4;
 class FlightList extends React.Component {
 
     getPaxDetailsFormat = (selectedFlight) => {
@@ -27,30 +31,57 @@ class FlightList extends React.Component {
             }
       }
 
-    renderFlightList = (flightList) => {
-      
-        // sort the list of flights
-        this.props.displayView === 'INBOUND' ?  sort({
-            inputList: flightList, 
-            objectProp: 'eta', 
-            typeOfProp: 'date', 
-            conversionRequired: true, 
-            isAscending: false, 
-            isNewCopyOfArr: false
-        })
-        : 
+      setHighlightedFlight = (highlightFlight, flightObj) => {
+          if(highlightFlight) return highlightFlight.flightId === flightObj.flightId ? true : false;
+          return true;
+      }
+
+    renderFlightList = (flightList, highlightFlight) => {
+        // sort based on misconnection
         sort({
             inputList: flightList, 
-            objectProp: 'etd', 
-            typeOfProp: 'date', 
-            conversionRequired: true, 
-            isAscending: true, 
+            objectProp: 'status.misconnection', 
+            typeOfProp: 'boolean', 
+            conversionRequired: false, 
+            isAscending: false, 
             isNewCopyOfArr: false
         });
+        //sort the list of flights
+        if(this.props.displayView === 'INBOUND'){
+            let flightMisconnectionList = flightList.filter(flight => flight.status.misconnection);
+            let flightDelayList = flightList.filter(flight => !flight.status.misconnection);
+            sort({
+                inputList: flightMisconnectionList, 
+                objectProp: 'eta', 
+                typeOfProp: 'date', 
+                conversionRequired: true, 
+                isAscending: false, 
+                isNewCopyOfArr: false
+            });
+            sort({
+                inputList: flightDelayList, 
+                objectProp: 'eta', 
+                typeOfProp: 'date', 
+                conversionRequired: true, 
+                isAscending: false, 
+                isNewCopyOfArr: false
+            });
+            flightList = [...flightMisconnectionList, ...flightDelayList]
+        }else{
+            sort({
+                inputList: flightList, 
+                objectProp: 'etd', 
+                typeOfProp: 'date', 
+                conversionRequired: true, 
+                isAscending: true, 
+                isNewCopyOfArr: false
+            });
+        }
 
         return flightList.map((flightObj) => {
             return(
-                flightObj && <div key={ flightObj.flightId } value={ flightObj.flightId } onClick={ (e) => this.props.showSelectedFlightInMap(flightObj)} >
+                flightObj && <div key={ flightObj.flightId } value={ flightObj.flightId } onClick={ (e) => this.props.showSelectedFlightInMap(flightObj)} 
+                    style= {{ opacity: this.setHighlightedFlight(highlightFlight, flightObj) ? '1' : '0.32'}}>
                      <div className="rectangle-copy-2" >
                         <div className={ this.getClassName(flightObj) }>
                              <div className="flight-num" style={{ display: "inline-block" }}>{this.getFormattedFltNum(flightObj.fltNum)}</div>  <div className="cabin-class" style={{ display: "inline-block" }}>{this.getPaxDetailsFormat(flightObj)}</div>
@@ -67,22 +98,51 @@ class FlightList extends React.Component {
     shrink = () => {
         let downArrow = document.getElementById("down-arrow");
         downArrow.style.display = "none";
-        document.getElementById("legend").style.maxHeight= "5%";
+        document.getElementById("legend").style.height= "5%";
         document.getElementById("up-arrow").style.display = "block";
     };
 
     expand = () => {
         let downArrow = document.getElementById("down-arrow");
         downArrow.style.display = "block";
-        document.getElementById("legend").style.maxHeight= "50%";
+        document.getElementById("legend").style.height= "50%";
         document.getElementById("up-arrow").style.display = "none";
     };
+    adjustHeight = (e) => {
+        let y = e.deltaY;
+        var element = document.querySelector("#legend");
+        var st = element.scrollTop;
+        if(y){
+            var currHeight = Number(document.getElementById("legend").style.height.replace('%',''));
+            if(y>=0 && st >=0){
+                    if(currHeight >= 0 && currHeight < MAX_HEIGHT) {
+                        this.setScrollStyle('hidden', MIN_HEIGHT + scrollHeight*TRANSITION_MULTIPLIER  +'%');
+                        scrollHeight+=1;
+                    }
+                    if(currHeight >= MAX_HEIGHT){ 
+                        this.setScrollStyle('auto', MAX_HEIGHT +'%');
+                    }
+            }else{
+                if(currHeight > MIN_HEIGHT && st <=1){
+                        this.setScrollStyle('hidden', MIN_HEIGHT + scrollHeight*TRANSITION_MULTIPLIER  +'%');
+                        scrollHeight-=1;
+                }
+                if(currHeight <= MIN_HEIGHT){
+                    this.setScrollStyle('auto', MIN_HEIGHT +'%');
+                }
+            }
+        }       
+    };
+    setScrollStyle = (overflowVal, heightVal) => {
+        document.getElementById("legend").style.overflow = overflowVal;
+        document.getElementById("legend").style.height= heightVal;
+    }
 
     render(){
         return (
             <div>
-            <div className="legend" id="legend">
-                {this.props.displayView === "INBOUND" &&  (this.props.fltToDisplayInMap !== null ? this.renderFlightList([this.props.fltToDisplayInMap]) : this.props.inboundFlights && this.renderFlightList(this.props.inboundFlights.flightList)) }
+            <div className="legend" id="legend" onWheel={this.adjustHeight} onScroll={this.adjustHeight}>
+                {this.props.displayView === "INBOUND" &&  (this.props.fltToDisplayInMap !== null ? this.renderFlightList(this.props.inboundFlights.flightList, this.props.fltToDisplayInMap) : this.props.inboundFlights && this.renderFlightList(this.props.inboundFlights.flightList)) }
                 {this.props.displayView === "OUTBOUND" &&  (this.props.fltToDisplayInMap !== null ? this.renderFlightList([this.props.fltToDisplayInMap]) : this.props.outboundFlights && this.renderFlightList(this.props.outboundFlights.flightList)) }
             </div>
 
@@ -124,7 +184,6 @@ class FlightList extends React.Component {
         );
     }
 }
-
 const mapStateToProps = (state, ownProps) => {
     //console.log(state);
     return { fltToDisplayInMap : state.getFltToShowInMap, chartObj: state.chartInit, inboundFlights: state.inboundFlightData, outboundFlights: state.outboundFlightData, displayView: state.getDisplayView };

@@ -68,13 +68,14 @@
 .legend {
     position: absolute;
     width: 420px;
-    max-height: 50%;
+    max-height: 86%;
+    height: 50%;
     left: 2%;
     bottom: 0%;
     background-color: transparent;
     z-index: 2;
     cursor: pointer;
-    overflow: auto;
+    overflow: hidden;
     padding: 1em 0em 0em 1em;
 }
 
@@ -153,12 +154,12 @@
 
 .overlay-arrow {
     position: absolute;
-    left: 440px;
+    margin-left: 0.5%;
     bottom: 0.5%;
     /* background-color: rgba(0, 0, 0, 0.5); */
     z-index: 2;
     cursor: pointer;
-    padding: 0.5em 0em 0em 1em;
+    padding: 0em 0em 0em 0em;
     overflow-y: auto;
     color: white !important;
     opacity: 0.7;

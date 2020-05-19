@@ -6,6 +6,14 @@
         //border: 1px solid black;
     }
     
+    .navbar.display-button {
+        background-color: #2E2E2E;
+        color: white;
+        //height: 70px;
+        //box-shadow: 2px 2px 17px rgba(0, 0, 0, 0.5);
+        //border: 1px solid black;
+    }
+    
     .div-switch {
         display: block;
         margin-left: auto;
@@ -110,7 +118,7 @@
     .rectangle {
         box-sizing: border-box;
         height: 40px;
-        width: 93px;
+        width: 172px;
         border: 1px solid #BFBFBF;
         border-radius: 20px;
         color: #FFFFFF;
@@ -123,6 +131,10 @@
         opacity: 1px;
         //background-color: #2E2E2E;
         background-color: Transparent;
+        //margin-top: 176px;
+        //margin-left: 176px;
+        position: relative;
+        //padding: 176px 0px 864px 74px;
     }
     
     .flt-header {

@@ -47,25 +47,32 @@ class OutboundPathFinder extends React.Component {
 
       console.log("<><><> Outbound Path Filter - State re-renders the flight data component");
 
-      let isAmericaPresent = flightObj.stationcoordinates.filter(station =>
-        station.longitude < -10 ? true : false
+      this.setDefaultZoomAndGeoPointFocus(
+        chartObj,
+        mapConst.$_asian_continents_zoom_level,
+        mapConst.$_asia_latitude,
+        mapConst.$_asia_longitude
       );
-      // set initial zoom and map points
-      if (isAmericaPresent !== undefined && isAmericaPresent.length > 0) {
-        this.setDefaultZoomAndGeoPointFocus(
-          chartObj,
-          mapConst.$_america_asian_continents_zoom_level,
-          mapConst.$_america_asia_latitude,
-          mapConst.$_america_asia_longitude
-        );
-      } else {
-        this.setDefaultZoomAndGeoPointFocus(
-          chartObj,
-          mapConst.$_asian_continents_zoom_level,
-          mapConst.$_asia_latitude,
-          mapConst.$_asia_longitude
-        );
-      }
+
+      // let isAmericaPresent = flightObj.stationcoordinates.filter(station =>
+      //   station.longitude < -10 ? true : false
+      // );
+      // // set initial zoom and map points
+      // if (isAmericaPresent !== undefined && isAmericaPresent.length > 0) {
+      //   this.setDefaultZoomAndGeoPointFocus(
+      //     chartObj,
+      //     mapConst.$_america_asian_continents_zoom_level,
+      //     mapConst.$_america_asia_latitude,
+      //     mapConst.$_america_asia_longitude
+      //   );
+      // } else {
+      //   this.setDefaultZoomAndGeoPointFocus(
+      //     chartObj,
+      //     mapConst.$_asian_continents_zoom_level,
+      //     mapConst.$_asia_latitude,
+      //     mapConst.$_asia_longitude
+      //   );
+      // }
 
 
       plotStationObj( am4core, chartObj, flightObj );
