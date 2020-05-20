@@ -7,7 +7,7 @@ const checkAircraftPosition = (aircraftPosition) => {
   return (aircraftPosition < 0 ? 0 : aircraftPosition);
 }
 
-export const tooltipObj = (line, lineSeries, am4core, flight, displayView) => {
+export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index) => {
   
   // Add a map object to line
   let bullet = line.lineObjects.create();
@@ -61,22 +61,16 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView) => {
   dropShadow.opacity = 1;
   dropShadow.color = am4core.color("#E55541");
   dropShadow.height = 130;
-  (flight.depStn==='SIN' && flight.status.misconnection) && bullet.tooltip.filters.push(dropShadow);
-   if(getETA(flight) === "" || flight.depcoordinates.longitude > 100) {
-     bullet.tooltip.dx = 100 ;
-   } else{
-     bullet.tooltip.dx = -80;
-   } 
+  // commented as using different algorithm
+  // (flight.depStn==='SIN' && flight.status.misconnection) && bullet.tooltip.filters.push(dropShadow);
+  //  if(getETA(flight) === "" || flight.depcoordinates.longitude > 100) {
+  //    bullet.tooltip.dx = 100 ;
+  //  } else{
+  //    bullet.tooltip.dx = -80;
+  //  } 
   //if(getETA(flight) === "") bullet.tooltip.dx = 40;
   //flight.depcoordinates.longitude > 100 ? bullet.tooltip.dy = 45 : bullet.tooltip.dy = 35;
 
-  if(flight.tooltip != null && flight.tooltip === "OUTBOUND")
-  {
-    bullet.tooltip.dy = 0;
-    bullet.tooltip.dx = 0;
-    bullet.dy = 0;
-    bullet.dx = 0;
-  }
   bullet.tooltip.cursorOverStyle = am4core.MouseCursorStyle.pointer;  
   bullet.cursorOverStyle = am4core.MouseCursorStyle.pointer;  
   bullet.tooltip.dispatchImmediately("hit");
@@ -85,6 +79,16 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView) => {
 
   if(flight.depStn==='SIN' && !flight.status.misconnection) { 
     bullet.tooltip.opacity = 0.32;
+  }
+  if(index % 2 === 0) {bullet.tooltip.dx = -20; bullet.tooltip.pointerOrientation = 'right'};
+  if(index % 2 === 1) {bullet.tooltip.dx = 20; bullet.tooltip.pointerOrientation = 'left'};
+
+  if(flight.tooltip != null && flight.tooltip === "OUTBOUND")
+  {
+    if(index % 2 === 0)bullet.tooltip.dx = -10;
+    if(index % 2 === 1)bullet.tooltip.dx = 10;
+    bullet.dy = 0;
+    bullet.dx = 0;
   }
   return bullet;
 };

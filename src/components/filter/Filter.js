@@ -85,7 +85,7 @@ export class Filter extends React.Component {
   }
 
   getFormattedHeading = (fltObj) => {
-    return (<div style={{display:"inline-block"}}><div style={{display:"inline-block"}} className="fltNum"> {fltObj.fltNum} </div> <div style={{display:"inline-block"}} className="flt-header">({fltObj.depStn} - {fltObj.arrStn})</div></div>)
+    return (<div style={{display:"inline-block", marginLeft:"878px"}}><div style={{display:"inline-block"}} className="fltNum"> {fltObj.fltNum} </div> <div style={{display:"inline-block"}} className="flt-header">({fltObj.depStn} - {fltObj.arrStn})</div></div>)
   };
 
   getInBoundFilter = () => {
@@ -131,8 +131,8 @@ export class Filter extends React.Component {
       <div>
       {this.props.displayView === "INBOUND" &&
         <nav className="navbar navbar-light justify-content-between filter">
-        {this.props.fltToDisplayInMap !== null && this.renderBackButton()}
-        <label style={{ marginRight: "45%" }}> {this.props.fltToDisplayInMap !== null && this.getFormattedHeading(this.props.fltToDisplayInMap)} </label>
+        {/* {this.props.fltToDisplayInMap !== null && this.renderBackButton()} */}
+        <label> {this.props.fltToDisplayInMap !== null && this.getFormattedHeading(this.props.fltToDisplayInMap)} </label>
           
           {this.props.fltToDisplayInMap === null && this.getInBoundFilter()}
           
@@ -140,7 +140,7 @@ export class Filter extends React.Component {
 
         {this.props.displayView === "OUTBOUND" &&
         <nav className="navbar navbar-light justify-content-between filter">
-        {this.props.fltToDisplayInMap !== null && this.renderBackButton()}
+        {/* {this.props.fltToDisplayInMap !== null && this.renderBackButton()} */}
         <label style={{ marginRight: "45%" }}> {this.props.fltToDisplayInMap !== null && this.getFormattedHeading(this.props.fltToDisplayInMap)} </label>
         {this.props.fltToDisplayInMap === null && this.getOutBoundFilter()}
         </nav> }

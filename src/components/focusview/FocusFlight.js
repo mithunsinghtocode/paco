@@ -13,6 +13,8 @@ import { plotFlightObj } from "../../components/map/objects/plotFlightObj";
 import { plotStationObj } from "../map/objects/plotStationObj";
 
 import { getStationCoordinatesFromTheFlightList } from "../../utils/stationUtils";
+import { sort } from '../../utils/sortUtils';
+import { setZoomAndGeoPointFocus } from '../map/objects/setZoomPoint';
 
 class FocusFlight extends React.Component {
     off = () => {
@@ -23,22 +25,33 @@ class FocusFlight extends React.Component {
         console.log("Into Flight Display View In Map");
         let chartObj = this.props.chartObj;
         let selectedFlight = this.props.fltToDisplayInMap;
-        if(chartObj != null && selectedFlight != null){         
-            console.log(selectedFlight);
+        
+        if(chartObj != null && selectedFlight != null){
+            //console.log(selectedFlight);
             //clearChartComponents(chartObj, ["MapLineSeries", "MapImageSeries","MapArcSeries"]);
             clearChartComponents(chartObj, ["ALL"]);
             renderChartLayout(chartObj);
 
             // Adds line or arc based on the coordinates
             let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
-
-
             let stationCoordinates = [];
 
             if(this.props.displayView === "INBOUND"){
                 plotFlightObj(selectedFlight, lineSeries, null , false, am4core, this.props.displayView, chartObj,am4maps);
                 plotStationObj( am4core, chartObj, selectedFlight );
-                selectedFlight.outboundFlt && selectedFlight.outboundFlt.forEach( outboundFlt => {
+                // sorting to serve overlap algorithm
+                selectedFlight.outboundFlt.forEach( (in2) => {
+                    in2.sumCoordinates = Number(in2.arrcoordinates.longitude) + Number(in2.arrcoordinates.latitude);
+                });
+                sort({
+                    inputList: selectedFlight.outboundFlt, 
+                    objectProp: 'sumCoordinates', 
+                    typeOfProp: 'number', 
+                    conversionRequired: false, 
+                    isAscending: true, 
+                    isNewCopyOfArr: false
+                });
+                selectedFlight.outboundFlt && selectedFlight.outboundFlt.forEach( (outboundFlt , index) => {
                     getStationCoordinatesFromTheFlightList([outboundFlt]).forEach(stationObj => {
                         stationCoordinates = [...stationCoordinates, stationObj];
                     });
@@ -46,24 +59,82 @@ class FocusFlight extends React.Component {
                     //console.log(outboundFlt);
                     outboundFlt.tooltip = "OUTBOUND";
                     outboundFlt.aircraft.position = 0.95;
-                    plotFlightObj(outboundFlt, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView, chartObj,am4maps);
+                    plotFlightObj(outboundFlt, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView, chartObj,am4maps, index);
                 });
             }
             if(this.props.displayView === "OUTBOUND"){
                 selectedFlight.aircraft.position = 0.95;
                 plotFlightObj(selectedFlight, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView, chartObj,am4maps);
                 plotStationObj( am4core, chartObj, selectedFlight );
-                selectedFlight.inboundFlt && selectedFlight.inboundFlt.forEach( inboundFlt => {
+                selectedFlight.inboundFlt && selectedFlight.inboundFlt.forEach( (inboundFlt, index) => {
                     getStationCoordinatesFromTheFlightList([inboundFlt]).forEach(stationObj => {
                         stationCoordinates = [...stationCoordinates, stationObj];
                     });
                     
                     //console.log(inboundFlt);
                     inboundFlt.tooltip = "INBOUND";
-                    plotFlightObj(inboundFlt, lineSeries, null , false, am4core, this.props.displayView, chartObj,am4maps);
+                    plotFlightObj(inboundFlt, lineSeries, null , false, am4core, this.props.displayView, chartObj,am4maps, index);
                 });
         }
             plotStationObj( am4core, chartObj, stationCoordinates );
+
+
+            // Setting zoom panning to rectangle based on Inbound flight algorithm starts
+            let east;
+            let west;
+            let south;
+            let north;
+            let sortedLattitude = sort({
+                inputList: selectedFlight.outboundFlt, 
+                objectProp: 'arrcoordinates.latitude', 
+                typeOfProp: 'number', 
+                conversionRequired: false, 
+                isAscending: true, 
+                isNewCopyOfArr: true
+            });
+            let sortedLongitude = sort({
+                inputList: selectedFlight.outboundFlt, 
+                objectProp: 'arrcoordinates.longitude', 
+                typeOfProp: 'number', 
+                conversionRequired: false, 
+                isAscending: true, 
+                isNewCopyOfArr: true
+            });
+            let length = selectedFlight.outboundFlt.length;
+            console.log(north + " :: " + east + " :: "+ south + " :: " + west);
+            console.log("sortedLattitude[length-1].arrcoordinates.latitude :: "+sortedLattitude[length-1].arrcoordinates.latitude)
+            north = sortedLattitude[length-1].arrcoordinates.latitude;
+            south = sortedLattitude[0].arrcoordinates.latitude;
+            west = sortedLongitude[length-1].arrcoordinates.longitude;
+            east = sortedLongitude[0].arrcoordinates.longitude;
+
+            chartObj.series.values[0].events.on("inited", function(ev) {
+                if(Math.sign(Number(selectedFlight.depcoordinates.latitude)) === 1) {
+                    if(Number(north) < Number(selectedFlight.depcoordinates.latitude)) north = selectedFlight.depcoordinates.latitude;
+                }else{
+                    console.log(Number(south) +" :: "+ Number(selectedFlight.depcoordinates.latitude));
+                    if(Number(south) > Number(selectedFlight.depcoordinates.latitude)) south = selectedFlight.depcoordinates.latitude;
+                }
+
+                if(Math.sign(Number(selectedFlight.depcoordinates.longitude)) === 1) {
+                    if(Number(east) < Number(selectedFlight.depcoordinates.longitude)) east = selectedFlight.depcoordinates.longitude;
+                }else{
+                    if(Number(west) > Number(selectedFlight.depcoordinates.longitude)) west = selectedFlight.depcoordinates.longitude;
+                }
+
+                setZoomAndGeoPointFocus(
+                    chartObj,
+                    Number(north),
+                    Number(east),
+                    Number(south),
+                    Number(west),
+                    1,
+                    true,
+                    500
+                  );
+              });
+            chartObj.zoomLevel = chartObj.zoomLevel + 0.0001;
+            // Setting zoom panning to rectangle based on Inbound flight algorithm ends
             freeUpMemory([chartObj, selectedFlight]);
 
         }else{

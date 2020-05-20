@@ -116,6 +116,8 @@ class FlightList extends React.Component {
             var currHeight = Number(document.getElementById("legend").style.height.replace('%',''));
             if(y>=0 && st >=0){
                     if(currHeight >= 0 && currHeight < MAX_HEIGHT) {
+                        document.getElementById("down-arrow").style.display = "block";
+                        document.getElementById("up-arrow").style.display = "none";
                         this.setScrollStyle('hidden', MIN_HEIGHT + scrollHeight*TRANSITION_MULTIPLIER  +'%');
                         scrollHeight+=1;
                     }

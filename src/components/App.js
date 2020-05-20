@@ -9,8 +9,8 @@ import FlightList from './flightlist/FlightList';
 import { removeSelectedFlightFromMap, getFlightData, removeFocusViewForSelectedFlight, getFlightDataForInbound } from '../actions/chartDataAction';
 import { clearChartComponents } from "../components/map/objects/clearChartObjects";
 import { renderChartLayout } from "../components/map/objects/renderChartLayOut";
-
 import { initChart } from "../actions/chartAction";
+import { goToHome } from './map/objects/defaultZoomFocus';
 
 class App extends React.Component {
     componentDidMount(){
@@ -22,7 +22,7 @@ class App extends React.Component {
         return (
             <div>
                 <Header />
-                <Filter goBackFunction={() => {this.props.removeSelectedFlightFromMap(null); this.props.removeFocusViewForSelectedFlight(null); clearChartComponents(this.props.chartObj, ["ALL"]); renderChartLayout(this.props.chartObj); /*clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries","MapArcSeries"]); */ }}/>
+                <Filter goBackFunction={() => {this.props.removeSelectedFlightFromMap(null); this.props.removeFocusViewForSelectedFlight(null); clearChartComponents(this.props.chartObj, ["ALL"]); renderChartLayout(this.props.chartObj); }}/>
                 <MapChartLayer />
                 <FocusView />
             </div>
