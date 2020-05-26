@@ -6,7 +6,7 @@ export const setDefaultZoomAndGeoPointFocus = (chartObj) => {
     latitude: mapConst.$_asia_latitude,
     longitude: mapConst.$_asia_longitude,
   };
-  chartObj.zoomLevel = chartObj.zoomLevel + 0.0001;
+  chartObj.zoomLevel = mapConst.$_asian_continents_zoom_level;
       // let isAmericaPresent = flightObj.stationcoordinates.filter(station =>
       //   station.longitude < -10 ? true : false
       // );
