@@ -6,6 +6,14 @@
         //border: 1px solid black;
     }
     
+    .navbar.display-button {
+        background-color: #2E2E2E;
+        color: white;
+        //height: 70px;
+        //box-shadow: 2px 2px 17px rgba(0, 0, 0, 0.5);
+        //border: 1px solid black;
+    }
+    
     .div-switch {
         display: block;
         margin-left: auto;
@@ -105,24 +113,6 @@
                 background-color: $lever-enabled-color;
             }
         }
-    }
-    
-    .rectangle {
-        box-sizing: border-box;
-        height: 40px;
-        width: 93px;
-        border: 1px solid #BFBFBF;
-        border-radius: 20px;
-        color: #FFFFFF;
-        font-family: "Proxima Nova";
-        font-size: 14px;
-        font-weight: 600;
-        letter-spacing: 0;
-        line-height: 17px;
-        text-align: center;
-        opacity: 1px;
-        //background-color: #2E2E2E;
-        background-color: Transparent;
     }
     
     .flt-header {

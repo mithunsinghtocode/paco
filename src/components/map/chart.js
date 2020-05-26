@@ -14,59 +14,27 @@ import Loader from '../loader/Loader';
 import FocusFlight from '../focusview/FocusFlight';
 import FlightList from '../flightlist/FlightList';
 import { removeSelectedFlightFromMap, removeFocusViewForSelectedFlight } from '../../actions/chartDataAction';
-
+import { freeUpMemory } from './objects/clearChartObjects';
 import SideMenu from "./SideMenu";
-
-const update = (a) => {
-  a.values.map((a1) => {
-    a1.age = 30;
-    a1.values.map((a2) => {
-      a2.spouse = 'devi';
-    });
-  });
-}
+import { setChartEvents } from '../map/objects/chartEvents';
 
 class MapChartLayer extends React.Component {
   componentDidMount() {
     // Create map instance
+    am4core.options.queue = true;
+    am4core.options.onlyShowOnViewport = true;
     let chart = am4core.create("chartdiv", am4maps.MapChart);
     //chart.seriesContainer.draggable = false;
     chart.chartContainer.wheelable = false;
+    chart.paddingLeft = '0px';
+    chart.paddingRight = '80px';
+
     // Get the App Data for the Banner from Store
     this.props.initChart(chart);
-    let toggle = true;
-    chart.seriesContainer.events.on(
-      "dragstart",
-      ev => {
-        // for hiding tooltip
-      // let chartObj = this.props.chartObj;
-      //   chartObj.series.values[1].mapLines.values.forEach((inObj, index1) => {
-      //     chartObj.series.values[1].mapLines.values[index1].lineObjects.values.forEach((inObj2, index2) => {
-      //       chartObj.series.values[1].mapLines.values[index1].lineObjects.getIndex(index2).tooltip.hide();
-      //     });
-      //   });
-        let a = ev.target;
-        toggle ? chart.zoomLevel = chart.zoomLevel + 0.0001 :  chart.zoomLevel = chart.zoomLevel - 0.0001;
-        toggle = !toggle;
-      },
-      this
-    );
-    chart.seriesContainer.events.on(
-      "dragged",
-      ev => {
-        // for showing tooltip
-        // let chartObj = this.props.chartObj;
-        //   chartObj.series.values[1].mapLines.values.forEach((inObj, index1) => {
-        //     chartObj.series.values[1].mapLines.values[index1].lineObjects.values.forEach((inObj2, index2) => {
-        //       chartObj.series.values[1].mapLines.values[index1].lineObjects.getIndex(index2).tooltip.show();
-        //     });
-        //   });
-          toggle ? chart.zoomLevel = chart.zoomLevel + 0.0001 :  chart.zoomLevel = chart.zoomLevel - 0.0001;
-          toggle = !toggle;
-        let a = ev.target;
-      },
-      this
-    );
+    
+    setChartEvents(chart);
+
+    freeUpMemory([chart]);
   }
 
   renderChart = () => {
@@ -81,6 +49,7 @@ class MapChartLayer extends React.Component {
       // render home object to default zoom
       homeObjectRender(chartObj, am4core);
     }
+    freeUpMemory([chartObj]);
   };
 
   removeChart(){
@@ -94,15 +63,16 @@ class MapChartLayer extends React.Component {
     if(chartObj !== null && chartObj.series !== null){
       //console.log(chartObj.series.length);
       while(chartObj.series.length !== 0){
-      chartObj.series.values.forEach((inObj) => {
-        //console.log(inObj);
-        chartObj.series.removeIndex(
-          chartObj.series.indexOf(inObj)
-        ).dispose();
-      });
+        chartObj.series.values.forEach((inObj) => {
+          //console.log(inObj);
+          chartObj.series.removeIndex(
+            chartObj.series.indexOf(inObj)
+          ).dispose();
+        });
+      }
+     this.removeChart();
     }
-      this.removeChart();
-    }
+    freeUpMemory([chartObj]);
   }
 
   renderLoading = () => {

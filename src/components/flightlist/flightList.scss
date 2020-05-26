@@ -27,17 +27,70 @@
     background-color: #696969;
 }
 
+.rectangle-down-arrow {
+    box-sizing: border-box;
+    height: 40px;
+    width: 40px;
+    border: 1px solid #BFBFBF;
+    border-radius: 50%;
+    color: #FFFFFF;
+    font-family: "Proxima Nova";
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 17px;
+    text-align: center;
+    opacity: 1px;
+    transform: rotate(-90deg);
+    //background-color: #2E2E2E;
+    background-color: Transparent;
+}
+
+.rectangle-up-arrow {
+    box-sizing: border-box;
+    height: 40px;
+    width: 40px;
+    border: 1px solid #BFBFBF;
+    border-radius: 50%;
+    color: #FFFFFF;
+    font-family: "Proxima Nova";
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 17px;
+    text-align: center;
+    opacity: 1px;
+    transform: rotate(90deg);
+    //background-color: #2E2E2E;
+    background-color: Transparent;
+}
+
 .legend {
     position: absolute;
     width: 420px;
-    max-height: 50%;
+    max-height: 86%;
+    height: 50%;
     left: 2%;
     bottom: 0%;
     background-color: transparent;
     z-index: 2;
     cursor: pointer;
-    overflow: auto;
+    overflow: hidden;
     padding: 1em 0em 0em 1em;
+}
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+
+.legend::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Hide scrollbar for IE and Edge */
+
+.legend {
+    -ms-overflow-style: none;
 }
 
 .flight-num {
@@ -101,12 +154,12 @@
 
 .overlay-arrow {
     position: absolute;
-    left: 450px;
+    margin-left: 0.5%;
     bottom: 0.5%;
     /* background-color: rgba(0, 0, 0, 0.5); */
     z-index: 2;
     cursor: pointer;
-    padding: 0.5em 0em 0em 1em;
+    padding: 0em 0em 0em 0em;
     overflow-y: auto;
     color: white !important;
     opacity: 0.7;

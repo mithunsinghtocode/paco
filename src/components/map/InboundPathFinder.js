@@ -3,34 +3,27 @@ import { connect } from "react-redux";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 
-import { getFlightDataForInbound, showFocusViewForSelectedFlight, showSelectedFlightInMap } from "../../actions/chartDataAction";
+import { getFlightDataForInbound, showFocusViewForSelectedFlight, showSelectedFlightInMap,
+  removeSelectedFlightFromMap,removeFocusViewForSelectedFlight  } from "../../actions/chartDataAction";
 import { airplaneObj } from "./objects/airplaneObj";
 import { tooltipObj } from "./objects/tooltipObj";
 import { lineObj } from "./objects/lineObj";
 import { mapObjectEvents } from "./objects/events";
 import { plotStationObj } from "./objects/plotStationObj";
-import * as mapConst from "./mapConst";
 import { initChart } from "../../actions/chartAction";
 import Loader from '../loader/Loader';
+import { freeUpMemory } from './objects/clearChartObjects';
+import { sort } from "../../utils/sortUtils";
+import { setDefaultZoomAndGeoPointFocus, goToHome } from './objects/defaultZoomFocus';
+import "../map/pathFinder.scss";
+import { renderChartLayout } from '../map/objects/renderChartLayOut';
+import { clearChartComponents } from '../map/objects/clearChartObjects';
 
 class InboundPathFinder extends React.Component {
-  
+ 
   getChartObj = () => this.props.chartObj;
 
   getInboundFlightData = () => this.props.inboundFlights;
-
-  setDefaultZoomAndGeoPointFocus = (
-    chartObj,
-    zoomLevel,
-    defaultLatitude,
-    defaultLongitude
-  ) => {
-    chartObj.homeZoomLevel = zoomLevel;
-    chartObj.homeGeoPoint = {
-      latitude: defaultLatitude,
-      longitude: defaultLongitude
-    };
-  };
 
   renderFlightDataForInbound = () => {
     
@@ -39,36 +32,21 @@ class InboundPathFinder extends React.Component {
     if(this.props.fltToDisplayInMap != null){
 
     }else{
-
     if (chartObj !== null && flightObj !== null) {
-
       console.log("<><><> Inbound Path Filter - State re-renders the flight data component");
-      let isAmericaPresent = flightObj.stationcoordinates.filter(station =>
-        station.longitude < -10 ? true : false
-      );
+
       // set initial zoom and map points
-      this.setDefaultZoomAndGeoPointFocus(
-        chartObj,
-        mapConst.$_asian_continents_zoom_level,
-        mapConst.$_asia_latitude,
-        mapConst.$_asia_longitude
-      );
-      // commented as now the default zoom is based on Singapore
-      // if (isAmericaPresent !== undefined && isAmericaPresent.length > 0) {
-      //   this.setDefaultZoomAndGeoPointFocus(
-      //     chartObj,
-      //     mapConst.$_america_asian_continents_zoom_level,
-      //     mapConst.$_america_asia_latitude,
-      //     mapConst.$_america_asia_longitude
-      //   );
-      // } else {
-      //   this.setDefaultZoomAndGeoPointFocus(
-      //     chartObj,
-      //     mapConst.$_asian_continents_zoom_level,
-      //     mapConst.$_asia_latitude,
-      //     mapConst.$_asia_longitude
-      //   );
-      // }
+      setDefaultZoomAndGeoPointFocus(chartObj);
+      console.log(chartObj.north + " :: " +chartObj.east + " :: " +chartObj.south + " :: " +chartObj.west)
+        // sorting to serve tooltip overlap algorithm
+        sort({
+          inputList: flightObj.flightList, 
+          objectProp: 'depcoordinates.longitude', 
+          typeOfProp: 'number', 
+          conversionRequired: false, 
+          isAscending: true, 
+          isNewCopyOfArr: false
+      });
 
         // Adds line or arc based on the coordinates
         let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
@@ -78,11 +56,11 @@ class InboundPathFinder extends React.Component {
         
         lineSeries.STATUS = "LINESERIES";
         // Add line series
-        flightObj.flightList.forEach(flight => {
+        flightObj.flightList.forEach((flight, index) => {
         let line = lineObj(am4core, flight, lineSeries,chartObj,am4maps);
 
         // adds tooltip for the flights
-        let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView) ;
+        let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView, index) ;
 
         // Adds click event on the tooltip, icon and line
         mapObjectEvents(bullet, line, lineSeries, flight, this.props.showSelectedFlightInMap);
@@ -99,6 +77,9 @@ class InboundPathFinder extends React.Component {
       });
       // Restore the state of the chart object to store
       this.props.initChart(chartObj);
+      // refocus map
+      goToHome(chartObj);
+      freeUpMemory([chartObj, flightObj]);
     }
     }
   };
@@ -106,8 +87,22 @@ class InboundPathFinder extends React.Component {
   renderLoading = () => {
     return <Loader loader="Map Loading..." />;
  }
+
+ showAllFlights = () => {
+    this.props.removeSelectedFlightFromMap(null); 
+    this.props.removeFocusViewForSelectedFlight(null); 
+    clearChartComponents(this.props.chartObj, ["ALL"]); 
+    renderChartLayout(this.props.chartObj);
+ }
+
+ renderBackButton(){
+  return (<button className="rectangle" onClick={this.showAllFlights}>
+         SHOW ALL FLIGHTS </button>
+        );
+  }
   render() {
     return <div className=""> 
+      { this.props.fltToDisplayInMap !== null && this.renderBackButton() }
       {this.props.fltToDisplayInMap == null ?  (this.props.inboundFlights !== null ? this.renderFlightDataForInbound() : this.renderLoading()) : ""} </div>;
   }
 }
@@ -116,6 +111,13 @@ const mapStateToProps = (state, ownprops) => {
   return { chartObj: state.chartInit, inboundFlights: state.inboundFlightData, displayView: state.getDisplayView, fltToDisplayInMap : state.getFltToShowInMap, flightData : state.allFlightData };
 };
 
-export default connect(mapStateToProps, { getFlightDataForInbound, showFocusViewForSelectedFlight, showSelectedFlightInMap, initChart })(
+export default connect(mapStateToProps, { 
+  getFlightDataForInbound, 
+  showFocusViewForSelectedFlight, 
+  showSelectedFlightInMap, 
+  initChart, 
+  removeSelectedFlightFromMap, 
+  removeFocusViewForSelectedFlight 
+})(
   InboundPathFinder
 );

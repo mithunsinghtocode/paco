@@ -11,6 +11,7 @@ if(flight.config == null){
 lineSeries.mapLines.template.stroke = am4core.color(
   flight.config.linecolor
 );
+
 //lineSeries.mapLines.template.nonScalingStroke = false;
 // lineSeries.tooltip.background.stroke = am4core.color(
 //   flight.config.linecolor
@@ -32,6 +33,11 @@ line.multiGeoLine = [
     }
   ]
 ];
+
+
+if(flight.depStn==='SIN' && !flight.status.misconnection) { 
+  line.opacity = 0.3;
+}
 
 /** For MapArcSeries props */
 lineSeries.mapLines.template.line.controlPointDistance = 0.2;

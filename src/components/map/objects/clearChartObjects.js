@@ -23,6 +23,13 @@ export const clearChartComponents = (chartObj, objectsToBeCleared) => {
   }
 };
 
+export const freeUpMemory = (...uselessObjInMemory) => {
+  console.log("<><><><> Clearing Unused Objects...")
+  uselessObjInMemory.forEach((obj) => {
+    obj = null;
+    obj = undefined;
+  });
+};
 // const removeChart = () =>{
 //   const myNode = document.getElementById("chartdiv");
 //   if(myNode !=null) myNode.innerHTML = '';

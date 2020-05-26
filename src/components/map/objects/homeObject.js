@@ -1,10 +1,11 @@
+import { setDefaultZoomAndGeoPointFocus } from './defaultZoomFocus';
 export const homeObjectRender = ( chartObj, am4core ) => {
 
     let home = chartObj.chartContainer.createChild(am4core.Button);
     home.padding(10, 10, 10, 10);
     home.align = "right";
     home.valign = "top";
-    home.marginRight = 10;
+    home.marginRight = -70;
     home.marginTop = 90;
     home.background.fill = am4core.color("#2E2E2E");
       home.background.cornerRadius(5, 5, 5, 5);
@@ -14,6 +15,8 @@ export const homeObjectRender = ( chartObj, am4core ) => {
       home.stroke = am4core.color("#ffffff");
       chartObj.zoomControl.plusButton.strokeWidth = 1;
     home.events.on("hit", function() {
+      setDefaultZoomAndGeoPointFocus(chartObj);
+      chartObj.zoomLevel = chartObj.zoomLevel + 0.0001;
       chartObj.goHome();
     });
     home.icon = new am4core.Sprite();

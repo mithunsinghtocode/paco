@@ -9,28 +9,17 @@ import { tooltipObj } from "./objects/tooltipObj";
 import { lineObj } from "./objects/lineObj";
 import { mapObjectEvents } from "./objects/events";
 import { plotStationObj } from "./objects/plotStationObj";
-import * as mapConst from "./mapConst";
 import { initChart } from "../../actions/chartAction";
 import Loader from '../loader/Loader';
+import { freeUpMemory } from './objects/clearChartObjects';
+import { setDefaultZoomAndGeoPointFocus } from './objects/defaultZoomFocus';
+
 
 class OutboundPathFinder extends React.Component {
   
   getChartObj = () => this.props.chartObj;
 
   getOutboundFlightData = () => this.props.outboundFlights;
-
-  setDefaultZoomAndGeoPointFocus = (
-    chartObj,
-    zoomLevel,
-    defaultLatitude,
-    defaultLongitude
-  ) => {
-    chartObj.homeZoomLevel = zoomLevel;
-    chartObj.homeGeoPoint = {
-      latitude: defaultLatitude,
-      longitude: defaultLongitude
-    };
-  };
 
   renderFlightDataForOutbound = () => {
     
@@ -45,26 +34,7 @@ class OutboundPathFinder extends React.Component {
 
       console.log("<><><> Outbound Path Filter - State re-renders the flight data component");
 
-      let isAmericaPresent = flightObj.stationcoordinates.filter(station =>
-        station.longitude < -10 ? true : false
-      );
-      // set initial zoom and map points
-      if (isAmericaPresent !== undefined && isAmericaPresent.length > 0) {
-        this.setDefaultZoomAndGeoPointFocus(
-          chartObj,
-          mapConst.$_america_asian_continents_zoom_level,
-          mapConst.$_america_asia_latitude,
-          mapConst.$_america_asia_longitude
-        );
-      } else {
-        this.setDefaultZoomAndGeoPointFocus(
-          chartObj,
-          mapConst.$_asian_continents_zoom_level,
-          mapConst.$_asia_latitude,
-          mapConst.$_asia_longitude
-        );
-      }
-
+      setDefaultZoomAndGeoPointFocus(chartObj);
 
       plotStationObj( am4core, chartObj, flightObj );
 
@@ -87,6 +57,8 @@ class OutboundPathFinder extends React.Component {
       });
       // Restore the state of the chart object to store
       this.props.initChart(chartObj);
+
+      freeUpMemory([chartObj, flightObj]);
     }
     }
   };
