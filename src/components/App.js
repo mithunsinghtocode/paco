@@ -5,12 +5,10 @@ import Header from './header/Header';
 import Filter from './filter/Filter';
 import MapChartLayer from './map/chart';
 import FocusView from './focusview/FocusView';
-import FlightList from './flightlist/FlightList';
 import { removeSelectedFlightFromMap, getFlightData, removeFocusViewForSelectedFlight, getFlightDataForInbound } from '../actions/chartDataAction';
 import { clearChartComponents } from "../components/map/objects/clearChartObjects";
 import { renderChartLayout } from "../components/map/objects/renderChartLayOut";
 import { initChart } from "../actions/chartAction";
-import { goToHome, setDefaultZoomAndGeoPointFocus } from './map/objects/defaultZoomFocus';
 
 class App extends React.Component {
     componentDidMount(){
