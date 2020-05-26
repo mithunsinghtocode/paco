@@ -1,4 +1,3 @@
-import * as am4maps from "@amcharts/amcharts4/maps";
 export const zoomObjectRender = ( chartObj, am4maps, am4core ) => {
   chartObj.zoomDuration = 50;
       // Zoom Slider

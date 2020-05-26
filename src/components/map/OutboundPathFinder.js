@@ -25,7 +25,6 @@ class OutboundPathFinder extends React.Component {
     
     let chartObj = this.getChartObj();
     let flightObj = this.getOutboundFlightData();
-    console.log(flightObj);
     if(this.props.fltToDisplayInMap != null){
 
     }else{

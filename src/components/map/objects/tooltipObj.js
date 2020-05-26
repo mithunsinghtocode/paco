@@ -2,8 +2,10 @@ import { getHoursAndMinutesAfterFormat, getAircraftPositionBasedOnFlightObj } fr
 import { getTotalPaxCountForFlight } from "../../../utils/paxUtils";
 
 const TIME_TO_CHECK_AIRCRAFT_POSITION = 1000;
+const isTest = true;
 const checkAircraftPosition = (aircraftPosition) => {
   if(!isFinite(aircraftPosition)) return 1;
+  if(aircraftPosition>1) return 1;
   return (aircraftPosition < 0 ? 0 : aircraftPosition);
 }
 
@@ -12,7 +14,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   // Add a map object to line
   let bullet = line.lineObjects.create();
   bullet.nonScaling = true;
-  let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, true);
+  let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, isTest);
   bullet.position =  flight.arrStn === 'SIN' ? checkAircraftPosition(aircraftPosition) : flight.aircraft.position;
   bullet.fill = am4core.color(flight.config.tooltipcolor);
   
@@ -42,7 +44,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
     // set the position of the aircraft.
     // Logic to move airplane based on current time needs to be added on.
     var setPositionOfPlane = setInterval(() => {
-      let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, true);
+      let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, isTest);
       let bulletPosition = checkAircraftPosition(aircraftPosition);
       bullet.position = bulletPosition;
       

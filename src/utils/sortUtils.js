@@ -1,5 +1,5 @@
 export const sort = ({inputList, objectProp, typeOfProp, conversionRequired = false, isAscending = true, isNewCopyOfArr}) => {
-          
+          if(inputList === null || inputList === undefined) return inputList;
           if(isNewCopyOfArr) return inputList.slice().sort((obj1, obj2) => convertAndSortInput(conversionRequired, objectProp, obj1, obj2, typeOfProp, isAscending));
           
           return inputList.sort((obj1, obj2) => convertAndSortInput(conversionRequired, objectProp, obj1, obj2, typeOfProp, isAscending));

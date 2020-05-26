@@ -85,28 +85,55 @@ class FocusFlight extends React.Component {
             let south;
             let north;
             let sortedLattitude = sort({
-                inputList: selectedFlight.outboundFlt, 
-                objectProp: 'arrcoordinates.latitude', 
+                inputList: this.props.displayView === "INBOUND" ? selectedFlight.outboundFlt : selectedFlight.inboundFlt, 
+                objectProp: this.props.displayView === "INBOUND" ? 'arrcoordinates.latitude' : 'depcoordinates.latitude', 
                 typeOfProp: 'number', 
                 conversionRequired: false, 
                 isAscending: true, 
                 isNewCopyOfArr: true
             });
             let sortedLongitude = sort({
-                inputList: selectedFlight.outboundFlt, 
-                objectProp: 'arrcoordinates.longitude', 
+                inputList: this.props.displayView === "INBOUND" ? selectedFlight.outboundFlt : selectedFlight.inboundFlt, 
+                objectProp: this.props.displayView === "INBOUND" ? 'arrcoordinates.longitude' : 'depcoordinates.longitude', 
                 typeOfProp: 'number', 
                 conversionRequired: false, 
                 isAscending: true, 
                 isNewCopyOfArr: true
             });
-            let length = selectedFlight.outboundFlt.length;
+            let length = (this.props.displayView === "INBOUND") && (selectedFlight.outboundFlt ? selectedFlight.outboundFlt.length : 0);
+            if(this.props.displayView === "OUTBOUND") {
+                length = selectedFlight.inboundFlt ? selectedFlight.inboundFlt.length : 0;
+            };
             console.log(north + " :: " + east + " :: "+ south + " :: " + west);
-            console.log("sortedLattitude[length-1].arrcoordinates.latitude :: "+sortedLattitude[length-1].arrcoordinates.latitude)
-            north = sortedLattitude[length-1].arrcoordinates.latitude;
-            south = sortedLattitude[0].arrcoordinates.latitude;
-            west = sortedLongitude[length-1].arrcoordinates.longitude;
-            east = sortedLongitude[0].arrcoordinates.longitude;
+            if(length === 0){
+
+            }
+            if(this.props.displayView === "INBOUND"){
+                if(length === 0 ){
+                    north = selectedFlight.depcoordinates.latitude;
+                    south = selectedFlight.arrcoordinates.latitude;
+                    west = 0;
+                    east = 0;
+                }else{
+                    north = sortedLattitude[length-1].arrcoordinates.latitude;
+                    south = sortedLattitude[0].arrcoordinates.latitude;
+                    west = sortedLongitude[length-1].arrcoordinates.longitude;
+                    east = sortedLongitude[0].arrcoordinates.longitude;
+                }
+            }
+            if(this.props.displayView === "OUTBOUND"){
+                if(length === 0 ){
+                    north = selectedFlight.arrcoordinates.latitude;
+                    south = selectedFlight.depcoordinates.latitude;
+                    west = 0;
+                    east = 0;
+                }else{
+                    north = sortedLattitude[length-1].depcoordinates.latitude;
+                    south = sortedLattitude[0].depcoordinates.latitude;
+                    west = sortedLongitude[length-1].depcoordinates.longitude;
+                    east = sortedLongitude[0].depcoordinates.longitude;
+                }
+            }
 
             chartObj.series.values[0].events.on("inited", function(ev) {
                 if(Math.sign(Number(selectedFlight.depcoordinates.latitude)) === 1) {
