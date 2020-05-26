@@ -19,6 +19,7 @@ class App extends React.Component {
                 console.log("<><><> Setting initial zoom and position...");
                 this.props.chartObj.zoomDuration = 500;
                 this.props.chartObj.goHome();
+                this.props.chartObj.zoomDuration = 100;
         });     
     }
     render(){
