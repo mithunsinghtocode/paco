@@ -51,7 +51,7 @@ class FocusFlight extends React.Component {
                     isAscending: true, 
                     isNewCopyOfArr: false
                 });
-                selectedFlight.outboundFlt && selectedFlight.outboundFlt.forEach( (outboundFlt , index) => {
+                selectedFlight.outboundFlt && selectedFlight.outboundFlt.forEach( async (outboundFlt , index) => {
                     getStationCoordinatesFromTheFlightList([outboundFlt]).forEach(stationObj => {
                         stationCoordinates = [...stationCoordinates, stationObj];
                     });
@@ -66,7 +66,7 @@ class FocusFlight extends React.Component {
                 selectedFlight.aircraft.position = 0.95;
                 plotFlightObj(selectedFlight, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView, chartObj,am4maps);
                 plotStationObj( am4core, chartObj, selectedFlight );
-                selectedFlight.inboundFlt && selectedFlight.inboundFlt.forEach( (inboundFlt, index) => {
+                selectedFlight.inboundFlt && selectedFlight.inboundFlt.forEach(async (inboundFlt, index) => {
                     getStationCoordinatesFromTheFlightList([inboundFlt]).forEach(stationObj => {
                         stationCoordinates = [...stationCoordinates, stationObj];
                     });
