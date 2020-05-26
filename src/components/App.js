@@ -10,7 +10,7 @@ import { clearChartComponents } from "../components/map/objects/clearChartObject
 import { renderChartLayout } from "../components/map/objects/renderChartLayOut";
 import { initChart } from "../actions/chartAction";
 
-class App extends React.Component {
+class App extends React.PureComponent {
     componentDidMount(){
         // Get all the flight Data with promise
         new Promise((resolve, reject) => {
