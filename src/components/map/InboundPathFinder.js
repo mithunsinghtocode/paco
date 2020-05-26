@@ -25,6 +25,10 @@ class InboundPathFinder extends React.Component {
 
   getInboundFlightData = () => this.props.inboundFlights;
 
+  componentDidMount(){
+    this.getChartObj() && setDefaultZoomAndGeoPointFocus(this.getChartObj());
+  }
+
   renderFlightDataForInbound = () => {
     
     let chartObj = this.getChartObj();

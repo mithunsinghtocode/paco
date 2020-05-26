@@ -10,6 +10,7 @@ var scrollHeight = 0;
 const MAX_HEIGHT = 86;
 const MIN_HEIGHT = 50;
 const TRANSITION_MULTIPLIER=1.4;
+let flightListVar;
 class FlightList extends React.Component {
 
     getPaxDetailsFormat = (selectedFlight) => {
@@ -37,6 +38,7 @@ class FlightList extends React.Component {
       }
 
     renderFlightList = (flightList, highlightFlight) => {
+        flightListVar = flightList;
         // sort based on misconnection
         sort({
             inputList: flightList, 
@@ -47,6 +49,7 @@ class FlightList extends React.Component {
             isNewCopyOfArr: false
         });
         //sort the list of flights
+        let misconxCount = 0;
         if(this.props.displayView === 'INBOUND'){
             let flightMisconnectionList = flightList.filter(flight => flight.status.misconnection);
             let flightDelayList = flightList.filter(flight => !flight.status.misconnection);
@@ -67,6 +70,7 @@ class FlightList extends React.Component {
                 isNewCopyOfArr: false
             });
             flightList = [...flightMisconnectionList, ...flightDelayList]
+            misconxCount = flightMisconnectionList.length;
         }else{
             sort({
                 inputList: flightList, 
@@ -77,11 +81,13 @@ class FlightList extends React.Component {
                 isNewCopyOfArr: false
             });
         }
-
-        return flightList.map((flightObj) => {
+        this.setHeight(flightList);
+        return flightList.map((flightObj, index) => {
             return(
-                flightObj && <div key={ flightObj.flightId } value={ flightObj.flightId } onClick={ (e) => this.props.showSelectedFlightInMap(flightObj)} 
-                    style= {{ opacity: this.setHighlightedFlight(highlightFlight, flightObj) ? '1' : '0.32'}}>
+                flightObj && <div key={ flightObj.flightId } value={ flightObj.flightId } 
+                onClick={ (e) => this.props.showSelectedFlightInMap(flightObj)} 
+                    style= {{ opacity: this.setHighlightedFlight(highlightFlight, flightObj) ? '1' : '0.32',
+                            marginTop: misconxCount===index ? '32px' : '0px'}}>
                      <div className="rectangle-copy-2" >
                         <div className={ this.getClassName(flightObj) }>
                              <div className="flight-num" style={{ display: "inline-block" }}>{this.getFormattedFltNum(flightObj.fltNum)}</div>  <div className="cabin-class" style={{ display: "inline-block" }}>{this.getPaxDetailsFormat(flightObj)}</div>
@@ -92,8 +98,11 @@ class FlightList extends React.Component {
                      </div>
                  </div>
            )
-        })       
-    }
+        });
+    };
+    setHeight = (flightList) => {
+       return flightList && (document.getElementById("legend").style.height= (flightList.length*14 < 50) ? flightList.length*14 +"% !important" : "50% !important");   
+    };
 
     shrink = () => {
         let downArrow = document.getElementById("down-arrow");
@@ -105,10 +114,12 @@ class FlightList extends React.Component {
     expand = () => {
         let downArrow = document.getElementById("down-arrow");
         downArrow.style.display = "block";
-        document.getElementById("legend").style.height= "50%";
+        this.setHeight(flightListVar);
         document.getElementById("up-arrow").style.display = "none";
     };
+
     adjustHeight = (e) => {
+        if(flightListVar && flightListVar.length*14 < 50) return document.getElementById("legend").style.height= flightListVar.length*14 +"% !important";
         let y = e.deltaY;
         var element = document.querySelector("#legend");
         var st = element.scrollTop;
@@ -139,15 +150,13 @@ class FlightList extends React.Component {
         document.getElementById("legend").style.overflow = overflowVal;
         document.getElementById("legend").style.height= heightVal;
     }
-
     render(){
         return (
             <div>
             <div className="legend" id="legend" onWheel={this.adjustHeight} onScroll={this.adjustHeight}>
                 {this.props.displayView === "INBOUND" &&  (this.props.fltToDisplayInMap !== null ? this.renderFlightList(this.props.inboundFlights.flightList, this.props.fltToDisplayInMap) : this.props.inboundFlights && this.renderFlightList(this.props.inboundFlights.flightList)) }
-                {this.props.displayView === "OUTBOUND" &&  (this.props.fltToDisplayInMap !== null ? this.renderFlightList([this.props.fltToDisplayInMap]) : this.props.outboundFlights && this.renderFlightList(this.props.outboundFlights.flightList)) }
+                {this.props.displayView === "OUTBOUND" &&  (this.props.fltToDisplayInMap !== null ? this.renderFlightList(this.props.outboundFlights.flightList,this.props.fltToDisplayInMap) : this.props.outboundFlights && this.renderFlightList(this.props.outboundFlights.flightList))}
             </div>
-
             <div className="overlay-arrow">
                     <button className="rectangle-down-arrow" id="down-arrow" style={{ color: "#fff" }} onClick={this.shrink}> 
                     <svg width="14px" height="14px">
