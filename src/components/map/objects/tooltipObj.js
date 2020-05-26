@@ -1,7 +1,8 @@
 import { getHoursAndMinutesAfterFormat, getAircraftPositionBasedOnFlightObj } from "../../../utils/dateUtils";
 import { getTotalPaxCountForFlight } from "../../../utils/paxUtils";
 
-const TIME_TO_CHECK_AIRCRAFT_POSITION = 1000;
+// 5 minutes once
+const TIME_TO_CHECK_AIRCRAFT_POSITION = 300000;
 const isTest = true;
 const checkAircraftPosition = (aircraftPosition) => {
   if(!isFinite(aircraftPosition)) return 1;
