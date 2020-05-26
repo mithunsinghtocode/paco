@@ -118,7 +118,7 @@ class FlightList extends React.Component {
         document.getElementById("up-arrow").style.display = "none";
     };
 
-    adjustHeight = (e) => {
+    adjustHeight = async (e) => {
         if(flightListVar && flightListVar.length*14 < 50) return document.getElementById("legend").style.height= flightListVar.length*14 +"% !important";
         let y = e.deltaY;
         var element = document.querySelector("#legend");
