@@ -1,5 +1,5 @@
 export const zoomObjectRender = ( chartObj, am4maps, am4core ) => {
-      chartObj.zoomDuration = 100;
+      chartObj.zoomDuration = 50;
       // Zoom Slider
       chartObj.zoomControl = new am4maps.ZoomControl();
       chartObj.zoomControl.align = "right";

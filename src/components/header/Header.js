@@ -31,17 +31,21 @@ class Header extends React.Component {
   componentDidMount() {
     // Get the App Data for the Banner from Store
     this.props.fetchAppData();
-
+    this.setTime();
     // Set the state of Date in the Banner
     setInterval(() => {
-      const nowDate = new Date();
+      this.setTime();
+    }, 60000);
+  };
+
+  setTime = () => {
+    const nowDate = new Date();
       this.setState({
-        time: `${this.addZero(nowDate.getHours())} : ${this.addZero(
+        time: `${this.addZero((nowDate.getHours()-8))} : ${this.addZero(
           nowDate.getMinutes()
         )}`
       });
-    }, 5000);
-  }
+  };
 
   render() {
     return (
