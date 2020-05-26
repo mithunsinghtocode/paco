@@ -5,7 +5,7 @@ import { getFilteredFlightDataForInbound } from '../../actions/chartDataAction';
 import { clearChartComponents } from '../map/objects/clearChartObjects';
 import { renderChartLayout } from '../map/objects/renderChartLayOut';
 /** Filter Component */
-export class Filter extends React.Component {
+export class Filter extends React.PureComponent {
   renderBackButton(){
     return (<button className="rectangle" onClick={this.props.goBackFunction}>
       {/* <svg width="14px" height="14px">

@@ -18,7 +18,7 @@ import { freeUpMemory } from './objects/clearChartObjects';
 import SideMenu from "./SideMenu";
 import { setChartEvents } from '../map/objects/chartEvents';
 
-class MapChartLayer extends React.Component {
+class MapChartLayer extends React.PureComponent {
   componentDidMount() {
     // Create map instance
     am4core.options.queue = true;

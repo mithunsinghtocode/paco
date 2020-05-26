@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { fetchAppData } from "../../actions";
 
 
-class Header extends React.Component {
+class Header extends React.PureComponent {
   addZero = hour => {
     if (hour < 10) {
       hour = "0" + hour;

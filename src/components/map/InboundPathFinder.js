@@ -19,7 +19,7 @@ import "../map/pathFinder.scss";
 import { renderChartLayout } from '../map/objects/renderChartLayOut';
 import { clearChartComponents } from '../map/objects/clearChartObjects';
 
-class InboundPathFinder extends React.Component {
+class InboundPathFinder extends React.PureComponent {
  
   getChartObj = () => this.props.chartObj;
 

@@ -9,7 +9,7 @@ import {
   getHoursAndMinutesAfterFormat
 } from "../../utils/dateUtils";
 
-class FocusView extends React.Component {
+class FocusView extends React.PureComponent {
   off = () => {
     this.props.removeFocusViewForSelectedFlight(null);
   };

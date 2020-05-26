@@ -15,7 +15,7 @@ import { freeUpMemory } from './objects/clearChartObjects';
 import { setDefaultZoomAndGeoPointFocus } from './objects/defaultZoomFocus';
 
 
-class OutboundPathFinder extends React.Component {
+class OutboundPathFinder extends React.PureComponent {
   
   getChartObj = () => this.props.chartObj;
 
