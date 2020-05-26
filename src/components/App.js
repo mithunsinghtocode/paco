@@ -10,13 +10,18 @@ import { removeSelectedFlightFromMap, getFlightData, removeFocusViewForSelectedF
 import { clearChartComponents } from "../components/map/objects/clearChartObjects";
 import { renderChartLayout } from "../components/map/objects/renderChartLayOut";
 import { initChart } from "../actions/chartAction";
-import { goToHome } from './map/objects/defaultZoomFocus';
+import { goToHome, setDefaultZoomAndGeoPointFocus } from './map/objects/defaultZoomFocus';
 
 class App extends React.Component {
     componentDidMount(){
-        // Get all the flight Data
-        this.props.getFlightData();
-        //this.props.flightData && this.props.getFlightDataForInbound(this.props.flightData);
+        // Get all the flight Data with promise
+        new Promise((resolve, reject) => {
+            resolve(this.props.getFlightData());
+        }).then(() => {
+                console.log("<><><> Setting initial zoom and position...");
+                this.props.chartObj.zoomDuration = 500;
+                this.props.chartObj.goHome();
+        });     
     }
     render(){
         return (
