@@ -101,7 +101,7 @@ class FlightList extends React.Component {
         });
     };
     setHeight = (flightList) => {
-       return flightList && (document.getElementById("legend").style.height= (flightList.length*14 < 50) ? flightList.length*14 +"% !important" : "50% !important");   
+       return flightList && ((flightList.length*14 < 50) ? flightList.length*14 +"%" : "50%");   
     };
 
     shrink = () => {
@@ -114,7 +114,7 @@ class FlightList extends React.Component {
     expand = () => {
         let downArrow = document.getElementById("down-arrow");
         downArrow.style.display = "block";
-        this.setHeight(flightListVar);
+        document.getElementById("legend").style.height = this.setHeight(flightListVar);
         document.getElementById("up-arrow").style.display = "none";
     };
 
