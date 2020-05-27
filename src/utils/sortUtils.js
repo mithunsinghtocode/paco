@@ -11,7 +11,7 @@ const convertAndSortInput = (conversionRequired, objectProp, obj1, obj2, typeOfP
 
           if(typeOfProp === 'string') return isAscending ? compObj1.localeCompare(compObj2) : compObj2.localeCompare(compObj1);
           if(typeOfProp === 'boolean') return (compObj1===compObj2) ? 0 : compObj1 ? -1 : 1;
-          if(typeOfProp === 'number') return Number(compObj1) > Number(compObj2)? 1 : -1;
+          if(typeOfProp === 'number') return  isAscending ? (Number(compObj1) > Number(compObj2)? 1 : -1) : (Number(compObj1) > Number(compObj2)? -1 : 1);
 
           return isAscending ? compObj1 - compObj2 : compObj2 - compObj1;
 }
