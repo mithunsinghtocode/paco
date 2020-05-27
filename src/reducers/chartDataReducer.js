@@ -3,7 +3,7 @@ export const inboundFlightDataReducer = (state = null, action) => {
     case "GET_INBOUND_FLIGHT_DATA":
       let flightList = Array.isArray(action.payload) ? action.payload : action.payload.flightSchedule.flightList;
       let inboundFlightData = flightList.filter(
-        flight => flight.arrStn === "SIN" && flight.eta !== null
+        flight => flight.arrStn === "SIN" && flight.eta !== null && flight.eta > (flight.rta || flight.sta)
       );
       let payload = [];
       payload.flightList = [...inboundFlightData];
@@ -20,7 +20,7 @@ export const outboundFlightDataReducer = (state = null, action) => {
     case "GET_OUTBOUND_FLIGHT_DATA":
       let flightList = Array.isArray(action.payload) ? action.payload : action.payload.flightSchedule.flightList;
       let outboundFlightData = flightList.filter(
-        flight => flight.depStn === "SIN" && flight.etd !== null 
+        flight => flight.depStn === "SIN" && flight.etd !== null && flight.etd > (flight.rtd || flight.std)
       );
       let payload = [];
       payload.flightList = [...outboundFlightData];

@@ -25,10 +25,11 @@ class FlightList extends React.Component {
       getClassName = (flightObj) => flightObj.status.misconnection ? "rectangle-copy-2-1-misconnected" : "rectangle-copy-2-1-delay" ;
 
       getDelayInMin = (flightObj) => {
-            let dif = (new Date(flightObj.eta).getTime() - new Date(flightObj.sta).getTime()); 
+          console.log(flightObj)
+            let dif = (new Date(flightObj.eta).getTime() - ((flightObj.rta !== undefined && flightObj.rta !== null) ? new Date(flightObj.rta).getTime() : new Date(flightObj.sta).getTime())); 
             //console.log(dif);
-            if(dif !== NaN && dif > 0){
-                return  `${Math.round((dif/1000)/60)} min`; 
+            if(dif !== NaN && dif >= 0){
+                return  `${Math.round((dif/1000)/60)}`; 
             }
       }
 
@@ -39,6 +40,9 @@ class FlightList extends React.Component {
 
     renderFlightList = (flightList, highlightFlight) => {
         flightListVar = flightList;
+        flightList.forEach( (inObj) => {
+            inObj.diffInMin = this.getDelayInMin(inObj);
+        });
         // sort based on misconnection
         sort({
             inputList: flightList, 
@@ -55,16 +59,16 @@ class FlightList extends React.Component {
             let flightDelayList = flightList.filter(flight => !flight.status.misconnection);
             sort({
                 inputList: flightMisconnectionList, 
-                objectProp: 'eta', 
-                typeOfProp: 'date', 
+                objectProp: 'diffInMin', 
+                typeOfProp: 'number', 
                 conversionRequired: true, 
                 isAscending: false, 
                 isNewCopyOfArr: false
             });
             sort({
                 inputList: flightDelayList, 
-                objectProp: 'eta', 
-                typeOfProp: 'date', 
+                objectProp: 'diffInMin', 
+                typeOfProp: 'number', 
                 conversionRequired: true, 
                 isAscending: false, 
                 isNewCopyOfArr: false
@@ -93,7 +97,7 @@ class FlightList extends React.Component {
                              <div className="flight-num" style={{ display: "inline-block" }}>{this.getFormattedFltNum(flightObj.fltNum)}</div>  <div className="cabin-class" style={{ display: "inline-block" }}>{this.getPaxDetailsFormat(flightObj)}</div>
                          </div>
                          <div className="rectangle-copy-2-2">
-                         <p className="flight-details" style={{ display: "inline-block" }}> <b style={{ marginRight: "5px" }}>STA</b> {getHoursAndMinutesAfterFormat(flightObj.sta)} <b style={{ display: "inline-block", marginLeft: "1px" }} className="line"></b> <b style={{ marginLeft: "10px", marginRight: "5px"}}>ETA</b> {getHoursAndMinutesAfterFormat(flightObj.eta)} </p>  <p className="flight-delay" style={{ display: "inline-block" }}> { this.getDelayInMin(flightObj) } </p>
+                         <p className="flight-details" style={{ display: "inline-block" }}> <b style={{ marginRight: "5px" }}>STA</b> {getHoursAndMinutesAfterFormat(flightObj.sta)} <b style={{ display: "inline-block", marginLeft: "1px" }} className="line"></b> <b style={{ marginLeft: "10px", marginRight: "5px"}}>ETA</b> {getHoursAndMinutesAfterFormat(flightObj.eta)} </p>  <p className="flight-delay" style={{ display: "inline-block" }}> { this.getDelayInMin(flightObj) + " min"} </p>
                          </div>
                      </div>
                  </div>
