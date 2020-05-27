@@ -57,33 +57,35 @@ class InboundPathFinder extends React.PureComponent {
         
         /** If you require full control of the arc drawn use  MapArcSeries*/
         //let lineSeries = chartObj.series.push(new am4maps.MapArcSeries());
-        
-        lineSeries.STATUS = "LINESERIES";
-        // Add line series
-        flightObj.flightList.forEach( async (flight, index) => {
-        let line = lineObj(am4core, flight, lineSeries,chartObj,am4maps);
-
-        // adds tooltip for the flights
-        let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView, index) ;
-
-        // Adds click event on the tooltip, icon and line
-        mapObjectEvents(bullet, line, lineSeries, flight, this.props.showSelectedFlightInMap);
-
-        // Adds the position of the airplane object with svg
-        airplaneObj(am4core, bullet, flight);
-
-        // Create image series
-        let imageSeries = chartObj.series.push(new am4maps.MapImageSeries());
-        // Create a circle image in image series template so it gets replicated to all new images
-        let imageSeriesTemplate = imageSeries.mapImages.template;
-
-        plotStationObj( am4core, chartObj, flight, imageSeries, imageSeriesTemplate );
-      });
-      // Restore the state of the chart object to store
-      this.props.initChart(chartObj);
-      // refocus map
-      goToHome(chartObj);
-      freeUpMemory([chartObj, flightObj]);
+        Promise.resolve().then(() => {
+          lineSeries.STATUS = "LINESERIES";
+          // Add line series
+          flightObj.flightList.forEach( async (flight, index) => {
+          let line = lineObj(am4core, flight, lineSeries,chartObj,am4maps);
+  
+          // adds tooltip for the flights
+          let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView, index) ;
+  
+          // Adds click event on the tooltip, icon and line
+          mapObjectEvents(bullet, line, lineSeries, flight, this.props.showSelectedFlightInMap);
+  
+          // Adds the position of the airplane object with svg
+          airplaneObj(am4core, bullet, flight);
+  
+          // Create image series
+          let imageSeries = chartObj.series.push(new am4maps.MapImageSeries());
+          // Create a circle image in image series template so it gets replicated to all new images
+          let imageSeriesTemplate = imageSeries.mapImages.template;
+  
+          plotStationObj( am4core, chartObj, flight, imageSeries, imageSeriesTemplate );
+        });
+        // Restore the state of the chart object to store
+        this.props.initChart(chartObj);
+        }).then(() => {
+          // refocus map
+          goToHome(chartObj);
+          freeUpMemory([chartObj, flightObj]);
+        });
     }
     }
   };
