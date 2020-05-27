@@ -25,9 +25,10 @@ class FlightList extends React.Component {
       getClassName = (flightObj) => flightObj.status.misconnection ? "rectangle-copy-2-1-misconnected" : "rectangle-copy-2-1-delay" ;
 
       getDelayInMin = (flightObj) => {
-            let dif = (new Date(flightObj.eta).getTime() - new Date(flightObj.sta).getTime()); 
+          console.log(flightObj)
+            let dif = (new Date(flightObj.eta).getTime() - ((flightObj.rta !== undefined && flightObj.rta !== null) ? new Date(flightObj.rta).getTime() : new Date(flightObj.sta).getTime())); 
             //console.log(dif);
-            if(dif !== NaN && dif > 0){
+            if(dif !== NaN && dif >= 0){
                 return  `${Math.round((dif/1000)/60)}`; 
             }
       }
