@@ -1,6 +1,6 @@
 export const setChartEvents = (chart) => {
     let toggle = true;
-   
+    let dragInertia = 0;   
     chart.seriesContainer.events.on("destroy", () => {
       chart.clear();
     });
@@ -14,7 +14,6 @@ export const setChartEvents = (chart) => {
           //     chart.series.values[1].mapLines.values[index1].lineObjects.getIndex(index2).tooltip.show();
           //   });
           // });
-          let dragInertia = 0;
           setTimeout(() => {
             if(chart.seriesContainer.isDragged){
               toggle ? chart.zoomLevel = chart.zoomLevel + 0.0001 :  chart.zoomLevel = chart.zoomLevel - 0.0001;
@@ -26,6 +25,7 @@ export const setChartEvents = (chart) => {
             }
             toggle = !toggle;
           }, 50); 
+          dragInertia = 0;
       },
       this
     );
