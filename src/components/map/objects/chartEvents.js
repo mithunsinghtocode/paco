@@ -14,11 +14,18 @@ export const setChartEvents = (chart) => {
           //     chart.series.values[1].mapLines.values[index1].lineObjects.getIndex(index2).tooltip.show();
           //   });
           // });
-
+          let dragInertia = 0;
           setTimeout(() => {
-            toggle ? chart.zoomLevel = chart.zoomLevel + 0.0001 :  chart.zoomLevel = chart.zoomLevel - 0.0001;
+            if(chart.seriesContainer.isDragged){
+              toggle ? chart.zoomLevel = chart.zoomLevel + 0.0001 :  chart.zoomLevel = chart.zoomLevel - 0.0001;
+            }else{
+              if(dragInertia < 1) {
+                toggle ? chart.zoomLevel = chart.zoomLevel + 0.0001 :  chart.zoomLevel = chart.zoomLevel - 0.0001;
+              }
+              dragInertia += 1;
+            }
             toggle = !toggle;
-          }, 0); 
+          }, 50); 
       },
       this
     );
