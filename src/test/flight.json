@@ -30,7 +30,7 @@
                 "ab": null,
                 "sta": "2020-03-15 09:35:00",
                 "rta": "2020-03-15 09:50:00",
-                "eta": "2020-03-15 09:50:00",
+                "eta": "2020-03-15 10:50:00",
                 "lt": null,
                 "ata": null,
                 "updatedDatetime": "2020-05-06 18:13:11",
@@ -62,7 +62,7 @@
                     "vipPaxCnt": 0,
                     "medaPaxCnt": 0,
                     "errorMessage": null,
-                    "paxUpdatedDateTime": "2020-05-06 08:04:44",
+                    "paxUpdatedDateTime": "2020-05-18 02:10:24",
                     "fclassCnt": 1,
                     "jclassCnt": 21,
                     "sclassCnt": 16,
@@ -120,7 +120,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -190,12 +190,12 @@
                         "paxDetWrapperVo": null,
                         "status": {
                             "delayed": false,
-                            "misconnection": false
+                            "misconnection": true
                         },
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -265,12 +265,12 @@
                         "paxDetWrapperVo": null,
                         "status": {
                             "delayed": false,
-                            "misconnection": false
+                            "misconnection": true
                         },
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -345,7 +345,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -405,7 +405,7 @@
                 "ab": null,
                 "sta": "2020-03-15 15:55:00",
                 "rta": "2020-03-15 16:55:00",
-                "eta": "2020-03-15 16:55:00",
+                "eta": "2020-03-15 17:40:00",
                 "lt": null,
                 "ata": null,
                 "updatedDatetime": "2020-04-28 12:45:22",
@@ -437,7 +437,7 @@
                     "vipPaxCnt": 0,
                     "medaPaxCnt": 0,
                     "errorMessage": null,
-                    "paxUpdatedDateTime": "2020-05-06 08:04:44",
+                    "paxUpdatedDateTime": "2020-05-18 02:10:24",
                     "fclassCnt": 0,
                     "jclassCnt": 12,
                     "sclassCnt": 0,
@@ -495,7 +495,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -570,7 +570,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -645,7 +645,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -720,7 +720,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -780,7 +780,7 @@
                 "ab": null,
                 "sta": "2020-03-15 15:30:00",
                 "rta": "2020-03-15 16:45:00",
-                "eta": "2020-03-15 16:45:00",
+                "eta": "2020-03-15 17:15:00",
                 "lt": null,
                 "ata": null,
                 "updatedDatetime": "2020-04-28 12:44:17",
@@ -812,7 +812,7 @@
                     "vipPaxCnt": 0,
                     "medaPaxCnt": 0,
                     "errorMessage": null,
-                    "paxUpdatedDateTime": "2020-05-06 08:04:44",
+                    "paxUpdatedDateTime": "2020-05-18 02:10:24",
                     "fclassCnt": 0,
                     "jclassCnt": 15,
                     "sclassCnt": 0,
@@ -870,7 +870,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -945,7 +945,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -1020,7 +1020,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -1095,7 +1095,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -1170,7 +1170,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -1230,7 +1230,7 @@
                 "ab": null,
                 "sta": "2020-03-16 11:05:00",
                 "rta": "2020-03-16 12:25:00",
-                "eta": "2020-03-16 12:25:00",
+                "eta": "2020-03-16 13:40:00",
                 "lt": null,
                 "ata": null,
                 "updatedDatetime": "2020-04-29 08:26:06",
@@ -1262,7 +1262,7 @@
                     "vipPaxCnt": 0,
                     "medaPaxCnt": 0,
                     "errorMessage": null,
-                    "paxUpdatedDateTime": "2020-05-06 08:04:44",
+                    "paxUpdatedDateTime": "2020-05-18 02:10:24",
                     "fclassCnt": 0,
                     "jclassCnt": 28,
                     "sclassCnt": 18,
@@ -1320,7 +1320,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -1395,7 +1395,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -1470,7 +1470,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -1545,7 +1545,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -1620,7 +1620,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -1695,7 +1695,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -1787,7 +1787,7 @@
                     "vipPaxCnt": 0,
                     "medaPaxCnt": 0,
                     "errorMessage": null,
-                    "paxUpdatedDateTime": "2020-05-06 08:04:44",
+                    "paxUpdatedDateTime": "2020-05-18 02:10:24",
                     "fclassCnt": 4,
                     "jclassCnt": 39,
                     "sclassCnt": 24,
@@ -1845,7 +1845,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -1920,7 +1920,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -1995,7 +1995,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -2070,7 +2070,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -2145,7 +2145,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -2220,7 +2220,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -2295,7 +2295,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -2387,7 +2387,7 @@
                     "vipPaxCnt": 0,
                     "medaPaxCnt": 0,
                     "errorMessage": null,
-                    "paxUpdatedDateTime": "2020-05-06 08:04:44",
+                    "paxUpdatedDateTime": "2020-05-18 02:10:24",
                     "fclassCnt": 0,
                     "jclassCnt": 25,
                     "sclassCnt": 0,
@@ -2445,7 +2445,7 @@
                     "config": {
                         "linecolor": "#BFBFBF",
                         "airplanecolor": null,
-                        "tooltipcolor": "#696969",
+                        "tooltipcolor": "#414141",
                         "tooltipTextColor": "#FFFFFF",
                         "bulletColor": "#FFFFFF"
                     },
@@ -2536,7 +2536,7 @@
                     "vipPaxCnt": 0,
                     "medaPaxCnt": 0,
                     "errorMessage": null,
-                    "paxUpdatedDateTime": "2020-05-06 08:04:44",
+                    "paxUpdatedDateTime": "2020-05-18 02:10:24",
                     "fclassCnt": 0,
                     "jclassCnt": 13,
                     "sclassCnt": 0,
@@ -2594,7 +2594,7 @@
                     "config": {
                         "linecolor": "#BFBFBF",
                         "airplanecolor": null,
-                        "tooltipcolor": "#696969",
+                        "tooltipcolor": "#414141",
                         "tooltipTextColor": "#FFFFFF",
                         "bulletColor": "#FFFFFF"
                     },
@@ -2669,7 +2669,7 @@
                     "config": {
                         "linecolor": "#BFBFBF",
                         "airplanecolor": null,
-                        "tooltipcolor": "#696969",
+                        "tooltipcolor": "#414141",
                         "tooltipTextColor": "#FFFFFF",
                         "bulletColor": "#FFFFFF"
                     },
@@ -2759,7 +2759,7 @@
                     "vipPaxCnt": 0,
                     "medaPaxCnt": 0,
                     "errorMessage": null,
-                    "paxUpdatedDateTime": "2020-05-06 08:04:44",
+                    "paxUpdatedDateTime": "2020-05-18 02:10:24",
                     "fclassCnt": 4,
                     "jclassCnt": 24,
                     "sclassCnt": 7,
@@ -2817,7 +2817,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -2892,7 +2892,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -2967,7 +2967,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -3042,7 +3042,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -3117,7 +3117,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -3192,7 +3192,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -3267,7 +3267,7 @@
                         "config": {
                             "linecolor": "#BFBFBF",
                             "airplanecolor": null,
-                            "tooltipcolor": "#696969",
+                            "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
                         },
@@ -3359,7 +3359,7 @@
                     "vipPaxCnt": 0,
                     "medaPaxCnt": 0,
                     "errorMessage": null,
-                    "paxUpdatedDateTime": "2020-05-06 08:04:44",
+                    "paxUpdatedDateTime": "2020-05-18 02:10:24",
                     "fclassCnt": 0,
                     "jclassCnt": 19,
                     "sclassCnt": 0,
@@ -3417,7 +3417,7 @@
                     "config": {
                         "linecolor": "#BFBFBF",
                         "airplanecolor": null,
-                        "tooltipcolor": "#696969",
+                        "tooltipcolor": "#414141",
                         "tooltipTextColor": "#FFFFFF",
                         "bulletColor": "#FFFFFF"
                     },
@@ -3508,7 +3508,7 @@
                     "vipPaxCnt": 0,
                     "medaPaxCnt": 0,
                     "errorMessage": null,
-                    "paxUpdatedDateTime": "2020-05-06 08:04:44",
+                    "paxUpdatedDateTime": "2020-05-18 02:10:24",
                     "fclassCnt": 7,
                     "jclassCnt": 57,
                     "sclassCnt": 36,
@@ -3566,7 +3566,7 @@
                     "config": {
                         "linecolor": "#BFBFBF",
                         "airplanecolor": null,
-                        "tooltipcolor": "#696969",
+                        "tooltipcolor": "#414141",
                         "tooltipTextColor": "#FFFFFF",
                         "bulletColor": "#FFFFFF"
                     },
@@ -3593,90 +3593,6 @@
                 "aircraft": {
                     "position": 0.0,
                     "required": true
-                }
-            },
-
-
-
-
-
-
-
-
-
-            {
-                "flightId": "SQ362202003201605SINDME1",
-                "carrierCode": null,
-                "fltNum": "SQ362",
-                "fbpDate": "2020-03-20 16:05:00",
-                "sectorNum": "1",
-                "cancelledIndicator": "N",
-                "owner": "SQ",
-                "route": "SINDME",
-                "serviceType": "J",
-                "acReg": "9VSMB",
-                "plannedAcType": "359",
-                "actualAcType": "359",
-                "depStn": "SIN",
-                "arrStn": "DME",
-                "blkTime": "1105",
-                "eet": "1021",
-                "depBayGateNo": "A12",
-                "depTerminal": "T3",
-                "arrBayGateNo": null,
-                "arrTerminal": null,
-                "std": "2020-03-20T08:05:00.000+0000",
-                "stdLocal": "2020-03-20T16:05:00.000+0000",
-                "staLocal": "2020-03-20T22:10:00.000+0000",
-                "rtd": null,
-                "etd": "2020-03-20T09:05:00.000+0000",
-                "atd": null,
-                "ab": null,
-                "sta": "2020-03-20T19:10:00.000+0000",
-                "rta": null,
-                "eta": "2020-03-20T18:47:00.000+0000",
-                "lt": null,
-                "ata": null,
-                "updatedDatetime": "2020-03-21 11:02:10",
-                "depcoordinates": {
-                    "latitude": "1.35019",
-                    "longitude": "103.994003",
-                    "title": "SINGAPORE"
-                },
-                "arrcoordinates": {
-                    "latitude": "55.40879822",
-                    "longitude": "37.90629959",
-                    "title": "MOSCOW"
-                },
-                "paxDetWrapperVo": null,
-                "status": {
-                    "delayed": false,
-                    "misconnection": true
-                },
-                "config": {
-                    "linecolor": "#BFBFBF",
-                    "airplanecolor": null,
-                    "tooltipcolor": "#696969",
-                    "tooltipTextColor": "#FFFFFF",
-                    "bulletColor": "#FFFFFF"
-                },
-                "paxDetails": null,
-                "paxCountVo": {
-                    "infCnt": 0,
-                    "vipPaxCnt": 0,
-                    "medaPaxCnt": 0,
-                    "errorMessage": null,
-                    "paxUpdatedDateTime": null,
-                    "fclassCnt": 0,
-                    "sclassCnt": 0,
-                    "jclassCnt": 0,
-                    "yclassCnt": 5
-                },
-                "outboundFlt": null,
-                "inboundFlt": null,
-                "aircraft": {
-                    "position": 0.0,
-                    "required": false
                 }
             }
         ]

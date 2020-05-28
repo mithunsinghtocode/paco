@@ -26,19 +26,22 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
       ${getFltNum(flight)} ${getDepTime(flight)} ${displayLine()} ${getTotMisconnectedPax(flight, displayView)}
     </p>`
       :
-      flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<p style="margin-bottom:2px;margin-top:-2px;color:#fff;height:20px">
+      flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<p style="margin-bottom:2px;margin-top:-2px;color:#fff;height:20px;">
     ${getFltNum(flight)} ${getETA(flight)}
-    </p>`) : bullet.tooltipHTML = `<p style="margin-bottom:2px;margin-top:-2px;color:#fff;height:20px;opacity:0.3">
+    </p>`) : bullet.tooltipHTML = `<p style="margin-bottom:2px;margin-top:-2px;color:#fff;height:20px;opacity:0.3;">
     ${getFltNum(flight)} ${getDepTime(flight)}
     </p>`
     ;
 
+  bullet.fillOpacity = 1;
+  bullet.tooltip.fillOpacity = 1;  
+  bullet.tooltip.background.fillOpacity = 1;
   bullet.tooltip.label.interactionsEnabled = true;
   bullet.tooltip.fitPointerToBounds = true;
   bullet.tooltip.background.pointerLength = 0;
   bullet.tooltip.background.cornerRadius = 0;
-  bullet.tooltip.background.stroke = am4core.color(flight.config.tooltipcolor);
-  bullet.tooltip.background.strokeWidth = 2;
+  //bullet.tooltip.background.stroke = am4core.color(flight.config.tooltipcolor);
+  bullet.tooltip.background.strokeWidth = 0;
   bullet.alwaysShowTooltip = true;
   
   if(flight.arrStn === 'SIN'){
@@ -75,7 +78,8 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   //flight.depcoordinates.longitude > 100 ? bullet.tooltip.dy = 45 : bullet.tooltip.dy = 35;
 
   bullet.tooltip.cursorOverStyle = am4core.MouseCursorStyle.pointer;  
-  bullet.cursorOverStyle = am4core.MouseCursorStyle.pointer;  
+  // removed as airplane icon does not need click
+  //bullet.cursorOverStyle = am4core.MouseCursorStyle.pointer;  
   bullet.tooltip.dispatchImmediately("hit");
   line.tooltip.dispatchImmediately("hit");
   lineSeries.tooltip.dispatchImmediately("hit");

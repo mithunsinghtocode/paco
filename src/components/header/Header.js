@@ -49,7 +49,7 @@ class Header extends React.PureComponent {
 
   render() {
     return (
-      <div>
+      <>
         <nav className="navbar navbar-light justify-content-between">
           <p className="pa-co-pax-conn-x-opt">
             <img alt="sia-logo" className="img sia-logo" src={logo} />
@@ -73,7 +73,7 @@ class Header extends React.PureComponent {
             </div>
           </div>
         </nav>
-      </div>
+      </>
     );
   }
 }
