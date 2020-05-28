@@ -24,7 +24,6 @@ export class Filter extends React.PureComponent {
            SHOW ALL FLIGHTS </button>
           );
   }
-
   filterInboundFlightBasedOnToggle = () => {
     let misconnectionToggle = document.getElementById("switch1").checked;
     let arrivWithin3HoursToggle = document.getElementById("switch2").checked;
@@ -131,7 +130,7 @@ export class Filter extends React.PureComponent {
       <div>
       {this.props.displayView === "INBOUND" &&
         <nav className="navbar navbar-light justify-content-between filter">
-        {/* {this.props.fltToDisplayInMap !== null && this.renderBackButton()} */}
+        {this.props.fltToDisplayInMap !== null && this.renderBackButton()}
         <label> {this.props.fltToDisplayInMap !== null && this.getFormattedHeading(this.props.fltToDisplayInMap)} </label>
           
           {this.props.fltToDisplayInMap === null && this.getInBoundFilter()}

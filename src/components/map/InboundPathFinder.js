@@ -108,7 +108,7 @@ class InboundPathFinder extends React.PureComponent {
   }
   render() {
     return <div className=""> 
-      { this.props.fltToDisplayInMap !== null && this.renderBackButton() }
+      {/* { this.props.fltToDisplayInMap !== null && this.renderBackButton() } */}
       {this.props.fltToDisplayInMap == null ?  (this.props.inboundFlights !== null ? this.renderFlightDataForInbound() : this.renderLoading()) : ""} </div>;
   }
 }
