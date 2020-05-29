@@ -127,7 +127,7 @@ export class Filter extends React.PureComponent {
 
   render() {
     return (
-      <div>
+      <>
       {this.props.displayView === "INBOUND" &&
         <nav className="navbar navbar-light justify-content-between filter">
         {this.props.fltToDisplayInMap !== null && this.renderBackButton()}
@@ -143,7 +143,7 @@ export class Filter extends React.PureComponent {
         <label style={{ marginRight: "45%" }}> {this.props.fltToDisplayInMap !== null && this.getFormattedHeading(this.props.fltToDisplayInMap)} </label>
         {this.props.fltToDisplayInMap === null && this.getOutBoundFilter()}
         </nav> }
-      </div>
+      </>
     );
   }
 }

@@ -29,9 +29,11 @@ export const setDefaultZoomAndGeoPointFocus = (chartObj) => {
 
 export const goToHome = (chartObj) => {
 chartObj.series.values[0].events.on("inited", function(ev) {
+  requestAnimationFrame(() => {
           chartObj.zoomDuration = 300;
           chartObj.goHome();
           chartObj.zoomDuration = 100;
-          });
+  });          
+});
 chartObj.zoomLevel = chartObj.zoomLevel + 0.0001;
 };
