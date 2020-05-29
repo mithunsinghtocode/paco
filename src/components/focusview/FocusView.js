@@ -230,7 +230,7 @@ class FocusView extends React.PureComponent {
         </div>
       );
     } else {
-      return <div></div>;
+      return <></>;
     }
   };
 

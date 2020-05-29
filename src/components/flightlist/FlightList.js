@@ -87,9 +87,10 @@ class FlightList extends React.Component {
         this.setHeight(flightList);
         return flightList.map((flightObj, index) => {
             return(
-                flightObj && <div key={ flightObj.flightId } value={ flightObj.flightId } 
+                flightObj && <div className="rectangle-container"><div key={ flightObj.flightId } value={ flightObj.flightId } 
                 onClick={ (e) => this.props.showSelectedFlightInMap(flightObj)} 
                     style= {{ opacity: this.setHighlightedFlight(highlightFlight, flightObj) ? '1' : '0.32',
+                            filter: this.setHighlightedFlight(highlightFlight, flightObj) ? 'grayscale(0%)' : 'grayscale(20%)',
                             marginTop: misconxCount===index ? '32px' : '0px'}}>
                      <div className="rectangle-copy-2" >
                         <div className={ this.getClassName(flightObj) }>
@@ -99,6 +100,7 @@ class FlightList extends React.Component {
                          <p className="flight-details" style={{ display: "inline-block" }}> <b style={{ marginRight: "5px" }}>STA</b> {getHoursAndMinutesAfterFormat(flightObj.sta)} <b style={{ display: "inline-block", marginLeft: "1px" }} className="line"></b> <b style={{ marginLeft: "10px", marginRight: "5px"}}>ETA</b> {getHoursAndMinutesAfterFormat(flightObj.eta)} </p>  <p className="flight-delay" style={{ display: "inline-block" }}> { this.getDelayInMin(flightObj) + " min"} </p>
                          </div>
                      </div>
+                 </div>
                  </div>
            )
         });

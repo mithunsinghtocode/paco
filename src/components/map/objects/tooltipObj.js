@@ -67,8 +67,12 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   dropShadow.opacity = 1;
   dropShadow.color = am4core.color("#E55541");
   dropShadow.height = 130;
+  dropShadow.clonedFrom = bullet;
+  dropShadow.filterUnits='objectBoundingBox';
   // commented as using different algorithm
-  // (flight.depStn==='SIN' && flight.status.misconnection) && bullet.tooltip.filters.push(dropShadow);
+  (flight.depStn==='SIN' && flight.status.misconnection) && bullet.tooltip.filters.push(dropShadow);
+  bullet.tooltip.background.filters.clear();
+
   //  if(getETA(flight) === "" || flight.depcoordinates.longitude > 100) {
   //    bullet.tooltip.dx = 100 ;
   //  } else{

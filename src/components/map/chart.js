@@ -81,13 +81,13 @@ class MapChartLayer extends React.PureComponent {
 
   render() {
     return (
-      <div>
+      <>
         <SideMenu />
         {this.props.chartObj != null ? (this.props.chartObj.series == null ? this.renderLoading() : "") : ""}
         <div className="chartdiv"> {this.renderChart()}</div>
-        {this.props.displayView === "INBOUND" && <div>{ this.props.removeSelectedFlightFromMap(null)} {this.props.removeFocusViewForSelectedFlight(null)} { this.clearChartComponents() } {this.renderChart()} <InboundPathFinder chartObj={this.props.chartObj} /> < FocusFlight /> <FlightList /></div>}
-        {this.props.displayView === "OUTBOUND" && <div>{ this.props.removeSelectedFlightFromMap(null)} {this.props.removeFocusViewForSelectedFlight(null)} {this.clearChartComponents() } {this.renderChart()} <OutboundPathFinder chartObj={this.props.chartObj} /> < FocusFlight /> <FlightList />  </div>}
-      </div>
+        {this.props.displayView === "INBOUND" && <>{ this.props.removeSelectedFlightFromMap(null)} {this.props.removeFocusViewForSelectedFlight(null)} { this.clearChartComponents() } {this.renderChart()} <InboundPathFinder chartObj={this.props.chartObj} /> < FocusFlight /> <FlightList /></>}
+        {this.props.displayView === "OUTBOUND" && <>{ this.props.removeSelectedFlightFromMap(null)} {this.props.removeFocusViewForSelectedFlight(null)} {this.clearChartComponents() } {this.renderChart()} <OutboundPathFinder chartObj={this.props.chartObj} /> < FocusFlight /> <FlightList />  </>}
+      </>
     );
   }
 }

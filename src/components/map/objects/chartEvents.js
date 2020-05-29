@@ -14,18 +14,24 @@ export const setChartEvents = (chart) => {
           //     chart.series.values[1].mapLines.values[index1].lineObjects.getIndex(index2).tooltip.show();
           //   });
           // });
-          setTimeout(() => {
-            if(chart.seriesContainer.isDragged){
-              toggle ? chart.zoomLevel = chart.zoomLevel + 0.0001 :  chart.zoomLevel = chart.zoomLevel - 0.0001;
-            }else{
-              if(dragInertia < 1) {
-                toggle ? chart.zoomLevel = chart.zoomLevel + 0.0001 :  chart.zoomLevel = chart.zoomLevel - 0.0001;
-              }
-              dragInertia += 1;
-            }
+          // better way of doing stuffs
+          requestAnimationFrame(() => {
+            console.log("Requesting animation frame")
+            toggle ? chart.zoomLevel = chart.zoomLevel + 0.0001 :  chart.zoomLevel = chart.zoomLevel - 0.0001;
             toggle = !toggle;
-          }, 50); 
-          dragInertia = 0;
+          });
+          // setTimeout(() => {
+          //   if(chart.seriesContainer.isDragged){
+          //     toggle ? chart.zoomLevel = chart.zoomLevel + 0.0001 :  chart.zoomLevel = chart.zoomLevel - 0.0001;
+          //   }else{
+          //     if(dragInertia < 1) {
+          //       toggle ? chart.zoomLevel = chart.zoomLevel + 0.0001 :  chart.zoomLevel = chart.zoomLevel - 0.0001;
+          //     }
+          //     dragInertia += 1;
+          //   }
+          //   toggle = !toggle;
+          // }, 50); 
+          // dragInertia = 0;
       },
       this
     );
