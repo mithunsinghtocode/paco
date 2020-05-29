@@ -92,7 +92,7 @@ class FlightList extends React.Component {
                     style= {{ opacity: this.setHighlightedFlight(highlightFlight, flightObj) ? '1' : '0.32',
                             filter: this.setHighlightedFlight(highlightFlight, flightObj) ? 'grayscale(0%)' : 'grayscale(20%)',
                             marginTop: misconxCount===index ? '32px' : '0px'}}>
-                     <div className="rectangle-copy-2" >
+                     <div className= { index !== flightList.length-1 ? "rectangle-copy-2" : 'rectangle-copy-2-last-cell'} >
                         <div className={ this.getClassName(flightObj) }>
                              <div className="flight-num" style={{ display: "inline-block" }}>{this.getFormattedFltNum(flightObj.fltNum)}</div>  <div className="cabin-class" style={{ display: "inline-block" }}>{this.getPaxDetailsFormat(flightObj)}</div>
                          </div>
