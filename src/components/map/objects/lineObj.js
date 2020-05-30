@@ -1,26 +1,30 @@
+const PACIFIC_OCEAN_COUNTRIES = ['LAX','SFO','SEA'];
+const ATLANTIC_OCEAN_COUNTRIES = ['EWR','JFK','IAH'];
+const DEFINE_PATH_THROUGH_PACIFIC_ARRSTN = ['EWR'];
+
 export const lineObj = (am4core, flight,lineSeries, chartObj, am4maps) => {
-  if((flight.depcoordinates.latitude > 100 && flight.depcoordinates.longitude < 100) || (flight.depcoordinates.longitude < -60 && flight.depcoordinates.latitude < 100)) {
-    lineSeries = chartObj.series.push(new am4maps.MapArcSeries())
-  };
+  
+  // if((flight.depcoordinates.latitude > 100 && flight.depcoordinates.longitude < 100) || (flight.depcoordinates.longitude < -60 && flight.depcoordinates.latitude < 100)) {
+  //   lineSeries = chartObj.series.push(new am4maps.MapArcSeries())
+  // };
 
-lineSeries.mapLines.template.strokeWidth = 0.5;
+  if(ATLANTIC_OCEAN_COUNTRIES.includes(flight.depStn)){
+    lineSeries = chartObj.series.push(new am4maps.MapArcSeries());
+    lineSeries.mapLines.template.shortestDistance=false;
+  };  
+  lineSeries.mapLines.template.strokeWidth = 0.5;
 
-if(flight.config == null){
-  console.log(flight.flightId);
-}
-lineSeries.mapLines.template.stroke = am4core.color(
-  flight.config.linecolor
-);
+  if(flight.config == null){
+    console.log(flight.flightId);
+  }
+  lineSeries.mapLines.template.stroke = am4core.color(
+    flight.config.linecolor
+  );
 
-//lineSeries.mapLines.template.nonScalingStroke = false;
-// lineSeries.tooltip.background.stroke = am4core.color(
-//   flight.config.linecolor
-// );
 lineSeries.mapLines.template.calculatePercent = true;
-(flight.depcoordinates.latitude > 100 && flight.depcoordinates.longitude < 100) ? lineSeries.mapLines.template.shortestDistance=false : lineSeries.mapLines.template.shortestDistance=true;
-
 
 var line = lineSeries.mapLines.create();
+if(!DEFINE_PATH_THROUGH_PACIFIC_ARRSTN.includes(flight.arrStn)){
 line.multiGeoLine = [
   [
     {
@@ -33,16 +37,21 @@ line.multiGeoLine = [
     }
   ]
 ];
+}
+if(DEFINE_PATH_THROUGH_PACIFIC_ARRSTN.includes(flight.arrStn)){
+  line.multiGeoLine = [
+    [      
+      { "latitude": 1.35019, "longitude": 103.994003 },
+      { "latitude": 50, "longitude": 180 },
+      { "latitude": 50, "longitude": -74.005973 }
+    ]
+  ];
+}
 
 
 if(flight.depStn==='SIN' && !flight.status.misconnection) { 
   line.opacity = 0.3;
 }
-
-/** For MapArcSeries props */
-lineSeries.mapLines.template.line.controlPointDistance = 0.2;
-lineSeries.mapLines.template.line.controlPointPosition = 0.5;
-
 
 return line;
 

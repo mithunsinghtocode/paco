@@ -59,7 +59,6 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
       }
     },TIME_TO_CHECK_AIRCRAFT_POSITION);
   }
-
   let dropShadow = new am4core.DropShadowFilter();                                  
   dropShadow.dy = -30;  
   dropShadow.dx = 0;
