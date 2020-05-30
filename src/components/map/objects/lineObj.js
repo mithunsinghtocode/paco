@@ -41,9 +41,9 @@ line.multiGeoLine = [
 if(DEFINE_PATH_THROUGH_PACIFIC_ARRSTN.includes(flight.arrStn)){
   line.multiGeoLine = [
     [      
-      { "latitude": 1.35019, "longitude": 103.994003 },
-      { "latitude": 50, "longitude": 180 },
-      { "latitude": 50, "longitude": -74.005973 }
+      { latitude: flight.depcoordinates.latitude, longitude: flight.depcoordinates.longitude },
+      { "latitude": flight.arrcoordinates.latitude, "longitude": 180 },
+      { "latitude": flight.arrcoordinates.latitude, "longitude": flight.arrcoordinates.longitude }
     ]
   ];
 }
