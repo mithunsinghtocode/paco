@@ -26,9 +26,9 @@ export const mapLayoutObj = (chartObj, am4core, am4maps, am4geodataWorldLow ) =>
     polygonTemplate.stroke = am4core.color("#000");
 
     // focus the ares of map
-    // polygonTemplate.events.on("hit", function(ev) {
-    //   ev.target.series.chart.zoomToMapObject(ev.target)
-    // });
+    //  polygonTemplate.events.on("hit", function(ev) {
+    //    ev.target.series.chart.zoomToMapObject(ev.target)
+    //  });
 
     // Remove Antarctica
     polygonSeries.exclude = ["AQ"];
