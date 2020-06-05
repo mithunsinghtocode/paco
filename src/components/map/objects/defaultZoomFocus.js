@@ -31,7 +31,7 @@ export const goToHome = (chartObj) => {
 chartObj.series.values[0].events.on("inited", function(ev) {
           chartObj.zoomDuration = 400;
           chartObj.goHome();
-          chartObj.zoomDuration = 100;
+          chartObj.zoomDuration = 200;
 });
 chartObj.zoomLevel = chartObj.zoomLevel + 0.0001;
 };
