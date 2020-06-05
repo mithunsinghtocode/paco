@@ -18,18 +18,18 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, isTest);
   bullet.position =  flight.arrStn === 'SIN' ? checkAircraftPosition(aircraftPosition) : flight.aircraft.position;
   bullet.fill = am4core.color(flight.config.tooltipcolor);
-  
+  bullet.height = "35px";
   flight.status.misconnection ? 
-  flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:2px;margin-top:-2px;color:#fff;height:20px;" onHover="cursor: pointer">
-      ${getFltNum(flight)} ${getETA(flight)} ${displayLine()} ${getTotMisconnectedPax(flight, displayView)}
-    </div>`) : bullet.tooltipHTML = `<p style="margin-bottom:2px;margin-top:-2px;color:#fff;height:20px;">
-      ${getFltNum(flight)} ${getDepTime(flight)} ${displayLine()} ${getTotMisconnectedPax(flight, displayView)}
+  flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;height:24px;font-family:Proxima Nova;font-size: 14px;" onHover="cursor: pointer">
+      <b>${getFltNum(flight)}</b> ${getETA(flight)} ${displayLine()} <b>${getTotMisconnectedPax(flight, displayView)}</b>
+    </div>`) : bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;height:24px;font-family:Proxima Nova;font-size: 14px;">
+    <b>${getFltNum(flight)}</b> ${getDepTime(flight)} ${displayLine()} <b>${getTotMisconnectedPax(flight, displayView)}</b>
     </p>`
       :
-      flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<p style="margin-bottom:2px;margin-top:-2px;color:#fff;height:20px;">
-    ${getFltNum(flight)} ${getETA(flight)}
-    </p>`) : bullet.tooltipHTML = `<p style="margin-bottom:2px;margin-top:-2px;color:#fff;height:20px;opacity:0.3;">
-    ${getFltNum(flight)} ${getDepTime(flight)}
+      flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;height:24px;font-family:Proxima Nova;font-size: 14px;">
+      <b>${getFltNum(flight)}</b> ${getETA(flight)}
+    </p>`) : bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;height:24px;opacity:0.3;font-family:Proxima Nova;font-size: 14px;">
+    <b>${getFltNum(flight)}</b> ${getDepTime(flight)}
     </p>`
     ;
 
@@ -128,6 +128,6 @@ const displayPaxIcon = () => `<svg width="11px" height="14px" viewBox="0 0 11 14
 </g>
 </svg>`;
 
-const displayLine = () => `<b style="margin-left: 1px;margin-right: 4px;box-sizing: border-box; width: 2px; border: 1px solid rgba(255, 255, 255, 0.29); margin-top: 0px"></b>`;
+const displayLine = () => `<b style="margin-left: 1px;height:24px;margin-right: 4px;box-sizing: border-box; width: 2px; border: 1px solid rgba(255, 255, 255, 0.29); margin-top: 0px"></b>`;
 
 const getFltNum = (flight) => `${flight.fltNum.substr(0,2)} ${flight.fltNum.substr(2,5)}`; 
