@@ -5,7 +5,7 @@ export const homeObjectRender = ( chartObj, am4core ) => {
     home.padding(10, 10, 10, 10);
     home.align = "right";
     home.valign = "top";
-    home.marginRight = -70;
+    home.marginRight = 10;
     home.marginTop = 90;
     home.background.fill = am4core.color("#2E2E2E");
       home.background.cornerRadius(5, 5, 5, 5);

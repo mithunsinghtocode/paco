@@ -10,9 +10,20 @@ export const lineObj = (am4core, flight,lineSeries, chartObj, am4maps) => {
 
   if(ATLANTIC_OCEAN_COUNTRIES.includes(flight.depStn)){
     lineSeries = chartObj.series.push(new am4maps.MapArcSeries());
-    lineSeries.mapLines.template.shortestDistance=false;
+    if(flight.flightId === "SQ021202003151445EWRSIN1"){
+      lineSeries.mapLines.template.line.nonScalingStroke = true;
+    lineSeries.mapLines.template.line.rtl = true;
+          // lineSeries.mapArc.template.marginBottom = 20;     
+      // lineSeries.mapArc.template.layout = 'none'; 
+      // lineSeries.mapArc.template.interactionsEnabled = false; 
+    }
   };  
   lineSeries.mapLines.template.strokeWidth = 0.5;
+  lineSeries.mapLines.template.nonScalingStroke = true;
+  lineSeries.mapLines.nonScaling = true;
+
+  // Dont enable this unless you need very high quelity lines draw and no worry on performance.
+  //lineSeries.mapLines.template.pixelPerfect = true;
 
   if(flight.config == null){
     console.log(flight.flightId);

@@ -112,7 +112,7 @@ class FlightList extends React.Component {
     shrink = () => {
         let downArrow = document.getElementById("down-arrow");
         downArrow.style.display = "none";
-        document.getElementById("legend").style.height= "5%";
+        document.getElementById("legend").style.height= "9%";
         document.getElementById("up-arrow").style.display = "block";
     };
 
