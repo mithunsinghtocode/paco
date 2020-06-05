@@ -55,6 +55,7 @@ export const plotStationObj = (am4core, chartObj, objData, imageSeries, imageSer
   imageSeriesSin.data = [{
     "latitude": 1.35019,
     "longitude": 103.994003,
+    "title": "Singapore"
 }];
 
 };
