@@ -22,6 +22,7 @@
 .rectangle-container {
     width: 390px;
     background-color: #000000;
+    border-radius: 5px 5px 0 0;
 }
 
 .rectangle-copy-2 {
@@ -49,7 +50,7 @@
     border-radius: 50%;
     color: #FFFFFF;
     font-family: "Proxima Nova";
-    font-size: 14px;
+    font-size: 10px;
     font-weight: 600;
     letter-spacing: 0;
     line-height: 17px;
@@ -68,7 +69,7 @@
     border-radius: 50%;
     color: #FFFFFF;
     font-family: "Proxima Nova";
-    font-size: 14px;
+    font-size: 10px;
     font-weight: 600;
     letter-spacing: 0;
     line-height: 17px;
@@ -178,4 +179,5 @@
     color: white !important;
     opacity: 0.7;
     outline-width: thin;
+    margin-bottom: 18px;
 }

@@ -90,8 +90,8 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   if(flight.depStn==='SIN' && !flight.status.misconnection) { 
     bullet.tooltip.opacity = 0.32;
   }
-  if(index % 2 === 0) {bullet.tooltip.dx = -20; bullet.tooltip.pointerOrientation = 'right'};
-  if(index % 2 === 1) {bullet.tooltip.dx = 20; bullet.tooltip.pointerOrientation = 'left'};
+  if(index % 2 === 0) {bullet.tooltip.dx = -20;bullet.tooltip.pointerOrientation = 'right'};
+  if(index % 2 === 1) {bullet.tooltip.dx = 20;bullet.tooltip.pointerOrientation = 'left'};
 
   if(flight.tooltip != null && flight.tooltip === "OUTBOUND")
   {

@@ -30,8 +30,8 @@ class FocusFlight extends React.Component {
             Promise.resolve().then(() => {
             //console.log(selectedFlight);
             //clearChartComponents(chartObj, ["MapLineSeries", "MapImageSeries","MapArcSeries"]);
-            clearChartComponents(chartObj, ["ALL"]);
-            renderChartLayout(chartObj);
+                    clearChartComponents(chartObj, ["ALL"]);
+                    renderChartLayout(chartObj);
             }).then(() => {
                 // Adds line or arc based on the coordinates
                 let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
@@ -104,21 +104,17 @@ class FocusFlight extends React.Component {
                 if(this.props.displayView === "OUTBOUND") {
                     length = selectedFlight.inboundFlt ? selectedFlight.inboundFlt.length : 0;
                 };
-                console.log(north + " :: " + east + " :: "+ south + " :: " + west);
-                if(length === 0){
-
-                }
                 if(this.props.displayView === "INBOUND"){
                     if(length === 0 ){
                         north = selectedFlight.depcoordinates.latitude;
                         south = selectedFlight.arrcoordinates.latitude;
-                        west = 0;
-                        east = 0;
+                        west = selectedFlight.depcoordinates.longitude <103 ? selectedFlight.depcoordinates.longitude : selectedFlight.arrcoordinates.longitude;
+                        east = selectedFlight.depcoordinates.longitude <103 ? selectedFlight.arrcoordinates.longitude : selectedFlight.depcoordinates.longitude;
                     }else{
                         north = sortedLattitude[length-1].arrcoordinates.latitude;
                         south = sortedLattitude[0].arrcoordinates.latitude;
-                        west = sortedLongitude[length-1].arrcoordinates.longitude;
-                        east = sortedLongitude[0].arrcoordinates.longitude;
+                        west = sortedLongitude[length-1].depcoordinates.longitude <103 ? sortedLongitude[length-1].depcoordinates.longitude : sortedLongitude[length-1].arrcoordinates.longitude;
+                        east = sortedLongitude[length-1].depcoordinates.longitude <103 ? sortedLongitude[length-1].arrcoordinates.longitude :sortedLongitude[0].depcoordinates.longitude;
                     }
                 }
                 if(this.props.displayView === "OUTBOUND"){
@@ -148,7 +144,6 @@ class FocusFlight extends React.Component {
                     }else{
                         if(Number(west) > Number(selectedFlight.depcoordinates.longitude)) west = selectedFlight.depcoordinates.longitude;
                     }
-
                     setZoomAndGeoPointFocus(
                         chartObj,
                         Number(north),
@@ -160,7 +155,6 @@ class FocusFlight extends React.Component {
                         500
                     );
                 });
-                chartObj.zoomLevel = chartObj.zoomLevel + 0.0001;
             }).then(() => {
                 // Setting zoom panning to rectangle based on Inbound flight algorithm ends
                 freeUpMemory([chartObj, selectedFlight]);

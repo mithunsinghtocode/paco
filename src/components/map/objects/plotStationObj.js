@@ -53,9 +53,8 @@ export const plotStationObj = (am4core, chartObj, objData, imageSeries, imageSer
   imageSeriesTemplateSin.propertyFields.longitude = "longitude";
   imageSeriesSin.propertyFields.tooltipText = "title";
   imageSeriesSin.data = [{
-    "latitude": 1.3521,
-    "longitude": 103.8198,
-    "title": "Singapore"
+    "latitude": 1.35019,
+    "longitude": 103.994003,
 }];
 
 };
