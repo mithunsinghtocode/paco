@@ -113,8 +113,8 @@ class FocusFlight extends React.Component {
                     }else{
                         north = sortedLattitude[length-1].arrcoordinates.latitude;
                         south = sortedLattitude[0].arrcoordinates.latitude;
-                        west = sortedLongitude[length-1].depcoordinates.longitude <103 ? sortedLongitude[length-1].depcoordinates.longitude : sortedLongitude[length-1].arrcoordinates.longitude;
-                        east = sortedLongitude[length-1].depcoordinates.longitude <103 ? sortedLongitude[length-1].arrcoordinates.longitude :sortedLongitude[0].depcoordinates.longitude;
+                        west = sortedLongitude[0].arrcoordinates.longitude <103 ? sortedLongitude[0].depcoordinates.longitude : sortedLongitude[0].arrcoordinates.longitude;
+                        east = sortedLongitude[length-1].arrcoordinates.longitude <103 ? sortedLongitude[length-1].depcoordinates.longitude :sortedLongitude[0].arrcoordinates.longitude;
                     }
                 }
                 if(this.props.displayView === "OUTBOUND"){
@@ -135,15 +135,13 @@ class FocusFlight extends React.Component {
                     if(Math.sign(Number(selectedFlight.depcoordinates.latitude)) === 1) {
                         if(Number(north) < Number(selectedFlight.depcoordinates.latitude)) north = selectedFlight.depcoordinates.latitude;
                     }else{
-                        console.log(Number(south) +" :: "+ Number(selectedFlight.depcoordinates.latitude));
                         if(Number(south) > Number(selectedFlight.depcoordinates.latitude)) south = selectedFlight.depcoordinates.latitude;
                     }
 
                     if(Math.sign(Number(selectedFlight.depcoordinates.longitude)) === 1) {
                         if(Number(east) < Number(selectedFlight.depcoordinates.longitude)) east = selectedFlight.depcoordinates.longitude;
-                    }else{
-                        if(Number(west) > Number(selectedFlight.depcoordinates.longitude)) west = selectedFlight.depcoordinates.longitude;
                     }
+                    if(Number(west) > Number(selectedFlight.depcoordinates.longitude)) west = selectedFlight.depcoordinates.longitude;
                     setZoomAndGeoPointFocus(
                         chartObj,
                         Number(north),

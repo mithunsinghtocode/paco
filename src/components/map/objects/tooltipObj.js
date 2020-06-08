@@ -18,17 +18,17 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, isTest);
   bullet.position =  flight.arrStn === 'SIN' ? checkAircraftPosition(aircraftPosition) : flight.aircraft.position;
   bullet.fill = am4core.color(flight.config.tooltipcolor);
-  bullet.height = "35px";
+  //bullet.height = "35px";
   flight.status.misconnection ? 
-  flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;height:24px;font-family:Proxima Nova;font-size: 14px;" onHover="cursor: pointer">
+  flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;height:20px;font-family:Proxima Nova;font-size: 14px;" onHover="cursor: pointer">
       <b>${getFltNum(flight)}</b> ${getETA(flight)} ${displayLine()} <b>${getTotMisconnectedPax(flight, displayView)}</b>
-    </div>`) : bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;height:24px;font-family:Proxima Nova;font-size: 14px;">
+    </div>`) : bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;height:20px;font-family:Proxima Nova;font-size: 14px;">
     <b>${getFltNum(flight)}</b> ${getDepTime(flight)} ${displayLine()} <b>${getTotMisconnectedPax(flight, displayView)}</b>
     </p>`
       :
-      flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;height:24px;font-family:Proxima Nova;font-size: 14px;">
+      flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;height:20px;font-family:Proxima Nova;font-size: 14px;">
       <b>${getFltNum(flight)}</b> ${getETA(flight)}
-    </p>`) : bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;height:24px;opacity:0.3;font-family:Proxima Nova;font-size: 14px;">
+    </p>`) : bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;height:20px;opacity:0.3;font-family:Proxima Nova;font-size: 14px;">
     <b>${getFltNum(flight)}</b> ${getDepTime(flight)}
     </p>`
     ;
@@ -43,6 +43,8 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   //bullet.tooltip.background.stroke = am4core.color(flight.config.tooltipcolor);
   bullet.tooltip.background.strokeWidth = 0;
   bullet.alwaysShowTooltip = true;
+  bullet.horizontalCenter = "middle";
+  bullet.verticalCenter = "middle";
   
   if(flight.arrStn === 'SIN'){
     // set the position of the aircraft.
@@ -50,8 +52,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
     var setPositionOfPlane = setInterval(() => {
       let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, isTest);
       let bulletPosition = checkAircraftPosition(aircraftPosition);
-      bullet.position = bulletPosition;
-      
+      bullet.position = bulletPosition;      
     }, TIME_TO_CHECK_AIRCRAFT_POSITION);
     setInterval(() => {
       if(bullet.position >= 0.9){
@@ -91,7 +92,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
     bullet.tooltip.opacity = 0.32;
   }
   if(index % 2 === 0) {bullet.tooltip.dx = -20;bullet.tooltip.pointerOrientation = 'right'};
-  if(index % 2 === 1) {bullet.tooltip.dx = 20;bullet.tooltip.pointerOrientation = 'left'};
+  if(index % 2 === 1) {bullet.tooltip.dx = 10;bullet.tooltip.pointerOrientation = 'left'};
 
   if(flight.tooltip != null && flight.tooltip === "OUTBOUND")
   {

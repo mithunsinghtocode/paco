@@ -6,7 +6,7 @@ export const getHoursAndMinutesAfterFormat = (jsonDate) => {
 
 const getTestTime = () => {
     //2020-03-15 01:30:00
-    return new Date(2020, 2, 15, 3, 30, 0, 0); 
+    return new Date(2020, 2, 12, 14, 55, 0, 0); 
 }
 
 export const getAircraftPositionBasedOnFlightObj = (fltObj, isTest) => {

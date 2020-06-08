@@ -17,6 +17,13 @@ export const setChartEvents = (chart) => {
           // better way of doing stuffs
             toggle ? chart.zoomLevel = chart.zoomLevel + 0.0001 :  chart.zoomLevel = chart.zoomLevel - 0.0001;
             toggle = !toggle;
+
+            // if(chart.deltaLongitude > 75 && chart.deltaLongitude < 180){
+            //   //chart.deltaLongitude = 75;
+            // }
+            // if(chart.deltaLongitude > -180 && chart.deltaLongitude < -103){
+            //   //chart.deltaLongitude = -103;
+            // } 
             // better way of doing stuffs - but not satisfactory
           // requestAnimationFrame(() => {
           //   toggle ? chart.zoomLevel = chart.zoomLevel + 0.0001 :  chart.zoomLevel = chart.zoomLevel - 0.0001;

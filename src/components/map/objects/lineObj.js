@@ -8,19 +8,20 @@ export const lineObj = (am4core, flight,lineSeries, chartObj, am4maps) => {
   //   lineSeries = chartObj.series.push(new am4maps.MapArcSeries())
   // };
 
+
   if(ATLANTIC_OCEAN_COUNTRIES.includes(flight.depStn)){
     lineSeries = chartObj.series.push(new am4maps.MapArcSeries());
-    if(flight.flightId === "SQ021202003151445EWRSIN1"){
       lineSeries.mapLines.template.line.nonScalingStroke = true;
-    lineSeries.mapLines.template.line.rtl = true;
-          // lineSeries.mapArc.template.marginBottom = 20;     
-      // lineSeries.mapArc.template.layout = 'none'; 
-      // lineSeries.mapArc.template.interactionsEnabled = false; 
-    }
+       lineSeries.mapLines.template.line.controlPointPosition = 0.5; 
+       lineSeries.mapLines.template.line.controlPointDistance = 0.25;
+       lineSeries.interpolationDuration = 1000;
+       lineSeries.mapLines.template.maxZoomCount = 1;
+       lineSeries.mapLines.template.shortestDistance = true;
+       
   };  
   lineSeries.mapLines.template.strokeWidth = 0.5;
-  lineSeries.mapLines.template.nonScalingStroke = true;
-  lineSeries.mapLines.nonScaling = true;
+   lineSeries.mapLines.template.nonScalingStroke = true;
+   lineSeries.mapLines.nonScaling = true;
 
   // Dont enable this unless you need very high quelity lines draw and no worry on performance.
   //lineSeries.mapLines.template.pixelPerfect = true;
@@ -34,20 +35,25 @@ export const lineObj = (am4core, flight,lineSeries, chartObj, am4maps) => {
 
 lineSeries.mapLines.template.calculatePercent = true;
 
+
 var line = lineSeries.mapLines.create();
 if(!DEFINE_PATH_THROUGH_PACIFIC_ARRSTN.includes(flight.arrStn)){
-line.multiGeoLine = [
-  [
-    {
-      latitude: flight.depcoordinates.latitude,
-      longitude: flight.depcoordinates.longitude
-    },
-    {
-      latitude: flight.arrcoordinates.latitude,
-      longitude: flight.arrcoordinates.longitude
-    }
-  ]
-];
+  if(ATLANTIC_OCEAN_COUNTRIES.includes(flight.depStn)){
+    line.multiGeoLine = [
+      [      
+        { latitude: Number(flight.depcoordinates.latitude), longitude: Number(flight.depcoordinates.longitude) },
+        { "latitude": Number(flight.arrcoordinates.latitude), "longitude": Number(flight.arrcoordinates.longitude) }
+      ]
+    ];
+  }
+  else{
+    line.multiGeoLine = [
+      [      
+        { latitude: Number(flight.depcoordinates.latitude), longitude: Number(flight.depcoordinates.longitude) },
+        { "latitude": Number(flight.arrcoordinates.latitude), "longitude": Number(flight.arrcoordinates.longitude) }
+      ]
+    ];
+  }
 }
 if(DEFINE_PATH_THROUGH_PACIFIC_ARRSTN.includes(flight.arrStn)){
   line.multiGeoLine = [
