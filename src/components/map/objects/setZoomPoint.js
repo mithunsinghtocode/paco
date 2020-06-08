@@ -6,6 +6,8 @@ const SIN_LATITUDE =   1.35019;
 const SIN_LONGITUDE =  103.994003;
 
 export const setZoomAndGeoPointFocus = ( chartObj, north, east, south, west, zoomlevel, center, duration ) => {
+
+  console.log(north + " :::: " + east + " :::: " + south + " :::: "+ west);
           if(east<SIN_LONGITUDE) east = SIN_LONGITUDE;
           if(west>SIN_LONGITUDE) west = SIN_LONGITUDE;
           if(north<SIN_LATITUDE) north = SIN_LATITUDE;

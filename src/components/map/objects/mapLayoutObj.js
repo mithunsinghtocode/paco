@@ -16,11 +16,9 @@ export const mapLayoutObj = (chartObj, am4core, am4maps, am4geodataWorldLow ) =>
     // Make map load polygon (like country names) data from GeoJSON
     polygonSeries.useGeodata = true;
     polygonSeries.calculateVisualCenter = true;
-    //polygonSeries.mapPolygons.template.tooltipPosition = "fixed";
 
     // Configure series
     let polygonTemplate = polygonSeries.mapPolygons.template;
-    //polygonTemplate.tooltipText = "{name}";
     polygonTemplate.fill = am4core.color("#292929");
     polygonTemplate.strokeOpacity = 0.15;
     polygonTemplate.stroke = am4core.color("#000");
