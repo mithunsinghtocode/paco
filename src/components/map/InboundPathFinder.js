@@ -41,16 +41,18 @@ class InboundPathFinder extends React.PureComponent {
 
       // set initial zoom and map points
       setDefaultZoomAndGeoPointFocus(chartObj);
-      console.log(chartObj.north + " :: " +chartObj.east + " :: " +chartObj.south + " :: " +chartObj.west)
-        // sorting to serve tooltip overlap algorithm
-        sort({
-          inputList: flightObj.flightList, 
-          objectProp: 'depcoordinates.longitude', 
-          typeOfProp: 'number', 
-          conversionRequired: false, 
-          isAscending: true, 
-          isNewCopyOfArr: false
-      });
+        // sorting to serve overlap algorithm
+        flightObj.flightList.forEach( (in2) => {
+            in2.sumCoordinates = Number(in2.depcoordinates.longitude) + Number(in2.depcoordinates.latitude) + Number(in2.aircraft.position);
+        });
+        var sortedFlightList = sort({
+            inputList: flightObj.flightList, 
+            objectProp: 'sumCoordinates', 
+            typeOfProp: 'number', 
+            conversionRequired: true, 
+            isAscending: false, 
+            isNewCopyOfArr: true
+        });
 
         // Adds line or arc based on the coordinates
         let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
@@ -60,7 +62,7 @@ class InboundPathFinder extends React.PureComponent {
         Promise.resolve().then(() => {
           lineSeries.STATUS = "LINESERIES";
           // Add line series
-          flightObj.flightList.forEach( async (flight, index) => {
+          sortedFlightList.forEach( async (flight, index) => {
           let line = lineObj(am4core, flight, lineSeries,chartObj,am4maps);
   
           // adds tooltip for the flights

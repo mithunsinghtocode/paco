@@ -17,9 +17,6 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   bullet.nonScaling = true;
   let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, isTest);
   bullet.position =  flight.arrStn === 'SIN' ? checkAircraftPosition(aircraftPosition) : flight.aircraft.position;
-  if(flight.flightId === "SQ021202003151445EWRSIN1"){
-    console.log(bullet.position);
-  }
   bullet.fill = am4core.color(flight.config.tooltipcolor);
   //bullet.height = "35px";
   flight.status.misconnection ? 
@@ -95,7 +92,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
     bullet.tooltip.opacity = 0.32;
   }
   if(index % 2 === 0) {bullet.tooltip.dx = -20;bullet.tooltip.pointerOrientation = 'right'};
-  if(index % 2 === 1) {bullet.tooltip.dx = 20;bullet.tooltip.pointerOrientation = 'left'};
+  if(index % 2 === 1) {bullet.tooltip.dx = 10;bullet.tooltip.pointerOrientation = 'left'};
 
   if(flight.tooltip != null && flight.tooltip === "OUTBOUND")
   {
