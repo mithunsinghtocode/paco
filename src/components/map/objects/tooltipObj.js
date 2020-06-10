@@ -20,15 +20,15 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   bullet.fill = am4core.color(flight.config.tooltipcolor);
   //bullet.height = "35px";
   flight.status.misconnection ? 
-  flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;height:22px;font-family:Proxima Nova Regular;font-size: 14px;" onHover="cursor: pointer">
+  flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;width:auto;height:22px;font-family:Proxima Nova Regular;font-size: 14px;" onHover="cursor: pointer">
       <b style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${getETA(flight)} ${displayLine()} <b  style="font-family:Proxima Nova Bold">${getTotMisconnectedPax(flight, displayView)}</b>
-    </div>`) : bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;height:22px;font-family:Proxima Nova Regular;font-size: 14px;">
+    </div>`) : bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;width:auto;height:22px;font-family:Proxima Nova Regular;font-size: 14px;">
     <b  style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${getDepTime(flight)} ${displayLine()} <b  style="font-family:Proxima Nova Bold">${getTotMisconnectedPax(flight, displayView)}</b>
     </p>`
       :
-      flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;height:22px;font-family:Proxima Nova Regular;font-size: 14px;">
+      flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;width:auto;color:#fff;height:22px;font-family:Proxima Nova Regular;font-size: 14px;">
       <b  style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${getETA(flight)}
-    </p>`) : bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;height:22px;opacity:0.3;font-family:Proxima Nova Regular;font-size: 14px;">
+    </p>`) : bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;width:auto;height:22px;opacity:0.3;font-family:Proxima Nova Regular;font-size: 14px;">
     <b  style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${getDepTime(flight)}
     </p>`
     ;
