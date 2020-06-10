@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import "./filter.scss";
+import "./Filter.scss";
 import { getFilteredFlightDataForInbound } from '../../actions/chartDataAction';
 import { clearChartComponents } from '../map/objects/clearChartObjects';
 import { renderChartLayout } from '../map/objects/renderChartLayOut';

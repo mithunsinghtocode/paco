@@ -1,11 +1,16 @@
     .navbar.navbar-light.justify-content-between.filter {
         background-color: #2E2E2E;
         color: white;
-        //height: 70px;
-        box-shadow: 2px 2px 17px rgba(0, 0, 0, 0.5);
+        height: 63px;
+        // height: 70px;
+        // box-shadow: 2px 2px 17px rgba(0, 0, 0, 0.5);
         //border: 1px solid black;
+        label{
+           margin-bottom: 0em;
+           align-content: center;
+       }
+	
     }
-    
     .navbar.display-button {
         background-color: #2E2E2E;
         color: white;
@@ -19,16 +24,21 @@
         margin-left: auto;
         margin-right: auto;
         text-align: center;
+        height: 47px;
+
     }
-    
+
     .vl {
         display: inline;
         border: 1px solid #FFFFFF;
         opacity: 0.15;
-        //height: 60px;
-        margin-top: 10px;
-    }
-    
+        margin-top: 5px;
+        margin-right: 25px;
+        margin-left: 25px;
+
+        height: 37px;
+        float: left;
+      }    
     *,
     *:before,
     *:after {
@@ -49,18 +59,29 @@
     }
     
     // Variables
-    $bg-disabled-color: rgba(0, 0, 0, .26);
-    $bg-enabled-color: rgba(0, 0, 0, .26);
-    $lever-disabled-color: #696969;
-    $lever-enabled-color: rgba(0, 220, 136, .8);
+    $bg-disabled-color: rgba(255,255,255,0.26);
+    //$bg-disabled-color: rgba(0, 0, 0, .26);
+
+    $bg-enabled-color: rgba(255,255,255,0.26);
+    // $bg-enabled-color: rgba(0, 0, 0, .26);
+    
+    
+    $lever-disabled-color: #F1F1F1;
+    // $lever-disabled-color: #696969;
+    
+    $lever-enabled-color: hsl(120,100%,75%);
+    //$lever-enabled-color: rgba(0, 220, 136, .8);
     // Switch
     .switch {
+        float: left;
         display: inline-block;
         position: relative;
-        margin: 10px 10px 10px 10px;
-        font-size: 16px;
-        line-height: 24px;
+        margin-top: 11px;
+        font-size: 18px;
+        font-family: "Proxima Nova";
+        line-height: 22px;
         opacity: 0.6;
+        height: 24px;
         &__input {
             position: absolute;
             top: 0;
@@ -74,8 +95,13 @@
         &__label {
             display: block;
             padding: 0 0 0 44px;
+            letter-spacing: 0.26px;
             cursor: pointer;
-            color: #fff;
+            height: 22px;
+            color: #FFFFFF;
+            font-family: "Proxima Nova Thin";
+            font-size: 18px;
+            font-weight: 100;
             &:before {
                 content: '';
                 position: absolute;
@@ -110,7 +136,8 @@
             }
             &:after {
                 left: 16px;
-                background-color: $lever-enabled-color;
+                background-color: $lever-enabled-color;  
+//                box-shadow: 0 0 1px 0 rgba(0,0,0,0.12), 0 1px 1px 0 rgba(0,0,0,0.24);
             }
         }
     }
@@ -118,7 +145,7 @@
     .flt-header {
         color: #b1adad;
         height: 22px;
-        font-family: "Proxima Nova";
+        font-family: "Proxima Nova Thin";
         font-size: 18px;
         font-weight: 100;
         letter-spacing: 0.01px;
@@ -135,7 +162,7 @@
         letter-spacing: 0.01px;
         line-height: 22px;
     }
-    
+
     .rectangle {
         box-sizing: border-box;
         height: 40px;
@@ -143,8 +170,9 @@
         border: 1px solid #BFBFBF;
         border-radius: 20px;
         color: #FFFFFF;
-        font-family: "Proxima Nova";
+        font-family: "Proxima Nova Semibold";
         font-size: 14px;
+        text-align: center;
         font-weight: 600;
         letter-spacing: 0;
         line-height: 17px;
@@ -152,6 +180,6 @@
         opacity: 1px;
         //background-color: #2E2E2E;
         background-color: Transparent;
-        margin-left: 34px;
-        //position: relative;
+        margin-left: 15px;
+        // margin-top: 5px;
     }

@@ -1,6 +1,8 @@
 import React from "react";
 import logo from "../../images/Group@2x.svg"; // Tell Webpack this JS file uses this image
-import "./header.scss";
+import logoInvision from "../../images/logoInvision.svg"; // Tell Webpack this JS file uses this image
+import notificationsBell from "../../images/notifications.svg"; // Tell Webpack this JS file uses this image
+import "./Header.scss";
 import { connect } from "react-redux";
 import { fetchAppData } from "../../actions";
 
@@ -23,7 +25,7 @@ class Header extends React.PureComponent {
   enableAlertView = () => {
     return (
       <i className="circle-icon-wrap">
-        <i className="mini circle icon"></i>
+        {/* <i className="mini circle icon"></i> */}
       </i>
     );
   };
@@ -51,25 +53,29 @@ class Header extends React.PureComponent {
     return (
       <>
         <nav className="navbar navbar-light justify-content-between">
-          <p className="pa-co-pax-conn-x-opt">
-            <img alt="sia-logo" className="img sia-logo" src={logo} />
-            &nbsp;&nbsp;{" "}
+          <div className="pa-co-pax-conn-x-opt">          
+            <div className="sia-logo">
+              <img alt="sia-logo" className="img sia-logo" src={logoInvision} />                          
+            </div>          
             <a className="line-2-copy-1" href="#">
               {/* to avoid warning */ ""}
-            </a>{" "}
-            &nbsp; &nbsp; PaCo -{this.props.appData.name}
-          </p>
-          <div className="clock-time">
-            <div style={{ float: "left" }}>
-              <i className="bell outline icon"></i>
-              {this.state.alerts.length !== 0 ? this.enableAlertView() : ""}
-              &nbsp;
+            </a>          
+            <div className="project-title">                
+                PaCo -{this.props.appData.name}
             </div>
-            <div style={{ float: "right" }}>
-              <a className="line-2-copy-1" href="#">
+            
+          </div>
+          <div className="clock-time">            
+            <div className="notification-bell-component" >
+              {/* <i className="bell outline icon"></i> */}
+              <img alt="notification-bell" className="bell outline icon" src={notificationsBell} />        
+              {this.state.alerts.length !== 0 ? this.enableAlertView() : ""}              
+            </div>
+            <a className="line-2-copy-1" href="#">
                 {/* to avoid warning */ ""}
-              </a>
-              &nbsp; {this.state.time}
+              </a>              
+            <div className="current-time" >
+                {this.state.time}
             </div>
           </div>
         </nav>

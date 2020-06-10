@@ -1,9 +1,39 @@
 .clock-time {
     color: #FFFFFF;
-    font-family: 'Sigvar';
+    font-family: 'Sigvar-Light';
     font-size: 21px;
-    margin-right: 5px;
     margin-top: 0px;
+    height: 47px;
+    // width : 170px;
+
+    margin-bottom: 16px;
+    // float: right;
+    margin-right: 1px;
+    
+
+    .notification-bell-component{
+        float: left;
+        display:inline-block;        
+        margin-right: 15px;    
+        margin-top: 4px;
+        
+    }
+    .current-time{
+        float:left;
+        display:inline-block;
+        font-family: "Proxima Nova";
+        font-size: 30px;
+    
+        height: 37px;
+        // width: 79px;
+        color: #FFFFFF;
+        letter-spacing: 0;
+        line-height: 37px;
+        text-align: center;
+        margin-left: 22px;
+        margin-top: 6px;
+        margin-bottom: 28px;
+    }
 }
 
 .alert-icon {
@@ -13,22 +43,53 @@
 }
 
 .pa-co-pax-conn-x-opt {
-    height: 25px;
-    width: 454px;
+    height: 47px;
+    // height: 42px;
+    // width: 454px;  //test
     color: #FFFFFF;
-    font-family: 'Sigvar';
-    font-weight: lighter;
-    font-size: 21px;
+    font-family: 'Sigvar-Light';
+    // font-weight: lighter;
+    font-size: 25px;
     letter-spacing: 0.06px;
-    line-height: 25px;
+    // line-height: 25px;
+    margin-bottom: 16px;
+
+    .sia-logo {
+        // width: 99px;
+        width: 119px; // test
+        height: 36px;
+        margin-right: 35px;
+        margin-left: 20px;
+        margin-bottom: 28px;
+        margin-top: 2px;
+        float: left;
+    }
+    .project-title{
+        float: left;
+        display:inline-block;
+        font-family: 'Sigvar-Light';
+        // font-weight: 1;
+        height: 37px;
+        font-size: 24px;
+        letter-spacing: 0.01px;
+        line-height: 25px;
+        text-transform: none;
+        margin-left: 28px;
+        margin-bottom: 28px;
+        margin-top: 14px;
+        height: 37px;
+    }
 }
 
 .line-2-copy-1 {
+    display:inline-block;
     box-sizing: border-box;
-    height: 50px;
+    height: 37px;
     width: 1px;
     border: 1px solid #FFFFFF;
     opacity: 0.15;
+    margin-top: 5px;
+    float:left;
 }
 
 .icons-notification {
@@ -46,10 +107,6 @@
     color: red;
 }
 
-.img.sia-logo {
-    width: 99px;
-    height: 37px;
-}
 
 .navbar.navbar-light.justify-content-between {
     background-color: #00266B;
