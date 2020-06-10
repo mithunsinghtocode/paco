@@ -9,6 +9,7 @@ import { fetchAppData } from "../../actions";
 
 class Header extends React.PureComponent {
   addZero = hour => {
+    console.log(hour)
     if (hour < 10) {
       hour = "0" + hour;
     }
@@ -16,7 +17,7 @@ class Header extends React.PureComponent {
   };
 
   state = {
-    time: `${this.addZero(new Date().getHours())} : ${this.addZero(
+    time: `${this.addZero(new Date().getUTCHours())} : ${this.addZero(
       new Date().getMinutes()
     )}`,
     alerts: [1, 2]
@@ -43,7 +44,7 @@ class Header extends React.PureComponent {
   setTime = () => {
     const nowDate = new Date();
       this.setState({
-        time: `${this.addZero((nowDate.getHours()-8))} : ${this.addZero(
+        time: `${this.addZero((nowDate.getUTCHours()))} : ${this.addZero(
           nowDate.getMinutes()
         )}`
       });
