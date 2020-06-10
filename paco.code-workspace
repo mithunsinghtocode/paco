@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "/Users/mithunsingh 1/Downloads/quarkus-getting-started"
 		}
 	],
 	"settings": {

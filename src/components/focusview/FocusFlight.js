@@ -67,6 +67,18 @@ class FocusFlight extends React.Component {
                     selectedFlight.aircraft.position = 0.95;
                     plotFlightObj(selectedFlight, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView, chartObj,am4maps);
                     plotStationObj( am4core, chartObj, selectedFlight );
+                     // sorting to serve overlap algorithm
+                     selectedFlight.inboundFlt && selectedFlight.inboundFlt.forEach( (in2) => {
+                        in2.sumCoordinates = Number(in2.depcoordinates.longitude) + Number(in2.depcoordinates.latitude);
+                    });
+                    sort({
+                        inputList: selectedFlight.inboundFlt, 
+                        objectProp: 'sumCoordinates', 
+                        typeOfProp: 'number', 
+                        conversionRequired: false, 
+                        isAscending: true, 
+                        isNewCopyOfArr: false
+                    });
                     selectedFlight.inboundFlt && selectedFlight.inboundFlt.forEach(async (inboundFlt, index) => {
                         getStationCoordinatesFromTheFlightList([inboundFlt]).forEach(stationObj => {
                             stationCoordinates = [...stationCoordinates, stationObj];
@@ -119,15 +131,15 @@ class FocusFlight extends React.Component {
                 }
                 if(this.props.displayView === "OUTBOUND"){
                     if(length === 0 ){
-                        north = selectedFlight.arrcoordinates.latitude;
-                        south = selectedFlight.depcoordinates.latitude;
-                        west = 0;
-                        east = 0;
+                        north = selectedFlight.arrcoordinates.latitude > 0 ? selectedFlight.arrcoordinates.latitude : selectedFlight.depcoordinates.latitude;
+                        south = selectedFlight.depcoordinates.latitude < 0 ? selectedFlight.depcoordinates.latitude : selectedFlight.arrcoordinates.latitude;
+                        west = selectedFlight.arrcoordinates.longitude <103 ? selectedFlight.arrcoordinates.longitude : selectedFlight.depcoordinates.longitude;
+                        east = selectedFlight.arrcoordinates.longitude <103 ? selectedFlight.depcoordinates.longitude : selectedFlight.arrcoordinates.longitude;
                     }else{
                         north = sortedLattitude[length-1].depcoordinates.latitude;
                         south = sortedLattitude[0].depcoordinates.latitude;
-                        west = sortedLongitude[length-1].depcoordinates.longitude;
-                        east = sortedLongitude[0].depcoordinates.longitude;
+                        west = sortedLongitude[0].depcoordinates.longitude <103 ? sortedLongitude[0].arrcoordinates.longitude : sortedLongitude[0].depcoordinates.longitude;
+                        east = sortedLongitude[length-1].depcoordinates.longitude <103 ? sortedLongitude[length-1].arrcoordinates.longitude :sortedLongitude[0].depcoordinates.longitude;
                     }
                 }
 

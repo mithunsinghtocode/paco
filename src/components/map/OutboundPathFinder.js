@@ -12,7 +12,8 @@ import { plotStationObj } from "./objects/plotStationObj";
 import { initChart } from "../../actions/chartAction";
 import Loader from '../loader/Loader';
 import { freeUpMemory } from './objects/clearChartObjects';
-import { setDefaultZoomAndGeoPointFocus } from './objects/defaultZoomFocus';
+import { setDefaultZoomAndGeoPointFocus, goToHome } from './objects/defaultZoomFocus';
+import { sort } from '../../utils/sortUtils';
 
 
 class OutboundPathFinder extends React.PureComponent {
@@ -20,6 +21,10 @@ class OutboundPathFinder extends React.PureComponent {
   getChartObj = () => this.props.chartObj;
 
   getOutboundFlightData = () => this.props.outboundFlights;
+
+  componentDidMount(){
+    this.getChartObj() && setDefaultZoomAndGeoPointFocus(this.getChartObj());
+  }
 
   renderFlightDataForOutbound = () => {
     
@@ -32,21 +37,35 @@ class OutboundPathFinder extends React.PureComponent {
     if (chartObj !== null && flightObj !== null) {
 
       console.log("<><><> Outbound Path Filter - State re-renders the flight data component");
-
+      
       setDefaultZoomAndGeoPointFocus(chartObj);
 
       plotStationObj( am4core, chartObj, flightObj );
 
+      // sorting to serve overlap algorithm
+      flightObj.flightList.forEach( (in2) => {
+        in2.sumCoordinates = Number(in2.arrcoordinates.longitude) + Number(in2.arrcoordinates.latitude) + Number(in2.aircraft.position);
+      });
+      var sortedFlightList = sort({
+          inputList: flightObj.flightList, 
+          objectProp: 'sumCoordinates', 
+          typeOfProp: 'number', 
+          conversionRequired: true, 
+          isAscending: true, 
+          isNewCopyOfArr: true
+      });
+
         // Adds line or arc based on the coordinates
         let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
+        Promise.resolve().then(() => {
         lineSeries.STATUS = "LINESERIES";
         // Add line series
-        flightObj.flightList.forEach(flight => {
+        sortedFlightList.forEach((flight , index) => {
           flight.aircraft.position = 0.95;
         let line = lineObj(am4core, flight, lineSeries, chartObj,am4maps);
 
         // adds tooltip for the flights
-        let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView) ;
+        let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView, index) ;
 
         // Adds click event on the tooltip, icon and line
         mapObjectEvents(bullet, line, lineSeries, flight, this.props.showSelectedFlightInMap, this.props.showFocusViewForSelectedFlight);
@@ -57,7 +76,11 @@ class OutboundPathFinder extends React.PureComponent {
       // Restore the state of the chart object to store
       this.props.initChart(chartObj);
 
+    }).then(() => {
+      // refocus map
+      goToHome(chartObj);
       freeUpMemory([chartObj, flightObj]);
+    });
     }
     }
   };

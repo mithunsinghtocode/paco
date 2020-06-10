@@ -7,8 +7,8 @@ import { renderChartLayout } from '../map/objects/renderChartLayOut';
 /** Filter Component */
 export class Filter extends React.PureComponent {
   renderBackButton(){
-    return (<button className="rectangle" onClick={this.props.goBackFunction}>
-      {/* <svg width="14px" height="14px">
+    return (<button className="rectangle" onClick={this.props.goBackFunction} style={{ width : '100px'}}>
+      <svg width="14px" height="14px" style={{ marginRight : '10px'}}>
               <title>FA330ECD-E438-49D6-AEB5-DD2670AE9D78</title>
               <desc>Created with sketchtool.</desc>
               <g id="Design" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -20,7 +20,13 @@ export class Filter extends React.PureComponent {
                       </g>
                   </g>
               </g>
-          </svg> */}
+          </svg>
+           BACK </button>
+          );
+  }
+
+  renderShowAllFlightsButton(){
+    return (<button className="rectangle" onClick={this.props.goBackFunction}>
            SHOW ALL FLIGHTS </button>
           );
   }
@@ -130,7 +136,7 @@ export class Filter extends React.PureComponent {
       <>
       {this.props.displayView === "INBOUND" &&
         <nav className="navbar navbar-light justify-content-between filter">
-        {this.props.fltToDisplayInMap !== null && this.renderBackButton()}
+        {this.props.fltToDisplayInMap !== null && this.renderShowAllFlightsButton()}
         <label> {this.props.fltToDisplayInMap !== null && this.getFormattedHeading(this.props.fltToDisplayInMap)} </label>
           
           {this.props.fltToDisplayInMap === null && this.getInBoundFilter()}
@@ -139,7 +145,7 @@ export class Filter extends React.PureComponent {
 
         {this.props.displayView === "OUTBOUND" &&
         <nav className="navbar navbar-light justify-content-between filter">
-        {/* {this.props.fltToDisplayInMap !== null && this.renderBackButton()} */}
+        {this.props.fltToDisplayInMap !== null && this.renderBackButton() }
         <label style={{ marginRight: "45%" }}> {this.props.fltToDisplayInMap !== null && this.getFormattedHeading(this.props.fltToDisplayInMap)} </label>
         {this.props.fltToDisplayInMap === null && this.getOutBoundFilter()}
         </nav> }
