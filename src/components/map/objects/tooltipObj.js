@@ -20,16 +20,16 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   bullet.fill = am4core.color(flight.config.tooltipcolor);
   //bullet.height = "35px";
   flight.status.misconnection ? 
-  flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;height:20px;font-family:Proxima Nova;font-size: 14px;" onHover="cursor: pointer">
-      <b>${getFltNum(flight)}</b> ${getETA(flight)} ${displayLine()} <b>${getTotMisconnectedPax(flight, displayView)}</b>
-    </div>`) : bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;height:20px;font-family:Proxima Nova;font-size: 14px;">
-    <b>${getFltNum(flight)}</b> ${getDepTime(flight)} ${displayLine()} <b>${getTotMisconnectedPax(flight, displayView)}</b>
+  flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;height:22px;font-family:Proxima Nova Regular;font-size: 14px;" onHover="cursor: pointer">
+      <b style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${getETA(flight)} ${displayLine()} <b  style="font-family:Proxima Nova Bold">${getTotMisconnectedPax(flight, displayView)}</b>
+    </div>`) : bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;height:22px;font-family:Proxima Nova Regular;font-size: 14px;">
+    <b  style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${getDepTime(flight)} ${displayLine()} <b  style="font-family:Proxima Nova Bold">${getTotMisconnectedPax(flight, displayView)}</b>
     </p>`
       :
-      flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;height:20px;font-family:Proxima Nova;font-size: 14px;">
-      <b>${getFltNum(flight)}</b> ${getETA(flight)}
-    </p>`) : bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;height:20px;opacity:0.3;font-family:Proxima Nova;font-size: 14px;">
-    <b>${getFltNum(flight)}</b> ${getDepTime(flight)}
+      flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;height:22px;font-family:Proxima Nova Regular;font-size: 14px;">
+      <b  style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${getETA(flight)}
+    </p>`) : bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;height:22px;opacity:0.3;font-family:Proxima Nova Regular;font-size: 14px;">
+    <b  style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${getDepTime(flight)}
     </p>`
     ;
 
@@ -78,7 +78,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   //  } else{
   //    bullet.tooltip.dx = -80;
   //  } 
-  //if(getETA(flight) === "") bullet.tooltip.dx = 40;
+  if(getETA(flight) === "") bullet.tooltip.dx = 40;
   //flight.depcoordinates.longitude > 100 ? bullet.tooltip.dy = 45 : bullet.tooltip.dy = 35;
 
   bullet.tooltip.cursorOverStyle = am4core.MouseCursorStyle.pointer;  
@@ -91,8 +91,11 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   if(flight.depStn==='SIN' && !flight.status.misconnection) { 
     bullet.tooltip.opacity = 0.32;
   }
+  console.log( flight.flightId + " ::: " + index);
   if(index % 2 === 0) {bullet.tooltip.dx = -20;bullet.tooltip.pointerOrientation = 'right'};
-  if(index % 2 === 1) {bullet.tooltip.dx = 10;bullet.tooltip.pointerOrientation = 'left'};
+  if(index % 3 === 0) {bullet.tooltip.dy = 20;bullet.tooltip.pointerOrientation = 'top'};
+  if(index % 5 === 0) {bullet.tooltip.dy = -20;bullet.tooltip.pointerOrientation = 'bottom'};
+  if(index % 2 === 1) {bullet.tooltip.dx = 20;bullet.tooltip.pointerOrientation = 'left'};
 
   if(flight.tooltip != null && flight.tooltip === "OUTBOUND")
   {

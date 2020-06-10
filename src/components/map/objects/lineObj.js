@@ -19,9 +19,9 @@ export const lineObj = (am4core, flight,lineSeries, chartObj, am4maps) => {
        lineSeries.mapLines.template.shortestDistance = true;
        
   };  
-  lineSeries.mapLines.template.strokeWidth = 0.5;
-   lineSeries.mapLines.template.nonScalingStroke = true;
-   lineSeries.mapLines.nonScaling = true;
+  lineSeries.mapLines.template.line.strokeWidth = 1;
+   lineSeries.mapLines.template.line.nonScalingStroke = true;
+   //lineSeries.mapLines.nonScaling = true;
 
   // Dont enable this unless you need very high quelity lines draw and no worry on performance.
   //lineSeries.mapLines.template.pixelPerfect = true;

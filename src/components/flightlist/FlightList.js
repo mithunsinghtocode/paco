@@ -7,9 +7,10 @@ import { getTotalPaxCountBasedGroupByClassForFlight } from "../../utils/paxUtils
 import { sort } from "../../utils/sortUtils";
 
 var scrollHeight = 0;
-const MAX_HEIGHT = 86;
+let MAX_HEIGHT = 86;
 const MIN_HEIGHT = 50;
 const TRANSITION_MULTIPLIER=1.4;
+const SINGLE_RECORD = 12;
 let flightListVar;
 class FlightList extends React.Component {
 
@@ -24,8 +25,10 @@ class FlightList extends React.Component {
 
       getClassName = (flightObj) => flightObj.status.misconnection ? "rectangle-copy-2-1-misconnected" : "rectangle-copy-2-1-delay" ;
 
-      getDelayInMin = (flightObj) => {
-            let dif = (new Date(flightObj.eta).getTime() - ((flightObj.rta !== undefined && flightObj.rta !== null) ? new Date(flightObj.rta).getTime() : new Date(flightObj.sta).getTime())); 
+      getDelayInMin = (flightObj, isInbound) => {
+            let dif = isInbound ? 
+              (new Date(flightObj.eta).getTime() - ((flightObj.rta !== undefined && flightObj.rta !== null) ? new Date(flightObj.rta).getTime() : new Date(flightObj.sta).getTime()))
+            : (new Date(flightObj.etd).getTime() - ((flightObj.rtd !== undefined && flightObj.rtd !== null) ? new Date(flightObj.rtd).getTime() : new Date(flightObj.std).getTime()));
             //console.log(dif);
             if(dif !== NaN && dif >= 0){
                 return  `${Math.round((dif/1000)/60)}`; 
@@ -96,8 +99,23 @@ class FlightList extends React.Component {
                         <div className={ this.getClassName(flightObj) }>
                              <div className="flight-num" style={{ display: "inline-block" }}>{this.getFormattedFltNum(flightObj.fltNum)}</div>  <div className="cabin-class" style={{ display: "inline-block" }}>{this.getPaxDetailsFormat(flightObj)}</div>
                          </div>
+
                          <div className="rectangle-copy-2-2">
-                         <p className="flight-details" style={{ display: "inline-block" }}> <b style={{ marginRight: "5px" }}>STA</b> {getHoursAndMinutesAfterFormat(flightObj.sta)} <b style={{ display: "inline-block", marginLeft: "1px" }} className="line"></b> <b style={{ marginLeft: "10px", marginRight: "5px"}}>ETA</b> {getHoursAndMinutesAfterFormat(flightObj.eta)} </p>  <p className="flight-delay" style={{ display: "inline-block" }}> { this.getDelayInMin(flightObj) + " min"} </p>
+                         <p className="flight-details" style={{ display: "inline-block" }}> 
+                             <b style={{ marginRight: "5px" }}>
+                                 {flightObj.arrStn === 'SIN' ? 'STA' : 'STD'}
+                                 </b> 
+                                 { flightObj.arrStn === 'SIN' ? getHoursAndMinutesAfterFormat(flightObj.sta) : getHoursAndMinutesAfterFormat(flightObj.std)} 
+                                 <b style={{ display: "inline-block", marginLeft: "5px" }} className="line">
+                                 </b> 
+                                 <b style={{ marginLeft: "10px", marginRight: "5px"}}>
+                                     {flightObj.arrStn === 'SIN' ? 'ETA' : 'ETD' } 
+                                 </b> 
+                                 { flightObj.arrStn === 'SIN' ? getHoursAndMinutesAfterFormat(flightObj.eta) : getHoursAndMinutesAfterFormat(flightObj.etd)} 
+                         </p>  
+                         <p className="flight-delay" style={{ display: "inline-block" }}> 
+                             { this.getDelayInMin(flightObj, flightObj.arrStn === 'SIN' ? true : false) + " min"} 
+                         </p>
                          </div>
                      </div>
                  </div>
@@ -106,7 +124,7 @@ class FlightList extends React.Component {
         });
     };
     setHeight = (flightList) => {
-       return flightList && ((flightList.length*14 < 50) ? flightList.length*14 +"%" : "50%");   
+       return flightList && ((flightList.length*SINGLE_RECORD < 50) ? flightList.length*SINGLE_RECORD +"%" : "50%");   
     };
 
     shrink = () => {
@@ -125,7 +143,9 @@ class FlightList extends React.Component {
     };
 
     adjustHeight = async (e) => {
-        if(flightListVar && flightListVar.length*14 < 50) return document.getElementById("legend").style.height= flightListVar.length*14 +"% !important";
+        if(flightListVar && flightListVar.length*SINGLE_RECORD < 50) return document.getElementById("legend").style.height= flightListVar.length*SINGLE_RECORD +"% !important";
+        MAX_HEIGHT = MAX_HEIGHT > flightListVar.length*SINGLE_RECORD ? flightListVar.length*SINGLE_RECORD : MAX_HEIGHT;
+        console.log(MAX_HEIGHT);
         let y = e.deltaY;
         var element = document.querySelector("#legend");
         var st = element.scrollTop;
