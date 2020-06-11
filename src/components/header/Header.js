@@ -9,7 +9,6 @@ import { fetchAppData } from "../../actions";
 
 class Header extends React.PureComponent {
   addZero = hour => {
-    console.log(hour)
     if (hour < 10) {
       hour = "0" + hour;
     }
