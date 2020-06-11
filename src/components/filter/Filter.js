@@ -90,8 +90,7 @@ export class Filter extends React.PureComponent {
   }
 
   getFormattedHeading = (fltObj) => {
-    // return (<div style={{display:"inline-block", marginLeft:"878px"}}><div style={{display:"inline-block"}} className="fltNum"> {fltObj.fltNum} </div> <div style={{display:"inline-block"}} className="flt-header">({fltObj.depStn} - {fltObj.arrStn})</div></div>)
-    return (<div style={{display:"inline-block", marginRight:"700px"}}><div style={{display:"inline-block"}} className="fltNum"> {fltObj.fltNum} </div> <div style={{display:"inline-block"}} className="flt-header">({fltObj.depStn} - {fltObj.arrStn})</div></div>)
+    return (<div style={{display:"inline-block"}}><div style={{display:"inline-block"}} className="fltNum"> {fltObj.fltNum} </div> <div style={{display:"inline-block"}} className="flt-header">({fltObj.depStn} - {fltObj.arrStn})</div></div>)  
   };
 
   getInBoundFilter = () => {
