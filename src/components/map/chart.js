@@ -26,10 +26,10 @@ class MapChartLayer extends React.PureComponent {
     let chart = am4core.create("chartdiv", am4maps.MapChart);
 
     //chart.seriesContainer.draggable = false;
-    chart.panBehavior = 'move';
+    chart.panBehavior = 'rotateLong';
     chart.chartContainer.wheelable = false;
     chart.paddingLeft = '0px';
-    chart.paddingRight = '0px';
+    chart.paddingRight = '80px';
     chart.maxPanOut=0;
     // Get the App Data for the Banner from Store
     this.props.initChart(chart);
