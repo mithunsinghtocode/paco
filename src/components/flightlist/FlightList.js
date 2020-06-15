@@ -14,12 +14,32 @@ const SINGLE_RECORD = 12;
 let flightListVar;
 class FlightList extends React.Component {
 
-    getPaxDetailsFormat = (selectedFlight) => {
+    getPaxDetailsFormat0 = (selectedFlight) => {
         let paxObj = getTotalPaxCountBasedGroupByClassForFlight(selectedFlight, this.props.displayView);
         return this.frameCabinClass('F',paxObj.totFClass) + this.frameCabinClass('J',paxObj.totJClass) + this.frameCabinClass('S',paxObj.totSClass) + this.frameCabinClass('Y',paxObj.totYClass) ;
       }
+    getPaxDetailsFormat = (selectedFlight) => {
+        let paxObj = getTotalPaxCountBasedGroupByClassForFlight(selectedFlight, this.props.displayView);
+        // return this.frameCabinClass('F',paxObj.totFClass) + this.frameCabinClass('J',paxObj.totJClass) + this.frameCabinClass('S',paxObj.totSClass) + this.frameCabinClass('Y',paxObj.totYClass) ;
+        let resultComponent = [];
+        resultComponent.push(this.frameCabinClass2('F',paxObj.totFClass));
+        resultComponent.push(this.frameCabinClass2('J',paxObj.totFClass));
+        resultComponent.push(this.frameCabinClass2('S',paxObj.totFClass));
+        resultComponent.push(this.frameCabinClass2('Y',paxObj.totFClass));
+        return resultComponent;
+
+      }
+      frameCabinClass2 = (cabinClass, count) =>  {
+        let res = [];
+        let cabinClassFormatted = <b style={{fontFamily: "Proxima Nova Bold" }}>{cabinClass}</b>;
+        res.push('  ')
+        res.push(cabinClassFormatted);
+        res.push(count);
+        return res;
+      }
   
-      frameCabinClass = (cabinClass, count) =>  Number(count) > 0 ? ` ${cabinClass}${count}` : "";
+    //   frameCabinClass = (cabinClass, count) =>  Number(count) === 0 ? `  ${cabinClass}${count}` : `  ${cabinClass}${count}`;
+      frameCabinClass = (cabinClass, count) =>  `  ${cabinClass}${count}`;
 
       getFormattedFltNum = (fltNum) => `${fltNum.substr(0,2)} ${fltNum.substr(2,5)}`;
 
@@ -97,7 +117,8 @@ class FlightList extends React.Component {
                             marginTop: misconxCount===index ? '32px' : '0px'}}>
                      <div className= { index !== flightList.length-1 ? "rectangle-copy-2" : 'rectangle-copy-2-last-cell'} >
                         <div className={ this.getClassName(flightObj) }>
-                             <div className="flight-num" style={{ display: "inline-block" }}>{this.getFormattedFltNum(flightObj.fltNum)}</div>  <div className="cabin-class" style={{ display: "inline-block" }}>{this.getPaxDetailsFormat(flightObj)}</div>
+                             <div className="flight-num" style={{ display: "inline-block" }}>{this.getFormattedFltNum(flightObj.fltNum)}</div>  
+                             <div className="cabin-class" style={{ display: "inline-block" }}>{this.getPaxDetailsFormat(flightObj)}</div>
                          </div>
 
                          <div className="rectangle-copy-2-2">
@@ -145,7 +166,7 @@ class FlightList extends React.Component {
     adjustHeight = async (e) => {
         if(flightListVar && flightListVar.length*SINGLE_RECORD < 50) return document.getElementById("legend").style.height= flightListVar.length*SINGLE_RECORD +"% !important";
         MAX_HEIGHT = MAX_HEIGHT > flightListVar.length*SINGLE_RECORD ? flightListVar.length*SINGLE_RECORD : MAX_HEIGHT;
-        console.log(MAX_HEIGHT);
+        //console.log(MAX_HEIGHT);
         let y = e.deltaY;
         var element = document.querySelector("#legend");
         var st = element.scrollTop;
