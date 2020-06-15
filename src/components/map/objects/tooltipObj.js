@@ -93,7 +93,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   }
   if(index % 2 === 0) {bullet.tooltip.dx = -20;bullet.tooltip.pointerOrientation = 'right'};
   if(index % 3 === 0) {bullet.tooltip.dy = 20;bullet.tooltip.pointerOrientation = 'top'};
-  if(index % 5 === 0) {bullet.tooltip.dy = -40;bullet.tooltip.pointerOrientation = 'bottom'};
+  if(index % 5 === 0) {bullet.tooltip.dy = -45;bullet.tooltip.pointerOrientation = 'bottom'};
   if(index % 2 === 1) {bullet.tooltip.dx = 20;bullet.tooltip.pointerOrientation = 'left'};
 
   console.log(flight.flightId + " :: " + bullet.tooltip.pointerOrientation);
