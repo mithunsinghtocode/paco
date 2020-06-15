@@ -26,7 +26,7 @@ class MapChartLayer extends React.PureComponent {
     let chart = am4core.create("chartdiv", am4maps.MapChart);
 
     //chart.seriesContainer.draggable = false;
-    chart.panBehavior = 'none';
+    chart.panBehavior = 'move';
     chart.chartContainer.wheelable = false;
     chart.paddingLeft = '0px';
     chart.paddingRight = '0px';

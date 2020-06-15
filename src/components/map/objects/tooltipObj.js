@@ -21,16 +21,16 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   //bullet.height = "35px";
   flight.status.misconnection ? 
   flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;width:auto;height:22px;font-family:Proxima Nova Regular;font-size: 14px;" onHover="cursor: pointer">
-      <b style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${getETA(flight)} ${displayLine()} <b  style="font-family:Proxima Nova Bold">${getTotMisconnectedPax(flight, displayView)}</b>
+      <b style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${displayLine()} ${getETA(flight)} ${displayLine()} <b  style="font-family:Proxima Nova Bold">${getTotMisconnectedPax(flight, displayView)}</b>
     </div>`) : bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;width:auto;height:22px;font-family:Proxima Nova Regular;font-size: 14px;">
-    <b  style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${getDepTime(flight)} ${displayLine()} <b  style="font-family:Proxima Nova Bold">${getTotMisconnectedPax(flight, displayView)}</b>
+    <b  style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${displayLine()} ${getDepTime(flight)} ${displayLine()} <b  style="font-family:Proxima Nova Bold">${getTotMisconnectedPax(flight, displayView)}</b>
     </p>`
       :
-      flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;width:auto;color:#fff;height:22px;font-family:Proxima Nova Regular;font-size: 14px;">
-      <b  style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${getETA(flight)}
-    </p>`) : bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;width:auto;height:22px;opacity:0.3;font-family:Proxima Nova Regular;font-size: 14px;">
-    <b  style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${getDepTime(flight)}
-    </p>`
+      flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;width:auto;color:#fff;height:22px;font-family:Proxima Nova Regular;font-size: 14px;">
+      <b  style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${displayLine()} ${getETA(flight)}
+    </div>`) : bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;width:auto;height:22px;opacity:0.3;font-family:Proxima Nova Regular;font-size: 14px;">
+    <b  style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${displayLine()} ${getDepTime(flight)}
+    </div>`
     ;
 
   bullet.fillOpacity = 1;
@@ -106,13 +106,13 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   return bullet;
 };
 
-const getETA = (flight) => flight.eta !== null ? `${displayLine()} ETA ${getHoursAndMinutesAfterFormat(flight.eta)}` : "";
+const getETA = (flight) => flight.eta !== null ? ` ETA ${getHoursAndMinutesAfterFormat(flight.eta)}` : "";
 
-const getDepTime = (flight) => flight.etd !== null ? `${displayLine()} ETD ${getHoursAndMinutesAfterFormat(flight.etd)}` : `${displayLine()} STD ${getHoursAndMinutesAfterFormat(flight.std)}`;
+const getDepTime = (flight) => flight.etd !== null ? ` ETD ${getHoursAndMinutesAfterFormat(flight.etd)}` : ` STD ${getHoursAndMinutesAfterFormat(flight.std)}`;
 
 const getTotMisconnectedPax = (flight, displayView) =>  ` ${displayPaxIcon()} ${getTotalPaxCountForFlight(flight, displayView)}`;
 
-const displayPaxIcon = () => `<svg width="11px" height="14px" viewBox="0 0 11 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+const displayPaxIcon = () => `<svg width="11px" height="14px" style="margin-bottom: 5px" viewBox="0 0 11 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <title>59CA7DD7-DDB0-4CE7-B689-DD292906993D</title>
 <desc>Created with sketchtool.</desc>
 <g id="Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -131,6 +131,6 @@ const displayPaxIcon = () => `<svg width="11px" height="14px" viewBox="0 0 11 14
 </g>
 </svg>`;
 
-const displayLine = () => `<b style="margin-left: 1px;height:24px;margin-right: 4px;box-sizing: border-box; width: 2px; border: 1px solid rgba(255, 255, 255, 0.29); margin-top: 0px"></b>`;
+const displayLine = () => `<b style="margin-left: 4px;height:24px;margin-right: 8px;box-sizing: border-box; width: 1px; border: 1px solid rgba(255, 255, 255, 0.29); margin-top: 0px"></b>`;
 
 const getFltNum = (flight) => `${flight.fltNum.substr(0,2)} ${flight.fltNum.substr(2,5)}`; 
