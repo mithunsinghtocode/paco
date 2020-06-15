@@ -21,9 +21,9 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   //bullet.height = "35px";
   flight.status.misconnection ? 
   flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;width:auto;height:22px;font-family:Proxima Nova Regular;font-size: 14px;" onHover="cursor: pointer">
-      <b style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${displayLine()} ${getETA(flight)} ${displayLine()} <b  style="font-family:Proxima Nova Bold">${getTotMisconnectedPax(flight, displayView)}</b>
+      <b style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${displayLine()} ${getETA(flight)} ${displayLine()} <b  style="font-family:Proxima Nova Bold;margin-right:1px">${getTotMisconnectedPax(flight, displayView)}</b>
     </div>`) : bullet.tooltipHTML = `<p style="margin-bottom:0px;margin-top:0px;color:#fff;width:auto;height:22px;font-family:Proxima Nova Regular;font-size: 14px;">
-    <b  style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${displayLine()} ${getDepTime(flight)} ${displayLine()} <b  style="font-family:Proxima Nova Bold">${getTotMisconnectedPax(flight, displayView)}</b>
+    <b  style="font-family:Proxima Nova Bold">${getFltNum(flight)}</b> ${displayLine()} ${getDepTime(flight)} ${displayLine()} <b  style="font-family:Proxima Nova Bold;margin-right:1px">${getTotMisconnectedPax(flight, displayView)}</b>
     </p>`
       :
       flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;width:auto;color:#fff;height:22px;font-family:Proxima Nova Regular;font-size: 14px;">
