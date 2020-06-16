@@ -14,13 +14,8 @@ const SINGLE_RECORD = 12;
 let flightListVar;
 class FlightList extends React.Component {
 
-    getPaxDetailsFormat0 = (selectedFlight) => {
-        let paxObj = getTotalPaxCountBasedGroupByClassForFlight(selectedFlight, this.props.displayView);
-        return this.frameCabinClass('F',paxObj.totFClass) + this.frameCabinClass('J',paxObj.totJClass) + this.frameCabinClass('S',paxObj.totSClass) + this.frameCabinClass('Y',paxObj.totYClass) ;
-      }
     getPaxDetailsFormat = (selectedFlight) => {
-        let paxObj = getTotalPaxCountBasedGroupByClassForFlight(selectedFlight, this.props.displayView);
-        // return this.frameCabinClass('F',paxObj.totFClass) + this.frameCabinClass('J',paxObj.totJClass) + this.frameCabinClass('S',paxObj.totSClass) + this.frameCabinClass('Y',paxObj.totYClass) ;
+        let paxObj = getTotalPaxCountBasedGroupByClassForFlight(selectedFlight, this.props.displayView);    
         let resultComponent = [];
         resultComponent.push(this.frameCabinClass2('F',paxObj.totFClass));
         resultComponent.push(this.frameCabinClass2('J',paxObj.totFClass));
@@ -32,9 +27,12 @@ class FlightList extends React.Component {
       frameCabinClass2 = (cabinClass, count) =>  {
         let res = [];
         let cabinClassFormatted = <b style={{fontFamily: "Proxima Nova Bold" }}>{cabinClass}</b>;
+        let countFormatted = <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900" }}>{count}</b>;
+        
         res.push('  ')
         res.push(cabinClassFormatted);
-        res.push(count);
+        // res.push(count);
+        res.push(countFormatted);
         return res;
       }
   
@@ -126,13 +124,17 @@ class FlightList extends React.Component {
                              <b style={{ marginRight: "5px" }}>
                                  {flightObj.arrStn === 'SIN' ? 'STA' : 'STD'}
                                  </b> 
-                                 { flightObj.arrStn === 'SIN' ? getHoursAndMinutesAfterFormat(flightObj.sta) : getHoursAndMinutesAfterFormat(flightObj.std)} 
+                                 <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900" }}>
+                                    { flightObj.arrStn === 'SIN' ? getHoursAndMinutesAfterFormat(flightObj.sta) : getHoursAndMinutesAfterFormat(flightObj.std)} 
+                                 </b>                                                      
                                  <b style={{ display: "inline-block", marginLeft: "5px" }} className="line">
                                  </b> 
                                  <b style={{ marginLeft: "10px", marginRight: "5px"}}>
                                      {flightObj.arrStn === 'SIN' ? 'ETA' : 'ETD' } 
                                  </b> 
-                                 { flightObj.arrStn === 'SIN' ? getHoursAndMinutesAfterFormat(flightObj.eta) : getHoursAndMinutesAfterFormat(flightObj.etd)} 
+                                 <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900" }}>
+                                    { flightObj.arrStn === 'SIN' ? getHoursAndMinutesAfterFormat(flightObj.eta) : getHoursAndMinutesAfterFormat(flightObj.etd)} 
+                                 </b>
                          </p>  
                          <p className="flight-delay" style={{ display: "inline-block" }}> 
                              { this.getDelayInMin(flightObj, flightObj.arrStn === 'SIN' ? true : false) + " min"} 

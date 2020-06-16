@@ -98,14 +98,19 @@ export class Filter extends React.PureComponent {
         <div className="switch">
           <input type="checkbox" id="switch1" className="switch__input"  onClick={ this.filterInboundFlightBasedOnToggle } />
           <label htmlFor="switch1" className="switch__label">
-            Potential misconnection only
+            <div className="switch__label__text">
+                Potential misconnection only
+            </div>
           </label>
         </div>
-        &nbsp; <div className="vl"></div>
+        {/* &nbsp;  */}
+        <div className="vl"></div>
         <div className="switch">
           <input type="checkbox" id="switch2" className="switch__input" onClick={ this.filterInboundFlightBasedOnToggle }/>
           <label htmlFor="switch2" className="switch__label">
-            Arriving within next 3 hours
+            <div className="switch__label__text">
+                Arriving within next 3 hours
+            </div>            
           </label>
         </div>
       </div>
@@ -120,7 +125,8 @@ export class Filter extends React.PureComponent {
                 Hide Handled flight
               </label>
             </div>
-            &nbsp; <div className="vl"></div>
+            {/* &nbsp;  */}
+            <div className="vl"></div>
             <div className="switch">
               <input type="checkbox" id="switch2" className="switch__input" />
               <label htmlFor="switch2" className="switch__label">

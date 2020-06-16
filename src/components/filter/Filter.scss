@@ -25,6 +25,7 @@
         margin-right: auto;
         text-align: center;
         height: 47px;
+        margin-top: 0;
 
     }
 
@@ -64,11 +65,8 @@
 
     $bg-enabled-color: rgba(255,255,255,0.26);
     // $bg-enabled-color: rgba(0, 0, 0, .26);
-    
-    
+
     $lever-disabled-color: #F1F1F1;
-    // $lever-disabled-color: #696969;
-    
     $lever-enabled-color: hsl(120,100%,75%);
     //$lever-enabled-color: rgba(0, 220, 136, .8);
     // Switch
@@ -76,11 +74,12 @@
         float: left;
         display: inline-block;
         position: relative;
-        margin-top: 9px;
+        // margin-top: 13px;
+        margin-top: 2%;
         font-size: 18px;
         font-family: "Proxima Nova";
         line-height: 22px;
-        opacity: 0.6;
+        opacity: 1;
         height: 24px;
         &__input {
             position: absolute;
@@ -102,6 +101,10 @@
             font-family: "Proxima Nova Thin";
             font-size: 18px;
             font-weight: 100;
+            &__text{
+                opacity: 0.6;
+                font-size: 18px;
+            }
             &:before {
                 content: '';
                 position: absolute;
@@ -109,7 +112,8 @@
                 left: 0;
                 width: 36px;
                 height: 14px;
-                background-color: $bg-disabled-color;
+                background-color: $bg-disabled-color;                
+                opacity: 0.6;        
                 border-radius: 14px;
                 z-index: 1;
                 transition: background-color 0.28s cubic-bezier(.4, 0, .2, 1);
@@ -121,7 +125,7 @@
                 left: 0;
                 width: 20px;
                 height: 20px;
-                background-color: $lever-disabled-color;
+                background-color: $lever-disabled-color;                  
                 border-radius: 14px;
                 box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
                 z-index: 2;
@@ -133,10 +137,12 @@
         &__input:checked+&__label {
             &:before {
                 background-color: $bg-enabled-color;
+                opacity: 0.6;
             }
             &:after {
                 left: 16px;
                 background-color: $lever-enabled-color;  
+                opacity: 0.9;
 //                box-shadow: 0 0 1px 0 rgba(0,0,0,0.12), 0 1px 1px 0 rgba(0,0,0,0.24);
             }
         }
