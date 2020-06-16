@@ -53,12 +53,21 @@
 }
 
 .card-header {
-    background-color: #0284f7;
+    // background-color: #0284f7;
+    background-color: #0483F8;
     padding: .75rem 1.25rem;
     margin-bottom: 0;
     border-bottom: 1px solid rgba(0, 0, 0, .125);
     border-radius: 5px;
-    font-size: larger;
+    // font-size: larger;
+    
+
+    font-family: "Proxima Nova Bold";
+    font-size: 18px;
+    font-weight: 100;
+    letter-spacing: -0.23px;
+    line-height: 22px;
+
 }
 
 .card-body,
@@ -68,7 +77,8 @@
 }
 
 .row {
-    color: #ece6e6;
+    // color: #ece6e6;
+    color: #FFFFFF;
     font-size: 12px;
     margin-right: -15px;
     margin-left: -15px;
@@ -227,3 +237,48 @@
     padding-right: 10px !important;
     padding-left: 0px !important;
 }
+
+.dimmed{
+    opacity: 0.4;
+    font-size: 12px;
+    font-family: "Proxima Nova Semibold";
+    font-weight: 900;
+    letter-spacing: -0.15px;
+    line-height: 14px;
+}
+.divider-line{
+    // box-sizing: border-box;
+    // height: 2px;
+    width: 358px;
+    border: 1px solid rgba(255,255,255,0.29);
+    opacity: 0.45;
+  }
+
+
+  .selection-container{
+    left: 136px;
+    top: 538px;
+    width: 365px;
+    height: 43px;
+    .selection-rect{
+        border: 1px solid #f36;
+    -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
+        box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
+        position: absolute;
+        top: 2px;
+        bottom: 2px;
+        left: 2px;
+        right: 2px;
+        z-index: 4999;
+        
+        .selection-handle{
+            background: #fff;
+            width: 7px;
+            height: 7px;
+            position: absolute;
+            z-index: 5000;
+            -webkit-box-shadow: inset 0 0 0 1px #f36;
+            box-shadow: inset 0 0 0 1px #f36;
+        }
+    }
+  }

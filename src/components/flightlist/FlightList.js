@@ -17,28 +17,21 @@ class FlightList extends React.Component {
     getPaxDetailsFormat = (selectedFlight) => {
         let paxObj = getTotalPaxCountBasedGroupByClassForFlight(selectedFlight, this.props.displayView);    
         let resultComponent = [];
-        resultComponent.push(this.frameCabinClass2('F',paxObj.totFClass));
-        resultComponent.push(this.frameCabinClass2('J',paxObj.totFClass));
-        resultComponent.push(this.frameCabinClass2('S',paxObj.totFClass));
-        resultComponent.push(this.frameCabinClass2('Y',paxObj.totFClass));
+        resultComponent.push(this.frameCabinClass('F',paxObj.totFClass));
+        resultComponent.push(this.frameCabinClass('J',paxObj.totJClass));
+        resultComponent.push(this.frameCabinClass('S',paxObj.totSClass));
+        resultComponent.push(this.frameCabinClass('Y',paxObj.totYClass));
         return resultComponent;
-
       }
-      frameCabinClass2 = (cabinClass, count) =>  {
+      frameCabinClass = (cabinClass, count) =>  {    
         let res = [];
-        let cabinClassFormatted = <b style={{fontFamily: "Proxima Nova Bold" }}>{cabinClass}</b>;
-        let countFormatted = <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900" }}>{count}</b>;
-        
+        let cabinClassFormatted = <b style={{fontFamily: "Proxima Nova Semibold", fontWeight:"900" }}>{cabinClass}</b>;
+        let countFormatted = <b style={{fontFamily: "Proxima Nova Thin"}}>{count}</b>;        
         res.push('  ')
         res.push(cabinClassFormatted);
-        // res.push(count);
         res.push(countFormatted);
         return res;
       }
-  
-    //   frameCabinClass = (cabinClass, count) =>  Number(count) === 0 ? `  ${cabinClass}${count}` : `  ${cabinClass}${count}`;
-      frameCabinClass = (cabinClass, count) =>  `  ${cabinClass}${count}`;
-
       getFormattedFltNum = (fltNum) => `${fltNum.substr(0,2)} ${fltNum.substr(2,5)}`;
 
       getClassName = (flightObj) => flightObj.status.misconnection ? "rectangle-copy-2-1-misconnected" : "rectangle-copy-2-1-delay" ;

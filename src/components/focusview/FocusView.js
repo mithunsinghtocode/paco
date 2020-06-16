@@ -20,7 +20,7 @@ class FocusView extends React.PureComponent {
       : "-";
   };
 
-  getPaxDetailsFormat = selectedFlight => {
+  getPaxDetailsFormat0 = selectedFlight => {
     return (
       this.frameCabinClass("F", selectedFlight.paxCountVo.fclassCnt) +
       this.frameCabinClass("J", selectedFlight.paxCountVo.jclassCnt) +
@@ -28,10 +28,28 @@ class FocusView extends React.PureComponent {
       this.frameCabinClass("Y", selectedFlight.paxCountVo.yclassCnt)
     );
   };
+  getFormattedFltNum = (fltNum) => `${fltNum.substr(0,2)} ${fltNum.substr(2,5)}`;
 
-  frameCabinClass = (cabinClass, count) =>
+  frameCabinClass0 = (cabinClass, count) =>
     Number(count) > 0 ? ` ${cabinClass}${count}` : "";
 
+  getPaxDetailsFormat = (selectedFlight) => {
+      let resultComponent = [];
+      resultComponent.push(this.frameCabinClass('F', selectedFlight.paxCountVo.fclassCnt));
+      resultComponent.push(this.frameCabinClass('J', selectedFlight.paxCountVo.jclassCnt));
+      resultComponent.push(this.frameCabinClass('S', selectedFlight.paxCountVo.sclassCnt));
+      resultComponent.push(this.frameCabinClass('Y', selectedFlight.paxCountVo.yclassCnt));
+      return resultComponent;
+  }
+  frameCabinClass = (cabinClass, count) =>  {    
+      let res = [];
+      let cabinClassFormatted = <b style={{fontFamily: "Proxima Nova Semibold", fontWeight:"900" }}>{cabinClass}</b>;
+      let countFormatted = <b style={{fontFamily: "Proxima Nova Thin"}}>{count}</b>;        
+      res.push('  ')
+      res.push(cabinClassFormatted);
+      res.push(countFormatted);
+      return res;
+  }  
   renderSelectedFlightInFocusView = () => {
     //console.log("Into Focus View");
     let selectedFlight = this.props.selectedFlightObj;
@@ -41,20 +59,20 @@ class FocusView extends React.PureComponent {
       return (
         <div id="showHide">
           <div id="overlay">
-            <div className="card text-white mb-3">
-              <div className="card-header" style={{ background:  selectedFlight.status.misconnection ? '#E55541' : '#0284f7' }}>{selectedFlight.fltNum}</div>
+            <div className="card text-white mb-3">              
+              <div className="card-header" style={{ background: '#0483F8' }}>{this.getFormattedFltNum(selectedFlight.fltNum)}</div>                      
 
               <div className="card-body" style={{ marginLeft: "10px" }}>
-                <div className="row">
+                <div className="row dimmed">
                   <div className="col-2 col-md-3">STD</div>
                   <div className="col-1 col-md-3">GATE</div>
                   <div className="col-3 col-md-5">PAX</div>
                 </div>
                 <div className="row value">
-                  <div className="col-2 col-md-3">
+                  <div className="col-2 col-md-3"  style={{fontFamily: "Proxima Nova Thin"}}>
                     {getHoursAndMinutesAfterFormat(selectedFlight.std)}
                   </div>
-                  <div className="col-1 col-md-3">
+                  <div className="col-1 col-md-3"  style={{fontFamily: "Proxima Nova Thin"}}>
                     {this.getBayGateTerminalDetails(selectedFlight)}
                   </div>
                   <div className="col-3 col-md-5">
@@ -62,30 +80,60 @@ class FocusView extends React.PureComponent {
                   </div>
                 </div>
 
-                <div className="row arrival">
+                <div className="row arrival dimmed">
                   <div className="col-2 col-md-3">STA</div>
                   <div className="col-1 col-md-3">ETA</div>
                   <div className="col-3 col-md-5">AVAIL. FLIGHTS IN 3 HRS</div>
                 </div>
 
                 <div className="row value" style={{ fontSize: "20px" }}>
-                  <div className="col-2 col-md-3">
+                  <div className="col-2 col-md-3"  style={{fontFamily: "Proxima Nova Thin"}}>
                     {getHoursAndMinutesAfterFormat(selectedFlight.sta)}
                   </div>
-                  <div className="col-1 col-md-3">
+                  <div className="col-1 col-md-3"  style={{fontFamily: "Proxima Nova Thin"}}>
                     {getHoursAndMinutesAfterFormat(selectedFlight.eta)}
                   </div>
                   <div
                     className="col-3 col-md-5"
-                    style={{ fontSize: "14px", marginTop: "6px" }}
+                    style={{ fontSize: "14px", marginTop: "6px", fontFamily: "Proxima Nova Thin" }}
                   >
                     <i>Coming Soon</i>
                   </div>
                 </div>
 
+                {/* <hr className="divider-line" style={{ borderTop: "1px solid #9b9696" }} /> */}
                 <hr style={{ borderTop: "1px solid #9b9696" }} />
 
+                <div className="row option  dimmed">
+                  <div className="col">NOTES</div>
+                </div>
                 <div className="row option">
+
+                  <div className="selection-container" >
+                    <div className="selection-rect"></div>
+                      <div className="selection-handle1 selection-handle"></div>
+                      <div className="selection-handle2 selection-handle"></div>
+                      <div className="selection-handle3 selection-handle"></div>
+                      <div className="selection-handle4 selection-handle"></div>
+                    </div>
+                  
+                  
+                  <div className="col-12">
+                    <button
+                      type="button"
+                      className="btn btn-block cost"
+                      style={{ backgroundColor: "Transparent" }}
+                    >
+                      <br />
+                      <i>Coming Soon</i>
+                      <br />
+                      <br />
+                    </button>
+                  </div>
+                </div>
+                <hr style={{ borderTop: "1px solid #9b9696" }} />
+
+                <div className="row option  dimmed">
                   <div className="col">COST BASED DELAY OPTIONS</div>
                 </div>
                 <div className="row option">
@@ -103,7 +151,10 @@ class FocusView extends React.PureComponent {
                   </div>
                 </div>
                 <div className="row margin-high"></div>
-                {/* <div className="row option">
+
+                
+{/*  */}
+                <div className="row option">
                     <div className="col-6">
                       <button type="button" className="btn btn-block cost">
                         <bigfont className="big-font"> 0 min </bigfont> 
@@ -124,13 +175,16 @@ class FocusView extends React.PureComponent {
                     <button type="button" className="btn btn-block details" style={{ width: "96%" }}>
                         <medfont className="med-font"> SHOW DETAILS </medfont> 
                   </button>
-                  </div> */}
+                  </div>
+
+{/*  */}
+
 
                 <hr
                   style={{ borderTop: "1px solid #9b9696", marginTop: "25px" }}
                 />
 
-                <div className="row arrival">
+                <div className="row arrival dimmed">
                   <div className="col">RETURN</div>
                   <div className="col">STD</div>
                   <div className="col">MGT</div>
