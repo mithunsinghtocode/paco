@@ -20,15 +20,15 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   bullet.fill = am4core.color(flight.config.tooltipcolor);
   //bullet.height = "35px";
   flight.status.misconnection ? 
-  flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;width:auto;height:22px;font-family:Proxima Nova Thin;font-size: 14px;margin-right:5px;" onHover="cursor: pointer">
+  flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;max-width:250px;height:22px;font-family:Proxima Nova Thin;font-size: 14px;margin-right:5px;" onHover="cursor: pointer">
       <b style="font-family:Proxima Nova Semibold">${getFltNum(flight)}</b> ${displayLine()} ${getETA(flight)} ${displayLine()} <b  style="font-family:Proxima Nova Semibold;margin-right:2px">${getTotMisconnectedPax(flight, displayView)}</b>
-    </div>`) : bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;width:auto;height:22px;font-family:Proxima Nova Thin;font-size: 14px;">
+    </div>`) : bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;max-width:250px;height:22px;font-family:Proxima Nova Thin;font-size: 14px;">
     <b  style="font-family:Proxima Nova Semibold">${getFltNum(flight)}</b> ${displayLine()} ${getDepTime(flight)} ${displayLine()} <b  style="font-family:Proxima Nova Semibold;margin-right:2px">${getTotMisconnectedPax(flight, displayView)}</b>
     </div>`
       :
-      flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;width:auto;color:#fff;height:22px;font-family:Proxima Nova Thin;font-size: 14px;">
+      flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;max-width:250px;color:#fff;height:22px;font-family:Proxima Nova Thin;font-size: 14px;">
       <b  style="font-family:Proxima Nova Semibold">${getFltNum(flight)}</b> ${displayLine()} <div style="display:inline;margin-right:5px;">${getETA(flight)}</div>
-    </div>`) : bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;width:auto;height:22px;opacity:0.3;font-family:Proxima Nova Thin;font-size: 14px;">
+    </div>`) : bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;max-width:250px;height:22px;opacity:0.3;font-family:Proxima Nova Thin;font-size: 14px;">
     <b  style="font-family:Proxima Nova Semibold">${getFltNum(flight)}</b> ${displayLine()} ${getDepTime(flight)}
     </div>`
     ;
