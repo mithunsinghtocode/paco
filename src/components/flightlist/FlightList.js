@@ -25,8 +25,8 @@ class FlightList extends React.Component {
       }
       frameCabinClass = (cabinClass, count) =>  {    
         let res = [];
-        let cabinClassFormatted = <b style={{fontFamily: "Proxima Nova Semibold", fontWeight:"900" }}>{cabinClass}</b>;
-        let countFormatted = <b style={{fontFamily: "Proxima Nova Thin"}}>{count}</b>;        
+        let cabinClassFormatted = <b style={{fontFamily: "Proxima Nova Semibold", fontWeight:"700" }}>{cabinClass}</b>;
+        let countFormatted = <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900"}}>{count}</b>;        
         res.push('  ')
         res.push(cabinClassFormatted);
         res.push(countFormatted);

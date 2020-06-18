@@ -41,7 +41,7 @@
 }
 
 .large.arrow.alternate.circle.down.outline.icon {
-    color: azure;
+    color: azure;    
 }
 
 .card.text-white.mb-3 {
@@ -85,7 +85,8 @@
 }
 
 .row.value {
-    font-size: 20px;
+    // font-size: 20px;
+    font-size: 21px;
 }
 
 .row.arrival {
@@ -255,30 +256,90 @@
   }
 
 
-  .selection-container{
-    left: 136px;
-    top: 538px;
-    width: 365px;
-    height: 43px;
-    .selection-rect{
-        border: 1px solid #f36;
-    -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
-        box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
-        position: absolute;
-        top: 2px;
-        bottom: 2px;
-        left: 2px;
-        right: 2px;
-        z-index: 4999;
-        
-        .selection-handle{
-            background: #fff;
-            width: 7px;
-            height: 7px;
+  // Variables
+  $bg-disabled-color: rgba(255,255,255,0.26);
+  //$bg-disabled-color: rgba(0, 0, 0, .26);
+
+  $bg-enabled-color: rgba(255,255,255,0.26);
+  // $bg-enabled-color: rgba(0, 0, 0, .26);
+
+  $lever-disabled-color: #F1F1F1;
+  $lever-enabled-color: hsl(120,100%,75%);
+    // Switch
+    .switch {
+        float: left;
+        display: inline-block;
+        position: relative;
+        // margin-top: 13px;
+        margin-top: 2%;
+        font-size: 21px;
+        font-family: "Proxima Nova";
+        line-height: 22px;
+        opacity: 1;
+        height: 24px;
+        &__input {
             position: absolute;
-            z-index: 5000;
-            -webkit-box-shadow: inset 0 0 0 1px #f36;
-            box-shadow: inset 0 0 0 1px #f36;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 20px;
+            opacity: 0;
+            z-index: 0;
+        }
+        // Unchecked
+        &__label {
+            display: block;
+            padding: 0 0 0 44px;
+            letter-spacing: 0.26px;
+            cursor: pointer;
+            height: 22px;
+            color: #FFFFFF;
+            font-family: "Proxima Nova Thin";
+            font-size: 21px;
+            font-weight: 100;
+            &__text{
+                opacity: 0.6;
+                font-size: 21px;
+            }
+            &:before {
+                content: '';
+                position: absolute;
+                top: 5px;
+                left: 0;
+                width: 36px;
+                height: 14px;
+                background-color: $bg-disabled-color;                
+                opacity: 0.6;        
+                border-radius: 14px;
+                z-index: 1;
+                transition: background-color 0.28s cubic-bezier(.4, 0, .2, 1);
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                top: 2px;
+                left: 0;
+                width: 20px;
+                height: 20px;
+                background-color: $lever-disabled-color;                  
+                border-radius: 14px;
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+                z-index: 2;
+                transition: all 0.28s cubic-bezier(.4, 0, .2, 1);
+                transition-property: left, background-color;
+            }
+        }
+        // Checked
+        &__input:checked+&__label {
+            &:before {
+                background-color: $bg-enabled-color;
+                opacity: 0.6;
+            }
+            &:after {
+                left: 16px;
+                background-color: $lever-enabled-color;  
+                opacity: 0.9;
+//                box-shadow: 0 0 1px 0 rgba(0,0,0,0.12), 0 1px 1px 0 rgba(0,0,0,0.24);
+            }
         }
     }
-  }

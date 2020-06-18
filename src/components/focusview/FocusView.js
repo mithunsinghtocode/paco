@@ -3,7 +3,8 @@ import "./focusView.scss";
 import { connect } from "react-redux";
 import {
   showFocusViewForSelectedFlight,
-  removeFocusViewForSelectedFlight
+  removeFocusViewForSelectedFlight,
+  getFlightDataForOutBound
 } from "../../actions/chartDataAction";
 import {
   getHoursAndMinutesAfterFormat
@@ -20,18 +21,7 @@ class FocusView extends React.PureComponent {
       : "-";
   };
 
-  getPaxDetailsFormat0 = selectedFlight => {
-    return (
-      this.frameCabinClass("F", selectedFlight.paxCountVo.fclassCnt) +
-      this.frameCabinClass("J", selectedFlight.paxCountVo.jclassCnt) +
-      this.frameCabinClass("S", selectedFlight.paxCountVo.sclassCnt) +
-      this.frameCabinClass("Y", selectedFlight.paxCountVo.yclassCnt)
-    );
-  };
   getFormattedFltNum = (fltNum) => `${fltNum.substr(0,2)} ${fltNum.substr(2,5)}`;
-
-  frameCabinClass0 = (cabinClass, count) =>
-    Number(count) > 0 ? ` ${cabinClass}${count}` : "";
 
   getPaxDetailsFormat = (selectedFlight) => {
       let resultComponent = [];
@@ -50,9 +40,75 @@ class FocusView extends React.PureComponent {
       res.push(countFormatted);
       return res;
   }  
+
+  
+// setHeight = (flightList) => {
+//   return flightList && ((flightList.length*SINGLE_RECORD < 50) ? flightList.length*SINGLE_RECORD +"%" : "50%");   
+// };
+
+shrink = () => {
+   let downArrow = document.getElementById("down-arrow-focusview");
+   downArrow.style.display = "none";
+  //  document.getElementById("legend").style.height= "76px";
+  //  document.getElementById("rectangle-container").style.height= "76px";
+   document.getElementById("showHide").style.height= "76px";
+   document.getElementById("up-arrow").style.display = "block";
+   document.querySelector("#legend").scrollTop = 0;
+};
+
+expand = () => {
+   let downArrow = document.getElementById("down-arrow-focusview");
+   downArrow.style.display = "block";
+  //  document.getElementById("legend").style.height = this.setHeight(flightListVar);
+  //  document.getElementById("legend").style.height = "75%";
+  // document.getElementById("rectangle-container").style.height = "75%";   
+  document.getElementById("showHide").style.height = "75%";   
+   document.getElementById("up-arrow").style.display = "none";
+};
+
+showAvailFlightsInThreeHour = () => {
+  let availFlightsInThreeHourToggle = document.getElementById("switch1").checked;
+
+  console.log("availFlightsInThreeHourToggle :: "+availFlightsInThreeHourToggle);
+
+  if(availFlightsInThreeHourToggle){
+    let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
+      if(flight.status === null){
+        return false;
+      }else{
+        Date.prototype.addHours = function(h) {
+          this.setHours(this.getHours()+h);
+          return this;
+        }
+        return (new Date(flight.std).getTime() < (new Date().addHours(-5)));
+      }
+      });
+      //clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries"]);
+      // clearChartComponents(this.props.chartObj, ["ALL"]);
+      // renderChartLayout(this.props.chartObj);
+      // this.props.getFlightDataForOutBound(flightList);
+  } else{
+    //clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries"]);
+    // clearChartComponents(this.props.chartObj, ["ALL"]);
+    // renderChartLayout(this.props.chartObj);
+
+    // this.props.getFlightDataForOutBound(flightData);
+  }
+
+  Date.prototype.addHours = function(h) {
+    this.setHours(this.getHours()+h);
+    return this;
+  }
+
+}
+
   renderSelectedFlightInFocusView = () => {
     //console.log("Into Focus View");
     let selectedFlight = this.props.selectedFlightObj;
+
+    // console.log('############ props type ->' + typeof(this.props));
+    // console.log('############ props  ->' + JSON.stringify(this.props) );
+    // console.log('############ props.flightData  ->' + JSON.stringify(this.props.flightData) );
     if (selectedFlight != null) {
       console.log(selectedFlight);
 
@@ -69,10 +125,10 @@ class FocusView extends React.PureComponent {
                   <div className="col-3 col-md-5">PAX</div>
                 </div>
                 <div className="row value">
-                  <div className="col-2 col-md-3"  style={{fontFamily: "Proxima Nova Thin"}}>
+                  <div className="col-2 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
                     {getHoursAndMinutesAfterFormat(selectedFlight.std)}
                   </div>
-                  <div className="col-1 col-md-3"  style={{fontFamily: "Proxima Nova Thin"}}>
+                  <div className="col-1 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
                     {this.getBayGateTerminalDetails(selectedFlight)}
                   </div>
                   <div className="col-3 col-md-5">
@@ -86,18 +142,26 @@ class FocusView extends React.PureComponent {
                   <div className="col-3 col-md-5">AVAIL. FLIGHTS IN 3 HRS</div>
                 </div>
 
-                <div className="row value" style={{ fontSize: "20px" }}>
-                  <div className="col-2 col-md-3"  style={{fontFamily: "Proxima Nova Thin"}}>
+                <div className="row value" style={{ fontSize: "21px" }}>
+                  <div className="col-2 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
                     {getHoursAndMinutesAfterFormat(selectedFlight.sta)}
                   </div>
-                  <div className="col-1 col-md-3"  style={{fontFamily: "Proxima Nova Thin"}}>
+                  <div className="col-1 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
                     {getHoursAndMinutesAfterFormat(selectedFlight.eta)}
                   </div>
                   <div
                     className="col-3 col-md-5"
-                    style={{ fontSize: "14px", marginTop: "6px", fontFamily: "Proxima Nova Thin" }}
+                    style={{ fontSize: "21px", marginTop: "6px", fontFamily: "Proxima Nova Regular" }}
                   >
-                    <i>Coming Soon</i>
+                    <div className="switch">                      
+                      <label htmlFor="switch1" className="switch__label">
+                        <div className="switch__label__text">
+                          4 Flights
+                        </div>                        
+                      </label>
+                      <input type="checkbox" id="switch1" className="switch__input"  onClick={ this.showAvailFlightsInThreeHour } />
+                    </div>
+
                   </div>
                 </div>
 
@@ -108,15 +172,6 @@ class FocusView extends React.PureComponent {
                   <div className="col">NOTES</div>
                 </div>
                 <div className="row option">
-
-                  <div className="selection-container" >
-                    <div className="selection-rect"></div>
-                      <div className="selection-handle1 selection-handle"></div>
-                      <div className="selection-handle2 selection-handle"></div>
-                      <div className="selection-handle3 selection-handle"></div>
-                      <div className="selection-handle4 selection-handle"></div>
-                    </div>
-                  
                   
                   <div className="col-12">
                     <button
@@ -249,8 +304,8 @@ class FocusView extends React.PureComponent {
                   ></cust>
                 </div>
               </div>
-
-              {/* <div className="card text-white mb-1" style={{width: "365px"}}>
+{/*  */}
+              <div className="card text-white mb-1" style={{width: "365px"}}>
               <div className="card-header inbound">
                 <div className="row med-level-down-font">
                   <div className="col">&nbsp;&nbsp;&nbsp;&nbsp;<b>LH 758</b></div>
@@ -271,16 +326,52 @@ class FocusView extends React.PureComponent {
                 <cust style={{ color:"#ece6e6",fontSize: "12px",marginTop:"15px"}}>VIP Foreign Minister Of India</cust>
           
               </div>
-          </div> */}
+          </div>
+{/*  */}          
             </div>
           </div>
-          <div className="overlay-arrow">
+          {/* <div className="overlay-arrow">
             <i
               className="big arrow alternate circle down outline icon"
               onClick={this.off}
               style={{ color: "#fff" }}
             ></i>
-          </div>
+          </div> */}
+
+          <div className="overlay-arrow">
+                    <button className="rectangle-down-arrow" id="down-arrow-focusview" style={{ color: "#fff" }} onClick={this.shrink}> 
+                    <svg width="14px" height="14px">
+                        <title>FA330ECD-E438-49D6-AEB5-DD2670AE9D78</title>
+                        <desc>Created with sketchtool.</desc>
+                        <g id="Design" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                            <g id="120-Selected-Critical-Flight" transform="translate(-43.000000, -91.000000)" fill="#FFFFFF" fillRule="nonzero">
+                                <g id="Button-/-Back" transform="translate(34.000000, 78.000000)">
+                                    <g id="Group-4">
+                                        <polygon id="Shape" transform="translate(16.000000, 20.000000) scale(-1, 1) translate(-16.000000, -20.000000) " points="16 13 14.76625 14.23375 19.64875 19.125 9 19.125 9 20.875 19.64875 20.875 14.76625 25.76625 16 27 23 20"></polygon>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                    </button>
+                    <button className="rectangle-up-arrow" id="up-arrow-focusview" style={{ color: "#fff",display:"none" }} onClick={this.expand}> 
+                    <svg width="14px" height="14px">
+                        <title>FA330ECD-E438-49D6-AEB5-DD2670AE9D78</title>
+                        <desc>Created with sketchtool.</desc>
+                        <g id="Design" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                            <g id="120-Selected-Critical-Flight" transform="translate(-43.000000, -91.000000)" fill="#FFFFFF" fillRule="nonzero">
+                                <g id="Button-/-Back" transform="translate(34.000000, 78.000000)">
+                                    <g id="Group-4">
+                                        <polygon id="Shape" transform="translate(16.000000, 20.000000) scale(-1, 1) translate(-16.000000, -20.000000) " points="16 13 14.76625 14.23375 19.64875 19.125 9 19.125 9 20.875 19.64875 20.875 14.76625 25.76625 16 27 23 20"></polygon>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                    </button>
+                    {/* <i className="big arrow alternate circle down outline icon" id="down-arrow" style={{ color: "#fff" }} onClick={this.shrink}></i>
+                    <i className="big arrow alternate circle up outline icon" id="up-arrow" style={{ color: "#fff",display:"none" }} onClick={this.expand}></i> */}
+                </div>
         </div>
       );
     } else {
@@ -298,7 +389,9 @@ const mapStateToProps = (state, ownProps) => {
   return { selectedFlightObj: state.selectedFlight };
 };
 
+
 export default connect(mapStateToProps, {
   showFocusViewForSelectedFlight,
-  removeFocusViewForSelectedFlight
+  removeFocusViewForSelectedFlight,
+  getFlightDataForOutBound
 })(FocusView);
