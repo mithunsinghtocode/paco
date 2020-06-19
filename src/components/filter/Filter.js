@@ -94,7 +94,7 @@ export class Filter extends React.PureComponent {
   };
 
   getInBoundFilter = () => {
-      return ( <div className="div-switch" style={{ marginRight: "35%" }}>
+      return ( <div className="div-switch" >
         <div className="switch">
           <input type="checkbox" id="switch1" className="switch__input"  onClick={ this.filterInboundFlightBasedOnToggle } />
           <label htmlFor="switch1" className="switch__label">
@@ -118,7 +118,7 @@ export class Filter extends React.PureComponent {
   };
 
   getOutBoundFilter = () => {
-     return ( <div className="div-switch" style={{ marginRight: "35%" }}>
+     return ( <div className="div-switch">
             <div className="switch">
               <input type="checkbox" id="switch1" className="switch__input" />
               <label htmlFor="switch1" className="switch__label">

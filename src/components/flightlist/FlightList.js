@@ -27,9 +27,9 @@ class FlightList extends React.Component {
         let res = [];
         let cabinClassFormatted = <b style={{fontFamily: "Proxima Nova Semibold", fontWeight:"700" }}>{cabinClass}</b>;
         let countFormatted = <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900"}}>{count}</b>;        
-        res.push('  ')
+        res.push('  ');
         res.push(cabinClassFormatted);
-        res.push(countFormatted);
+        res.push(countFormatted);    
         return res;
       }
       getFormattedFltNum = (fltNum) => `${fltNum.substr(0,2)} ${fltNum.substr(2,5)}`;
