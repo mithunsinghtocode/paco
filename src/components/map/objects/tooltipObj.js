@@ -15,6 +15,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   // Add a map object to line
   let bullet = line.lineObjects.create();
   bullet.nonScaling = true;
+  bullet.tooltip.getFillFromObject = false;
   let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, isTest);
   bullet.position =  flight.arrStn === 'SIN' ? checkAircraftPosition(aircraftPosition) : flight.aircraft.position;
   bullet.fill = am4core.color(flight.config.tooltipcolor);
@@ -33,6 +34,8 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
     </div>`
     ;
 
+    //box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
+
   bullet.fillOpacity = 1;
   bullet.tooltip.fillOpacity = 1;  
   bullet.tooltip.background.fillOpacity = 1;
@@ -40,7 +43,8 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   bullet.tooltip.fitPointerToBounds = true;
   bullet.tooltip.background.pointerLength = 0;
   bullet.tooltip.background.cornerRadius = 0;
-  //bullet.tooltip.background.stroke = am4core.color(flight.config.tooltipcolor);
+  bullet.tooltip.background.fill = am4core.color(flight.config.tooltipcolor);
+  //bullet.tooltip.background.boxShadow = '0 0 4px 0 rgba(0,0,0,0.5)';
   bullet.tooltip.background.strokeWidth = 0;
   bullet.alwaysShowTooltip = true;
   bullet.horizontalCenter = "middle";
@@ -72,6 +76,13 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   // commented as using different algorithm
   (flight.depStn==='SIN' && flight.status.misconnection) && bullet.tooltip.filters.push(dropShadow);
   bullet.tooltip.background.filters.clear();
+
+  var dropShadow1 = new am4core.DropShadowFilter();
+  dropShadow1.dx = 0;
+  dropShadow1.dy = 0;
+  dropShadow1.blur = 4;
+  dropShadow1.color = am4core.color("rgba(0, 0, 0, 0.5)");
+  (flight.depStn!=='SIN') && bullet.tooltip.filters.push(dropShadow1);
 
   //  if(getETA(flight) === "" || flight.depcoordinates.longitude > 100) {
   //    bullet.tooltip.dx = 100 ;

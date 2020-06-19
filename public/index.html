@@ -55,29 +55,35 @@
             rel: preload;
             src: url("%PUBLIC_URL%/fonts/ProximaNova-Regular.otf") format("opentype");
         }
+        
         @font-face {
             font-family: Proxima Nova Thin;
             src: url("%PUBLIC_URL%/fonts/proxima-nova-thin.otf") format("opentype");
         }
+        
         @font-face {
             font-family: Proxima Nova Semibold;
             src: url("%PUBLIC_URL%/fonts/proximanova-semibold.otf") format("opentype");
         }
-		
         
         @font-face {
             font-family: Sigvar;
             src: url("%PUBLIC_URL%/fonts/SigvarRegular.ttf") format("opentype");
         }
+        
         @font-face {
             font-family: Sigvar-Light;
             src: url("%PUBLIC_URL%/fonts/sigvar_serial-light.otf") format("opentype");
         }
-      
-	  	html,
+        
+        html,
         body {
             height: 100%;
             overflow: hidden;
+        }
+        
+        g[role=tooltip] {
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5) !important;
         }
     </style>
 </head>
