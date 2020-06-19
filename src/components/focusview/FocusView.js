@@ -72,17 +72,17 @@ showAvailFlightsInThreeHour = () => {
   console.log("availFlightsInThreeHourToggle :: "+availFlightsInThreeHourToggle);
 
   if(availFlightsInThreeHourToggle){
-    let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
-      if(flight.status === null){
-        return false;
-      }else{
-        Date.prototype.addHours = function(h) {
-          this.setHours(this.getHours()+h);
-          return this;
-        }
-        return (new Date(flight.std).getTime() < (new Date().addHours(-5)));
-      }
-      });
+    // let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
+    //   if(flight.status === null){
+    //     return false;
+    //   }else{
+    //     Date.prototype.addHours = function(h) {
+    //       this.setHours(this.getHours()+h);
+    //       return this;
+    //     }
+    //     return (new Date(flight.std).getTime() < (new Date().addHours(-5)));
+    //   }
+    //   });
       //clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries"]);
       // clearChartComponents(this.props.chartObj, ["ALL"]);
       // renderChartLayout(this.props.chartObj);

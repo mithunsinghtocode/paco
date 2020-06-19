@@ -258,13 +258,11 @@
 
   // Variables
   $bg-disabled-color: rgba(255,255,255,0.26);
-  //$bg-disabled-color: rgba(0, 0, 0, .26);
 
   $bg-enabled-color: rgba(255,255,255,0.26);
-  // $bg-enabled-color: rgba(0, 0, 0, .26);
 
   $lever-disabled-color: #F1F1F1;
-  $lever-enabled-color: hsl(120,100%,75%);
+  $lever-enabled-color: #00DC88;
     // Switch
     .switch {
         float: left;
@@ -308,7 +306,7 @@
                 left: 0;
                 width: 36px;
                 height: 14px;
-                background-color: $bg-disabled-color;                
+                background-color: $bg-disabled-color !important;          
                 opacity: 0.6;        
                 border-radius: 14px;
                 z-index: 1;
@@ -321,7 +319,7 @@
                 left: 0;
                 width: 20px;
                 height: 20px;
-                background-color: $lever-disabled-color;                  
+                background-color: $lever-disabled-color !important; 
                 border-radius: 14px;
                 box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
                 z-index: 2;
@@ -332,14 +330,13 @@
         // Checked
         &__input:checked+&__label {
             &:before {
-                background-color: $bg-enabled-color;
+                background-color: $bg-enabled-color !important;
                 opacity: 0.6;
             }
             &:after {
                 left: 16px;
-                background-color: $lever-enabled-color;  
+                background-color: $lever-enabled-color !important;
                 opacity: 0.9;
-//                box-shadow: 0 0 1px 0 rgba(0,0,0,0.12), 0 1px 1px 0 rgba(0,0,0,0.24);
             }
         }
     }
