@@ -90,7 +90,7 @@ export class Filter extends React.PureComponent {
   }
 
   getFormattedHeading = (fltObj) => {
-    return (<div style={{display:"inline-block"}}><div style={{display:"inline-block"}} className="fltNum"> {fltObj.fltNum} </div> <div style={{display:"inline-block"}} className="flt-header">({fltObj.depStn} - {fltObj.arrStn})</div></div>)  
+    return (<label style={{marginRight: "45%" }}> <div><div style={{display:"inline-block"}} className="fltNum"> {fltObj.fltNum} </div> <div style={{display:"inline-block"}} className="flt-header">({fltObj.depStn} - {fltObj.arrStn})</div></div></label>)  
   };
 
   getInBoundFilter = () => {
@@ -143,16 +143,14 @@ export class Filter extends React.PureComponent {
       {this.props.displayView === "INBOUND" &&
         <nav className="navbar navbar-light justify-content-between filter">
         {this.props.fltToDisplayInMap !== null && this.renderShowAllFlightsButton()}
-        <label> {this.props.fltToDisplayInMap !== null && this.getFormattedHeading(this.props.fltToDisplayInMap)} </label>
-          
-          {this.props.fltToDisplayInMap === null && this.getInBoundFilter()}
-          
+        {this.props.fltToDisplayInMap !== null && this.getFormattedHeading(this.props.fltToDisplayInMap)} 
+          {this.props.fltToDisplayInMap === null && this.getInBoundFilter()}          
         </nav> }
 
         {this.props.displayView === "OUTBOUND" &&
         <nav className="navbar navbar-light justify-content-between filter">
         {this.props.fltToDisplayInMap !== null && this.renderBackButton() }
-        <label style={{ marginRight: "45%" }}> {this.props.fltToDisplayInMap !== null && this.getFormattedHeading(this.props.fltToDisplayInMap)} </label>
+        {this.props.fltToDisplayInMap !== null && this.getFormattedHeading(this.props.fltToDisplayInMap)}
         {this.props.fltToDisplayInMap === null && this.getOutBoundFilter()}
         </nav> }
       </>

@@ -5,12 +5,12 @@
         // height: 70px;
         // box-shadow: 2px 2px 17px rgba(0, 0, 0, 0.5);
         //border: 1px solid black;
-        label{
-           margin-bottom: 0em;
-           align-content: center;
-       }
-	
+        label {
+            margin-bottom: 0em;
+            align-content: center;
+        }
     }
+    
     .navbar.display-button {
         background-color: #2E2E2E;
         color: white;
@@ -26,9 +26,8 @@
         text-align: center;
         height: 47px;
         margin-top: 0;
-
     }
-
+    
     .vl {
         display: inline;
         border: 1px solid #FFFFFF;
@@ -36,10 +35,10 @@
         margin-top: 5px;
         margin-right: 25px;
         margin-left: 25px;
-
         height: 37px;
         float: left;
-      }    
+    }
+    
     *,
     *:before,
     *:after {
@@ -60,14 +59,10 @@
     }
     
     // Variables
-    $bg-disabled-color: rgba(255,255,255,0.26);
-
-    $bg-enabled-color: rgba(255,255,255,0.26);
-
+    $bg-disabled-color: rgba(255, 255, 255, 0.26);
+    $bg-enabled-color: rgba(255, 255, 255, 0.26);
     $lever-disabled-color: #F1F1F1;
-
     $lever-enabled-color: #00DC88;
-
     // Switch
     .switch {
         float: left;
@@ -100,7 +95,7 @@
             font-family: "Proxima Nova Thin";
             font-size: 18px;
             font-weight: 100;
-            &__text{
+            &__text {
                 opacity: 0.6;
                 font-size: 18px;
             }
@@ -111,8 +106,8 @@
                 left: 0;
                 width: 36px;
                 height: 14px;
-                background-color: $bg-disabled-color !important;              
-                opacity: 0.6;        
+                background-color: $bg-disabled-color !important;
+                opacity: 0.6;
                 border-radius: 14px;
                 z-index: 1;
                 transition: background-color 0.28s cubic-bezier(.4, 0, .2, 1);
@@ -124,7 +119,7 @@
                 left: 0;
                 width: 20px;
                 height: 20px;
-                background-color: $lever-disabled-color !important;              
+                background-color: $lever-disabled-color !important;
                 border-radius: 14px;
                 box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
                 z-index: 2;
@@ -135,14 +130,14 @@
         // Checked
         &__input:checked+&__label {
             &:before {
-                background-color: $bg-enabled-color  !important;
+                background-color: $bg-enabled-color !important;
                 opacity: 0.6;
             }
             &:after {
                 left: 16px;
-                background-color: $lever-enabled-color !important;  
+                background-color: $lever-enabled-color !important;
                 opacity: 0.9;
-//                box-shadow: 0 0 1px 0 rgba(0,0,0,0.12), 0 1px 1px 0 rgba(0,0,0,0.24);
+                //                box-shadow: 0 0 1px 0 rgba(0,0,0,0.12), 0 1px 1px 0 rgba(0,0,0,0.24);
             }
         }
     }
@@ -167,7 +162,7 @@
         letter-spacing: 0.01px;
         line-height: 22px;
     }
-
+    
     .rectangle {
         box-sizing: border-box;
         height: 40px;
