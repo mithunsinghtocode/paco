@@ -9,6 +9,10 @@
             margin-bottom: 0em;
             align-content: center;
         }
+        box-shadow: 0 2px 17px 0 rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: 0 2px 17px 0 rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 0 2px 17px 0 rgba(0, 0, 0, 0.5);
+        //inset 0 -10px 5px -8px
     }
     
     .navbar.display-button {

@@ -1,5 +1,4 @@
-    .rotate,
-    .rotate1 {
+    .label-sidemenu {
         /* Safari */
         -webkit-transform: rotate(-90deg);
         /* Firefox */
@@ -8,43 +7,52 @@
         -ms-transform: rotate(-90deg);
         /* Opera */
         -o-transform: rotate(-90deg);
+        margin-top: 100px;
+        height: 17px;
+        color: #FFFFFF;
+        font-family: "Proxima Nova";
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: -0.18px;
+        line-height: 17px;
     }
     
     .ui.toggle.button.rotate {
         //right: -20%;
-        position: absolute;
-        height: 44px;
-        width: 740%;
-        top: 13%;
-        left: -330%;
+        //position: absolute;
+        height: 230px;
+        width: 50px;
+        //top: 13%;
+        //left: -330%;
         background-color: #2E2E2E;
         color: white;
-        text-align: center;
+        //text-align: center;
         align-content: center;
         //display: flex;
         // border-bottom: 5px solid #87C039;
-        border-left: 2px solid black;
-        padding: 14px 0px 10px 82px;
+        border-bottom: 2px solid black;
+        //padding: 14px 0px 10px 82px;
     }
     
     .ui.toggle.button.rotate1 {
         // right: -20%;
-        position: absolute;
-        height: 44px;
-        width: 740%;
-        top: 43%;
-        left: -330%;
+        //position: absolute;
+        height: 230px;
+        width: 50px;
+        //top: 43%;
+        //left: -330%;
         background-color: #2E2E2E;
         color: white;
-        text-align: center;
-        display: flex;
-        border-left: 2px solid black;
-        padding: 14px 0px 10px 82px;
+        //text-align: center;
+        //display: flex;
+        border-bottom: 2px solid black;
+        //padding: 14px 0px 10px 82px;
     }
     
     .overlay.sidemenu {
         //height: 84.5% !important;
         display: flex;
         flex-flow: column;
-        height: 90.5%;
+        height: 945px;
+        width: 51px;
     }

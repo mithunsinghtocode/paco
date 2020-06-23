@@ -16,37 +16,36 @@ class SideMenu extends React.Component {
     switch(inValue) {
       case "INBOUND":
           this.props.switchFlightsViewByInBoundOrOutbound("INBOUND");
-          outboundButton.style.borderBottom= "0px";
-          inboundButton.style.borderBottom = "5px solid #00DC88";
+          outboundButton.style.borderRight= "0px";
+          inboundButton.style.borderRight = "5px solid #00DC88";
           break;
       case "OUTBOUND":
         this.props.switchFlightsViewByInBoundOrOutbound("OUTBOUND");
-          inboundButton.style.borderBottom = "0px";
-          outboundButton.style.borderBottom = "5px solid #00DC88";
+          inboundButton.style.borderRight = "0px";
+          outboundButton.style.borderRight = "5px solid #00DC88";
           break;
       default:
         this.props.switchFlightsViewByInBoundOrOutbound("INBOUND");
-          inboundButton.style.borderBottom = "5px solid #00DC88";
+          inboundButton.style.borderRight = "5px solid #00DC88";
     }
   }
 
   toggleButton = e => {
-    this.selectButtonView(e.target.value);
+    this.selectButtonView(e);
   };
 
   render() {
     return (
-      
-      <div className="overlay sidemenu" style={{ height: "84.5% !important" }}>
-        <button className="ui toggle button rotate" onClick={e => this.toggleButton(e)} id="INBOUND" value="INBOUND" style={{ textAlign : "left", marginBottom : "100px" }}>
-          INBOUND 
+      <div className="overlay sidemenu" >
+        <button className="ui toggle button rotate" onClick={e => this.toggleButton("INBOUND")} id="INBOUND" value="INBOUND">
+          <div className="label-sidemenu">INBOUND</div>
         </button>
-        <button className="ui toggle button rotate1" onClick={e => this.toggleButton(e)} id="OUTBOUND" value="OUTBOUND"> 
-          OUTBOUND 
+        <button className="ui toggle button rotate1" onClick={e => this.toggleButton("OUTBOUND")} id="OUTBOUND" value="OUTBOUND"> 
+        <div className="label-sidemenu">OUTBOUND</div>
         </button>
       </div>
     );
-  }
+  };
 }
 
 const mapStateToProps = (state, ownprops) => {
