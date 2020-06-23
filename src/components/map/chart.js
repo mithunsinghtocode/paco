@@ -25,12 +25,23 @@ class MapChartLayer extends React.PureComponent {
     am4core.options.onlyShowOnViewport = true;
     let chart = am4core.create("chartdiv", am4maps.MapChart);
 
-    //chart.seriesContainer.draggable = false;
+    chart.seriesContainer.draggable = false;
     chart.panBehavior = 'rotateLong';
     chart.chartContainer.wheelable = false;
     chart.paddingLeft = '0px';
-    chart.paddingRight = '80px';
+    //chart.paddingRight = '80px';
     chart.maxPanOut=0;
+
+    // var slider = chart.chartContainer.createChild(am4core.Slider);
+    // slider.start = 0.5;
+    // slider.margin(0,0,20,0);
+    // slider.valign = "bottom";
+    // slider.align = "center";
+    // slider.width = 500;
+    // slider.events.on("rangechanged", ()=>{
+    //   chart.deltaLongitude = slider.start * 360 - 180;
+    // });
+
     // Get the App Data for the Banner from Store
     this.props.initChart(chart);
     

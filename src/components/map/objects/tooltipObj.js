@@ -4,21 +4,22 @@ import { getTotalPaxCountForFlight } from "../../../utils/paxUtils";
 // 5 minutes once
 const TIME_TO_CHECK_AIRCRAFT_POSITION = 300000;
 const isTest = true;
+const FOCUSSED_OUTBOUND_COLOR = "#0483F8";
 const checkAircraftPosition = (aircraftPosition) => {
   if(!isFinite(aircraftPosition)) return 1;
   if(aircraftPosition>1) return 1;
   return (aircraftPosition < 0 ? 0 : aircraftPosition);
 }
 
-export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index) => {
-  
+export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index, isFocusOutbound) => {
+
   // Add a map object to line
   let bullet = line.lineObjects.create();
   bullet.nonScaling = true;
   bullet.tooltip.getFillFromObject = false;
   let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, isTest);
   bullet.position =  flight.arrStn === 'SIN' ? checkAircraftPosition(aircraftPosition) : flight.aircraft.position;
-  bullet.fill = am4core.color(flight.config.tooltipcolor);
+  bullet.fill = am4core.color(isFocusOutbound ? FOCUSSED_OUTBOUND_COLOR : flight.config.tooltipcolor);
   //bullet.height = "35px";
   flight.status.misconnection ? 
   flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;max-width:250px;height:22px;font-family:Proxima Nova Thin;font-size: 14px;margin-right:5px;" onHover="cursor: pointer">
@@ -43,7 +44,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   bullet.tooltip.fitPointerToBounds = true;
   bullet.tooltip.background.pointerLength = 0;
   bullet.tooltip.background.cornerRadius = 0;
-  bullet.tooltip.background.fill = am4core.color(flight.config.tooltipcolor);
+  bullet.tooltip.background.fill = am4core.color(isFocusOutbound ? FOCUSSED_OUTBOUND_COLOR : flight.config.tooltipcolor);
   //bullet.tooltip.background.boxShadow = '0 0 4px 0 rgba(0,0,0,0.5)';
   bullet.tooltip.background.strokeWidth = 0;
   bullet.alwaysShowTooltip = true;
@@ -74,7 +75,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   dropShadow.clonedFrom = bullet;
   dropShadow.filterUnits='objectBoundingBox';
   // commented as using different algorithm
-  (flight.depStn==='SIN' && flight.status.misconnection) && bullet.tooltip.filters.push(dropShadow);
+  (!isFocusOutbound && flight.depStn==='SIN' && flight.status.misconnection) && bullet.tooltip.filters.push(dropShadow);
   bullet.tooltip.background.filters.clear();
 
   var dropShadow1 = new am4core.DropShadowFilter();

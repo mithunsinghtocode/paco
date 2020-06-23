@@ -12,18 +12,18 @@ export const setZoomAndGeoPointFocus = ( chartObj, north, east, south, west, zoo
           if(west>SIN_LONGITUDE) west = SIN_LONGITUDE;
           if(north<SIN_LATITUDE) north = SIN_LATITUDE;
           if(south>SIN_LATITUDE) south = SIN_LATITUDE;
-          //if(east >130) east -=50; 
+          //if(east <160) east = 95; 
 
           requestAnimationFrame( () => {
           chartObj.zoomToRectangle(
                     north + BUFFER_NORTH ,
-                    east + BUFFER_EAST,
+                    east,
                     south + BUFFER_SOUTH,
                     west + BUFFER_WEST,
                     zoomlevel,
                     center,
                     duration
-                  )
+                  );
           }
         );
 };

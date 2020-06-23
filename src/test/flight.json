@@ -2894,7 +2894,8 @@
                 "paxDetWrapperVo": null,
                 "status": {
                     "delayed": false,
-                    "misconnection": true
+                    "misconnection": true,
+                    "handled": false
                 },
                 "config": {
                     "linecolor": "#BFBFBF",
@@ -2916,7 +2917,228 @@
                     "yclassCnt": 55
                 },
                 "outboundFlt": null,
-                "inboundFlt": null,
+                "inboundFlt": [{
+                        "flightId": "SQ871202003151155HKGSIN1",
+                        "carrierCode": null,
+                        "fltNum": "SQ871",
+                        "fbpDate": "2020-03-15 11:55:00",
+                        "sectorNum": "1",
+                        "cancelledIndicator": "N",
+                        "owner": "SQ",
+                        "route": "HKGSIN",
+                        "serviceType": "J",
+                        "acReg": "9VSCC",
+                        "plannedAcType": "787",
+                        "actualAcType": "787",
+                        "depStn": "HKG",
+                        "arrStn": "SIN",
+                        "blkTime": "0400",
+                        "eet": "0317",
+                        "depBayGateNo": null,
+                        "depTerminal": null,
+                        "arrBayGateNo": "F58",
+                        "arrTerminal": "T2",
+                        "std": "2020-03-15 11:55:00",
+                        "stdLocal": "2020-03-15 19:55:00",
+                        "staLocal": "2020-03-15 23:55:00",
+                        "rtd": "2020-03-15 12:55:00",
+                        "etd": "2020-03-15 12:55:00",
+                        "atd": "2020-03-15 12:55:00",
+                        "ab": null,
+                        "sta": "2020-03-15 15:55:00",
+                        "rta": "2020-03-15 16:55:00",
+                        "eta": "2020-03-15 17:40:00",
+                        "lt": null,
+                        "ata": null,
+                        "updatedDatetime": "2020-04-28 12:45:22",
+                        "depcoordinates": {
+                            "latitude": "22.308901",
+                            "longitude": "113.915001",
+                            "title": "HONG KONG"
+                        },
+                        "arrcoordinates": {
+                            "latitude": "1.35019",
+                            "longitude": "103.994003",
+                            "title": "SINGAPORE"
+                        },
+                        "paxDetWrapperVo": null,
+                        "status": {
+                            "delayed": true,
+                            "misconnection": true
+                        },
+                        "config": {
+                            "linecolor": "#E55541",
+                            "airplanecolor": "#E55541",
+                            "tooltipcolor": "#E55541",
+                            "tooltipTextColor": "#FFFFFF",
+                            "bulletColor": "#E55541"
+                        },
+                        "paxDetails": null,
+                        "paxCountVo": {
+                            "infCnt": 0,
+                            "vipPaxCnt": 0,
+                            "medaPaxCnt": 0,
+                            "errorMessage": null,
+                            "paxUpdatedDateTime": "2020-05-18 02:10:24",
+                            "fclassCnt": 0,
+                            "jclassCnt": 2,
+                            "sclassCnt": 0,
+                            "yclassCnt": 16
+                        },
+                        "aircraft": {
+                            "position": 0.0,
+                            "required": true
+                        }
+                    },
+                    {
+                        "flightId": "SQ637202003160205NRTSIN1",
+                        "carrierCode": null,
+                        "fltNum": "SQ637",
+                        "fbpDate": "2020-03-16 02:05:00",
+                        "sectorNum": "1",
+                        "cancelledIndicator": "N",
+                        "owner": "SQ",
+                        "route": "NRTSIN",
+                        "serviceType": "J",
+                        "acReg": "9VSKY",
+                        "plannedAcType": "388R",
+                        "actualAcType": "388R",
+                        "depStn": "NRT",
+                        "arrStn": "SIN",
+                        "blkTime": "0740",
+                        "eet": "0700",
+                        "depBayGateNo": null,
+                        "depTerminal": null,
+                        "arrBayGateNo": "E8",
+                        "arrTerminal": "T2",
+                        "std": "2020-03-16 02:05:00",
+                        "stdLocal": "2020-03-16 11:05:00",
+                        "staLocal": "2020-03-16 17:45:00",
+                        "rtd": null,
+                        "etd": "2020-03-16 03:05:00",
+                        "atd": "2020-03-16 03:02:00",
+                        "ab": "2020-03-16 03:15:00",
+                        "sta": "2020-03-16 09:45:00",
+                        "rta": null,
+                        "eta": "2020-03-16 10:57:00",
+                        "lt": null,
+                        "ata": null,
+                        "updatedDatetime": "2020-04-28 08:45:00",
+                        "depcoordinates": {
+                            "latitude": "35.76470184",
+                            "longitude": "140.3860016",
+                            "title": "TOKYO"
+                        },
+                        "arrcoordinates": {
+                            "latitude": "1.35019",
+                            "longitude": "103.994003",
+                            "title": "SINGAPORE"
+                        },
+                        "paxDetWrapperVo": null,
+                        "status": {
+                            "delayed": true,
+                            "misconnection": false
+                        },
+                        "config": {
+                            "linecolor": "#BFBFBF",
+                            "airplanecolor": "#BFBFBF",
+                            "tooltipcolor": "#0483F8",
+                            "tooltipTextColor": "#FFFFFF",
+                            "bulletColor": "#FFFFFF"
+                        },
+                        "paxDetails": null,
+                        "paxCountVo": {
+                            "infCnt": 0,
+                            "vipPaxCnt": 0,
+                            "medaPaxCnt": 0,
+                            "errorMessage": null,
+                            "paxUpdatedDateTime": "2020-06-02 14:04:14",
+                            "fclassCnt": 4,
+                            "jclassCnt": 39,
+                            "sclassCnt": 24,
+                            "yclassCnt": 200
+                        },
+                        "outboundFlt": [],
+                        "inboundFlt": [],
+                        "aircraft": {
+                            "position": 0.0,
+                            "required": true
+                        }
+                    },
+                    {
+                        "flightId": "SQ983202003151300BKKSIN1",
+                        "carrierCode": null,
+                        "fltNum": "SQ983",
+                        "fbpDate": "2020-03-15 13:00:00",
+                        "sectorNum": "1",
+                        "cancelledIndicator": "N",
+                        "owner": "SQ",
+                        "route": "BKKSIN",
+                        "serviceType": "J",
+                        "acReg": "9VSCL",
+                        "plannedAcType": "787",
+                        "actualAcType": "787",
+                        "depStn": "BKK",
+                        "arrStn": "SIN",
+                        "blkTime": "0230",
+                        "eet": "0155",
+                        "depBayGateNo": null,
+                        "depTerminal": null,
+                        "arrBayGateNo": "A11",
+                        "arrTerminal": "T3",
+                        "std": "2020-03-15 13:00:00",
+                        "stdLocal": "2020-03-15 20:00:00",
+                        "staLocal": "2020-03-15 23:30:00",
+                        "rtd": "2020-03-15 14:15:00",
+                        "etd": "2020-03-15 14:15:00",
+                        "atd": "2020-03-15 14:15:00",
+                        "ab": null,
+                        "sta": "2020-03-15 15:30:00",
+                        "rta": "2020-03-15 16:45:00",
+                        "eta": "2020-03-15 17:15:00",
+                        "lt": null,
+                        "ata": null,
+                        "updatedDatetime": "2020-04-28 12:44:17",
+                        "depcoordinates": {
+                            "latitude": "13.68109989",
+                            "longitude": "100.7470016",
+                            "title": "BANGKOK"
+                        },
+                        "arrcoordinates": {
+                            "latitude": "1.35019",
+                            "longitude": "103.994003",
+                            "title": "SINGAPORE"
+                        },
+                        "paxDetWrapperVo": null,
+                        "status": {
+                            "delayed": true,
+                            "misconnection": true
+                        },
+                        "config": {
+                            "linecolor": "#E55541",
+                            "airplanecolor": "#E55541",
+                            "tooltipcolor": "#E55541",
+                            "tooltipTextColor": "#FFFFFF",
+                            "bulletColor": "#E55541"
+                        },
+                        "paxDetails": null,
+                        "paxCountVo": {
+                            "infCnt": 0,
+                            "vipPaxCnt": 0,
+                            "medaPaxCnt": 0,
+                            "errorMessage": null,
+                            "paxUpdatedDateTime": "2020-05-18 02:10:24",
+                            "fclassCnt": 0,
+                            "jclassCnt": 1,
+                            "sclassCnt": 0,
+                            "yclassCnt": 20
+                        },
+                        "aircraft": {
+                            "position": 0.0,
+                            "required": true
+                        }
+                    }
+                ],
                 "aircraft": {
                     "position": 0.0,
                     "required": false
@@ -2969,7 +3191,8 @@
                 "paxDetWrapperVo": null,
                 "status": {
                     "delayed": false,
-                    "misconnection": true
+                    "misconnection": true,
+                    "handled": true
                 },
                 "config": {
                     "linecolor": "#BFBFBF",
@@ -3044,7 +3267,8 @@
                 "paxDetWrapperVo": null,
                 "status": {
                     "delayed": false,
-                    "misconnection": true
+                    "misconnection": true,
+                    "handled": true
                 },
                 "config": {
                     "linecolor": "#BFBFBF",
@@ -3119,7 +3343,8 @@
                 "paxDetWrapperVo": null,
                 "status": {
                     "delayed": false,
-                    "misconnection": true
+                    "misconnection": true,
+                    "handled": true
                 },
                 "config": {
                     "linecolor": "#BFBFBF",
@@ -3194,7 +3419,8 @@
                 "paxDetWrapperVo": null,
                 "status": {
                     "delayed": false,
-                    "misconnection": true
+                    "misconnection": true,
+                    "handled": true
                 },
                 "config": {
                     "linecolor": "#BFBFBF",

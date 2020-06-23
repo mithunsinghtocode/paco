@@ -50,6 +50,14 @@ export const getTotalPaxCountBasedGroupByClassForFlight = (flight, displayView) 
                     });
                     break;
                case "OUTBOUND":
+                    flight.inboundFlt && flight.inboundFlt.forEach((inboundFlt) => {
+                         if(inboundFlt.status.misconnection){
+                              totFClass = sumPaxForClass(totFClass, inboundFlt.paxCountVo.fclassCnt);
+                              totJClass = sumPaxForClass(totJClass, inboundFlt.paxCountVo.jclassCnt);
+                              totSClass = sumPaxForClass(totSClass, inboundFlt.paxCountVo.sclassCnt);
+                              totYClass = sumPaxForClass(totYClass, inboundFlt.paxCountVo.yclassCnt);
+                         }
+                    });
                     break;
                default:
                     break;

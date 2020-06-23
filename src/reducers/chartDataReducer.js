@@ -24,7 +24,8 @@ export const outboundFlightDataReducer = (state = null, action) => {
       );
       let payload = [];
       payload.flightList = [...outboundFlightData];
-      payload.stationcoordinates = getStationCoordinatesFromTheFlightList(outboundFlightData);;
+      payload.stationcoordinates = getStationCoordinatesFromTheFlightList(outboundFlightData);
+      console.log(outboundFlightData)
       return payload;
     default:
       return state;

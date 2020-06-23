@@ -33,14 +33,4 @@ export const mapLayoutObj = (chartObj, am4core, am4maps, am4geodataWorldLow ) =>
 
     //chart.smallMap = new am4maps.SmallMap();
     //chart.smallMap.series.push(polygonSeries);
-
-    // var slider = chartObj.chartContainer.createChild(am4core.Slider);
-    // slider.start = 0.5;
-    // slider.margin(0,0,20,0);
-    // slider.valign = "bottom";
-    // slider.align = "center";
-    // slider.width = 500;
-    // slider.events.on("rangechanged", ()=>{
-    //     chartObj.deltaLongitude = slider.start * 360 - 180;
-    // });
 }

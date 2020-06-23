@@ -65,7 +65,7 @@ class OutboundPathFinder extends React.PureComponent {
         let line = lineObj(am4core, flight, lineSeries, chartObj,am4maps);
 
         // adds tooltip for the flights
-        let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView, index) ;
+        let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView, index, false) ;
 
         // Adds click event on the tooltip, icon and line
         mapObjectEvents(bullet, line, lineSeries, flight, this.props.showSelectedFlightInMap, this.props.showFocusViewForSelectedFlight);

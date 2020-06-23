@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import "./Filter.scss";
-import { getFilteredFlightDataForInbound } from '../../actions/chartDataAction';
+import { getFilteredFlightDataForInbound, getFilteredFlightDataForOutbound } from '../../actions/chartDataAction';
 import { clearChartComponents } from '../map/objects/clearChartObjects';
 import { renderChartLayout } from '../map/objects/renderChartLayOut';
 /** Filter Component */
@@ -30,63 +30,75 @@ export class Filter extends React.PureComponent {
            SHOW ALL FLIGHTS </button>
           );
   }
+
+  frameFlightsForMap = (flightList) => {
+    clearChartComponents(this.props.chartObj, ["ALL"]);
+    renderChartLayout(this.props.chartObj);
+    this.props.displayView === "INBOUND" && this.props.getFilteredFlightDataForInbound(flightList);
+    this.props.displayView === "OUTBOUND" && this.props.getFilteredFlightDataForOutbound(flightList);  
+  }
+
   filterInboundFlightBasedOnToggle = () => {
     let misconnectionToggle = document.getElementById("switch1").checked;
     let arrivWithin3HoursToggle = document.getElementById("switch2").checked;
-
-    //console.log("misconnectionToggle :: "+misconnectionToggle);
-    //console.log("arrivWithin3HoursToggle :: "+ arrivWithin3HoursToggle);
-
     if(misconnectionToggle && arrivWithin3HoursToggle){
       let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
-        if(flight.status === null){
-          return false;
-        }else{
-          // Singapore variance is +8 and arriving within 3 hours => -8+3 = -5
-          return (flight.status.misconnection === true && (new Date(flight.eta).getTime() < (new Date().addHours(-5))))
-        }
-        });
-        //clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries","MapArcSeries","MapArcSeries"]);
-        clearChartComponents(this.props.chartObj, ["ALL"]);
-        renderChartLayout(this.props.chartObj);
-        this.props.getFilteredFlightDataForInbound(flightList);
+          return flight.status && 
+            // Singapore variance is +8 and arriving within 3 hours => -8+3 = -5
+            (flight.status.misconnection === true && (new Date(flight.eta).getTime() < (new Date().addHours(-5))))
+          }
+        );
+        this.frameFlightsForMap(flightList);
     } else if (misconnectionToggle){
       let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
-        return flight.status && flight.status.misconnection === true;       
-        });
-        //clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries","MapArcSeries","MapArcSeries"]);
-        clearChartComponents(this.props.chartObj, ["ALL"]);
-        renderChartLayout(this.props.chartObj);
-        this.props.getFilteredFlightDataForInbound(flightList);
-
+          return flight.status && flight.status.misconnection === true;       
+      });
+        this.frameFlightsForMap(flightList);
     } else if (arrivWithin3HoursToggle){
       let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
-        if(flight.status === null){
-          return false;
-        }else{
-          Date.prototype.addHours = function(h) {
-            this.setHours(this.getHours()+h);
-            return this;
-          }
-          return (new Date(flight.eta).getTime() < (new Date().addHours(-5)));
-        }
-        });
-        //clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries"]);
-        clearChartComponents(this.props.chartObj, ["ALL"]);
-        renderChartLayout(this.props.chartObj);
-        this.props.getFilteredFlightDataForInbound(flightList);
+        return flight.status && (new Date(flight.eta).getTime() < (new Date().addHours(-5)));
+      });
+        this.frameFlightsForMap(flightList);
     } else{
-      //clearChartComponents(this.props.chartObj, ["MapLineSeries", "MapImageSeries"]);
-      clearChartComponents(this.props.chartObj, ["ALL"]);
-      renderChartLayout(this.props.chartObj);
-      this.props.getFilteredFlightDataForInbound(this.props.flightData);
+        this.frameFlightsForMap(this.props.flightData);
     }
-
+    // eslint-disable-next-line no-extend-native
     Date.prototype.addHours = function(h) {
       this.setHours(this.getHours()+h);
       return this;
     }
+  }
 
+
+  filterOutboundFlightBasedOnToggle = () => {
+    let hideHandledFlights = document.getElementById("switch1").checked;
+    let departWithin3HoursToggle = document.getElementById("switch2").checked;
+    if(hideHandledFlights && departWithin3HoursToggle){
+      let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
+          return flight.status && 
+            // Singapore variance is +8 and arriving within 3 hours => -8+3 = -5
+            (!flight.status.handled === true && (new Date(flight.etd).getTime() < (new Date().addHours(-5))))
+          }
+        );
+        this.frameFlightsForMap(flightList);
+    } else if (hideHandledFlights){
+      let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
+          return flight.status && !flight.status.handled === true;
+      });
+        this.frameFlightsForMap(flightList);
+    } else if (departWithin3HoursToggle){
+      let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
+        return flight.status && (new Date(flight.etd).getTime() < (new Date().addHours(-5)));
+      });
+        this.frameFlightsForMap(flightList);
+    } else{
+        this.frameFlightsForMap(this.props.flightData);
+    }
+    // eslint-disable-next-line no-extend-native
+    Date.prototype.addHours = function(h) {
+      this.setHours(this.getHours()+h);
+      return this;
+    }
   }
 
   getFormattedHeading = (fltObj) => {
@@ -120,17 +132,21 @@ export class Filter extends React.PureComponent {
   getOutBoundFilter = () => {
      return ( <div className="div-switch">
             <div className="switch">
-              <input type="checkbox" id="switch1" className="switch__input" />
+              <input type="checkbox" id="switch1" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>
               <label htmlFor="switch1" className="switch__label">
+              <div className="switch__label__text">
                 Hide Handled flight
+                </div>
               </label>
             </div>
             {/* &nbsp;  */}
             <div className="vl"></div>
             <div className="switch">
-              <input type="checkbox" id="switch2" className="switch__input" />
+              <input type="checkbox" id="switch2" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>
               <label htmlFor="switch2" className="switch__label">
+              <div className="switch__label__text">
                 Departure within next 3 hours
+                </div>
               </label>
             </div>
           </div>
@@ -163,4 +179,4 @@ const mapStateToProps = (state, ownprops) => {
   return { chartObj: state.chartInit, displayView: state.getDisplayView, goBackFunction : ownprops.goBackFunction, fltToDisplayInMap : state.getFltToShowInMap, flightData : state.allFlightData };
 };
 
-export default connect(mapStateToProps, { getFilteredFlightDataForInbound })(Filter);
+export default connect(mapStateToProps, { getFilteredFlightDataForInbound, getFilteredFlightDataForOutbound })(Filter);

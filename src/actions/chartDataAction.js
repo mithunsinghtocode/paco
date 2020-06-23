@@ -49,6 +49,10 @@ export const getFilteredFlightDataForInbound = flightData => dispatch => {
     dispatch({ type: 'GET_INBOUND_FLIGHT_DATA', payload: flightData});
 };
 
+export const getFilteredFlightDataForOutbound = flightData => dispatch => {
+    dispatch({ type: 'GET_OUTBOUND_FLIGHT_DATA', payload: flightData});
+};
+
 export const showFocusViewForSelectedFlight = selectedFlt => dispatch => {
     dispatch({ type: 'SHOW_FOCUS_VIEW_FOR_SELECTED_FLIGHT', payload: selectedFlt});
 }

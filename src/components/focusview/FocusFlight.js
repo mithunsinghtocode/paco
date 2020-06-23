@@ -65,7 +65,7 @@ class FocusFlight extends React.Component {
                 }
                 if(this.props.displayView === "OUTBOUND"){
                     selectedFlight.aircraft.position = 0.95;
-                    plotFlightObj(selectedFlight, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView, chartObj,am4maps);
+                    plotFlightObj(selectedFlight, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView, chartObj,am4maps, 0, true);
                     plotStationObj( am4core, chartObj, selectedFlight );
                      // sorting to serve overlap algorithm
                      selectedFlight.inboundFlt && selectedFlight.inboundFlt.forEach( (in2) => {
@@ -80,6 +80,7 @@ class FocusFlight extends React.Component {
                         isNewCopyOfArr: false
                     });
                     selectedFlight.inboundFlt && selectedFlight.inboundFlt.forEach(async (inboundFlt, index) => {
+                        if(inboundFlt.status.misconnection){
                         getStationCoordinatesFromTheFlightList([inboundFlt]).forEach(stationObj => {
                             stationCoordinates = [...stationCoordinates, stationObj];
                         });
@@ -87,6 +88,7 @@ class FocusFlight extends React.Component {
                         //console.log(inboundFlt);
                         inboundFlt.tooltip = "INBOUND";
                         plotFlightObj(inboundFlt, lineSeries, null , false, am4core, this.props.displayView, chartObj,am4maps, index);
+                    }
                     });
             }
                 plotStationObj( am4core, chartObj, stationCoordinates );
@@ -136,10 +138,10 @@ class FocusFlight extends React.Component {
                         west = selectedFlight.arrcoordinates.longitude <103 ? selectedFlight.arrcoordinates.longitude : selectedFlight.depcoordinates.longitude;
                         east = selectedFlight.arrcoordinates.longitude <103 ? selectedFlight.depcoordinates.longitude : selectedFlight.arrcoordinates.longitude;
                     }else{
-                        north = sortedLattitude[length-1].depcoordinates.latitude;
-                        south = sortedLattitude[0].depcoordinates.latitude;
+                        north = sortedLattitude[length-1].depcoordinates.latitude > selectedFlight.arrcoordinates.latitude ? sortedLattitude[length-1].depcoordinates.latitude : selectedFlight.arrcoordinates.latitude;
+                        south = sortedLattitude[0].depcoordinates.latitude < selectedFlight.arrcoordinates.latitude ? sortedLattitude[0].depcoordinates.latitude : selectedFlight.arrcoordinates.latitude;
                         west = sortedLongitude[0].depcoordinates.longitude <103 ? sortedLongitude[0].arrcoordinates.longitude : sortedLongitude[0].depcoordinates.longitude;
-                        east = sortedLongitude[length-1].depcoordinates.longitude <103 ? sortedLongitude[length-1].arrcoordinates.longitude :sortedLongitude[0].depcoordinates.longitude;
+                        east = sortedLongitude[length-1].depcoordinates.longitude < selectedFlight.arrcoordinates.longitude ? sortedLongitude[length-1].arrcoordinates.longitude : selectedFlight.arrcoordinates.longitude;
                     }
                 }
 
@@ -160,7 +162,7 @@ class FocusFlight extends React.Component {
                         Number(east),
                         Number(south),
                         Number(west),
-                        1,
+                        1.1,
                         true,
                         500
                     );
