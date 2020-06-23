@@ -1,7 +1,7 @@
     .navbar.navbar-light.justify-content-between.filter {
         background-color: #2E2E2E;
         color: white;
-        height: 63px;
+        height: 70px;
         // height: 70px;
         // box-shadow: 2px 2px 17px rgba(0, 0, 0, 0.5);
         //border: 1px solid black;
@@ -9,9 +9,9 @@
             margin-bottom: 0em;
             align-content: center;
         }
-        box-shadow: 0 2px 17px 0 rgba(0, 0, 0, 0.5);
-        -webkit-box-shadow: 0 2px 17px 0 rgba(0, 0, 0, 0.5);
-        -moz-box-shadow: 0 2px 17px 0 rgba(0, 0, 0, 0.5);
+        box-shadow: inset 0 -8px 17px -9px rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: inset 0 -8px 17px -9px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: inset 0 -8px 17px -9px rgba(0, 0, 0, 0.5);
         //inset 0 -10px 5px -8px
     }
     
