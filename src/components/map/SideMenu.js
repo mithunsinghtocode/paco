@@ -38,7 +38,7 @@ class SideMenu extends React.Component {
     return (
       <div className="overlay sidemenu" >
         <button className="ui toggle button rotate" onClick={e => this.toggleButton("INBOUND")} id="INBOUND" value="INBOUND">
-          <div className="label-sidemenu">INBOUND</div>
+          <div className="label-sidemenu" style={{marginTop: "50px"}}>INBOUND</div>
         </button>
         <button className="ui toggle button rotate1" onClick={e => this.toggleButton("OUTBOUND")} id="OUTBOUND" value="OUTBOUND"> 
         <div className="label-sidemenu">OUTBOUND</div>
