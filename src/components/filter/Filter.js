@@ -43,6 +43,11 @@ export class Filter extends React.PureComponent {
   }
 
   filterInboundFlightBasedOnToggle = () => {
+    
+    Date.prototype.addHours = function(h) {
+      this.setHours(this.getHours()+h);
+      return this;
+    }
     let misconnectionToggle = document.getElementById("switch1").checked;
     let arrivWithin3HoursToggle = document.getElementById("switch2").checked;
     misconnectionToggle ? switch1On = true : switch1On = false;
@@ -68,15 +73,14 @@ export class Filter extends React.PureComponent {
     } else{
         this.frameFlightsForMap(this.props.flightData);
     }
-    // eslint-disable-next-line no-extend-native
-    Date.prototype.addHours = function(h) {
-      this.setHours(this.getHours()+h);
-      return this;
-    }
   }
 
 
   filterOutboundFlightBasedOnToggle = () => {
+    Date.prototype.addHours = function(h) {
+      this.setHours(this.getHours()+h);
+      return this;
+    }
     let hideHandledFlights = document.getElementById("switch1").checked;
     let departWithin3HoursToggle = document.getElementById("switch2").checked;
 
@@ -86,7 +90,7 @@ export class Filter extends React.PureComponent {
       let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
           return flight.status && 
             // Singapore variance is +8 and arriving within 3 hours => -8+3 = -5
-            (!flight.status.handled === true && (new Date(flight.etd).getTime() < (new Date().addHours(-5))))
+            (!flight.status.handled === true && (new Date(flight.etd).addHours(3).getTime() > (new Date().getTime())))
           }
         );
         this.frameFlightsForMap(flightList);
@@ -97,16 +101,11 @@ export class Filter extends React.PureComponent {
         this.frameFlightsForMap(flightList);
     } else if (departWithin3HoursToggle){
       let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
-        return flight.status && (new Date(flight.etd).getTime() < (new Date().addHours(-5)));
+        return flight.status && (new Date(flight.etd).addHours(3).getTime() > (new Date().getTime()));
       });
         this.frameFlightsForMap(flightList);
     } else{
         this.frameFlightsForMap(this.props.flightData);
-    }
-    // eslint-disable-next-line no-extend-native
-    Date.prototype.addHours = function(h) {
-      this.setHours(this.getHours()+h);
-      return this;
     }
   }
 
@@ -138,10 +137,44 @@ export class Filter extends React.PureComponent {
       )
   };
 
+  isHandlePresent = () => {
+    return this.props.flightData.flightSchedule.flightList.some( (flight) => {
+      return flight.status && flight.status.handled;
+    })
+  }
+
+  isDepNxt3HrsPresent = () => {
+    Date.prototype.addHours = function(h) {
+      this.setHours(this.getHours()+h);
+      return this;
+    }
+    return this.props.flightData.flightSchedule.flightList.some( (flight) => {
+      return (new Date(flight.etd).addHours(3).getTime() > (new Date().getTime()));
+    });
+    //console.log(temp);
+  }
+
+  gethandleCheckBox = () => {
+    if(this.isHandlePresent()){
+      return <input type="checkbox" checked={switch1On} id="switch1" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>;
+    }else{
+      return <input type="checkbox" disabled checked={switch1On} id="switch1" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>;
+    }
+    
+  }
+
+  getDepNxt3HrsCheckBox = () => {
+    if(this.isDepNxt3HrsPresent()){
+      return <input type="checkbox" checked={switch2On} id="switch2" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>
+    }else{
+      return <input type="checkbox" disabled checked={switch2On} id="switch2" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>
+    }
+  }
+
   getOutBoundFilter = () => {
      return ( <div className="div-switch">
             <div className="switch">
-              <input type="checkbox" checked={switch1On} id="switch1" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>
+              {this.gethandleCheckBox()}
               <label htmlFor="switch1" className="switch__label">
               <div className="switch__label__text">
                 Hide Handled flight
@@ -150,8 +183,8 @@ export class Filter extends React.PureComponent {
             </div>
             {/* &nbsp;  */}
             <div className="vl"></div>
-            <div className="switch">
-              <input type="checkbox" checked={switch2On} id="switch2" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>
+            <div className="switch">              
+              {this.getDepNxt3HrsCheckBox()}
               <label htmlFor="switch2" className="switch__label">
               <div className="switch__label__text">
                 Departure within next 3 hours

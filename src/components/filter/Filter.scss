@@ -144,6 +144,19 @@
                 //                box-shadow: 0 0 1px 0 rgba(0,0,0,0.12), 0 1px 1px 0 rgba(0,0,0,0.24);
             }
         }
+        &__input:disabled+&__label {
+            &:before {
+                background-color: $bg-disabled-color !important;
+                opacity: 0.2;
+                cursor: not-allowed;
+            }
+            &:after {
+                //left: 16px;
+                background-color: $bg-disabled-color !important;
+                opacity: 0.9;
+                cursor: not-allowed;
+            }
+        }
     }
     
     .flt-header {
