@@ -102,7 +102,10 @@ class FlightList extends React.Component {
                 isNewCopyOfArr: false
             });
         }
-        document.getElementById("legend").style.height= this.setHeight(flightList);
+        var legendDiv = document.getElementById("legend");
+        if(legendDiv !== null){
+            document.getElementById("legend").style.height= this.setHeight(flightList);
+        }
         return flightList.map((flightObj, index) => {
             return(
                 flightObj && <div className="rectangle-container"><div key={ flightObj.flightId } value={ flightObj.flightId } 
