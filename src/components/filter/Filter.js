@@ -41,6 +41,7 @@ export class Filter extends React.PureComponent {
     {/* return (<button className="rectangle" onClick={this.props.goBackFunction}> */}
            LOCK DECISION</button>
           );
+  }
   frameFlightsForMap = (flightList) => {
     clearChartComponents(this.props.chartObj, ["ALL"]);
     renderChartLayout(this.props.chartObj);
