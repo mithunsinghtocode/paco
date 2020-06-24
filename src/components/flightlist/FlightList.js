@@ -8,9 +8,9 @@ import { sort } from "../../utils/sortUtils";
 
 var scrollHeight = 0;
 let MAX_HEIGHT = 86;
-const MIN_HEIGHT = 50;
+let MIN_HEIGHT = 50;
 const TRANSITION_MULTIPLIER=1.4;
-const SINGLE_RECORD = 12;
+const SINGLE_RECORD = 16;
 let flightListVar;
 class FlightList extends React.Component {
 
@@ -98,7 +98,7 @@ class FlightList extends React.Component {
                 isNewCopyOfArr: false
             });
         }
-        this.setHeight(flightList);
+        document.getElementById("legend").style.height= this.setHeight(flightList);
         return flightList.map((flightObj, index) => {
             return(
                 flightObj && <div className="rectangle-container"><div key={ flightObj.flightId } value={ flightObj.flightId } 
@@ -159,8 +159,9 @@ class FlightList extends React.Component {
     };
 
     adjustHeight = async (e) => {
-        if(flightListVar && flightListVar.length*SINGLE_RECORD < 50) return document.getElementById("legend").style.height= flightListVar.length*SINGLE_RECORD +"% !important";
+        if(flightListVar && flightListVar.length*SINGLE_RECORD < 50) document.getElementById("legend").style.height= flightListVar.length*SINGLE_RECORD +"% !important";
         MAX_HEIGHT = MAX_HEIGHT > flightListVar.length*SINGLE_RECORD ? flightListVar.length*SINGLE_RECORD : MAX_HEIGHT;
+        MIN_HEIGHT = MIN_HEIGHT > flightListVar.length*SINGLE_RECORD ? flightListVar.length*SINGLE_RECORD : MIN_HEIGHT;
         //console.log(MAX_HEIGHT);
         let y = e.deltaY;
         var element = document.querySelector("#legend");
@@ -186,7 +187,7 @@ class FlightList extends React.Component {
                     this.setScrollStyle('auto', MIN_HEIGHT +'%');
                 }
             }
-        }       
+        }
     };
     setScrollStyle = (overflowVal, heightVal) => {
         document.getElementById("legend").style.overflow = overflowVal;
@@ -195,7 +196,7 @@ class FlightList extends React.Component {
     render(){
         return (
             <div>
-            <div className="legend" id="legend" onWheel={this.adjustHeight} onScroll={this.adjustHeight}>
+            <div className="legend" id="legend"  onWheel={this.adjustHeight} onScroll={this.adjustHeight}>
                 {this.props.displayView === "INBOUND" &&  (this.props.fltToDisplayInMap !== null ? this.renderFlightList(this.props.inboundFlights.flightList, this.props.fltToDisplayInMap) : this.props.inboundFlights && this.renderFlightList(this.props.inboundFlights.flightList)) }
                 {this.props.displayView === "OUTBOUND" &&  (this.props.fltToDisplayInMap !== null ? this.renderFlightList(this.props.outboundFlights.flightList,this.props.fltToDisplayInMap) : this.props.outboundFlights && this.renderFlightList(this.props.outboundFlights.flightList))}
             </div>

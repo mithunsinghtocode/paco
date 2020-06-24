@@ -7,6 +7,8 @@ import { renderChartLayout } from '../map/objects/renderChartLayOut';
 
 let switch1On = false;
 let switch2On = false;
+let switch3On = false;
+let switch4On = false;
 
 /** Filter Component */
 export class Filter extends React.PureComponent {
@@ -84,8 +86,8 @@ export class Filter extends React.PureComponent {
     let hideHandledFlights = document.getElementById("switch1").checked;
     let departWithin3HoursToggle = document.getElementById("switch2").checked;
 
-    hideHandledFlights ? switch1On = true : switch1On = false;
-    departWithin3HoursToggle ? switch2On = true : switch2On = false;
+    hideHandledFlights ? switch3On = true : switch3On = false;
+    departWithin3HoursToggle ? switch4On = true : switch4On = false;
     if(hideHandledFlights && departWithin3HoursToggle){
       let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
           return flight.status && 
@@ -156,18 +158,18 @@ export class Filter extends React.PureComponent {
 
   gethandleCheckBox = () => {
     if(this.isHandlePresent()){
-      return <input type="checkbox" checked={switch1On} id="switch1" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>;
+      return <input type="checkbox" checked={switch3On} id="switch1" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>;
     }else{
-      return <input type="checkbox" disabled checked={switch1On} id="switch1" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>;
+      return <input type="checkbox" disabled checked={switch3On} id="switch1" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>;
     }
     
   }
 
   getDepNxt3HrsCheckBox = () => {
     if(this.isDepNxt3HrsPresent()){
-      return <input type="checkbox" checked={switch2On} id="switch2" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>
+      return <input type="checkbox" checked={switch4On} id="switch2" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>
     }else{
-      return <input type="checkbox" disabled checked={switch2On} id="switch2" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>
+      return <input type="checkbox" disabled checked={switch4On} id="switch2" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>
     }
   }
 
