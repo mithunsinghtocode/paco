@@ -4,6 +4,10 @@ import "./Filter.scss";
 import { getFilteredFlightDataForInbound, getFilteredFlightDataForOutbound } from '../../actions/chartDataAction';
 import { clearChartComponents } from '../map/objects/clearChartObjects';
 import { renderChartLayout } from '../map/objects/renderChartLayOut';
+
+let switch1On = false;
+let switch2On = false;
+
 /** Filter Component */
 export class Filter extends React.PureComponent {
   renderBackButton(){
@@ -41,6 +45,8 @@ export class Filter extends React.PureComponent {
   filterInboundFlightBasedOnToggle = () => {
     let misconnectionToggle = document.getElementById("switch1").checked;
     let arrivWithin3HoursToggle = document.getElementById("switch2").checked;
+    misconnectionToggle ? switch1On = true : switch1On = false;
+    arrivWithin3HoursToggle ? switch2On = true : switch2On = false;
     if(misconnectionToggle && arrivWithin3HoursToggle){
       let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
           return flight.status && 
@@ -73,6 +79,9 @@ export class Filter extends React.PureComponent {
   filterOutboundFlightBasedOnToggle = () => {
     let hideHandledFlights = document.getElementById("switch1").checked;
     let departWithin3HoursToggle = document.getElementById("switch2").checked;
+
+    hideHandledFlights ? switch1On = true : switch1On = false;
+    departWithin3HoursToggle ? switch2On = true : switch2On = false;
     if(hideHandledFlights && departWithin3HoursToggle){
       let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
           return flight.status && 
@@ -108,7 +117,7 @@ export class Filter extends React.PureComponent {
   getInBoundFilter = () => {
       return ( <div className="div-switch" >
         <div className="switch">
-          <input type="checkbox" id="switch1" className="switch__input"  onClick={ this.filterInboundFlightBasedOnToggle } />
+          <input type="checkbox" checked={switch1On} id="switch1" className="switch__input"  onClick={ this.filterInboundFlightBasedOnToggle } />
           <label htmlFor="switch1" className="switch__label">
             <div className="switch__label__text">
                 Potential misconnection only
@@ -118,7 +127,7 @@ export class Filter extends React.PureComponent {
         {/* &nbsp;  */}
         <div className="vl"></div>
         <div className="switch">
-          <input type="checkbox" id="switch2" className="switch__input" onClick={ this.filterInboundFlightBasedOnToggle }/>
+          <input type="checkbox" checked={switch2On} id="switch2" className="switch__input" onClick={ this.filterInboundFlightBasedOnToggle }/>
           <label htmlFor="switch2" className="switch__label">
             <div className="switch__label__text">
                 Arriving within next 3 hours
@@ -132,7 +141,7 @@ export class Filter extends React.PureComponent {
   getOutBoundFilter = () => {
      return ( <div className="div-switch">
             <div className="switch">
-              <input type="checkbox" id="switch1" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>
+              <input type="checkbox" checked={switch1On} id="switch1" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>
               <label htmlFor="switch1" className="switch__label">
               <div className="switch__label__text">
                 Hide Handled flight
@@ -142,7 +151,7 @@ export class Filter extends React.PureComponent {
             {/* &nbsp;  */}
             <div className="vl"></div>
             <div className="switch">
-              <input type="checkbox" id="switch2" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>
+              <input type="checkbox" checked={switch2On} id="switch2" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>
               <label htmlFor="switch2" className="switch__label">
               <div className="switch__label__text">
                 Departure within next 3 hours
