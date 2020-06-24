@@ -86,10 +86,8 @@ class InboundPathFinder extends React.PureComponent {
         // Restore the state of the chart object to store
         this.props.initChart(chartObj);
         }).then(() => {
-          requestAnimationFrame (() => {
             // refocus map
-            goToHome(chartObj);
-          });
+          goToHome(chartObj);
           freeUpMemory([chartObj, flightObj]);
         });
     }

@@ -29,7 +29,7 @@ export const setDefaultZoomAndGeoPointFocus = (chartObj) => {
 
 export const goToHome = (chartObj) => {
 chartObj.series.values[0].events.on("inited", function(ev) {
-          chartObj.zoomDuration = 400;
+          chartObj.zoomDuration = 500;
           chartObj.goHome();
           chartObj.zoomDuration = 200;
 });

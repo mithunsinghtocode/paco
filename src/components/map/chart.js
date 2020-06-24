@@ -25,8 +25,8 @@ class MapChartLayer extends React.PureComponent {
     am4core.options.onlyShowOnViewport = true;
     let chart = am4core.create("chartdiv", am4maps.MapChart);
 
-    chart.seriesContainer.draggable = false;
-    chart.panBehavior = 'rotateLong';
+    //chart.seriesContainer.draggable = false;
+    //chart.panBehavior = 'rotateLong';
     chart.chartContainer.wheelable = false;
     chart.paddingLeft = '0px';
     //chart.paddingRight = '80px';
@@ -86,7 +86,7 @@ class MapChartLayer extends React.PureComponent {
       //chartObj.deepInvalidate();
      this.removeChart();
     }
-    //freeUpMemory([chartObj]);
+    freeUpMemory([chartObj]);
   }
 
   renderLoading = () => {

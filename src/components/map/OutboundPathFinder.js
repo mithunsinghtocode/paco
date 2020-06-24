@@ -78,10 +78,8 @@ class OutboundPathFinder extends React.PureComponent {
       this.props.initChart(chartObj);
 
     }).then(() => {
-      requestAnimationFrame (() => {
         // refocus map
         goToHome(chartObj);
-      });
       //freeUpMemory([chartObj, flightObj]);
     });
     }
