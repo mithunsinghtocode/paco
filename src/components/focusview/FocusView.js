@@ -10,6 +10,13 @@ import {
   getHoursAndMinutesAfterFormat
 } from "../../utils/dateUtils";
 
+var scrollHeight = 0;
+let MAX_HEIGHT = 86;
+const MIN_HEIGHT = 50;
+const TRANSITION_MULTIPLIER=1.4;
+const SINGLE_RECORD = 12;
+let dumbVarlen = 9;
+
 class FocusView extends React.PureComponent {
   off = () => {
     this.props.removeFocusViewForSelectedFlight(null);
@@ -42,28 +49,23 @@ class FocusView extends React.PureComponent {
   }  
 
   
-// setHeight = (flightList) => {
-//   return flightList && ((flightList.length*SINGLE_RECORD < 50) ? flightList.length*SINGLE_RECORD +"%" : "50%");   
-// };
+setHeight = () => {
+  return this.props.selectedFlightObj && ((dumbVarlen < 50) ? dumbVarlen*SINGLE_RECORD +"%" : "50%");       
+};
 
 shrink = () => {
    let downArrow = document.getElementById("down-arrow-focusview");
    downArrow.style.display = "none";
-  //  document.getElementById("legend").style.height= "76px";
-  //  document.getElementById("rectangle-container").style.height= "76px";
-   document.getElementById("showHide").style.height= "76px";
-   document.getElementById("up-arrow").style.display = "block";
-   document.querySelector("#legend").scrollTop = 0;
+   document.getElementById("overlay").style.height= "76px";
+   document.getElementById("up-arrow-focusview").style.display = "block";
+   document.querySelector("#overlay").scrollTop = 0;
 };
 
 expand = () => {
    let downArrow = document.getElementById("down-arrow-focusview");
-   downArrow.style.display = "block";
-  //  document.getElementById("legend").style.height = this.setHeight(flightListVar);
-  //  document.getElementById("legend").style.height = "75%";
-  // document.getElementById("rectangle-container").style.height = "75%";   
-  document.getElementById("showHide").style.height = "75%";   
-   document.getElementById("up-arrow").style.display = "none";
+   downArrow.style.display = "block"; 
+  document.getElementById("overlay").style.height = this.setHeight();   
+   document.getElementById("up-arrow-focusview").style.display = "none";
 };
 
 showAvailFlightsInThreeHour = () => {
@@ -101,9 +103,43 @@ showAvailFlightsInThreeHour = () => {
   }
 
 }
+setScrollStyle = (overflowVal, heightVal) => {
+  document.getElementById("overlay").style.overflow = overflowVal;
+  document.getElementById("overlay").style.height= heightVal;
+}
+adjustHeight = async (e) => {
+  if(dumbVarlen*SINGLE_RECORD < 50) return document.getElementById("overlay").style.height= dumbVarlen*SINGLE_RECORD +"% !important";
+  MAX_HEIGHT = MAX_HEIGHT > dumbVarlen*SINGLE_RECORD ? dumbVarlen*SINGLE_RECORD : MAX_HEIGHT;
+  //console.log(MAX_HEIGHT);
+  let y = e.deltaY;
+  var element = document.querySelector("#overlay");
+  var st = element.scrollTop;
+  if(y){
+      var currHeight = Number(document.getElementById("overlay").style.height.replace('%',''));
+      if(y>=0 && st >=0){
+              if(currHeight >= 0 && currHeight < MAX_HEIGHT) {
+                  document.getElementById("down-arrow-focusview").style.display = "block";
+                  document.getElementById("up-arrow-focusview").style.display = "none";
+                  this.setScrollStyle('hidden', MIN_HEIGHT + scrollHeight*TRANSITION_MULTIPLIER  +'%');
+                  scrollHeight+=1;
+              }
+              if(currHeight >= MAX_HEIGHT){ 
+                  this.setScrollStyle('auto', MAX_HEIGHT +'%');
+              }
+      }else{
+          if(currHeight > MIN_HEIGHT && st <=1){
+                  this.setScrollStyle('hidden', MIN_HEIGHT + scrollHeight*TRANSITION_MULTIPLIER  +'%');
+                  scrollHeight-=1;
+          }
+          if(currHeight <= MIN_HEIGHT){
+              this.setScrollStyle('auto', MIN_HEIGHT +'%');
+          }
+      }
+  }       
+};
 
-  renderSelectedFlightInFocusView = () => {
-    //console.log("Into Focus View");
+  renderSelectedFlightFocusViewPopup = () => {
+
     let selectedFlight = this.props.selectedFlightObj;
 
     // console.log('############ props type ->' + typeof(this.props));
@@ -112,179 +148,67 @@ showAvailFlightsInThreeHour = () => {
     if (selectedFlight != null) {
       console.log(selectedFlight);
 
-      return (
-        <div id="showHide">
-          <div id="overlay">
-            <div className="card text-white mb-3">              
-              <div className="card-header" style={{ background: '#0483F8' }}>{this.getFormattedFltNum(selectedFlight.fltNum)}</div>                      
+      return ( 
+        <div id="overlay" onWheel={this.adjustHeight} onScroll={this.adjustHeight} >
+          <div className="card text-white mb-3">              
+            <div className="card-header" style={{ background: '#0483F8' }}>{this.getFormattedFltNum(selectedFlight.fltNum)}</div>                      
 
-              <div className="card-body" style={{ marginLeft: "10px" }}>
-                <div className="row dimmed">
-                  <div className="col-2 col-md-3">STD</div>
-                  <div className="col-1 col-md-3">GATE</div>
-                  <div className="col-3 col-md-5">PAX</div>
+            <div className="card-body" style={{ marginLeft: "10px" }}>
+              <div className="row dimmed">
+                <div className="col-2 col-md-3">STD</div>
+                <div className="col-1 col-md-3">GATE</div>
+                <div className="col-3 col-md-5">PAX</div>
+              </div>
+              <div className="row value">
+                <div className="col-2 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
+                  {getHoursAndMinutesAfterFormat(selectedFlight.std)}
                 </div>
-                <div className="row value">
-                  <div className="col-2 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
-                    {getHoursAndMinutesAfterFormat(selectedFlight.std)}
-                  </div>
-                  <div className="col-1 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
-                    {this.getBayGateTerminalDetails(selectedFlight)}
-                  </div>
-                  <div className="col-3 col-md-5">
-                    {this.getPaxDetailsFormat(selectedFlight)}
-                  </div>
+                <div className="col-1 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
+                  {this.getBayGateTerminalDetails(selectedFlight)}
                 </div>
+                <div className="col-3 col-md-5">
+                  {this.getPaxDetailsFormat(selectedFlight)}
+                </div>
+              </div>
 
-                <div className="row arrival dimmed">
-                  <div className="col-2 col-md-3">STA</div>
-                  <div className="col-1 col-md-3">ETA</div>
-                  <div className="col-3 col-md-5">AVAIL. FLIGHTS IN 3 HRS</div>
-                </div>
+              <div className="row arrival dimmed">
+                <div className="col-2 col-md-3">STA</div>
+                <div className="col-1 col-md-3">ETA</div>
+                <div className="col-3 col-md-5">AVAIL. FLIGHTS IN 3 HRS</div>
+              </div>
 
-                <div className="row value" style={{ fontSize: "21px" }}>
-                  <div className="col-2 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
-                    {getHoursAndMinutesAfterFormat(selectedFlight.sta)}
+              <div className="row value" style={{ fontSize: "21px" }}>
+                <div className="col-2 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
+                  {getHoursAndMinutesAfterFormat(selectedFlight.sta)}
+                </div>
+                <div className="col-1 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
+                  {getHoursAndMinutesAfterFormat(selectedFlight.eta)}
+                </div>
+                <div
+                  className="col-3 col-md-5"
+                  style={{ fontSize: "21px", marginTop: "6px", fontFamily: "Proxima Nova Regular" }}
+                >
+                  <div className="switch__label__text">
+                        4 Flights
+                      </div>   
+                  <div className="switch">         
+                    <label htmlFor="switch1" className="switch__label">                    
+                    </label>
+                    <input type="checkbox" id="switch1" className="switch__input"  onClick={ this.showAvailFlightsInThreeHour } />
                   </div>
-                  <div className="col-1 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
-                    {getHoursAndMinutesAfterFormat(selectedFlight.eta)}
-                  </div>
-                  <div
-                    className="col-3 col-md-5"
-                    style={{ fontSize: "21px", marginTop: "6px", fontFamily: "Proxima Nova Regular" }}
-                  >
-                    <div className="switch">                      
-                      <label htmlFor="switch1" className="switch__label">
-                        <div className="switch__label__text">
-                          4 Flights
-                        </div>                        
-                      </label>
-                      <input type="checkbox" id="switch1" className="switch__input"  onClick={ this.showAvailFlightsInThreeHour } />
-                    </div>
 
-                  </div>
                 </div>
+              </div>
 
-                {/* <hr className="divider-line" style={{ borderTop: "1px solid #9b9696" }} /> */}
-                <hr style={{ borderTop: "1px solid #9b9696" }} />
+              {/* <hr className="divider-line" style={{ borderTop: "1px solid #9b9696" }} /> */}
+              <hr style={{ borderTop: "1px solid #9b9696" }} />
 
-                <div className="row option  dimmed">
-                  <div className="col">NOTES</div>
-                </div>
-                <div className="row option">
-                  
-                  <div className="col-12">
-                    <button
-                      type="button"
-                      className="btn btn-block cost"
-                      style={{ backgroundColor: "Transparent" }}
-                    >
-                      <br />
-                      <i>Coming Soon</i>
-                      <br />
-                      <br />
-                    </button>
-                  </div>
-                </div>
-                <hr style={{ borderTop: "1px solid #9b9696" }} />
-
-                <div className="row option  dimmed">
-                  <div className="col">COST BASED DELAY OPTIONS</div>
-                </div>
-                <div className="row option">
-                  <div className="col-12">
-                    <button
-                      type="button"
-                      className="btn btn-block cost"
-                      style={{ backgroundColor: "Transparent" }}
-                    >
-                      <br />
-                      <i>Coming Soon</i>
-                      <br />
-                      <br />
-                    </button>
-                  </div>
-                </div>
-                <div className="row margin-high"></div>
-
+              <div className="row option  dimmed">
+                <div className="col">NOTES</div>
+              </div>
+              <div className="row option">
                 
-{/*  */}
-                <div className="row option">
-                    <div className="col-6">
-                      <button type="button" className="btn btn-block cost">
-                        <bigfont className="big-font"> 0 min </bigfont> 
-                      <br/> 
-                      <smallfont className="small-font">21,768.00 SGD</smallfont>
-                    </button>
-                  </div>
-                    <div className="col-6">
-                      <button type="button" className="btn btn-primary btn-block"> 
-                        <bigfont className="big-font"> +30 min </bigfont> 
-                          <br/> 
-                        <smallfont className="small-font">61,742.00 SGD </smallfont>
-                      </button>
-                    </div>
-                  </div>
-          
-                  <div className="row margin-high">
-                    <button type="button" className="btn btn-block details" style={{ width: "96%" }}>
-                        <medfont className="med-font"> SHOW DETAILS </medfont> 
-                  </button>
-                  </div>
-
-{/*  */}
-
-
-                <hr
-                  style={{ borderTop: "1px solid #9b9696", marginTop: "25px" }}
-                />
-
-                <div className="row arrival dimmed">
-                  <div className="col">RETURN</div>
-                  <div className="col">STD</div>
-                  <div className="col">MGT</div>
-                  <div className="col">
-                    <h6>
-                      <span className="badge badge-danger">AGT</span>
-                    </h6>
-                  </div>
-                </div>
-
-                <div className="row med-level-up-font">
-                  {/* <div className="col">SQ 529</div>
-                    <div className="col">23:15</div>
-                    <div className="col">1:00h</div>
-                    <div className="col">0:50h</div> */}
-                  <center style={{ fontSize: "14px", marginLeft: "35%" }}>
-                    {" "}
-                    <i>coming soon</i>
-                  </center>
-                </div>
-              </div>
-
-              <div className="card-footer">
-                <div className="row inbound">
-                  <div className="col" style={{ fontSize: "18px" }}>
-                    &nbsp;&nbsp;INBOUND FLIGHTS
-                  </div>
-                </div>
-              </div>
-
-              <div className="card text-white mb-1" style={{ width: "365px" }}>
-                <div className="card-header inbound" style={{ background:  selectedFlight.status.misconnection ? '#E55541' : '#0284f7' }}>
-                  <div className="row med-level-down-font">
-                    <div className="col"></div>
-                    <div className="col"></div>
-                  </div>
-                </div>
-                <div className="card-body inbound-time">
-                  <div className="row med-level-down-font">
-                    <div className="col"></div>
-                    <div className="col"></div>
-
-                    <div className="col bay-gate"> </div>
-                  </div>
-
+                <div className="col-12">
                   <button
                     type="button"
                     className="btn btn-block cost"
@@ -295,41 +219,185 @@ showAvailFlightsInThreeHour = () => {
                     <br />
                     <br />
                   </button>
-                  <cust
-                    style={{
-                      color: "#ece6e6",
-                      fontSize: "12px",
-                      marginTop: "15px"
-                    }}
-                  ></cust>
                 </div>
               </div>
-{/*  */}
-              <div className="card text-white mb-1" style={{width: "365px"}}>
-              <div className="card-header inbound">
+              <hr style={{ borderTop: "1px solid #9b9696" }} />
+
+              <div className="row option  dimmed">
+                <div className="col">COST BASED DELAY OPTIONS</div>
+              </div>
+              <div className="row option">
+                <div className="col-12">
+                  <button
+                    type="button"
+                    className="btn btn-block cost"
+                    style={{ backgroundColor: "Transparent" }}
+                  >
+                    <br />
+                    <i>Coming Soon</i>
+                    <br />
+                    <br />
+                  </button>
+                </div>
+              </div>
+              <div className="row margin-high"></div>
+
+              
+  {/*  */}
+              <div className="row option">
+                  <div className="col-6">
+                    <button type="button" className="btn btn-block cost">
+                      <bigfont className="big-font"> 0 min </bigfont> 
+                    <br/> 
+                    <smallfont className="small-font">21,768.00 SGD</smallfont>
+                  </button>
+                </div>
+                  <div className="col-6">
+                    <button type="button" className="btn btn-primary btn-block"> 
+                      <bigfont className="big-font"> +30 min </bigfont> 
+                        <br/> 
+                      <smallfont className="small-font">61,742.00 SGD </smallfont>
+                    </button>
+                  </div>
+                </div>
+        
+                <div className="row margin-high">
+                  <button type="button" className="btn btn-block details" style={{ width: "96%" }}>
+                      <medfont className="med-font"> SHOW DETAILS </medfont> 
+                </button>
+                </div>
+
+  {/*  */}
+
+
+              <hr
+                style={{ borderTop: "1px solid #9b9696", marginTop: "25px" }}
+              />
+
+              <div className="row arrival dimmed">
+                <div className="col">RETURN</div>
+                <div className="col">STD</div>
+                <div className="col">MGT</div>
+                <div className="col">
+                  <h6>
+                    <span className="badge badge-danger">AGT</span>
+                  </h6>
+                </div>
+              </div>
+
+              <div className="row med-level-up-font">
+                {/* <div className="col">SQ 529</div>
+                  <div className="col">23:15</div>
+                  <div className="col">1:00h</div>
+                  <div className="col">0:50h</div> */}
+                <center style={{ fontSize: "14px", marginLeft: "35%" }}>
+                  {" "}
+                  <i>coming soon</i>
+                </center>
+              </div>
+            </div>
+
+            <div className="card-footer">
+              <div className="row inbound">
+                <div className="col" style={{ fontSize: "18px" }}>
+                  &nbsp;&nbsp;INBOUND FLIGHTS
+                </div>
+              </div>
+            </div>
+
+            <div className="card text-white mb-1" style={{ width: "365px" }}>
+              <div className="card-header inbound" style={{ background:  selectedFlight.status.misconnection ? '#E55541' : '#0284f7' }}>
                 <div className="row med-level-down-font">
-                  <div className="col">&nbsp;&nbsp;&nbsp;&nbsp;<b>LH 758</b></div>
-                  <div className="col"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; F0 &nbsp;&nbsp; J3 &nbsp;&nbsp; S0 &nbsp;&nbsp; Y1</div>
+                  <div className="col"></div>
+                  <div className="col"></div>
                 </div>
               </div>
               <div className="card-body inbound-time">
                 <div className="row med-level-down-font">
-                  <div className="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ETA <lightfont style={{fontWeight: "lighter"}}> &nbsp;&nbsp;23:35 &nbsp;&nbsp;|</lightfont></div>
-                  <div className="col">MCT <lightfont style={{fontWeight: "lighter"}}> &nbsp;&nbsp; 20 min </lightfont></div>
-                  
-                  <div className="col bay-gate"> T2/F32 </div>
+                  <div className="col"></div>
+                  <div className="col"></div>
+
+                  <div className="col bay-gate"> </div>
                 </div>
-          
-                <hr style={{ borderTop: "1px solid #9b9696",marginTop:"10px" }}/>
-                
-                <span className="dot"></span> &nbsp;&nbsp;
-                <cust style={{ color:"#ece6e6",fontSize: "12px",marginTop:"15px"}}>VIP Foreign Minister Of India</cust>
-          
+
+                <button
+                  type="button"
+                  className="btn btn-block cost"
+                  style={{ backgroundColor: "Transparent" }}
+                >
+                  <br />
+                  <i>Coming Soon</i>
+                  <br />
+                  <br />
+                </button>
+                <cust
+                  style={{
+                    color: "#ece6e6",
+                    fontSize: "12px",
+                    marginTop: "15px"
+                  }}
+                ></cust>
               </div>
-          </div>
-{/*  */}          
             </div>
+  {/*  */}
+            <div className="card text-white mb-1" style={{width: "365px"}}>
+            <div className="card-header inbound">
+              <div className="row med-level-down-font">
+                <div className="col">&nbsp;&nbsp;&nbsp;&nbsp;<b>LH 758</b></div>
+                <div className="col"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; F0 &nbsp;&nbsp; J3 &nbsp;&nbsp; S0 &nbsp;&nbsp; Y1</div>
+              </div>
+            </div>
+            <div className="card-body inbound-time">
+              <div className="row med-level-down-font">
+                <div className="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ETA <lightfont style={{fontWeight: "lighter"}}> &nbsp;&nbsp;23:35 &nbsp;&nbsp;|</lightfont></div>
+                <div className="col">MCT <lightfont style={{fontWeight: "lighter"}}> &nbsp;&nbsp; 20 min </lightfont></div>
+                
+                <div className="col bay-gate"> T2/F32 </div>
+              </div>
+        
+              <hr style={{ borderTop: "1px solid #9b9696",marginTop:"10px" }}/>
+              
+              <span className="dot"></span> &nbsp;&nbsp;
+              <cust style={{ color:"#ece6e6",fontSize: "12px",marginTop:"15px"}}>VIP Foreign Minister Of India</cust>
+        
+            </div>
+        </div>
+  {/*  */}          
           </div>
+        // </div>
+
+
+      );
+    }         
+  }
+
+  renderSelectedFlightInFocusView = () => {
+
+    // let flightListWindow = document.getElementById("legend");
+    // flightListWindow.style.display = "none";
+
+    //console.log("Into Focus View");
+    
+    //temp
+    // this.props.removeSelectedFlightFromMap(null); 
+    // this.props.removeFocusViewForSelectedFlight(null);
+    
+    let selectedFlight = this.props.selectedFlightObj;
+
+    // console.log('############ props type ->' + typeof(this.props));
+    // console.log('############ props  ->' + JSON.stringify(this.props) );
+    // console.log('############ props.flightData  ->' + JSON.stringify(this.props.flightData) );
+    if (selectedFlight != null) {
+      console.log(selectedFlight);
+
+      return (
+        <div id="showHide">
+        
+
+          {/* <div className="overlay" id="legend" onWheel={this.adjustHeight} onScroll={this.adjustHeight}>         */}
+              {this.renderSelectedFlightFocusViewPopup()}
+          {/* </div> */}
+
           {/* <div className="overlay-arrow">
             <i
               className="big arrow alternate circle down outline icon"
@@ -386,6 +454,8 @@ showAvailFlightsInThreeHour = () => {
 
 const mapStateToProps = (state, ownProps) => {
   //console.log(state);
+  // console.log('=====FocusView.state======>' + JSON.stringify(state) );
+  // console.log('=====ownProps======>' + JSON.stringify(ownProps) );
   return { selectedFlightObj: state.selectedFlight };
 };
 

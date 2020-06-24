@@ -36,14 +36,20 @@ export class Filter extends React.PureComponent {
            SHOW ALL FLIGHTS </button>
           );
   }
-
+  renderLockDecisionButton(){
+    return (<button className="rectangle"  style={{display:"inline-block"}} >
+    {/* return (<button className="rectangle" onClick={this.props.goBackFunction}> */}
+           LOCK DECISION</button>
+          );
   frameFlightsForMap = (flightList) => {
     clearChartComponents(this.props.chartObj, ["ALL"]);
     renderChartLayout(this.props.chartObj);
     this.props.displayView === "INBOUND" && this.props.getFilteredFlightDataForInbound(flightList);
     this.props.displayView === "OUTBOUND" && this.props.getFilteredFlightDataForOutbound(flightList);  
   }
-
+  renderPadding(){
+    return (<div style={{"width": "172px"}} > </div> );
+  }
   filterInboundFlightBasedOnToggle = () => {
     
     Date.prototype.addHours = function(h) {
@@ -205,6 +211,9 @@ export class Filter extends React.PureComponent {
         {this.props.fltToDisplayInMap !== null && this.renderShowAllFlightsButton()}
         {this.props.fltToDisplayInMap !== null && this.getFormattedHeading(this.props.fltToDisplayInMap)} 
           {this.props.fltToDisplayInMap === null && this.getInBoundFilter()}          
+          { ( this.props.fltToDisplayInMap !== null &&  this.renderPadding() ) ||
+              ( this.props.selectedFlightObj !== null &&  this.renderLockDecisionButton())
+          }               
         </nav> }
 
         {this.props.displayView === "OUTBOUND" &&
@@ -212,6 +221,9 @@ export class Filter extends React.PureComponent {
         {this.props.fltToDisplayInMap !== null && this.renderBackButton() }
         {this.props.fltToDisplayInMap !== null && this.getFormattedHeading(this.props.fltToDisplayInMap)}
         {this.props.fltToDisplayInMap === null && this.getOutBoundFilter()}
+        { ( this.props.fltToDisplayInMap !== null &&  this.renderPadding() ) ||
+              ( this.props.selectedFlightObj !== null &&  this.renderLockDecisionButton())
+          }
         </nav> }
       </>
     );
@@ -219,8 +231,12 @@ export class Filter extends React.PureComponent {
 }
 
 const mapStateToProps = (state, ownprops) => {
-  //console.log(state);
-  return { chartObj: state.chartInit, displayView: state.getDisplayView, goBackFunction : ownprops.goBackFunction, fltToDisplayInMap : state.getFltToShowInMap, flightData : state.allFlightData };
+  console.log(state);
+  // console.log('===========>' + JSON.stringify(state) );
+  // return { chartObj: state.chartInit, displayView: state.getDisplayView, goBackFunction : ownprops.goBackFunction, fltToDisplayInMap : state.getFltToShowInMap, flightData : state.allFlightData };
+  return { chartObj: state.chartInit, displayView: state.getDisplayView, 
+            goBackFunction : ownprops.goBackFunction, fltToDisplayInMap : state.getFltToShowInMap, 
+            flightData : state.allFlightData, selectedFlightObj: state.selectedFlight  };
 };
 
 export default connect(mapStateToProps, { getFilteredFlightDataForInbound, getFilteredFlightDataForOutbound })(Filter);

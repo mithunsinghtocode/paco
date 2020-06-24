@@ -62,7 +62,7 @@ class MapChartLayer extends React.PureComponent {
       // render home object to default zoom
       homeObjectRender(chartObj, am4core);
     }
-    //freeUpMemory([chartObj]);
+    freeUpMemory([chartObj]);
   };
 
   removeChart(){
@@ -83,7 +83,7 @@ class MapChartLayer extends React.PureComponent {
           ).dispose();
         });
       }
-      //chartObj.deepInvalidate();
+      chartObj.deepInvalidate();
      this.removeChart();
     }
     freeUpMemory([chartObj]);

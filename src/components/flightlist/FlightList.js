@@ -14,6 +14,10 @@ const SINGLE_RECORD = 16;
 let flightListVar;
 class FlightList extends React.Component {
 
+    off = () => {
+        this.props.removeSelectedFlightFromMap(null);
+      };
+
     getPaxDetailsFormat = (selectedFlight) => {
         let paxObj = getTotalPaxCountBasedGroupByClassForFlight(selectedFlight, this.props.displayView);    
         let resultComponent = [];
@@ -120,9 +124,9 @@ class FlightList extends React.Component {
                                  <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900" }}>
                                     { flightObj.arrStn === 'SIN' ? getHoursAndMinutesAfterFormat(flightObj.sta) : getHoursAndMinutesAfterFormat(flightObj.std)} 
                                  </b>                                                      
-                                 <b style={{ display: "inline-block", marginLeft: "5px" }} className="line">
+                                 <b style={{ display: "inline-block", marginLeft: "6px" }} className="line">
                                  </b> 
-                                 <b style={{ marginLeft: "10px", marginRight: "5px"}}>
+                                 <b style={{ marginLeft: "15px", marginRight: "5px"}}>
                                      {flightObj.arrStn === 'SIN' ? 'ETA' : 'ETD' } 
                                  </b> 
                                  <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900" }}>
@@ -140,6 +144,7 @@ class FlightList extends React.Component {
         });
     };
     setHeight = (flightList) => {
+        // console.log("===== flightList.length =====>" + flightList.length);
        return flightList && ((flightList.length*SINGLE_RECORD < 50) ? flightList.length*SINGLE_RECORD +"%" : "50%");   
     };
 
@@ -187,7 +192,7 @@ class FlightList extends React.Component {
                     this.setScrollStyle('auto', MIN_HEIGHT +'%');
                 }
             }
-        }
+        }       
     };
     setScrollStyle = (overflowVal, heightVal) => {
         document.getElementById("legend").style.overflow = overflowVal;
@@ -195,8 +200,9 @@ class FlightList extends React.Component {
     }
     render(){
         return (
-            <div>
-            <div className="legend" id="legend"  onWheel={this.adjustHeight} onScroll={this.adjustHeight}>
+        this.props.selectedFlightObj === null &&
+        <div>
+            <div className="legend" id="legend" onWheel={this.adjustHeight} onScroll={this.adjustHeight}>
                 {this.props.displayView === "INBOUND" &&  (this.props.fltToDisplayInMap !== null ? this.renderFlightList(this.props.inboundFlights.flightList, this.props.fltToDisplayInMap) : this.props.inboundFlights && this.renderFlightList(this.props.inboundFlights.flightList)) }
                 {this.props.displayView === "OUTBOUND" &&  (this.props.fltToDisplayInMap !== null ? this.renderFlightList(this.props.outboundFlights.flightList,this.props.fltToDisplayInMap) : this.props.outboundFlights && this.renderFlightList(this.props.outboundFlights.flightList))}
             </div>
@@ -240,7 +246,8 @@ class FlightList extends React.Component {
 }
 const mapStateToProps = (state, ownProps) => {
     //console.log(state);
-    return { fltToDisplayInMap : state.getFltToShowInMap, chartObj: state.chartInit, inboundFlights: state.inboundFlightData, outboundFlights: state.outboundFlightData, displayView: state.getDisplayView };
+    return { fltToDisplayInMap : state.getFltToShowInMap, chartObj: state.chartInit, inboundFlights: state.inboundFlightData, 
+        outboundFlights: state.outboundFlightData, displayView: state.getDisplayView, selectedFlightObj: state.selectedFlight };
   }
 
 export default connect(mapStateToProps , { showSelectedFlightInMap, removeSelectedFlightFromMap })(FlightList);
