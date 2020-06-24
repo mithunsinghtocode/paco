@@ -69,17 +69,20 @@ class OutboundPathFinder extends React.PureComponent {
 
         // Adds click event on the tooltip, icon and line
         mapObjectEvents(bullet, line, lineSeries, flight, this.props.showSelectedFlightInMap, this.props.showFocusViewForSelectedFlight);
-
+        requestAnimationFrame (() => {
         // Adds the position of the airplane object with svg
         airplaneObj(am4core, bullet, flight);
+        });
       });
       // Restore the state of the chart object to store
       this.props.initChart(chartObj);
 
     }).then(() => {
-      // refocus map
-      goToHome(chartObj);
-      freeUpMemory([chartObj, flightObj]);
+      requestAnimationFrame (() => {
+        // refocus map
+        goToHome(chartObj);
+      });
+      //freeUpMemory([chartObj, flightObj]);
     });
     }
     }

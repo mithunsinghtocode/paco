@@ -73,19 +73,23 @@ class InboundPathFinder extends React.PureComponent {
   
           // Adds the position of the airplane object with svg
           airplaneObj(am4core, bullet, flight);
-  
+          
+          requestAnimationFrame (() => {
           // Create image series
           let imageSeries = chartObj.series.push(new am4maps.MapImageSeries());
           // Create a circle image in image series template so it gets replicated to all new images
           let imageSeriesTemplate = imageSeries.mapImages.template;
   
           plotStationObj( am4core, chartObj, flight, imageSeries, imageSeriesTemplate );
+          });
         });
         // Restore the state of the chart object to store
         this.props.initChart(chartObj);
         }).then(() => {
-          // refocus map
-          goToHome(chartObj);
+          requestAnimationFrame (() => {
+            // refocus map
+            goToHome(chartObj);
+          });
           freeUpMemory([chartObj, flightObj]);
         });
     }
