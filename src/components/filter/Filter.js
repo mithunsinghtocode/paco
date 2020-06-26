@@ -147,7 +147,7 @@ export class Filter extends React.PureComponent {
   };
 
   isHandlePresent = () => {
-    return this.props.flightData.flightSchedule.flightList.some( (flight) => {
+    return this.props.flightData && this.props.flightData.flightSchedule.flightList.some( (flight) => {
       return flight.status && flight.status.handled;
     })
   }
@@ -157,7 +157,7 @@ export class Filter extends React.PureComponent {
       this.setHours(this.getHours()+h);
       return this;
     }
-    return this.props.flightData.flightSchedule.flightList.some( (flight) => {
+    return this.props.flightData && this.props.flightData.flightSchedule.flightList.some( (flight) => {
       return (new Date(flight.etd).addHours(3).getTime() > (new Date().getTime()));
     });
     //console.log(temp);
@@ -232,7 +232,7 @@ export class Filter extends React.PureComponent {
 }
 
 const mapStateToProps = (state, ownprops) => {
-  console.log(state);
+  //console.log(state);
   // console.log('===========>' + JSON.stringify(state) );
   // return { chartObj: state.chartInit, displayView: state.getDisplayView, goBackFunction : ownprops.goBackFunction, fltToDisplayInMap : state.getFltToShowInMap, flightData : state.allFlightData };
   return { chartObj: state.chartInit, displayView: state.getDisplayView, 

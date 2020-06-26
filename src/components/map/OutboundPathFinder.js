@@ -14,6 +14,7 @@ import Loader from '../loader/Loader';
 import { freeUpMemory } from './objects/clearChartObjects';
 import { setDefaultZoomAndGeoPointFocus, goToHome } from './objects/defaultZoomFocus';
 import { sort } from '../../utils/sortUtils';
+import { consolidatedCoordinates } from '../map/objects/consolidatedCoordinates';
 
 
 class OutboundPathFinder extends React.PureComponent {
@@ -40,8 +41,6 @@ class OutboundPathFinder extends React.PureComponent {
       
       setDefaultZoomAndGeoPointFocus(chartObj);
 
-      plotStationObj( am4core, chartObj, flightObj );
-
       // sorting to serve overlap algorithm
       flightObj.flightList.forEach( (in2) => {
         in2.sumCoordinates = Number(in2.arrcoordinates.longitude) + Number(in2.arrcoordinates.latitude) + Number(in2.aircraft.position);
@@ -55,17 +54,19 @@ class OutboundPathFinder extends React.PureComponent {
           isNewCopyOfArr: true
       });
 
+      let coordinatesList = consolidatedCoordinates(flightObj.flightList,"OUTBOUND");
+
         // Adds line or arc based on the coordinates
         let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
         Promise.resolve().then(() => {
         lineSeries.STATUS = "LINESERIES";
         // Add line series
         sortedFlightList.forEach((flight , index) => {
-          flight.aircraft.position = 0.95;
+        flight.aircraft.position = 0.95;
         let line = lineObj(am4core, flight, lineSeries, chartObj,am4maps);
 
         // adds tooltip for the flights
-        let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView, index, false) ;
+        let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView, index, false, coordinatesList) ;
 
         // Adds click event on the tooltip, icon and line
         mapObjectEvents(bullet, line, lineSeries, flight, this.props.showSelectedFlightInMap, this.props.showFocusViewForSelectedFlight);
@@ -74,6 +75,8 @@ class OutboundPathFinder extends React.PureComponent {
         airplaneObj(am4core, bullet, flight);
         });
       });
+      plotStationObj( am4core, chartObj, flightObj );
+
       // Restore the state of the chart object to store
       this.props.initChart(chartObj);
 

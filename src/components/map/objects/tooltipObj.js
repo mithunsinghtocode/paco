@@ -11,8 +11,7 @@ const checkAircraftPosition = (aircraftPosition) => {
   return (aircraftPosition < 0 ? 0 : aircraftPosition);
 }
 
-export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index, isFocusOutbound) => {
-
+export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index, isFocusOutbound, consolidatedCoordinates, isFocusView) => {
   // Add a map object to line
   let bullet = line.lineObjects.create();
   bullet.nonScaling = true;
@@ -65,6 +64,9 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
       }
     },TIME_TO_CHECK_AIRCRAFT_POSITION);
   }
+
+
+  
   let dropShadow = new am4core.DropShadowFilter();                                  
   dropShadow.dy = -30;  
   dropShadow.dx = 0;
@@ -78,12 +80,9 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   (!isFocusOutbound && flight.depStn==='SIN' && flight.status.misconnection) && bullet.tooltip.filters.push(dropShadow);
   bullet.tooltip.background.filters.clear();
 
-  var dropShadow1 = new am4core.DropShadowFilter();
-  dropShadow1.dx = 0;
-  dropShadow1.dy = 0;
-  dropShadow1.blur = 4;
-  dropShadow1.color = am4core.color("rgba(0, 0, 0, 0.5)");
-  (flight.depStn!=='SIN') && bullet.tooltip.filters.push(dropShadow1);
+  
+
+  //(flight.depStn==='SIN') && bullet.tooltip.background.filters.push(dropShadow1);
 
   //  if(getETA(flight) === "" || flight.depcoordinates.longitude > 100) {
   //    bullet.tooltip.dx = 100 ;
@@ -93,7 +92,8 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   if(getETA(flight) === "") bullet.tooltip.dx = 40;
   //flight.depcoordinates.longitude > 100 ? bullet.tooltip.dy = 45 : bullet.tooltip.dy = 35;
 
-  bullet.tooltip.cursorOverStyle = am4core.MouseCursorStyle.pointer;  
+  bullet.tooltip.cursorOverStyle = am4core.MouseCursorStyle.pointer;
+  bullet.tooltip.flightId = flight.flightId;  
   // removed as airplane icon does not need click
   //bullet.cursorOverStyle = am4core.MouseCursorStyle.pointer;  
   bullet.tooltip.dispatchImmediately("hit");
@@ -107,6 +107,49 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   if(index % 3 === 0) {bullet.tooltip.dy = 20;bullet.tooltip.pointerOrientation = 'top'};
   if(index % 5 === 0) {bullet.tooltip.dy = -45;bullet.tooltip.pointerOrientation = 'bottom'};
   if(index % 2 === 1) {bullet.tooltip.dx = 20;bullet.tooltip.pointerOrientation = 'left'};
+
+
+  var dropShadow1 = new am4core.DropShadowFilter();
+  dropShadow1.dx = 0;
+  dropShadow1.dy = 0;
+  dropShadow1.blur = 4;
+  dropShadow1.color = am4core.color('rgba(0,0,0,0.5)');
+  //0 0 4px 0 rgba(0,0,0,0.5);
+
+  //latitude within +-4
+  // longitude within +-50
+  let currentLatitude = (!isFocusView && displayView==='INBOUND') ? flight.depcoordinates.latitude : flight.arrcoordinates.latitude;
+  let currentLongitude = (!isFocusView && displayView==='INBOUND') ? flight.depcoordinates.longitude : flight.arrcoordinates.longitude;
+  if(consolidatedCoordinates !== null && consolidatedCoordinates !== undefined){
+  for(var i=0; i<consolidatedCoordinates.length ; i++){
+    if (currentLatitude === consolidatedCoordinates[i].latitude && currentLongitude === consolidatedCoordinates[i].longitude) continue;
+    //if(flight.flightId === 'SQ618202003151730SINKIX1'){
+    if((Number(currentLatitude) - Number(consolidatedCoordinates[i].latitude) <= 3) && 
+    (Number(currentLatitude) - Number(consolidatedCoordinates[i].latitude) >= -3) 
+      &&  (Number(currentLongitude) - Number(consolidatedCoordinates[i].longitude) <= 50)
+      &&  (Number(currentLongitude) - Number(consolidatedCoordinates[i].longitude) >= -10)){
+          //console.log("1 ::: Flight going to have drop shadow :: "+flight.flightId + " :: Longitude :: " +bullet.tooltip.pointerOrientation )
+        // console.log("1 ::: Flight going to have drop shadow :: "+flight.flightId + " :: Longitude :: " )
+         //console.log(Number(currentLongitude) - Number(consolidatedCoordinates[i].longitude));
+         //console.log(Number(currentLatitude) - Number(consolidatedCoordinates[i].latitude));
+      bullet.tooltip.background.filters.push(dropShadow1);
+      break;
+    }
+    if(((Number(currentLongitude) - Number(consolidatedCoordinates[i].longitude) <= 10) &&
+    (Number(currentLongitude) - Number(consolidatedCoordinates[i].longitude) >= 0))
+    &&  ((Number(currentLatitude) - Number(consolidatedCoordinates[i].latitude) <= 20)
+    && (Number(currentLatitude) - Number(consolidatedCoordinates[i].latitude) >= 0))){
+      //console.log(" Flight going to have drop shadow :: "+flight.flightId + " :: Longitude :: "+bullet.tooltip.pointerOrientation )
+      //console.log(Number(currentLongitude) - Number(consolidatedCoordinates[i].longitude));
+       //console.log(Number(currentLongitude) - Number(consolidatedCoordinates[i].longitude));
+       //console.log(Number(currentLatitude) - Number(consolidatedCoordinates[i].latitude));
+      bullet.tooltip.background.filters.push(dropShadow1);
+      break;
+    }
+    //}
+  };
+}
+
 
   if(flight.tooltip != null && flight.tooltip === "OUTBOUND")
   {

@@ -18,6 +18,7 @@ import { setDefaultZoomAndGeoPointFocus, goToHome } from './objects/defaultZoomF
 import "../map/pathFinder.scss";
 import { renderChartLayout } from '../map/objects/renderChartLayOut';
 import { clearChartComponents } from '../map/objects/clearChartObjects';
+import { consolidatedCoordinates } from '../map/objects/consolidatedCoordinates';
 
 class InboundPathFinder extends React.PureComponent {
  
@@ -54,6 +55,8 @@ class InboundPathFinder extends React.PureComponent {
             isNewCopyOfArr: true
         });
 
+        let coordinatesList = consolidatedCoordinates(flightObj.flightList,"INBOUND");
+
         // Adds line or arc based on the coordinates
         let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
         
@@ -66,7 +69,7 @@ class InboundPathFinder extends React.PureComponent {
           let line = lineObj(am4core, flight, lineSeries,chartObj,am4maps);
   
           // adds tooltip for the flights
-          let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView, index, false) ;
+          let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView, index, false, coordinatesList) ;
   
           // Adds click event on the tooltip, icon and line
           mapObjectEvents(bullet, line, lineSeries, flight, this.props.showSelectedFlightInMap);

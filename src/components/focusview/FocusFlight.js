@@ -15,6 +15,7 @@ import { plotStationObj } from "../map/objects/plotStationObj";
 import { getStationCoordinatesFromTheFlightList } from "../../utils/stationUtils";
 import { sort } from '../../utils/sortUtils';
 import { setZoomAndGeoPointFocus } from '../map/objects/setZoomPoint';
+import { consolidatedCoordinates } from '../map/objects/consolidatedCoordinates';
 
 class FocusFlight extends React.Component {
     off = () => {
@@ -38,7 +39,9 @@ class FocusFlight extends React.Component {
                 let stationCoordinates = [];
 
                 if(this.props.displayView === "INBOUND"){
-                    plotFlightObj(selectedFlight, lineSeries, null , false, am4core, this.props.displayView, chartObj,am4maps);
+
+                    let coordinatesList = consolidatedCoordinates(selectedFlight.outboundFlt,"OUTBOUND");
+                    plotFlightObj(selectedFlight, lineSeries, null , false, am4core, this.props.displayView, chartObj,am4maps,0, false,coordinatesList, true);
                     plotStationObj( am4core, chartObj, selectedFlight );
                     // sorting to serve overlap algorithm
                     selectedFlight.outboundFlt.forEach( (in2) => {
@@ -60,12 +63,13 @@ class FocusFlight extends React.Component {
                         //console.log(outboundFlt);
                         outboundFlt.tooltip = "OUTBOUND";
                         outboundFlt.aircraft.position = 0.95;
-                        plotFlightObj(outboundFlt, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView, chartObj,am4maps, index);
+                        plotFlightObj(outboundFlt, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView, chartObj,am4maps, index,false, coordinatesList, true);
                     });
                 }
                 if(this.props.displayView === "OUTBOUND"){
+                    let coordinatesList = consolidatedCoordinates(selectedFlight.inboundFlt,"INBOUND");
                     selectedFlight.aircraft.position = 0.95;
-                    plotFlightObj(selectedFlight, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView, chartObj,am4maps, 0, true);
+                    plotFlightObj(selectedFlight, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView, chartObj,am4maps, 0, true, coordinatesList, true);
                     plotStationObj( am4core, chartObj, selectedFlight );
                      // sorting to serve overlap algorithm
                      selectedFlight.inboundFlt && selectedFlight.inboundFlt.forEach( (in2) => {
@@ -87,7 +91,7 @@ class FocusFlight extends React.Component {
                         
                         //console.log(inboundFlt);
                         inboundFlt.tooltip = "INBOUND";
-                        plotFlightObj(inboundFlt, lineSeries, null , false, am4core, this.props.displayView, chartObj,am4maps, index);
+                        plotFlightObj(inboundFlt, lineSeries, null , false, am4core, this.props.displayView, chartObj,am4maps, index, false, coordinatesList, true);
                     }
                     });
             }
