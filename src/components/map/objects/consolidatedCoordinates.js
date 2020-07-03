@@ -1,6 +1,6 @@
 export  const consolidatedCoordinates = (flightList, displayView) =>{
           let coordinatesList = [];
-          flightList.forEach( (fltObj, index) => {
+          flightList && flightList.forEach( (fltObj, index) => {
                     switch(displayView){
                               case "INBOUND":
                                         coordinatesList.push(formCoordinate(fltObj, "depcoordinates"));
