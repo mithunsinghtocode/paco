@@ -6,7 +6,7 @@ import { airplaneObj } from './airplaneObj';
 
 
 export const plotFlightObj = (flight, lineSeries, dispatchFuncforAction, isMapObjectEvents, am4core, displayView, chartObj,am4maps, index, isFocusOutbound, coordinatesList, isFocusView) => {
-    let line = lineObj(am4core, flight, lineSeries, chartObj, am4maps);
+    let line = lineObj(am4core, flight, lineSeries, chartObj, am4maps,isFocusOutbound);
     // adds tooltip for the flights
     let bullet = tooltipObj(line, lineSeries, am4core, flight, displayView, index, isFocusOutbound, coordinatesList, isFocusView) ;
 

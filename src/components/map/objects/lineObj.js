@@ -1,8 +1,9 @@
 const PACIFIC_OCEAN_COUNTRIES = ['LAX','SFO','SEA'];
 const ATLANTIC_OCEAN_COUNTRIES = ['EWR','JFK','IAH'];
 const DEFINE_PATH_THROUGH_PACIFIC_ARRSTN = ['EWR'];
+const FOCUSSED_OUTBOUND_COLOR = "#0483F8";
 
-export const lineObj = (am4core, flight,lineSeries, chartObj, am4maps) => {
+export const lineObj = (am4core, flight,lineSeries, chartObj, am4maps, isFocusOutbound) => {
   
   // if((flight.depcoordinates.latitude > 100 && flight.depcoordinates.longitude < 100) || (flight.depcoordinates.longitude < -60 && flight.depcoordinates.latitude < 100)) {
   //   lineSeries = chartObj.series.push(new am4maps.MapArcSeries())
@@ -30,7 +31,7 @@ export const lineObj = (am4core, flight,lineSeries, chartObj, am4maps) => {
     console.log(flight.flightId);
   }
   lineSeries.mapLines.template.stroke = am4core.color(
-    flight.config.linecolor
+    isFocusOutbound ? FOCUSSED_OUTBOUND_COLOR : flight.config.linecolor
   );
 
 lineSeries.mapLines.template.calculatePercent = true;

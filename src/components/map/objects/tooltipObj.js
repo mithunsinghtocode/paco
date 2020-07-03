@@ -17,7 +17,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   bullet.nonScaling = true;
   bullet.tooltip.getFillFromObject = false;
   let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, isTest);
-  bullet.position =  flight.arrStn === 'SIN' ? checkAircraftPosition(aircraftPosition) : flight.aircraft.position;
+  bullet.position =  flight.arrStn === 'SIN' ? checkAircraftPosition(aircraftPosition) : isFocusOutbound ? 0 : flight.aircraft.position;
   bullet.fill = am4core.color(isFocusOutbound ? FOCUSSED_OUTBOUND_COLOR : flight.config.tooltipcolor);
   //bullet.height = "35px";
   flight.status.misconnection ? 
@@ -56,7 +56,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
     var setPositionOfPlane = setInterval(() => {
       let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, isTest);
       let bulletPosition = checkAircraftPosition(aircraftPosition);
-      bullet.position = bulletPosition;      
+      bullet.position = isFocusOutbound ? 0 : bulletPosition;      
     }, TIME_TO_CHECK_AIRCRAFT_POSITION);
     setInterval(() => {
       if(bullet.position >= 0.9){
@@ -64,8 +64,6 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
       }
     },TIME_TO_CHECK_AIRCRAFT_POSITION);
   }
-
-
   
   let dropShadow = new am4core.DropShadowFilter();                                  
   dropShadow.dy = -30;  
@@ -108,6 +106,9 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   if(index % 5 === 0) {bullet.tooltip.dy = -45;bullet.tooltip.pointerOrientation = 'bottom'};
   if(index % 2 === 1) {bullet.tooltip.dx = 20;bullet.tooltip.pointerOrientation = 'left'};
 
+  bullet.tooltip.pointerOrientation = isFocusOutbound ? 'left' : bullet.tooltip.pointerOrientation;
+  bullet.tooltip.dx = isFocusOutbound ? 20 : bullet.tooltip.dx;
+  bullet.tooltip.dy = isFocusOutbound ? -15 : bullet.tooltip.dy;
 
   var dropShadow1 = new am4core.DropShadowFilter();
   dropShadow1.dx = 0;
