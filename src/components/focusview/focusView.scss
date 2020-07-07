@@ -17,10 +17,11 @@
 #overlay {
     position: absolute;
     width: 420px;
-    max-height: 86%;
+    // max-height: 75%;
     // height: 50%;
-    height: 86%;
-    left: 2%;
+    // height: 70%; // ### this
+    // left: 2%;
+    left: 60px;
     bottom: 0%;
     background-color: transparent;
     z-index: 2;
@@ -28,7 +29,8 @@
     overflow: hidden;
     padding: 1em 0em 0em 1em;
 
-    margin-left: 20px;
+    // margin-left: 20px;
+    // min-height: 40%;
 }
 
 .overlay-arrow {
@@ -44,6 +46,20 @@
     opacity: 0.7;
     outline-width: thin;
 }
+// .overlay-arrow {
+//     position: absolute;
+//     margin-left: 28px;
+//     bottom: 0.5%;
+//     /* background-color: rgba(0, 0, 0, 0.5); */
+//     z-index: 2;
+//     cursor: pointer;
+//     padding: 0em 0em 0em 0em;
+//     overflow-y: auto;
+//     color: white !important;
+//     opacity: 0.7;
+//     outline-width: thin;
+//     margin-bottom: 14px;
+// }
 
 .dot {
     height: 5px;
@@ -66,11 +82,13 @@
 //     padding: 0em 2em 0em 2em;
 // }
 .card.text-white.mb-3 {
-    max-width: 600px;
+    // max-width: 600px;
+    width: 390px;
     background-color: #696969;
     margin-top: 0px;
     padding: 0em 0em 0em 0em !important;
     border-radius: 5px;
+    margin-bottom: 4px !important;
 }
 
 .card-header {
@@ -348,6 +366,7 @@
     width: 2px;
     border: 1px solid rgba(255, 255, 255, 0.29);
     margin-top: 0px;
+    // opacity: 0.3;
 }
 .flight-gate-inbound {
     height: 45px;
@@ -360,7 +379,8 @@
     line-height: 22px;
     text-align: right;
     float: right;
-    padding: 10px 16px 17px 0px;
+    padding: 10px 0px 17px 0px;
+    margin-right: 16px;
 
 }
 
@@ -408,12 +428,8 @@
 }
 
 .divider-line {
-    // box-sizing: border-box;
-    // height: 2px;
-    width: 358px;
-    border: 1px solid rgba(255, 255, 255, 0.29);
-    opacity: 0.45;
-    margin-left: 10px;
+    margin-top: 24px;
+    margin-bottom: 24px;
 }
 .card-body.notes {
     background-color: #414141;

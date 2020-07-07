@@ -127,7 +127,7 @@ class FlightList extends React.Component {
                                  <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900" }}>
                                     { flightObj.arrStn === 'SIN' ? getHoursAndMinutesAfterFormat(flightObj.sta) : getHoursAndMinutesAfterFormat(flightObj.std)} 
                                  </b>                                                      
-                                 <b style={{ display: "inline-block", marginLeft: "6px" }} className="line">
+                                 <b style={{ display: "inline-block", marginLeft: "6px", opacity: "0.3" }} className="line">
                                  </b> 
                                  <b style={{ marginLeft: "15px", marginRight: "5px"}}>
                                      {flightObj.arrStn === 'SIN' ? 'ETA' : 'ETD' } 

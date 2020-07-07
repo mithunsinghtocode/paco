@@ -11,10 +11,10 @@ import { sort } from "../../utils/sortUtils";
 
 var scrollHeight = 0;
 let MAX_HEIGHT = 86;
-const MIN_HEIGHT = 50;
+let MIN_HEIGHT = 50;
 const TRANSITION_MULTIPLIER=1.4;
 const SINGLE_RECORD = 12;
-let dumbVarlen = 9;
+let inboundFlightListlen = 0;
 
 class FocusView extends React.PureComponent {
   off = () => {
@@ -29,7 +29,7 @@ class FocusView extends React.PureComponent {
   getBayGateTerminalDetailsInbound = selectedFlight => {
     return selectedFlight.arrTerminal !== null && selectedFlight.arrBayGateNo !== null
       ? `${selectedFlight.arrTerminal} / ${selectedFlight.arrBayGateNo}`
-      :  selectedFlight.arrTerminal !== null ? `${selectedFlight.arrTerminal} / -` : "-";
+      :  selectedFlight.arrTerminal !== null ? `${selectedFlight.arrTerminal} / –` : "–/–";
   };
 
   getFormattedFltNum = (fltNum) => `${fltNum.substr(0,2)} ${fltNum.substr(2,5)}`;
@@ -62,16 +62,30 @@ class FocusView extends React.PureComponent {
 frameCabinClassConnectingInbound = (cabinClass, count) =>  {    
     let res = [];
     let cabinClassFormatted = <b style={{fontFamily: "Proxima Nova Semibold", fontWeight:"900", letterSpacing:"4px", marginLeft:"2px" }}>{cabinClass}</b>;
-    let countFormatted = <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900", letterSpacing:"3px"}}>{count}</b>;        
+    let countFormatted = <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900", letterSpacing:"1px"}}>{count}</b>;            
+    if(cabinClass==='Y'){
+      console.log('hello');
+      countFormatted = <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900"}}>{count}</b>;            
+    }
     res.push('   ')
     res.push(cabinClassFormatted);
-    // res.push(' ')
     res.push(countFormatted);
     return res;
 }  
   
 setHeight = () => {
-  return this.props.selectedFlightObj && ((dumbVarlen < 50) ? dumbVarlen*SINGLE_RECORD +"%" : "50%");       
+  let totLen = document.body.clientHeight;  
+  let paneLen = 14+8 + document.getElementById("focusview-main-card").offsetHeight 
+              + document.getElementById("focusview-secondary-inbound-card").offsetHeight;    
+
+  let len = paneLen < (totLen-149) ? 100*Number( ( (paneLen)/(totLen) ).toFixed(2) ) : 100*Number( ( (totLen-149)/(totLen) ).toFixed(2) ) ;
+  // console.log("### len =>" + len);
+  return this.props.selectedFlightObj && ( len +"%");    
+};
+setPaneHeight = () => {
+  // console.log("#### setPaneHeight() inboundFlightListlen = " + inboundFlightListlen);
+  let paneLen = inboundFlightListlen>0 ?( 14+646+42 + (81+7)*inboundFlightListlen ) : (14+646+42 + 45) ;
+  return paneLen+"px";
 };
 
 shrink = () => {
@@ -83,10 +97,10 @@ shrink = () => {
 };
 
 expand = () => {
-   let downArrow = document.getElementById("down-arrow-focusview");
-   downArrow.style.display = "block"; 
+  let downArrow = document.getElementById("down-arrow-focusview");
+  downArrow.style.display = "block"; 
   document.getElementById("overlay").style.height = this.setHeight();   
-   document.getElementById("up-arrow-focusview").style.display = "none";
+  document.getElementById("up-arrow-focusview").style.display = "none";
 };
 
 showAvailFlightsInThreeHour = () => {
@@ -129,14 +143,26 @@ setScrollStyle = (overflowVal, heightVal) => {
   document.getElementById("overlay").style.height= heightVal;
 }
 adjustHeight = async (e) => {
-  if(dumbVarlen*SINGLE_RECORD < 50) return document.getElementById("overlay").style.height= dumbVarlen*SINGLE_RECORD +"% !important";
-  MAX_HEIGHT = MAX_HEIGHT > dumbVarlen*SINGLE_RECORD ? dumbVarlen*SINGLE_RECORD : MAX_HEIGHT;
-  //console.log(MAX_HEIGHT);
+
+  if( this.props.selectedFlightObj ){
+    document.getElementById("overlay").style.height = this.setHeight();   
+  }  
+  
+  let totLen = document.body.clientHeight;  
+  let paneLen = 14+8 + document.getElementById("focusview-main-card").offsetHeight 
+              + document.getElementById("focusview-secondary-inbound-card").offsetHeight;                 
+  MAX_HEIGHT = paneLen < (totLen-149) ? 100*Number((paneLen/totLen).toFixed(2)) : 100*Number(((totLen-149)/totLen).toFixed(2)) ;
+  MIN_HEIGHT = paneLen < (totLen-149) ? 100*Number((paneLen/totLen).toFixed(2)) : 100*Number(((totLen-149)/totLen).toFixed(2)) ;
+
+
   let y = e.deltaY;
   var element = document.querySelector("#overlay");
   var st = element.scrollTop;
   if(y){
-      var currHeight = Number(document.getElementById("overlay").style.height.replace('%',''));
+      var currHeight = Number(document.getElementById("overlay").style.height.replace('%',''));     
+      // console.log("##### MAX_HEIGHT =>" + MAX_HEIGHT);
+      // console.log("##### MIN_HEIGHT =>" + MIN_HEIGHT);
+      // console.log("##### currHeight =>" + currHeight);
       if(y>=0 && st >=0){
               if(currHeight >= 0 && currHeight < MAX_HEIGHT) {
                   document.getElementById("down-arrow-focusview").style.display = "block";
@@ -162,21 +188,20 @@ adjustHeight = async (e) => {
   renderSelectedFlightFocusViewPopup = () => {
 
     let selectedFlight = this.props.selectedFlightObj;
-
-    // console.log('############ props type ->' + typeof(this.props));
-    // console.log('############ props  ->' + JSON.stringify(this.props) );
-    // console.log('############ props.flightData  ->' + JSON.stringify(this.props.flightData) );
     if (selectedFlight != null) {
       console.log(selectedFlight);
       
       return ( 
-        <div id="overlay" onWheel={this.adjustHeight} onScroll={this.adjustHeight} >
-          <div className="card text-white mb-3">              
+        <div className="overlay" id="overlay" onWheel={this.adjustHeight} onScroll={this.adjustHeight} 
+            style={{height:this.setPaneHeight()}}
+            >
+        {/* <div id="overlay"  > */}
+          <div className="card text-white mb-3" id="focusview-main-card">              
             <div className="card-header" style={{ background: '#0483F8' }}>{this.getFormattedFltNum(selectedFlight.fltNum)}</div>                      
 
             <div className="card-body" >
             {/* // style={{ marginLeft: "10px" }}> */}
-              <div className="row dimmed">
+              <div className="row dimmed" style={{marginTop:"8px"}}>
                 <div className="col-2 col-md-3">STD</div>
                 <div className="col-1 col-md-3">GATE</div>
                 <div className="col-3 col-md-5">PAX</div>
@@ -222,7 +247,7 @@ adjustHeight = async (e) => {
               </div>
 
               {/* <hr className="divider-line" style={{ borderTop: "1px solid #9b9696" }} /> */}
-              <hr style={{ borderTop: "1px solid #9b9696" }} />
+              <hr className="divider-line" style={{ borderTop: "1px solid #9b9696", opacity: "0.3"}} />
 
               <div className="row option  dimmed">              
                 <div className="col">NOTES</div>                            
@@ -255,7 +280,7 @@ adjustHeight = async (e) => {
                 </div>
               </div>
 */}
-              <hr style={{ borderTop: "1px solid #9b9696" }} />
+              <hr className="divider-line" style={{ borderTop: "1px solid #9b9696", opacity: "0.3" }} />
 
               <div className="row option  dimmed" style={{ marginTop:"30px"}}>
                 <div className="col cost-based-delay-opt">COST BASED DELAY OPTIONS</div>
@@ -308,8 +333,8 @@ adjustHeight = async (e) => {
   {/*  */}
 
 
-              <hr
-                style={{ borderTop: "1px solid #9b9696", marginTop: "25px" }}
+              <hr className="divider-line"
+                style={{ borderTop: "1px solid #9b9696", marginTop: "25px", opacity: "0.3" }}
               />
 
               {/* <div className="row arrival dimmed">
@@ -358,7 +383,7 @@ adjustHeight = async (e) => {
           
           </div>
 
-          <div className="card text-white mb-3">
+          <div className="card text-white mb-3" id="focusview-secondary-inbound-card">
           {/* <div className="card-footer"> */}
                 
             <div className="card-body" >            
@@ -371,11 +396,13 @@ adjustHeight = async (e) => {
               </div>
             
               { this.props.selectedFlightObj !== null ? 
-                  this.renderInboundFlightList(this.props.inboundFlights.flightList, this.props.selectedFlightObj) : this.props.inboundFlights && this.renderInboundFlightList(this.props.inboundFlights.flightList)  
-              }  
+                  this.renderInboundFlightList(this.props.inboundFlights.flightList, this.props.selectedFlightObj) : 
+                  this.props.inboundFlights && this.renderInboundFlightList(this.props.inboundFlights.flightList)  
+              }
             </div>
           </div>
         
+        {/* {this.setPaneHeight()} */}
         </div>
 
 
@@ -392,7 +419,6 @@ adjustHeight = async (e) => {
     }
   }
   getMCTInMin = (inboundFlight, outboundFlight) => {
-    console.log("==============   =");
     let dif = outboundFlight.etd!==null && outboundFlight.etd !== undefined && inboundFlight.eta!==null && inboundFlight.eta !== undefined ? 
               ( new Date(outboundFlight.etd).getTime() - new Date(inboundFlight.eta).getTime() ) : 
               ( outboundFlight.std!==null && outboundFlight.std !== undefined && inboundFlight.eta!==null && inboundFlight.eta !== undefined ? 
@@ -412,18 +438,15 @@ adjustHeight = async (e) => {
 
   getMisConnectingInbounds = (flightList, highlightFlight) => {
 
-    console.log( "######==============  highlighted flight  = " + highlightFlight.fltNum );
+    // console.log( "######==============  highlighted flight  = " + highlightFlight.fltNum );
     let res = [];
     for(let flight of flightList){
 
       if( flight.outboundFlt===null || flight.outboundFlt===undefined || flight.outboundFlt.length==0)
           continue;
-      else{
-        let found = false;
-        console.log(flight.fltNum + "######==============  outboundFlight Len = " + flight.outboundFlt.length);
+      else{        
         for(let outboundFlight of flight.outboundFlt){
           if(outboundFlight.fltNum === highlightFlight.fltNum){
-            // console.log("######==============  outboundFlight = " + flight.fltNum);
             res.push(flight);          
             break;
           }
@@ -438,6 +461,8 @@ adjustHeight = async (e) => {
     let flightMisconnectionList = flightList.filter(flight => flight.status.misconnection);
     let flightListVar = this.getMisConnectingInbounds( flightMisconnectionList,highlightFlight );
     let misconxCount =  flightListVar.length;
+    inboundFlightListlen = misconxCount;
+    console.log("#### inboundFlightListlen = " + inboundFlightListlen);
     return flightListVar.map((flightObj, index) => {
         return(
             flightObj && 
@@ -458,7 +483,7 @@ adjustHeight = async (e) => {
                               <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900" }}>
                                   {getHoursAndMinutesAfterFormat(flightObj.eta)} 
                               </b>                                                      
-                              <b style={{ display: "inline-block", marginLeft: "13px" }} className="line">
+                              <b style={{ display: "inline-block", marginLeft: "13px", opacity:"0.3" }} className="line">
                               </b> 
                               <b style={{ marginLeft: "29px", marginRight: "5px", fontFamily: "Proxima Nova Semibold", fontWeight:"900" }}>MCT</b> 
                               <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900" }}>
@@ -468,40 +493,29 @@ adjustHeight = async (e) => {
                          <div className="flight-gate-inbound" style={{ display: "inline-block" }}> 
                               {this.getBayGateTerminalDetailsInbound(flightObj)}
                          </div>
-                      {/* </div>                                             */}
                     </div>
-                  {/* </div>     */}
-              {/* </div>        */}
             </div>   
        )
     });
   }
 
   renderSelectedFlightInFocusView = () => {
-
-    // let flightListWindow = document.getElementById("legend");
-    // flightListWindow.style.display = "none";
-
-    //console.log("Into Focus View");
-    
-    //temp
-    // this.props.removeSelectedFlightFromMap(null); 
-    // this.props.removeFocusViewForSelectedFlight(null);
     
     let selectedFlight = this.props.selectedFlightObj;
 
     // console.log('############ props type ->' + typeof(this.props));
     // console.log('############ props  ->' + JSON.stringify(this.props) );
     // console.log('############ props.flightData  ->' + JSON.stringify(this.props.flightData) );
-    if (selectedFlight != null) {
+    if (selectedFlight !== null) {
       console.log(selectedFlight);
 
       return (
-        <div id="showHide">
+        // <div id="showHide">
+        <div>
         
 
           {/* <div className="overlay" id="legend" onWheel={this.adjustHeight} onScroll={this.adjustHeight}>         */}
-              {this.renderSelectedFlightFocusViewPopup()}              
+              {this.renderSelectedFlightFocusViewPopup()}                                       
           {/* </div> */}
 
           {/* <div className="overlay-arrow">
@@ -511,6 +525,9 @@ adjustHeight = async (e) => {
               style={{ color: "#fff" }}
             ></i>
           </div> */}
+
+          {/* {this.props.selectedFlightObj!==null && this.setHeight()} */}
+
 
           <div className="overlay-arrow">
                     <button className="rectangle-down-arrow" id="down-arrow-focusview" style={{ color: "#fff" }} onClick={this.shrink}> 
