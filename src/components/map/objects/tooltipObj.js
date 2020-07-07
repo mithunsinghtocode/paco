@@ -105,6 +105,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   if(index % 3 === 0) {bullet.tooltip.dy = 20;bullet.tooltip.pointerOrientation = 'top'};
   if(index % 5 === 0) {bullet.tooltip.dy = -45;bullet.tooltip.pointerOrientation = 'bottom'};
   if(index % 2 === 1) {bullet.tooltip.dx = 20;bullet.tooltip.pointerOrientation = 'left'};
+  if(flight.depcoordinates.longitude > 120) {bullet.tooltip.dx = 20;bullet.tooltip.pointerOrientation = 'left'}; 
 
   bullet.tooltip.pointerOrientation = isFocusOutbound ? 'left' : bullet.tooltip.pointerOrientation;
   bullet.tooltip.dx = isFocusOutbound ? 20 : bullet.tooltip.dx;
