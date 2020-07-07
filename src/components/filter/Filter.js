@@ -122,10 +122,42 @@ export class Filter extends React.PureComponent {
     return (<label> <div><div style={{display:"inline-block"}} className="fltNum"> {fltObj.fltNum} </div> <div style={{display:"inline-block"}} className="flt-header">({fltObj.depStn} - {fltObj.arrStn})</div></div></label>)  
   };
 
+  isPotentialMisconnectionPresent = () => {
+    return this.props.flightData && this.props.flightData.flightSchedule.flightList.some( (flight) => {
+      return flight.status && !flight.status.misconnection;
+    })
+  }
+
+  isArrNxt3HrsPresent = () => {
+    Date.prototype.addHours = function(h) {
+      this.setHours(this.getHours()+h);
+      return this;
+    }
+    return this.props.flightData && this.props.flightData.flightSchedule.flightList.some( (flight) => {
+      return (new Date(flight.eta).getTime() < (new Date().addHours(-5)));
+    });
+  }
+
+  getPotentialMisconnectionCheckBox = () => {
+    if(this.isPotentialMisconnectionPresent()){
+      return <input type="checkbox" checked={switch1On} id="switch1" className="switch__input"  onClick={ this.filterInboundFlightBasedOnToggle } />;
+    }else{
+      return <input type="checkbox" disabled checked={switch1On} id="switch1" className="switch__input"  onClick={ this.filterInboundFlightBasedOnToggle } />;
+    }
+  }
+
+  getArrNxt3HrsCheckBox = () => {
+    if(this.isArrNxt3HrsPresent()){
+      return <input type="checkbox" checked={switch2On} id="switch2" className="switch__input" onClick={ this.filterInboundFlightBasedOnToggle }/>;
+    }else{
+      return <input type="checkbox" disabled checked={switch2On} id="switch2" className="switch__input" onClick={ this.filterInboundFlightBasedOnToggle }/>;
+    }
+  }
+
   getInBoundFilter = () => {
       return ( <div className="div-switch" >
         <div className="switch">
-          <input type="checkbox" checked={switch1On} id="switch1" className="switch__input"  onClick={ this.filterInboundFlightBasedOnToggle } />
+          {this.getPotentialMisconnectionCheckBox()}
           <label htmlFor="switch1" className="switch__label">
             <div className="switch__label__text">
                 Potential misconnection only
@@ -135,7 +167,7 @@ export class Filter extends React.PureComponent {
         {/* &nbsp;  */}
         <div className="vl"></div>
         <div className="switch">
-          <input type="checkbox" checked={switch2On} id="switch2" className="switch__input" onClick={ this.filterInboundFlightBasedOnToggle }/>
+          {this.getArrNxt3HrsCheckBox()}
           <label htmlFor="switch2" className="switch__label">
             <div className="switch__label__text">
                 Arriving within next 3 hours
