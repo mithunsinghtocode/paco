@@ -47,7 +47,7 @@ class OutboundPathFinder extends React.PureComponent {
       });
       var sortedFlightList = sort({
           inputList: flightObj.flightList, 
-          objectProp: 'sumCoordinates', 
+          objectProp: 'arrcoordinates.longitude', 
           typeOfProp: 'number', 
           conversionRequired: true, 
           isAscending: true, 
