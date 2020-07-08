@@ -865,7 +865,8 @@
                         "paxDetWrapperVo": null,
                         "status": {
                             "delayed": false,
-                            "misconnection": true
+                            "misconnection": true,
+                            "handled": true
                         },
                         "config": {
                             "linecolor": "#BFBFBF",
@@ -1246,7 +1247,8 @@
                 "paxDetWrapperVo": null,
                 "status": {
                     "delayed": true,
-                    "misconnection": true
+                    "misconnection": true,
+                    "handled": false
                 },
                 "config": {
                     "linecolor": "#BFBFBF",
@@ -1845,7 +1847,8 @@
                 "paxDetWrapperVo": null,
                 "status": {
                     "delayed": true,
-                    "misconnection": true
+                    "misconnection": true,
+                    "handled": true
                 },
                 "config": {
                     "linecolor": "#BFBFBF",
@@ -3419,7 +3422,8 @@
                 "paxDetWrapperVo": null,
                 "status": {
                     "delayed": true,
-                    "misconnection": true
+                    "misconnection": true,
+                    "handled": false
                 },
                 "config": {
                     "linecolor": "#BFBFBF",
@@ -6640,7 +6644,8 @@
                 "paxDetWrapperVo": null,
                 "status": {
                     "delayed": true,
-                    "misconnection": true
+                    "misconnection": true,
+                    "handled": true
                 },
                 "config": {
                     "linecolor": "#BFBFBF",

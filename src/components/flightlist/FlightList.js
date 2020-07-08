@@ -95,12 +95,13 @@ class FlightList extends React.Component {
         }else{
             sort({
                 inputList: flightList, 
-                objectProp: 'etd', 
-                typeOfProp: 'date', 
+                objectProp: 'status.handled', 
+                typeOfProp: 'boolean', 
                 conversionRequired: true, 
-                isAscending: true, 
+                isAscending: false, 
                 isNewCopyOfArr: false
             });
+            console.log(flightList);         
         }
         var legendDiv = document.getElementById("legend");
         if(legendDiv !== null){
