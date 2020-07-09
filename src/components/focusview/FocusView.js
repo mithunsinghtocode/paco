@@ -4,8 +4,11 @@ import { connect } from "react-redux";
 import {
   showFocusViewForSelectedFlight,
   removeFocusViewForSelectedFlight,
-  getFlightDataForOutBound
+  getFlightDataForOutBound, 
+  switchFlightsViewByInBoundOrOutbound,
+  showSelectedFlightInMap,userClick
 } from "../../actions/chartDataAction";
+
 import {  getHoursAndMinutesAfterFormat } from "../../utils/dateUtils";
 import { sort } from "../../utils/sortUtils";
 
@@ -29,7 +32,7 @@ class FocusView extends React.PureComponent {
   getBayGateTerminalDetailsInbound = selectedFlight => {
     return selectedFlight.arrTerminal !== null && selectedFlight.arrBayGateNo !== null
       ? `${selectedFlight.arrTerminal} / ${selectedFlight.arrBayGateNo}`
-      :  selectedFlight.arrTerminal !== null ? `${selectedFlight.arrTerminal} / –` : "–/–";
+      :  selectedFlight.arrTerminal !== null ? `${selectedFlight.arrTerminal} / ï¿½` : "ï¿½/ï¿½";
   };
 
   getFormattedFltNum = (fltNum) => `${fltNum.substr(0,2)} ${fltNum.substr(2,5)}`;
@@ -64,7 +67,7 @@ frameCabinClassConnectingInbound = (cabinClass, count) =>  {
     let cabinClassFormatted = <b style={{fontFamily: "Proxima Nova Semibold", fontWeight:"900", letterSpacing:"4px", marginLeft:"2px" }}>{cabinClass}</b>;
     let countFormatted = <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900", letterSpacing:"1px"}}>{count}</b>;            
     if(cabinClass==='Y'){
-      console.log('hello');
+      //console.log('hello');
       countFormatted = <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900"}}>{count}</b>;            
     }
     res.push('   ')
@@ -79,11 +82,11 @@ setHeight = () => {
               + document.getElementById("focusview-secondary-inbound-card").offsetHeight;    
 
   let len = paneLen < (totLen-149) ? 100*Number( ( (paneLen)/(totLen) ).toFixed(2) ) : 100*Number( ( (totLen-149)/(totLen) ).toFixed(2) ) ;
-  // console.log("### len =>" + len);
+  // //console.log("### len =>" + len);
   return this.props.selectedFlightObj && ( len +"%");    
 };
 setPaneHeight = () => {
-  // console.log("#### setPaneHeight() inboundFlightListlen = " + inboundFlightListlen);
+  // //console.log("#### setPaneHeight() inboundFlightListlen = " + inboundFlightListlen);
   let paneLen = inboundFlightListlen>0 ?( 14+646+42 + (81+7)*inboundFlightListlen ) : (14+646+42 + 45) ;
   return paneLen+"px";
 };
@@ -106,7 +109,7 @@ expand = () => {
 showAvailFlightsInThreeHour = () => {
   let availFlightsInThreeHourToggle = document.getElementById("switch1").checked;
 
-  console.log("availFlightsInThreeHourToggle :: "+availFlightsInThreeHourToggle);
+  //console.log("availFlightsInThreeHourToggle :: "+availFlightsInThreeHourToggle);
 
   if(availFlightsInThreeHourToggle){
     // let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
@@ -160,9 +163,9 @@ adjustHeight = async (e) => {
   var st = element.scrollTop;
   if(y){
       var currHeight = Number(document.getElementById("overlay").style.height.replace('%',''));     
-      // console.log("##### MAX_HEIGHT =>" + MAX_HEIGHT);
-      // console.log("##### MIN_HEIGHT =>" + MIN_HEIGHT);
-      // console.log("##### currHeight =>" + currHeight);
+      // //console.log("##### MAX_HEIGHT =>" + MAX_HEIGHT);
+      // //console.log("##### MIN_HEIGHT =>" + MIN_HEIGHT);
+      // //console.log("##### currHeight =>" + currHeight);
       if(y>=0 && st >=0){
               if(currHeight >= 0 && currHeight < MAX_HEIGHT) {
                   document.getElementById("down-arrow-focusview").style.display = "block";
@@ -189,7 +192,7 @@ adjustHeight = async (e) => {
 
     let selectedFlight = this.props.selectedFlightObj;
     if (selectedFlight != null) {
-      console.log(selectedFlight);
+      //console.log(selectedFlight);
       
       return ( 
         <div className="overlay" id="overlay" onWheel={this.adjustHeight} onScroll={this.adjustHeight} 
@@ -413,7 +416,7 @@ adjustHeight = async (e) => {
     let dif = isInbound ? 
       (new Date(flightObj.eta).getTime() - ((flightObj.rta !== undefined && flightObj.rta !== null) ? new Date(flightObj.rta).getTime() : new Date(flightObj.sta).getTime()))
     : (new Date(flightObj.etd).getTime() - ((flightObj.rtd !== undefined && flightObj.rtd !== null) ? new Date(flightObj.rtd).getTime() : new Date(flightObj.std).getTime()));
-    //console.log(dif);
+    ////console.log(dif);
     if(dif !== NaN && dif >= 0){
         return  `${Math.round((dif/1000)/60)}`; 
     }
@@ -425,7 +428,7 @@ adjustHeight = async (e) => {
                 ( new Date(outboundFlight.std).getTime() - new Date(inboundFlight.eta).getTime() ) : ( new Date(outboundFlight.std).getTime() - new Date(inboundFlight.sta).getTime() )   
               ) ;
               
-    //console.log(dif);
+    ////console.log(dif);
     if(dif !== NaN ){
       return  `${Math.round((dif/1000)/60)}`; 
     }
@@ -438,7 +441,7 @@ adjustHeight = async (e) => {
 
   getMisConnectingInbounds = (flightList, highlightFlight) => {
 
-    // console.log( "######==============  highlighted flight  = " + highlightFlight.fltNum );
+    // //console.log( "######==============  highlighted flight  = " + highlightFlight.fltNum );
     let res = [];
     for(let flight of flightList){
 
@@ -462,7 +465,7 @@ adjustHeight = async (e) => {
     let flightListVar = this.getMisConnectingInbounds( flightMisconnectionList,highlightFlight );
     let misconxCount =  flightListVar.length;
     inboundFlightListlen = misconxCount;
-    console.log("#### inboundFlightListlen = " + inboundFlightListlen);
+    //console.log("#### inboundFlightListlen = " + inboundFlightListlen);
     return flightListVar.map((flightObj, index) => {
         return(
             flightObj && 
@@ -499,15 +502,36 @@ adjustHeight = async (e) => {
     });
   }
 
-  renderSelectedFlightInFocusView = () => {
-    
-    let selectedFlight = this.props.selectedFlightObj;
 
-    // console.log('############ props type ->' + typeof(this.props));
-    // console.log('############ props  ->' + JSON.stringify(this.props) );
-    // console.log('############ props.flightData  ->' + JSON.stringify(this.props.flightData) );
-    if (selectedFlight !== null) {
-      console.log(selectedFlight);
+  getFlightBasedOnflightIdFromOutbound() {
+    return this.props.outboundFlights && this.props.outboundFlights.flightList.filter((flight) => {
+      return flight.flightId === this.props.selectedFlightObj.flightId;
+    });
+  }
+
+  setTheOuboundViewForSelectedFlight(selectedFlight) {
+       this.props.switchFlightsViewByInBoundOrOutbound("OUTBOUND");
+       this.props.userClick(false);
+       let inboundButton = document.getElementById('INBOUND');
+       let outboundButton = document.getElementById('OUTBOUND');
+       inboundButton.style.borderRight = "0px";
+       outboundButton.style.borderRight = "4px solid #00DC88";
+      this.props.showSelectedFlightInMap(selectedFlight);
+  }
+
+  renderSelectedFlightInFocusView = () => {    
+    //let selectedFlight = this.props.selectedFlightObj;
+   // //console.log(this.props.outboundFlights);
+    // //console.log('############ props type ->' + typeof(this.props));
+    // //console.log('############ props  ->' + JSON.stringify(this.props) );
+    // //console.log('############ props.flightData  ->' + JSON.stringify(this.props.flightData) );
+    if (this.props.selectedFlightObj !== null) {
+
+    let selectedFlight = this.getFlightBasedOnflightIdFromOutbound()[0];
+
+    selectedFlight && this.setTheOuboundViewForSelectedFlight(selectedFlight);
+
+      //console.log(selectedFlight);
 
       return (
         // <div id="showHide">
@@ -576,17 +600,19 @@ adjustHeight = async (e) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('====state st =====> ');
-  console.log(state);
-  console.log('====state end =====> ');
-  // console.log('=====FocusView.state======>' + JSON.stringify(state) );
-  // console.log('=====ownProps======>' + JSON.stringify(ownProps) );
-  return { selectedFlightObj: state.selectedFlight, inboundFlights: state.inboundFlightData };
+  //console.log('====state st =====> ');
+  //console.log(state);
+  //console.log('====state end =====> ');
+  // //console.log('=====FocusView.state======>' + JSON.stringify(state) );
+  // //console.log('=====ownProps======>' + JSON.stringify(ownProps) );
+  return { selectedFlightObj: state.selectedFlight, inboundFlights: state.inboundFlightData, outboundFlights: state.outboundFlightData};
 };
 
 
 export default connect(mapStateToProps, {
   showFocusViewForSelectedFlight,
   removeFocusViewForSelectedFlight,
-  getFlightDataForOutBound
+  getFlightDataForOutBound,
+  switchFlightsViewByInBoundOrOutbound,
+  showSelectedFlightInMap,userClick
 })(FocusView);

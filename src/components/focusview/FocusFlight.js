@@ -42,7 +42,13 @@ class FocusFlight extends React.Component {
 
                     let coordinatesList = consolidatedCoordinates(selectedFlight.outboundFlt,"OUTBOUND");
                     plotFlightObj(selectedFlight, lineSeries, null , false, am4core, this.props.displayView, chartObj,am4maps,0, false,coordinatesList, true);
-                    plotStationObj( am4core, chartObj, selectedFlight );
+                    //plotStationObj( am4core, chartObj, selectedFlight,null, null,this.props.displayView );
+                        // Create image series
+                        let imageSeries = chartObj.series.push(new am4maps.MapImageSeries());
+                        // Create a circle image in image series template so it gets replicated to all new images
+                        let imageSeriesTemplate = imageSeries.mapImages.template;
+                
+                        plotStationObj( am4core, chartObj, selectedFlight, imageSeries, imageSeriesTemplate,this.props.displayView, false );
                     // sorting to serve overlap algorithm
                     selectedFlight.outboundFlt.forEach( (in2) => {
                         in2.sumCoordinates = Number(in2.arrcoordinates.longitude) + Number(in2.arrcoordinates.latitude);
@@ -64,13 +70,26 @@ class FocusFlight extends React.Component {
                         outboundFlt.tooltip = "OUTBOUND";
                         outboundFlt.aircraft.position = 0.95;
                         plotFlightObj(outboundFlt, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView, chartObj,am4maps, index,false, coordinatesList, true);
+
+                         // Create image series
+                         let imageSeries = chartObj.series.push(new am4maps.MapImageSeries());
+                         // Create a circle image in image series template so it gets replicated to all new images
+                         let imageSeriesTemplate = imageSeries.mapImages.template;
+                 
+                         plotStationObj( am4core, chartObj, outboundFlt, imageSeries, imageSeriesTemplate,this.props.displayView, false );
                     });
                 }
                 if(this.props.displayView === "OUTBOUND"){
                     let coordinatesList = consolidatedCoordinates(selectedFlight.inboundFlt,"INBOUND");
                     selectedFlight.aircraft.position = 0.95;
-                    plotFlightObj(selectedFlight, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView, chartObj,am4maps, 0, true, coordinatesList, true);
-                    plotStationObj( am4core, chartObj, selectedFlight );
+                    plotFlightObj(selectedFlight, lineSeries, this.props.showFocusViewForSelectedFlight , false, am4core, this.props.displayView, chartObj,am4maps, 0, true, coordinatesList, true);
+                    //plotStationObj( am4core, chartObj, selectedFlight,null, null,this.props.displayView, true );
+                     // Create image series
+                     let imageSeries = chartObj.series.push(new am4maps.MapImageSeries());
+                     // Create a circle image in image series template so it gets replicated to all new images
+                     let imageSeriesTemplate = imageSeries.mapImages.template;
+             
+                     plotStationObj( am4core, chartObj, selectedFlight, imageSeries, imageSeriesTemplate,this.props.displayView, true );
                      // sorting to serve overlap algorithm
                      selectedFlight.inboundFlt && selectedFlight.inboundFlt.forEach( (in2) => {
                         in2.sumCoordinates = Number(in2.depcoordinates.longitude) + Number(in2.depcoordinates.latitude);
@@ -93,9 +112,15 @@ class FocusFlight extends React.Component {
                         inboundFlt.tooltip = "INBOUND";
                         plotFlightObj(inboundFlt, lineSeries, null , false, am4core, this.props.displayView, chartObj,am4maps, index, false, coordinatesList, true);
                     }
+                     // Create image series
+                     let imageSeries = chartObj.series.push(new am4maps.MapImageSeries());
+                     // Create a circle image in image series template so it gets replicated to all new images
+                     let imageSeriesTemplate = imageSeries.mapImages.template;
+             
+                     plotStationObj( am4core, chartObj, inboundFlt, imageSeries, imageSeriesTemplate,this.props.displayView, false );
                     });
             }
-                plotStationObj( am4core, chartObj, stationCoordinates );
+                //plotStationObj( am4core, chartObj, stationCoordinates,null, null,this.props.displayView );
             }).then(() => {
                 // Setting zoom panning to rectangle based on Inbound flight algorithm starts
                 let east;
@@ -189,7 +214,7 @@ class FocusFlight extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  //console.log(state);
+  console.log(state);
   return { fltToDisplayInMap : state.getFltToShowInMap, chartObj: state.chartInit, displayView: state.getDisplayView };
 }
 

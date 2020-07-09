@@ -65,7 +65,7 @@ export class Filter extends React.PureComponent {
       let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
           return flight.status && 
             // Singapore variance is +8 and arriving within 3 hours => -8+3 = -5
-            (flight.status.misconnection === true && (new Date(flight.eta).getTime() < (new Date().addHours(-5))))
+            (flight.status.misconnection === true && (new Date(flight.eta).getTime() < (new Date().addHours(-5)).getTime()))
           }
         );
         this.frameFlightsForMap(flightList);
@@ -76,7 +76,7 @@ export class Filter extends React.PureComponent {
         this.frameFlightsForMap(flightList);
     } else if (arrivWithin3HoursToggle){
       let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
-        return flight.status && (new Date(flight.eta).getTime() < (new Date().addHours(-5)));
+        return flight.status && (new Date(flight.eta).getTime() < (new Date().addHours(-5)).getTime());
       });
         this.frameFlightsForMap(flightList);
     } else{
@@ -99,7 +99,7 @@ export class Filter extends React.PureComponent {
       let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
           return flight.status && 
             // Singapore variance is +8 and arriving within 3 hours => -8+3 = -5
-            (!flight.status.handled === true && (new Date(flight.etd).addHours(3).getTime() > (new Date().getTime())))
+            (!flight.status.handled === true && (new Date(flight.etd).getTime() < (new Date().addHours(-5).getTime())))
           }
         );
         this.frameFlightsForMap(flightList);
@@ -110,7 +110,7 @@ export class Filter extends React.PureComponent {
         this.frameFlightsForMap(flightList);
     } else if (departWithin3HoursToggle){
       let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
-        return flight.status && (new Date(flight.etd).addHours(3).getTime() > (new Date().getTime()));
+        return (new Date(flight.etd).getTime() < (new Date().addHours(-5).getTime()));
       });
         this.frameFlightsForMap(flightList);
     } else{
@@ -190,7 +190,7 @@ export class Filter extends React.PureComponent {
       return this;
     }
     return this.props.flightData && this.props.flightData.flightSchedule.flightList.some( (flight) => {
-      return (new Date(flight.etd).addHours(3).getTime() > (new Date().getTime()));
+      return (new Date(flight.etd).getTime() < (new Date().addHours(-5).getTime()));
     });
     //console.log(temp);
   }

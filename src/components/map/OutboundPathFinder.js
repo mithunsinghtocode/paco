@@ -63,26 +63,34 @@ class OutboundPathFinder extends React.PureComponent {
         // Add line series
         sortedFlightList.forEach((flight , index) => {
         flight.aircraft.position = 0.95;
-        let line = lineObj(am4core, flight, lineSeries, chartObj,am4maps);
+        let line = lineObj(am4core, flight, lineSeries, chartObj,am4maps,false,this.props.displayView);
 
         // adds tooltip for the flights
-        let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView, index, false, coordinatesList) ;
+        let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView, index, false, coordinatesList,false) ;
 
         // Adds click event on the tooltip, icon and line
         mapObjectEvents(bullet, line, lineSeries, flight, this.props.showSelectedFlightInMap, this.props.showFocusViewForSelectedFlight);
-        requestAnimationFrame (() => {
+        //requestAnimationFrame (() => {
         // Adds the position of the airplane object with svg
         airplaneObj(am4core, bullet, flight);
-        });
+
+        // Create image series
+        let imageSeries = chartObj.series.push(new am4maps.MapImageSeries());
+        // Create a circle image in image series template so it gets replicated to all new images
+        let imageSeriesTemplate = imageSeries.mapImages.template;
+
+        plotStationObj( am4core, chartObj, flight, imageSeries, imageSeriesTemplate,this.props.displayView, false );
+        //});
       });
-      plotStationObj( am4core, chartObj, flightObj );
 
       // Restore the state of the chart object to store
       this.props.initChart(chartObj);
 
     }).then(() => {
         // refocus map
-        goToHome(chartObj);
+        requestAnimationFrame (() => {
+          goToHome(chartObj);
+        });
       //freeUpMemory([chartObj, flightObj]);
     });
     }

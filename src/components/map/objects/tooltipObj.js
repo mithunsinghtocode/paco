@@ -1,10 +1,13 @@
 import { getHoursAndMinutesAfterFormat, getAircraftPositionBasedOnFlightObj } from "../../../utils/dateUtils";
 import { getTotalPaxCountForFlight } from "../../../utils/paxUtils";
+import { isDepNxt3Hrs } from "../../../utils/filterUtils";
 
 // 5 minutes once
 const TIME_TO_CHECK_AIRCRAFT_POSITION = 300000;
 const isTest = true;
 const FOCUSSED_OUTBOUND_COLOR = "#0483F8";
+const OUTBOUND_VIEW_WITHIN_3HOURS_COLOR = "#E55541";
+
 const checkAircraftPosition = (aircraftPosition) => {
   if(!isFinite(aircraftPosition)) return 1;
   if(aircraftPosition>1) return 1;
@@ -12,6 +15,12 @@ const checkAircraftPosition = (aircraftPosition) => {
 }
 
 export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index, isFocusOutbound, consolidatedCoordinates, isFocusView) => {
+
+  if(displayView==='OUTBOUND' && isDepNxt3Hrs(flight)) {
+    //flight.config.linecolor = OUTBOUND_VIEW_WITHIN_3HOURS_COLOR;
+    flight.config.tooltipcolor = OUTBOUND_VIEW_WITHIN_3HOURS_COLOR;
+    flight.config.bulletColor = OUTBOUND_VIEW_WITHIN_3HOURS_COLOR;
+  }
   // Add a map object to line
   let bullet = line.lineObjects.create();
   bullet.nonScaling = true;
@@ -75,10 +84,11 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   dropShadow.clonedFrom = bullet;
   dropShadow.filterUnits='objectBoundingBox';
   // commented as using different algorithm
-  (!isFocusOutbound && flight.depStn==='SIN' && flight.status.misconnection) && bullet.tooltip.filters.push(dropShadow);
-  bullet.tooltip.background.filters.clear();
+  if(!isFocusOutbound && flight.depStn==='SIN' && flight.status.misconnection ) bullet.tooltip.filters.push(dropShadow);
+  (displayView==='OUTBOUND' && isDepNxt3Hrs(flight)) && bullet.tooltip.filters.clear();
 
-  
+
+  bullet.tooltip.background.filters.clear(); 
 
   //(flight.depStn==='SIN') && bullet.tooltip.background.filters.push(dropShadow1);
 
@@ -125,15 +135,10 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   if(consolidatedCoordinates !== null && consolidatedCoordinates !== undefined){
   for(var i=0; i<consolidatedCoordinates.length ; i++){
     if (currentLatitude === consolidatedCoordinates[i].latitude && currentLongitude === consolidatedCoordinates[i].longitude) continue;
-    //if(flight.flightId === 'SQ618202003151730SINKIX1'){
     if((Number(currentLatitude) - Number(consolidatedCoordinates[i].latitude) <= 3) && 
     (Number(currentLatitude) - Number(consolidatedCoordinates[i].latitude) >= -3) 
       &&  (Number(currentLongitude) - Number(consolidatedCoordinates[i].longitude) <= 50)
       &&  (Number(currentLongitude) - Number(consolidatedCoordinates[i].longitude) >= -10)){
-          //console.log("1 ::: Flight going to have drop shadow :: "+flight.flightId + " :: Longitude :: " +bullet.tooltip.pointerOrientation )
-        // console.log("1 ::: Flight going to have drop shadow :: "+flight.flightId + " :: Longitude :: " )
-         //console.log(Number(currentLongitude) - Number(consolidatedCoordinates[i].longitude));
-         //console.log(Number(currentLatitude) - Number(consolidatedCoordinates[i].latitude));
       bullet.tooltip.background.filters.push(dropShadow1);
       break;
     }
@@ -141,14 +146,9 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
     (Number(currentLongitude) - Number(consolidatedCoordinates[i].longitude) >= 0))
     &&  ((Number(currentLatitude) - Number(consolidatedCoordinates[i].latitude) <= 20)
     && (Number(currentLatitude) - Number(consolidatedCoordinates[i].latitude) >= 0))){
-      //console.log(" Flight going to have drop shadow :: "+flight.flightId + " :: Longitude :: "+bullet.tooltip.pointerOrientation )
-      //console.log(Number(currentLongitude) - Number(consolidatedCoordinates[i].longitude));
-       //console.log(Number(currentLongitude) - Number(consolidatedCoordinates[i].longitude));
-       //console.log(Number(currentLatitude) - Number(consolidatedCoordinates[i].latitude));
       bullet.tooltip.background.filters.push(dropShadow1);
       break;
     }
-    //}
   };
 }
 

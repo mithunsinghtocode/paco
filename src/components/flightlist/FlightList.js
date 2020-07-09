@@ -93,6 +93,15 @@ class FlightList extends React.Component {
             flightList = [...flightMisconnectionList, ...flightDelayList]
             misconxCount = flightMisconnectionList.length;
         }else{
+
+            sort({
+                inputList: flightList, 
+                objectProp: 'etd', 
+                typeOfProp: 'date', 
+                conversionRequired: true, 
+                isAscending: true, 
+                isNewCopyOfArr: false
+            });
             sort({
                 inputList: flightList, 
                 objectProp: 'status.handled', 

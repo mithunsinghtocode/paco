@@ -87,3 +87,11 @@ export const setFlightsViewByInBoundOrOutbound = (screenViewSelected="INBOUND", 
   }
   return screenViewSelected;
 }
+
+export const userClick = (screenViewSelected=true, action) => {
+  if (action.type === "USER_CLICK") {
+    return action.payload;
+  }
+  return screenViewSelected;
+}
+

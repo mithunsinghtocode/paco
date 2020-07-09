@@ -1,14 +1,19 @@
+import { isDepNxt3Hrs } from "../../../utils/filterUtils";
 const PACIFIC_OCEAN_COUNTRIES = ['LAX','SFO','SEA'];
 const ATLANTIC_OCEAN_COUNTRIES = ['EWR','JFK','IAH'];
 const DEFINE_PATH_THROUGH_PACIFIC_ARRSTN = ['EWR'];
 const FOCUSSED_OUTBOUND_COLOR = "#0483F8";
+const OUTBOUND_VIEW_WITHIN_3HOURS_COLOR = "#E55541";
 
-export const lineObj = (am4core, flight,lineSeries, chartObj, am4maps, isFocusOutbound) => {
+export const lineObj = (am4core, flight,lineSeries, chartObj, am4maps, isFocusOutbound, displayView) => {
   
   // if((flight.depcoordinates.latitude > 100 && flight.depcoordinates.longitude < 100) || (flight.depcoordinates.longitude < -60 && flight.depcoordinates.latitude < 100)) {
   //   lineSeries = chartObj.series.push(new am4maps.MapArcSeries())
   // };
 
+  if(displayView!== undefined && displayView==='OUTBOUND' && isDepNxt3Hrs(flight)) {
+    flight.config.linecolor = OUTBOUND_VIEW_WITHIN_3HOURS_COLOR;
+  }
 
   if(ATLANTIC_OCEAN_COUNTRIES.includes(flight.depStn)){
     lineSeries = chartObj.series.push(new am4maps.MapArcSeries());

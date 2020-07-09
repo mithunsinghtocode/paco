@@ -70,6 +70,10 @@ export const switchFlightsViewByInBoundOrOutbound = screenViewSelected => dispat
     dispatch({ type: 'TOGGLE_INBOUND_OUTBOUND_VIEW', payload: screenViewSelected});
 }
 
+export const userClick = isUserClick => dispatch => {
+    dispatch({ type: 'USER_CLICK', payload: isUserClick});
+}
+
 export const showSelectedFlightInMap = selectedFlt => dispatch => {
     dispatch({ type: 'SHOW_SELECTED_FLIGHT_IN_MAP', payload: selectedFlt});
 }
