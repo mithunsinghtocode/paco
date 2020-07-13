@@ -33,3 +33,14 @@ export const getUTCDate = (jsonDate) => {
 const addZero = (inData) => {
     return inData.length === 1 ? `0${inData}` : inData ;
 };
+
+export const getMock2hTimeFromDateTime = (dateObj, hours) => {
+    return dateObj !== null && dateObj !== undefined && hours!==null ? new Date( new Date(dateObj).getTime() + hours*60*60*1000 ) : "-";
+}
+export const convertMillisecondsToHoursAndMinutesAfterFormat = (duration) => {
+    let minutes = parseInt((duration / (1000 * 60)) % 60);
+    let hours = parseInt((duration / (1000 * 60 * 60)) % 24) ;
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    return hours+":"+minutes;
+};

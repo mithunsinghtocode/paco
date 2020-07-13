@@ -269,7 +269,7 @@ const mapStateToProps = (state, ownprops) => {
   // return { chartObj: state.chartInit, displayView: state.getDisplayView, goBackFunction : ownprops.goBackFunction, fltToDisplayInMap : state.getFltToShowInMap, flightData : state.allFlightData };
   return { chartObj: state.chartInit, displayView: state.getDisplayView, 
             goBackFunction : ownprops.goBackFunction, fltToDisplayInMap : state.getFltToShowInMap, 
-            flightData : state.allFlightData, selectedFlightObj: state.selectedFlight, isUserClick : state.isUserClick  };
+            flightData : state.allFlightData, selectedFlightObj: state.selectedFlight  };
 };
 
 export default connect(mapStateToProps, { getFilteredFlightDataForInbound, getFilteredFlightDataForOutbound })(Filter);

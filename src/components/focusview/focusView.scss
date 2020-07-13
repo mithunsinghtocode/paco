@@ -1,35 +1,23 @@
-// #overlay {
-//     position: absolute;
-//     display: block;
-//     width: 415px;
-//     max-width: 800px;
-//     max-height: 96%;
-//     left: 2%;
-//     /* top: 16%; */
-//     bottom: 0%;
-//     /* background-color: rgba(0, 0, 0, 0.5); */
-//     z-index: 2;
-//     cursor: pointer;
-//     padding: 0.5em 0em 0em 1em;
-//     overflow-y: auto;
-//     height: 674px;
-// }
-#overlay {
+.legend-focusview {
     position: absolute;
     width: 420px;
-    // max-height: 75%;
-    // height: 50%;
-    // height: 70%; // ### this
-    // left: 2%;
     left: 60px;
     bottom: 0%;
     background-color: transparent;
     z-index: 2;
     cursor: pointer;
     overflow: hidden;
-    padding: 1em 0em 0em 1em;
-    // margin-left: 20px;
-    // min-height: 40%;
+    padding: 16px 0px 16px 16px;
+    overflow-y: scroll;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.legend-focusview::-webkit-scrollbar {
+    display: none;
+}
+/* Hide scrollbar for IE and Edge */
+
+.legend-focusview {
+    -ms-overflow-style: none;
 }
 
 .overlay-arrow {
@@ -41,11 +29,47 @@
     cursor: pointer;
     padding: 0.5em 0em 0em 1em;
     overflow-y: auto;
+    // overflow-y: hidden;
     color: white !important;
     opacity: 0.7;
     outline-width: thin;
 }
-
+.rectangle-down-arrow {
+    box-sizing: border-box;
+    height: 40px;
+    width: 40px;
+    border: 1px solid #BFBFBF;
+    border-radius: 50%;
+    color: #FFFFFF;
+    font-family: "Proxima Nova";
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 17px;
+    text-align: center;
+    opacity: 1px;
+    transform: rotate(-90deg);
+    //background-color: #2E2E2E;
+    background-color: Transparent;
+}
+.rectangle-up-arrow {
+    box-sizing: border-box;
+    height: 40px;
+    width: 40px;
+    border: 1px solid #BFBFBF;
+    border-radius: 50%;
+    color: #FFFFFF;
+    font-family: "Proxima Nova";
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 17px;
+    text-align: center;
+    opacity: 1px;
+    transform: rotate(90deg);
+    //background-color: #2E2E2E;
+    background-color: Transparent;
+}
 // .overlay-arrow {
 //     position: absolute;
 //     margin-left: 28px;
@@ -60,6 +84,7 @@
 //     outline-width: thin;
 //     margin-bottom: 14px;
 // }
+
 .dot {
     height: 5px;
     width: 5px;
@@ -108,31 +133,33 @@
     line-height: 22px;
 }
 
-.card-body {
+.card-body{
     background-color: #696969;
     // padding: 2.25rem;
     // padding: 2.25rem 0rem 0rem ;
     // border-radius: 5px;
     // margin-bottom: 5px;
 }
-
 .card-footer {
     background-color: #696969;
     // margin-top: 15px;
     // transform: scaleY(-1);
     border-radius: 5px;
 }
-
-.row.dimmed {
+.row.dimmed{
     // color: #ece6e6;
     color: #FFFFFF;
     font-size: 12px;
+    
     //temp
     margin-left: 0px;
     margin-right: 0px;
+
     //temp
     // margin-right: -15px;
     // margin-left: -15px;
+
+    
 }
 
 .row.value {
@@ -171,7 +198,7 @@
     letter-spacing: 0;
     line-height: 17px;
     text-align: center;
-}
+  }
 
 .small-font {
     font-size: 12px;
@@ -190,7 +217,8 @@
     border: 1px solid #9b9696;
 }
 
-.row.inbound {
+.row.inbound{
+
     margin-top: 10px;
     margin-bottom: 15px;
     margin-left: 0px;
@@ -206,9 +234,10 @@
     line-height: 17px;
 }
 
-.card-header.inbound {
+
+.card-header.inbound{
     // background-color: #88c039;
-    height: 36px;
+    height:36px;
     border-radius: 7px 7px 0px 0px;
     padding: 0px 0px 0px 0px;
 }
@@ -216,17 +245,19 @@
 .card-body.inbound {
     height: 45px;
     background-color: #414141;
-    border-radius: 0px 0px 7px 7px;
+    border-radius: 0px 0px 7px 7px ;
     padding: 0px 0px 0px 0px;
 }
 
 .card.text-white.mb-1 {
     // margin-left: 10px !important;
-    //temp
+
+            //temp
     margin-left: 0px;
     margin-right: 0px;
+
     // margin-top: 7px;
-    border-radius: 7px 7px 7px 7px;
+    border-radius: 7px 7px 7px 7px ;
     border: 0px;
 }
 
@@ -306,11 +337,11 @@
 .col-xl-auto {
     position: relative;
     display: inline-block;
+
     padding-right: 10px !important;
     padding-left: 0px !important;
 }
-
-.flight-num-inbound {
+.flight-num-inbound{
     position: relative;
     height: 36px;
     width: 88px;
@@ -324,10 +355,11 @@
     // margin-bottom: 7px;
     margin-left: 16px;
     margin-top: 9px;
-}
+    
 
+}
 .cabin-class-inbound {
-    float: right;
+    float: right ;
     position: relative;
     display: inline-block;
     height: 36px;
@@ -341,7 +373,6 @@
     line-height: 17px;
     text-align: right;
 }
-
 .flight-details-inbound {
     height: 45px;
     // width: 250px;
@@ -352,7 +383,6 @@
     line-height: 22px;
     padding: 10px 0px 17px 16px;
 }
-
 .line {
     position: absolute;
     box-sizing: border-box;
@@ -362,7 +392,6 @@
     margin-top: 0px;
     // opacity: 0.3;
 }
-
 .flight-gate-inbound {
     height: 45px;
     // width: 120px;
@@ -376,11 +405,13 @@
     float: right;
     padding: 10px 0px 17px 0px;
     margin-right: 16px;
+
 }
 
 .col-2.col-md-3 {
     position: relative;
     display: inline-block;
+
     padding-right: 0px !important;
     padding-left: 0px !important;
 }
@@ -388,7 +419,8 @@
 .col-1.col-md-3 {
     position: relative;
     display: inline-block;
-    margin-left: 11px;
+
+    margin-left: 11px; 
     padding-right: 0px !important;
     padding-left: 0px !important;
 }
@@ -396,14 +428,16 @@
 .col-3.col-md-5 {
     position: relative;
     display: inline-block;
-    margin-left: 16.5px;
+    
+    margin-left: 16.5px; 
     padding-right: 0px !important;
     padding-left: 0px !important;
 }
-
-.col-6.first-col {
+.col-6,
+.col-6.first-col{
     position: relative;
     display: inline-block;
+
     padding-right: 10px !important;
     padding-left: 10px !important;
     // margin-left: 10px;
@@ -422,7 +456,6 @@
     margin-top: 24px;
     margin-bottom: 24px;
 }
-
 .card-body.notes {
     background-color: #414141;
     margin-top: 15px;
@@ -430,7 +463,8 @@
     border-radius: 5px;
     height: 37px;
     padding: 0px 0px 0px 12px;
-    .notes-text {
+
+    .notes-text{
         color: #FFFFFF;
         font-family: "Proxima Nova";
         font-size: 14px;
@@ -438,6 +472,19 @@
         line-height: 17px;
     }
 }
+
+.ground-time-mgt {
+    height: 14px;
+    width: 116px;
+    color: #FFFFFF;
+    font-family: "Proxima Nova Semibold";
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: -0.15px;
+    line-height: 14px;
+  }
+
+
 
 // Variables
 $bg-disabled-color: rgba(255, 255, 255, 0.26);
@@ -447,8 +494,9 @@ $lever-enabled-color: #00DC88;
 .switch__label__text {
     float: left;
     opacity: 1;
-    font-size: 18px;
+    font-size: 21px;
     // margin-right: 1px;
+    
     //   color: #FFFFFF;
     //   font-family: "Proxima Nova Regular";
     //   letter-spacing: -0.26px;
@@ -456,6 +504,7 @@ $lever-enabled-color: #00DC88;
 }
 
 // Switch
+
 .switch {
     // float: right;
     display: inline-block;
@@ -540,3 +589,4 @@ $lever-enabled-color: #00DC88;
         }
     }
 }
+

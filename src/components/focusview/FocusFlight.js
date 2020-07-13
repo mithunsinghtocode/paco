@@ -214,7 +214,7 @@ class FocusFlight extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state);
+  //console.log(state);
   return { fltToDisplayInMap : state.getFltToShowInMap, chartObj: state.chartInit, displayView: state.getDisplayView };
 }
 
