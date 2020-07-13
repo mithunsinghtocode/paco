@@ -25,7 +25,6 @@ export const plotStationObj = (am4core, chartObj, objData, imageSeries, imageSer
     circle.fill = FOCUSSED_OUTBOUND_COLOR;
     circle.stroke = FOCUSSED_OUTBOUND_COLOR;
   }
-  console.log(isFocusOutbound);
   circle.strokeWidth = 1;
   circle.nonScaling = true;
   circle.tooltipText = "{title}";

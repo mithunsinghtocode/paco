@@ -528,6 +528,8 @@ adjustHeight = async (e) => {
     if (this.props.selectedFlightObj !== null) {
 
     let selectedFlight = this.getFlightBasedOnflightIdFromOutbound()[0];
+    selectedFlight || alert('Oops! Inbound Data is not available for the selected Outbound Flight.')
+    selectedFlight = selectedFlight ||  this.props.selectedFlightObj;
 
     selectedFlight && this.setTheOuboundViewForSelectedFlight(selectedFlight);
 

@@ -190,7 +190,7 @@ export class Filter extends React.PureComponent {
       return this;
     }
     return this.props.flightData && this.props.flightData.flightSchedule.flightList.some( (flight) => {
-      return (new Date(flight.etd).getTime() < (new Date().addHours(-5).getTime()));
+      return !(new Date(flight.etd).getTime() < (new Date().addHours(-5).getTime()));
     });
     //console.log(temp);
   }
@@ -269,7 +269,7 @@ const mapStateToProps = (state, ownprops) => {
   // return { chartObj: state.chartInit, displayView: state.getDisplayView, goBackFunction : ownprops.goBackFunction, fltToDisplayInMap : state.getFltToShowInMap, flightData : state.allFlightData };
   return { chartObj: state.chartInit, displayView: state.getDisplayView, 
             goBackFunction : ownprops.goBackFunction, fltToDisplayInMap : state.getFltToShowInMap, 
-            flightData : state.allFlightData, selectedFlightObj: state.selectedFlight  };
+            flightData : state.allFlightData, selectedFlightObj: state.selectedFlight, isUserClick : state.isUserClick  };
 };
 
 export default connect(mapStateToProps, { getFilteredFlightDataForInbound, getFilteredFlightDataForOutbound })(Filter);

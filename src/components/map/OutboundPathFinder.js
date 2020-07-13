@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 
-import { getFlightDataForOutBound, showFocusViewForSelectedFlight, showSelectedFlightInMap } from "../../actions/chartDataAction";
+import { getFlightDataForOutBound, showFocusViewForSelectedFlight, showSelectedFlightInMap, userClick } from "../../actions/chartDataAction";
 import { airplaneObj } from "./objects/airplaneObj";
 import { tooltipObj } from "./objects/tooltipObj";
 import { lineObj } from "./objects/lineObj";
@@ -67,7 +67,6 @@ class OutboundPathFinder extends React.PureComponent {
 
         // adds tooltip for the flights
         let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView, index, false, coordinatesList,false) ;
-
         // Adds click event on the tooltip, icon and line
         mapObjectEvents(bullet, line, lineSeries, flight, this.props.showSelectedFlightInMap, this.props.showFocusViewForSelectedFlight);
         //requestAnimationFrame (() => {
@@ -110,6 +109,6 @@ const mapStateToProps = (state, ownprops) => {
   return { chartObj: state.chartInit, outboundFlights: state.outboundFlightData, displayView: state.getDisplayView, fltToDisplayInMap : state.getFltToShowInMap, flightData : state.allFlightData };
 };
 
-export default connect(mapStateToProps, { getFlightDataForOutBound, showFocusViewForSelectedFlight, showSelectedFlightInMap, initChart })(
+export default connect(mapStateToProps, { getFlightDataForOutBound, showFocusViewForSelectedFlight, showSelectedFlightInMap, initChart, userClick })(
           OutboundPathFinder
 );

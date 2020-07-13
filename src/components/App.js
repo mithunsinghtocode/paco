@@ -9,6 +9,7 @@ import { removeSelectedFlightFromMap, getFlightData, removeFocusViewForSelectedF
 import { clearChartComponents } from "../components/map/objects/clearChartObjects";
 import { renderChartLayout } from "../components/map/objects/renderChartLayOut";
 import { initChart } from "../actions/chartAction";
+import { switchFlightsViewByInBoundOrOutbound, userClick } from "../actions/chartDataAction";
 
 class App extends React.PureComponent {
     componentDidMount(){
@@ -22,11 +23,25 @@ class App extends React.PureComponent {
                 this.props.chartObj.zoomDuration = 200;
         });     
     }
+    setTheInboundViewForBackButton() {
+        this.props.switchFlightsViewByInBoundOrOutbound("INBOUND");
+        this.props.userClick(false);
+        let inboundButton = document.getElementById('INBOUND');
+        let outboundButton = document.getElementById('OUTBOUND');
+        outboundButton.style.borderRight = "0px";
+        inboundButton.style.borderRight = "4px solid #00DC88";
+   }
     render(){
         return (
             <>
                 <Header />
-                <Filter goBackFunction={() => {this.props.removeSelectedFlightFromMap(null); this.props.removeFocusViewForSelectedFlight(null); clearChartComponents(this.props.chartObj, ["ALL"]); renderChartLayout(this.props.chartObj); }}/>
+                <Filter goBackFunction={() => {
+                    this.props.removeSelectedFlightFromMap(null); 
+                    this.props.removeFocusViewForSelectedFlight(null); 
+                    clearChartComponents(this.props.chartObj, ["ALL"]); 
+                    renderChartLayout(this.props.chartObj); 
+                    !this.props.isUserClick && this.setTheInboundViewForBackButton()
+                    }}/>
                 <MapChartLayer />
                 <FocusView />
             </>
@@ -35,7 +50,8 @@ class App extends React.PureComponent {
 };
 
 const mapStateToProps = (state, ownProps) => {
-    return { state, chartObj: state.chartInit, flightData : state.allFlightData };
+    return { state, chartObj: state.chartInit, flightData : state.allFlightData};
 }
   
-  export default connect(mapStateToProps , { removeSelectedFlightFromMap, removeFocusViewForSelectedFlight, initChart, getFlightData, getFlightDataForInbound })(App);
+  export default connect(mapStateToProps , { removeSelectedFlightFromMap, removeFocusViewForSelectedFlight, initChart, getFlightData, getFlightDataForInbound,
+    switchFlightsViewByInBoundOrOutbound, userClick })(App);

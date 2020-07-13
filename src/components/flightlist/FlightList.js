@@ -5,6 +5,7 @@ import { getHoursAndMinutesAfterFormat } from "../../utils/dateUtils";
 import { showSelectedFlightInMap, removeSelectedFlightFromMap } from "../../actions/chartDataAction";
 import { getTotalPaxCountBasedGroupByClassForFlight } from "../../utils/paxUtils";
 import { sort } from "../../utils/sortUtils";
+import { isDepNxt3Hrs } from "../../utils/filterUtils";
 
 var scrollHeight = 0;
 let MAX_HEIGHT = 86;
@@ -38,7 +39,14 @@ class FlightList extends React.Component {
       }
       getFormattedFltNum = (fltNum) => `${fltNum.substr(0,2)} ${fltNum.substr(2,5)}`;
 
-      getClassName = (flightObj) => flightObj.status.misconnection ? "rectangle-copy-2-1-misconnected" : "rectangle-copy-2-1-delay" ;
+      getClassName = (flightObj) => {
+          if(this.props.displayView === 'INBOUND') return flightObj.status.misconnection ? "rectangle-copy-2-1-misconnected" : "rectangle-copy-2-1-delay";
+          if(this.props.displayView === 'OUTBOUND') {
+              if(flightObj.status.handled) return 'rectangle-copy-2-1-misconnected';
+              if(flightObj.status.misconnection && isDepNxt3Hrs(flightObj)) return 'rectangle-copy-2-1-misconnected';
+              if(flightObj.status.misconnection) return 'rectangle-copy-2-1-misconnected';
+          } 
+      };
 
       getDelayInMin = (flightObj, isInbound) => {
             let dif = isInbound ? 
