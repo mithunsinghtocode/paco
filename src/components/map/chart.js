@@ -103,14 +103,15 @@ class MapChartLayer extends React.PureComponent {
         {this.props.displayView === "OUTBOUND" && <>{ this.props.removeSelectedFlightFromMap(null)} {this.props.removeFocusViewForSelectedFlight(null)} {this.clearChartComponents() } {this.renderChart()} <OutboundPathFinder chartObj={this.props.chartObj} /> < FocusFlight /> <FlightList />  </>} */}
 
         {this.props.displayView === "INBOUND" && <>{ this.props.removeSelectedFlightFromMap(null)} {this.props.removeFocusViewForSelectedFlight(null)} { this.clearChartComponents() } {this.renderChart()} <InboundPathFinder chartObj={this.props.chartObj} /> < FocusFlight /> <FlightList /></>}
-        {this.props.displayView === "OUTBOUND" && <> {this.clearChartComponents() } {this.renderChart()} <OutboundPathFinder chartObj={this.props.chartObj} /> < FocusFlight /> <FlightList />  </>}
+        {this.props.displayView === "OUTBOUND" && this.props.isUserClick && <> { this.props.removeSelectedFlightFromMap(null)} {this.props.removeFocusViewForSelectedFlight(null)} {this.clearChartComponents() } {this.renderChart()} <OutboundPathFinder chartObj={this.props.chartObj} /> < FocusFlight /> <FlightList />  </>}
+        {this.props.displayView === "OUTBOUND" && !this.props.isUserClick && <>  {this.renderChart()} <OutboundPathFinder chartObj={this.props.chartObj} /> < FocusFlight /> <FlightList />  </>}
         </>
     );
   }
 }
 
 const mapStateToProps = (state, ownprops) => {
-  return { chartObj: state.chartInit, displayView: state.getDisplayView };
+  return { chartObj: state.chartInit, displayView: state.getDisplayView, isUserClick: state.isUserClick };
 };
 
 export default connect(mapStateToProps, { removeSelectedFlightFromMap, removeFocusViewForSelectedFlight, initChart })(MapChartLayer);

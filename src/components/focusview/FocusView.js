@@ -6,7 +6,7 @@ import {
   removeFocusViewForSelectedFlight,
   getFlightDataForOutBound
   ,switchFlightsViewByInBoundOrOutbound,
-  showSelectedFlightInMap
+  showSelectedFlightInMap, userClick
 } from "../../actions/chartDataAction";
 import {  getHoursAndMinutesAfterFormat, getMock2hTimeFromDateTime,convertMillisecondsToHoursAndMinutesAfterFormat } from "../../utils/dateUtils";
 import { sort } from "../../utils/sortUtils";
@@ -538,6 +538,7 @@ adjustHeight = async (e) => {
     })
   }
   setTheOutboundViewForSelectedFlight(selectedFlight){
+    this.props.userClick(false);
     this.props.showSelectedFlightInMap(selectedFlight);
     // this.props.fltToDisplayInMap(this.props.fltToDisplayInMap);
     this.props.switchFlightsViewByInBoundOrOutbound("OUTBOUND") ;
@@ -646,8 +647,8 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(mapStateToProps, {
   showFocusViewForSelectedFlight,
   removeFocusViewForSelectedFlight,
-  getFlightDataForOutBound
-  
-  ,switchFlightsViewByInBoundOrOutbound,
-  showSelectedFlightInMap
+  getFlightDataForOutBound,
+  switchFlightsViewByInBoundOrOutbound,
+  showSelectedFlightInMap,
+  userClick
 })(FocusView);

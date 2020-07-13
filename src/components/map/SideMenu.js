@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import "./sideMenu.scss";
-import { switchFlightsViewByInBoundOrOutbound } from "../../actions/chartDataAction";
+import { switchFlightsViewByInBoundOrOutbound, userClick } from "../../actions/chartDataAction";
 
 class SideMenu extends React.Component {
 
@@ -11,6 +11,7 @@ class SideMenu extends React.Component {
   }
 
   selectButtonView = (inValue) => {
+    this.props.userClick(true);
     let inboundButton = document.getElementById('INBOUND');
     let outboundButton = document.getElementById('OUTBOUND');
     switch(inValue) {
@@ -52,4 +53,4 @@ const mapStateToProps = (state, ownprops) => {
   return { displayView: state.getDisplayView };
 };
 
-export default connect(mapStateToProps, { switchFlightsViewByInBoundOrOutbound })(SideMenu);
+export default connect(mapStateToProps, { switchFlightsViewByInBoundOrOutbound, userClick })(SideMenu);
