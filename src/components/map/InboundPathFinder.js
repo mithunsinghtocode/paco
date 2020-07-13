@@ -90,11 +90,11 @@ class InboundPathFinder extends React.PureComponent {
         this.props.initChart(chartObj);
         }).then(() => {
             // refocus map
-            requestAnimationFrame (() => {
+            //requestAnimationFrame (() => {
               goToHome(chartObj);
               //freeUpMemory([chartObj, flightObj]);
             });
-        });
+        //});
     }
     }
   };

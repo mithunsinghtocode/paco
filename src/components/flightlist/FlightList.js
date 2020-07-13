@@ -79,6 +79,11 @@ class FlightList extends React.Component {
         });
         //sort the list of flights
         let misconxCount = 0;
+        if(this.props.displayView === "OUTBOUND"){
+            flightList  = flightList.filter((flight) => {
+                return flight.etd !== null && flight.etd > (flight.rtd || flight.std);
+              });
+        }
         if(this.props.displayView === 'INBOUND'){
             let flightMisconnectionList = flightList.filter(flight => flight.status.misconnection);
             let flightDelayList = flightList.filter(flight => !flight.status.misconnection);
@@ -101,7 +106,6 @@ class FlightList extends React.Component {
             flightList = [...flightMisconnectionList, ...flightDelayList]
             misconxCount = flightMisconnectionList.length;
         }else{
-
             sort({
                 inputList: flightList, 
                 objectProp: 'etd', 

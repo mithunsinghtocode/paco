@@ -35,7 +35,7 @@ class OutboundPathFinder extends React.PureComponent {
 
     }else{
 
-     flightObj.flightList  = flightObj.flightList.filter((flight) => {
+     let filteredFlightList  = flightObj.flightList.filter((flight) => {
         return flight.etd !== null && flight.etd > (flight.rtd || flight.std);
       });
 
@@ -46,11 +46,11 @@ class OutboundPathFinder extends React.PureComponent {
       setDefaultZoomAndGeoPointFocus(chartObj);
 
       // sorting to serve overlap algorithm
-      flightObj.flightList.forEach( (in2) => {
+      filteredFlightList.forEach( (in2) => {
         in2.sumCoordinates = Number(in2.arrcoordinates.longitude) + Number(in2.arrcoordinates.latitude) + Number(in2.aircraft.position);
       });
       var sortedFlightList = sort({
-          inputList: flightObj.flightList, 
+          inputList: filteredFlightList, 
           objectProp: 'arrcoordinates.longitude', 
           typeOfProp: 'number', 
           conversionRequired: true, 
@@ -58,7 +58,7 @@ class OutboundPathFinder extends React.PureComponent {
           isNewCopyOfArr: true
       });
 
-      let coordinatesList = consolidatedCoordinates(flightObj.flightList,"OUTBOUND");
+      let coordinatesList = consolidatedCoordinates(filteredFlightList,"OUTBOUND");
 
         // Adds line or arc based on the coordinates
         let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
@@ -91,9 +91,9 @@ class OutboundPathFinder extends React.PureComponent {
 
     }).then(() => {
         // refocus map
-        requestAnimationFrame (() => {
+        //requestAnimationFrame (() => {
           goToHome(chartObj);
-        });
+        //});
       //freeUpMemory([chartObj, flightObj]);
     });
     }
