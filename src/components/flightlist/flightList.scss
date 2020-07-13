@@ -12,6 +12,27 @@
     background-color: #0483F8;
 }
 
+.rectangle-copy-2-1-handled {
+    height: 45px;
+    width: 390px;
+    border-radius: 5px 5px 0 0;
+    background-color: #414141;
+}
+
+.rectangle-copy-2-1-misconnected-within3hrs {
+    height: 45px;
+    width: 390px;
+    border-radius: 5px 5px 0 0;
+    background-color: #E55541;
+}
+
+.rectangle-copy-2-1-misconnected-outside3hrs {
+    height: 45px;
+    width: 390px;
+    border-radius: 5px 5px 0 0;
+    background-color: #414141;
+}
+
 .rectangle-copy-2-2 {
     height: 45px;
     width: 390px;
@@ -121,9 +142,37 @@
     padding: 8px 0px 12px 16px;
 }
 
+.flight-num-handle {
+    height: 28px;
+    width: 88px;
+    color: #FFFFFF;
+    font-family: "Proxima Nova Semibold";
+    font-size: 21px;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 25px;
+    padding: 8px 0px 12px 1px;
+}
+
 .cabin-class {
     height: 28px;
     width: 280px;
+    color: #FFFFFF;
+    font-family: "Proxima Nova";
+    font-size: 18px;
+    font-weight: 100;
+    letter-spacing: 1.9px;
+    line-height: 25px;
+    padding: 10px 0px 12px;
+    text-align: right;
+    //margin-top: 10px;
+    //margin-left: 100px;
+    margin-left: 2.5%
+}
+
+.cabin-class-handle {
+    height: 28px;
+    width: 247px;
     color: #FFFFFF;
     font-family: "Proxima Nova";
     font-size: 18px;

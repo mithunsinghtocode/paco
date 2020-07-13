@@ -19,6 +19,31 @@ class FlightList extends React.Component {
         this.props.removeSelectedFlightFromMap(null);
       };
 
+    getIconForHandle() {
+        return (<svg width="34px" height="29px" viewBox="0 0 34 29" >
+        <title>AC5CD48C-3042-4A03-9D47-0B5A51C97DC0</title>
+        <defs>
+            <filter x="-4.1%" y="-16.0%" width="108.2%" height="132.0%" filterUnits="objectBoundingBox" id="filter-1">
+                <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+                <feMerge>
+                    <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                    <feMergeNode in="SourceGraphic"></feMergeNode>
+                </feMerge>
+            </filter>
+        </defs>
+        <g id="Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Components" transform="translate(-548.000000, -1325.000000)" fill="#00DC88">
+                <g id="Flight-Box-/-Outbound-Handled" transform="translate(543.000000, 1317.000000)">
+                    <g id="Group-2-Copy-7" filter="url(#filter-1)">
+                        <path d="M30.5830116,16.4266409 C30.027027,15.8577864 29.1235521,15.8577864 28.5675676,16.4266409 L19.4633205,25.5617761 L15.4324324,21.479408 C14.8764479,20.9105534 13.972973,20.9105534 13.4169884,21.479408 C12.8610039,22.0482625 12.8610039,22.9517375 13.4169884,23.520592 L18.4555985,28.5733591 C19.011583,29.1422136 19.9150579,29.1422136 20.4710425,28.5733591 L30.5830116,18.4343629 C31.1389961,17.8989704 31.1389961,16.9954955 30.5830116,16.4266409 Z" id="Path"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+        </svg>);
+      }
     getPaxDetailsFormat = (selectedFlight) => {
         let paxObj = getTotalPaxCountBasedGroupByClassForFlight(selectedFlight, this.props.displayView);    
         let resultComponent = [];
@@ -42,9 +67,9 @@ class FlightList extends React.Component {
       getClassName = (flightObj) => {
           if(this.props.displayView === 'INBOUND') return flightObj.status.misconnection ? "rectangle-copy-2-1-misconnected" : "rectangle-copy-2-1-delay";
           if(this.props.displayView === 'OUTBOUND') {
-              if(flightObj.status.handled) return 'rectangle-copy-2-1-misconnected';
-              if(flightObj.status.misconnection && isDepNxt3Hrs(flightObj)) return 'rectangle-copy-2-1-misconnected';
-              if(flightObj.status.misconnection) return 'rectangle-copy-2-1-misconnected';
+              if(flightObj.status.handled) return 'rectangle-copy-2-1-handled';
+              if(flightObj.status.misconnection && isDepNxt3Hrs(flightObj)) return 'rectangle-copy-2-1-misconnected-within3hrs';
+              if(flightObj.status.misconnection && !isDepNxt3Hrs(flightObj)) return 'rectangle-copy-2-1-misconnected-outside3hrs';
           } 
       };
 
@@ -106,8 +131,13 @@ class FlightList extends React.Component {
             flightList = [...flightMisconnectionList, ...flightDelayList]
             misconxCount = flightMisconnectionList.length;
         }else{
+
+            let flightHandledList = flightList.filter(flight => flight.status.handled);
+            let flightOutside3HrsList = flightList.filter(flight => !isDepNxt3Hrs(flight));
+            let flightNotHandledList = flightList.filter(flight => !flight.status.handled && isDepNxt3Hrs(flight));
+
             sort({
-                inputList: flightList, 
+                inputList: flightNotHandledList, 
                 objectProp: 'etd', 
                 typeOfProp: 'date', 
                 conversionRequired: true, 
@@ -115,14 +145,25 @@ class FlightList extends React.Component {
                 isNewCopyOfArr: false
             });
             sort({
-                inputList: flightList, 
+                inputList: flightHandledList, 
                 objectProp: 'status.handled', 
                 typeOfProp: 'boolean', 
-                conversionRequired: true, 
+                conversionRequired: false, 
                 isAscending: false, 
                 isNewCopyOfArr: false
             });
-            console.log(flightList);         
+            sort({
+                inputList: flightOutside3HrsList, 
+                objectProp: 'etd', 
+                typeOfProp: 'date', 
+                conversionRequired: true, 
+                isAscending: true, 
+                isNewCopyOfArr: false
+            });
+            console.log(flightList); 
+            flightHandledList = [...flightOutside3HrsList, ...flightHandledList]
+            flightList = [...flightNotHandledList, ...flightHandledList];
+            misconxCount = flightNotHandledList.length;        
         }
         var legendDiv = document.getElementById("legend");
         if(legendDiv !== null){
@@ -137,8 +178,9 @@ class FlightList extends React.Component {
                             marginTop: misconxCount===index ? '32px' : '0px'}}>
                      <div className= { index !== flightList.length-1 ? "rectangle-copy-2" : 'rectangle-copy-2-last-cell'} >
                         <div className={ this.getClassName(flightObj) }>
-                             <div className="flight-num" style={{ display: "inline-block" }}>{this.getFormattedFltNum(flightObj.fltNum)}</div>  
-                             <div className="cabin-class" style={{ display: "inline-block" }}>{this.getPaxDetailsFormat(flightObj)}</div>
+                            {flightObj.status.handled && this.getIconForHandle()}
+                             <div className={!flightObj.status.handled ? "flight-num" : "flight-num-handle"} style={{ display: "inline-block" }}>{this.getFormattedFltNum(flightObj.fltNum)}</div>  
+                             <div className={!flightObj.status.handled ? "cabin-class" : "cabin-class-handle"}  style={{ display: "inline-block" }}>{this.getPaxDetailsFormat(flightObj)}</div>
                          </div>
 
                          <div className="rectangle-copy-2-2">
