@@ -35,6 +35,10 @@ class OutboundPathFinder extends React.PureComponent {
 
     }else{
 
+     flightObj.flightList  = flightObj.flightList.filter((flight) => {
+        return flight.etd !== null && flight.etd > (flight.rtd || flight.std);
+      });
+
     if (chartObj !== null && flightObj !== null) {
 
       console.log("<><><> Outbound Path Filter - State re-renders the flight data component");
