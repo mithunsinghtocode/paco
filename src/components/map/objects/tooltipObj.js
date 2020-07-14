@@ -7,11 +7,17 @@ const TIME_TO_CHECK_AIRCRAFT_POSITION = 300000;
 const isTest = true;
 const FOCUSSED_OUTBOUND_COLOR = "#0483F8";
 const OUTBOUND_VIEW_WITHIN_3HOURS_COLOR = "#E55541";
+const OUTBOUND_HANDLED = "#414141";
 
 const checkAircraftPosition = (aircraftPosition) => {
   if(!isFinite(aircraftPosition)) return 1;
   if(aircraftPosition>1) return 1;
   return (aircraftPosition < 0 ? 0 : aircraftPosition);
+}
+
+const ishandleNeeded = (flight) => {
+  if(!flight.status.handled) return ``;
+  return flight.status.handled && handleIcon();
 }
 
 export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index, isFocusOutbound, consolidatedCoordinates, isFocusView) => {
@@ -30,16 +36,16 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   bullet.fill = am4core.color(isFocusOutbound ? FOCUSSED_OUTBOUND_COLOR : flight.config.tooltipcolor);
   //bullet.height = "35px";
   flight.status.misconnection ? 
-  flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;max-width:250px;height:22px;font-family:Proxima Nova Thin;font-size: 14px;margin-right:5px;" onHover="cursor: pointer">
+  flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;max-width:1000px;height:22px;font-family:Proxima Nova Thin;font-size: 14px;margin-right:5px;" onHover="cursor: pointer">
       <b style="font-family:Proxima Nova Semibold">${getFltNum(flight)}</b> ${displayLine()} ${getETA(flight)} ${displayLine()} <b  style="font-family:Proxima Nova Semibold;margin-right:2px">${getTotMisconnectedPax(flight, displayView)}</b>
-    </div>`) : bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;max-width:250px;height:22px;font-family:Proxima Nova Thin;font-size: 14px;">
-    <b  style="font-family:Proxima Nova Semibold">${getFltNum(flight)}</b> ${displayLine()} ${getDepTime(flight)} ${displayLine()} <b  style="font-family:Proxima Nova Semibold;margin-right:2px">${getTotMisconnectedPax(flight, displayView)}</b>
+    </div>`) : bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;max-width:1000px;height:22px;font-family:Proxima Nova Thin;font-size: 14px;">
+    ${ishandleNeeded(flight)}<b  style="font-family:Proxima Nova Semibold">${getFltNum(flight)}</b> ${displayLine()} ${getDepTime(flight)} ${displayLine()} <b  style="font-family:Proxima Nova Semibold;margin-right:2px">${getTotMisconnectedPax(flight, displayView)}</b>
     </div>`
       :
-      flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;max-width:250px;color:#fff;height:22px;font-family:Proxima Nova Thin;font-size: 14px;">
+      flight.arrStn === 'SIN' ? (bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;max-width:1000px;color:#fff;height:22px;font-family:Proxima Nova Thin;font-size: 14px;">
       <b  style="font-family:Proxima Nova Semibold">${getFltNum(flight)}</b> ${displayLine()} <div style="display:inline;margin-right:5px;">${getETA(flight)}</div>
-    </div>`) : bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;max-width:250px;height:22px;opacity:0.3;font-family:Proxima Nova Thin;font-size: 14px;">
-    <b  style="font-family:Proxima Nova Semibold">${getFltNum(flight)}</b> ${displayLine()} ${getDepTime(flight)}
+    </div>`) : bullet.tooltipHTML = `<div style="margin-bottom:0px;margin-top:0px;color:#fff;max-width:1000px;height:22px;opacity:0.3;font-family:Proxima Nova Thin;font-size: 14px;">
+    ${ishandleNeeded(flight)}<b  style="font-family:Proxima Nova Semibold">${getFltNum(flight)}</b> ${displayLine()} ${getDepTime(flight)}
     </div>`
     ;
 
@@ -53,6 +59,9 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   bullet.tooltip.background.pointerLength = 0;
   bullet.tooltip.background.cornerRadius = 0;
   bullet.tooltip.background.fill = am4core.color(isFocusOutbound ? FOCUSSED_OUTBOUND_COLOR : flight.config.tooltipcolor);
+  if(displayView==='OUTBOUND' && flight.status.handled){
+    bullet.tooltip.background.fill = am4core.color(OUTBOUND_HANDLED);
+  }
   //bullet.tooltip.background.boxShadow = '0 0 4px 0 rgba(0,0,0,0.5)';
   bullet.tooltip.background.strokeWidth = 0;
   bullet.alwaysShowTooltip = true;
@@ -86,9 +95,9 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   // commented as using different algorithm
   if(!isFocusOutbound && flight.depStn==='SIN' && flight.status.misconnection ) bullet.tooltip.filters.push(dropShadow);
   (displayView==='OUTBOUND' && isDepNxt3Hrs(flight)) && bullet.tooltip.filters.clear();
+  (displayView==='OUTBOUND' && flight.status.handled) && bullet.tooltip.filters.clear();
 
-
-  bullet.tooltip.background.filters.clear(); 
+  bullet.tooltip.background.filters.clear();
 
   //(flight.depStn==='SIN') && bullet.tooltip.background.filters.push(dropShadow1);
 
@@ -189,5 +198,22 @@ const displayPaxIcon = () => `<svg width="11px" height="14px" style="margin-bott
 </svg>`;
 
 const displayLine = () => `<b style="margin-left: 4px;height:24px;margin-right: 8px;box-sizing: border-box; width: 1px; border: 1px solid rgba(255, 255, 255, 0.29); margin-top: 0px"></b>`;
+
+const handleIcon = () => `<svg width="14px" height="10px" viewBox="0 0 14 10" style="margin-right:8px;margin-bottom:4px">
+<title>DC8FCBAF-F767-4CDD-A847-5EB0E6D0B941</title>
+<g id="Design" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+    <g id="120-Selected-Critical-Flight" transform="translate(-1228.000000, -495.000000)" fill="#00DC88">
+        <g id="CONTENT" transform="translate(-1167.000000, -392.000000)">
+            <g id="FLIGHTS" transform="translate(1707.000000, 547.000000)">
+                <g id="flight-details-copy-8" transform="translate(679.000000, 328.000000)">
+                    <g id="color/blue">
+                        <path d="M22.6756757,12.3281853 C22.2432432,11.8906049 21.5405405,11.8906049 21.1081081,12.3281853 L14.027027,19.3552124 L10.8918919,16.2149292 C10.4594595,15.7773488 9.75675676,15.7773488 9.32432432,16.2149292 C8.89189189,16.6525097 8.89189189,17.3474903 9.32432432,17.7850708 L13.2432432,21.6718147 C13.6756757,22.1093951 14.3783784,22.1093951 14.8108108,21.6718147 L22.6756757,13.8725869 C23.1081081,13.4607465 23.1081081,12.7657658 22.6756757,12.3281853 Z" id="Path-Copy-3"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</g>
+</svg>`;
 
 const getFltNum = (flight) => `${flight.fltNum.substr(0,2)} ${flight.fltNum.substr(2,5)}`; 

@@ -82,7 +82,7 @@ const prepareCoordinatesObject = (stationObj) => {
   return { latitude : Number(stationObj.latitude), longitude : Number(stationObj.longitude), title: stationObj.title };
 }
 
-export const setFlightsViewByInBoundOrOutbound = (screenViewSelected="INBOUND", action) => {
+export const setFlightsViewByInBoundOrOutbound = (screenViewSelected="OUTBOUND", action) => {
   if (action.type === "TOGGLE_INBOUND_OUTBOUND_VIEW") {
     return action.payload;
   }
@@ -96,3 +96,9 @@ export const userClick = (screenViewSelected=true, action) => {
   return screenViewSelected;
 }
 
+export const getCurrentTime = (currentTime = null, action) => {
+  if (action.type === "CURRENT_TIME") {
+    return action.payload;
+  }
+  return currentTime;
+}

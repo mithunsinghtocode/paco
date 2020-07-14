@@ -18,13 +18,27 @@ export const plotStationObj = (am4core, chartObj, objData, imageSeries, imageSer
   }
   var circle = imageSeriesTemplate.createChild(am4core.Circle);
   circle.radius = 1.5;
-  circle.fill = objData.status ? (objData.status.misconnection || (displayView==='OUTBOUND' && isDepNxt3Hrs(objData)) ? objData.config.linecolor : "#FFFFFF") : "#FFFFFF";
-  circle.stroke = objData.status ? (objData.status.misconnection || (displayView==='OUTBOUND' && isDepNxt3Hrs(objData)) ? objData.config.linecolor : "#FFFFFF") : "#FFFFFF";
+  circle.fill = objData.status ? ((objData.status.misconnection && objData.depStn!=='SIN') || (displayView==='OUTBOUND' && isDepNxt3Hrs(objData)) ? objData.config.linecolor : "#FFFFFF") : "#FFFFFF";
+  circle.stroke = objData.status ? ((objData.status.misconnection && objData.depStn!=='SIN') || (displayView==='OUTBOUND' && isDepNxt3Hrs(objData)) ? objData.config.linecolor : "#FFFFFF") : "#FFFFFF";
   
   if(isFocusOutbound){
     circle.fill = FOCUSSED_OUTBOUND_COLOR;
     circle.stroke = FOCUSSED_OUTBOUND_COLOR;
   }
+
+  if(displayView === 'OUTBOUND' && objData.status.handled){
+    circle.fill = FOCUSSED_OUTBOUND_COLOR;
+    circle.stroke = FOCUSSED_OUTBOUND_COLOR;
+  }
+
+  if(objData.depStn==='SIN' && !objData.status.misconnection) { 
+    circle.opacity = 0.3;
+  }
+  
+  if(objData.depStn==='SIN' && objData.status.handled) {
+    circle.opacity = 1;
+  }
+
   circle.strokeWidth = 1;
   circle.nonScaling = true;
   circle.tooltipText = "{title}";

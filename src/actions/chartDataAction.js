@@ -81,3 +81,7 @@ export const showSelectedFlightInMap = selectedFlt => dispatch => {
 export const removeSelectedFlightFromMap = selectedFlt => dispatch => {
     dispatch({ type: 'REMOVE_SELECTED_FLIGHT_SHOW_ALL_FLTS', payload: selectedFlt});
 }
+
+export const setCurrentTimeInUTC = currTime => dispatch => {
+    dispatch({ type: 'CURRENT_TIME', payload: currTime});
+}

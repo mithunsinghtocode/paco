@@ -1,8 +1,8 @@
 import React from  'react';
 import "./flightList.scss";
 import { connect } from "react-redux";
-import { getHoursAndMinutesAfterFormat } from "../../utils/dateUtils";
-import { showSelectedFlightInMap, removeSelectedFlightFromMap } from "../../actions/chartDataAction";
+import { getHoursAndMinutesAfterFormat, getCurrentTimeInUTC, getTestTime } from "../../utils/dateUtils";
+import { showSelectedFlightInMap, removeSelectedFlightFromMap, userClick } from "../../actions/chartDataAction";
 import { getTotalPaxCountBasedGroupByClassForFlight } from "../../utils/paxUtils";
 import { sort } from "../../utils/sortUtils";
 import { isDepNxt3Hrs } from "../../utils/filterUtils";
@@ -33,7 +33,7 @@ class FlightList extends React.Component {
                 </feMerge>
             </filter>
         </defs>
-        <g id="Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Design" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g id="Components" transform="translate(-548.000000, -1325.000000)" fill="#00DC88">
                 <g id="Flight-Box-/-Outbound-Handled" transform="translate(543.000000, 1317.000000)">
                     <g id="Group-2-Copy-7" filter="url(#filter-1)">
@@ -73,20 +73,39 @@ class FlightList extends React.Component {
           } 
       };
 
-      getDelayInMin = (flightObj, isInbound) => {
+      getDelayInMin = (flightObj, isInbound, currentTime) => {
+        //console.log(new Date(currentTime))
+        //console.log(new Date(flightObj.etd))
+          if(isInbound !== undefined){
             let dif = isInbound ? 
               (new Date(flightObj.eta).getTime() - ((flightObj.rta !== undefined && flightObj.rta !== null) ? new Date(flightObj.rta).getTime() : new Date(flightObj.sta).getTime()))
-            : (new Date(flightObj.etd).getTime() - ((flightObj.rtd !== undefined && flightObj.rtd !== null) ? new Date(flightObj.rtd).getTime() : new Date(flightObj.std).getTime()));
-            //console.log(dif);
-            if(dif !== NaN && dif >= 0){
+            : (new Date(flightObj.etd).getTime() - new Date(currentTime).getTime());
+            
+            if(isInbound && dif !== NaN && dif >= 0){
                 return  `${Math.round((dif/1000)/60)}`; 
             }
+            if(!isInbound && dif !== NaN ){
+                return  `${Math.round((dif/1000)/60)}`; 
+            }
+        }else{
+            return ;
+        }
       }
 
       setHighlightedFlight = (highlightFlight, flightObj) => {
           if(highlightFlight) return highlightFlight.flightId === flightObj.flightId ? true : false;
           return true;
       }
+
+      timeConvert = (n) => {
+        var num = n;
+        var hours = (num / 60);
+        var rhours = Math.floor(hours);
+        var minutes = (hours - rhours) * 60;
+        var rminutes = Math.ceil(minutes);
+        rminutes = (rminutes.toString().length === 1) ? '0'+rminutes : rminutes;
+        return rhours + ":" + rminutes + "h";
+    }
 
     renderFlightList = (flightList, highlightFlight) => {
         flightListVar = flightList;
@@ -160,7 +179,6 @@ class FlightList extends React.Component {
                 isAscending: true, 
                 isNewCopyOfArr: false
             });
-            console.log(flightList); 
             flightHandledList = [...flightOutside3HrsList, ...flightHandledList]
             flightList = [...flightNotHandledList, ...flightHandledList];
             misconxCount = flightNotHandledList.length;        
@@ -171,7 +189,7 @@ class FlightList extends React.Component {
         }
         return flightList.map((flightObj, index) => {
             return(
-                flightObj && <div className="rectangle-container"><div key={ flightObj.flightId } value={ flightObj.flightId } 
+                flightObj && <div className="rectangle-container"><div key={ flightObj.flightId} value={ flightObj.flightId } 
                 onClick={ (e) => this.props.showSelectedFlightInMap(flightObj)} 
                     style= {{ opacity: this.setHighlightedFlight(highlightFlight, flightObj) ? '1' : '0.32',
                             filter: this.setHighlightedFlight(highlightFlight, flightObj) ? 'grayscale(0%)' : 'grayscale(20%)',
@@ -187,7 +205,7 @@ class FlightList extends React.Component {
                          <p className="flight-details" style={{ display: "inline-block" }}> 
                              <b style={{ marginRight: "5px" }}>
                                  {flightObj.arrStn === 'SIN' ? 'STA' : 'STD'}
-                                 </b> 
+                                 </b>
                                  <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900" }}>
                                     { flightObj.arrStn === 'SIN' ? getHoursAndMinutesAfterFormat(flightObj.sta) : getHoursAndMinutesAfterFormat(flightObj.std)} 
                                  </b>                                                      
@@ -201,7 +219,13 @@ class FlightList extends React.Component {
                                  </b>
                          </p>  
                          <p className="flight-delay" style={{ display: "inline-block" }}> 
-                             { this.getDelayInMin(flightObj, flightObj.arrStn === 'SIN' ? true : false) + " min"} 
+                             {
+                                this.props.getCurrentTime ? flightObj.depStn === 'SIN' && this.timeConvert(this.getDelayInMin(flightObj, false, getCurrentTimeInUTC())) : 
+                                flightObj.depStn === 'SIN' && this.timeConvert(this.getDelayInMin(flightObj, false, getCurrentTimeInUTC()))
+                            }
+                            {
+                                flightObj.arrStn === 'SIN' && this.getDelayInMin(flightObj, true) + " min"
+                            }
                          </p>
                          </div>
                      </div>
@@ -314,7 +338,8 @@ class FlightList extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     //console.log(state);
     return { fltToDisplayInMap : state.getFltToShowInMap, chartObj: state.chartInit, inboundFlights: state.inboundFlightData, 
-        outboundFlights: state.outboundFlightData, displayView: state.getDisplayView, selectedFlightObj: state.selectedFlight };
+        outboundFlights: state.outboundFlightData, displayView: state.getDisplayView, selectedFlightObj: state.selectedFlight,
+    isUserClick: state.isUserClick, getCurrentTime: state.getCurrentTime};
   }
 
-export default connect(mapStateToProps , { showSelectedFlightInMap, removeSelectedFlightFromMap })(FlightList);
+export default connect(mapStateToProps , { showSelectedFlightInMap, removeSelectedFlightFromMap, userClick })(FlightList);

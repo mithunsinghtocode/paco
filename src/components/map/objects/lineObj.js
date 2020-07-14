@@ -4,6 +4,7 @@ const ATLANTIC_OCEAN_COUNTRIES = ['EWR','JFK','IAH'];
 const DEFINE_PATH_THROUGH_PACIFIC_ARRSTN = ['EWR'];
 const FOCUSSED_OUTBOUND_COLOR = "#0483F8";
 const OUTBOUND_VIEW_WITHIN_3HOURS_COLOR = "#E55541";
+const OUTBOUND_HANDLED = "#696969";
 
 export const lineObj = (am4core, flight,lineSeries, chartObj, am4maps, isFocusOutbound, displayView) => {
   
@@ -13,6 +14,10 @@ export const lineObj = (am4core, flight,lineSeries, chartObj, am4maps, isFocusOu
 
   if(displayView!== undefined && displayView==='OUTBOUND' && isDepNxt3Hrs(flight)) {
     flight.config.linecolor = OUTBOUND_VIEW_WITHIN_3HOURS_COLOR;
+  }
+
+  if(displayView!== undefined && displayView==='OUTBOUND' && flight.status.handled) {
+    flight.config.linecolor = OUTBOUND_HANDLED;
   }
 
   if(ATLANTIC_OCEAN_COUNTRIES.includes(flight.depStn)){
@@ -74,6 +79,10 @@ if(DEFINE_PATH_THROUGH_PACIFIC_ARRSTN.includes(flight.arrStn)){
 
 if(flight.depStn==='SIN' && !flight.status.misconnection) { 
   line.opacity = 0.3;
+}
+
+if(displayView === 'OUTBOUND' && flight.depStn==='SIN' && flight.status.handled) { 
+  line.opacity = 1;
 }
 
 return line;

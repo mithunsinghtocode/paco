@@ -118,7 +118,7 @@
                             "misconnection": false
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -193,7 +193,7 @@
                             "misconnection": true
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -243,7 +243,7 @@
                         "stdLocal": "2020-03-15 18:40:00",
                         "staLocal": "2020-03-15 19:25:00",
                         "rtd": null,
-                        "etd": "2020-08-15 10:45:00",
+                        "etd": "2020-07-14 12:45:00",
                         "atd": null,
                         "ab": null,
                         "sta": "2020-03-15 12:25:00",
@@ -268,7 +268,7 @@
                             "misconnection": true
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -343,7 +343,7 @@
                             "misconnection": true
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -493,7 +493,7 @@
                             "misconnection": false
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -568,7 +568,7 @@
                             "misconnection": false
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -643,7 +643,7 @@
                             "misconnection": false
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -718,7 +718,7 @@
                             "misconnection": false
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -793,7 +793,7 @@
                             "misconnection": false
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -843,7 +843,7 @@
                         "stdLocal": "2020-03-15 18:40:00",
                         "staLocal": "2020-03-15 19:25:00",
                         "rtd": null,
-                        "etd": "2020-08-15 10:45:00",
+                        "etd": "2020-07-14 12:45:00",
                         "atd": null,
                         "ab": null,
                         "sta": "2020-03-15 12:25:00",
@@ -869,7 +869,7 @@
                             "handled": false
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -944,7 +944,7 @@
                             "misconnection": false
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -1019,7 +1019,7 @@
                             "misconnection": false
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -1169,7 +1169,7 @@
                         "misconnection": true
                     },
                     "config": {
-                        "linecolor": "#BFBFBF",
+                        "linecolor": "#696969",
                         "airplanecolor": null,
                         "tooltipcolor": "#414141",
                         "tooltipTextColor": "#FFFFFF",
@@ -1251,7 +1251,7 @@
                     "handled": false
                 },
                 "config": {
-                    "linecolor": "#BFBFBF",
+                    "linecolor": "#696969",
                     "airplanecolor": null,
                     "tooltipcolor": "#414141",
                     "tooltipTextColor": "#FFFFFF",
@@ -1388,7 +1388,7 @@
                                 "misconnection": true
                             },
                             "config": {
-                                "linecolor": "#BFBFBF",
+                                "linecolor": "#696969",
                                 "airplanecolor": null,
                                 "tooltipcolor": "#414141",
                                 "tooltipTextColor": "#FFFFFF",
@@ -1537,7 +1537,7 @@
                                     "misconnection": false
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -1612,7 +1612,7 @@
                                     "misconnection": true
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -1662,7 +1662,7 @@
                                 "stdLocal": "2020-03-15 18:40:00",
                                 "staLocal": "2020-03-15 19:25:00",
                                 "rtd": null,
-                                "etd": "2020-08-15 10:45:00",
+                                "etd": "2020-07-14 12:45:00",
                                 "atd": null,
                                 "ab": null,
                                 "sta": "2020-03-15 12:25:00",
@@ -1687,7 +1687,7 @@
                                     "misconnection": true
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -1762,7 +1762,7 @@
                                     "misconnection": true
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -1825,7 +1825,7 @@
                 "stdLocal": "2020-03-15 18:40:00",
                 "staLocal": "2020-03-15 19:25:00",
                 "rtd": null,
-                "etd": "2020-08-15 10:45:00",
+                "etd": "2020-07-14 12:45:00",
                 "atd": null,
                 "ab": null,
                 "sta": "2020-03-15 12:25:00",
@@ -1851,7 +1851,7 @@
                     "handled": false
                 },
                 "config": {
-                    "linecolor": "#BFBFBF",
+                    "linecolor": "#696969",
                     "airplanecolor": null,
                     "tooltipcolor": "#414141",
                     "tooltipTextColor": "#FFFFFF",
@@ -1988,7 +1988,7 @@
                                 "misconnection": false
                             },
                             "config": {
-                                "linecolor": "#BFBFBF",
+                                "linecolor": "#696969",
                                 "airplanecolor": null,
                                 "tooltipcolor": "#414141",
                                 "tooltipTextColor": "#FFFFFF",
@@ -2063,7 +2063,7 @@
                                 "misconnection": false
                             },
                             "config": {
-                                "linecolor": "#BFBFBF",
+                                "linecolor": "#696969",
                                 "airplanecolor": null,
                                 "tooltipcolor": "#414141",
                                 "tooltipTextColor": "#FFFFFF",
@@ -2138,7 +2138,7 @@
                                 "misconnection": false
                             },
                             "config": {
-                                "linecolor": "#BFBFBF",
+                                "linecolor": "#696969",
                                 "airplanecolor": null,
                                 "tooltipcolor": "#414141",
                                 "tooltipTextColor": "#FFFFFF",
@@ -2213,7 +2213,7 @@
                                 "misconnection": false
                             },
                             "config": {
-                                "linecolor": "#BFBFBF",
+                                "linecolor": "#696969",
                                 "airplanecolor": null,
                                 "tooltipcolor": "#414141",
                                 "tooltipTextColor": "#FFFFFF",
@@ -2288,7 +2288,7 @@
                                 "misconnection": false
                             },
                             "config": {
-                                "linecolor": "#BFBFBF",
+                                "linecolor": "#696969",
                                 "airplanecolor": null,
                                 "tooltipcolor": "#414141",
                                 "tooltipTextColor": "#FFFFFF",
@@ -2338,7 +2338,7 @@
                             "stdLocal": "2020-03-15 18:40:00",
                             "staLocal": "2020-03-15 19:25:00",
                             "rtd": null,
-                            "etd": "2020-08-15 10:45:00",
+                            "etd": "2020-07-14 12:45:00",
                             "atd": null,
                             "ab": null,
                             "sta": "2020-03-15 12:25:00",
@@ -2363,7 +2363,7 @@
                                 "misconnection": true
                             },
                             "config": {
-                                "linecolor": "#BFBFBF",
+                                "linecolor": "#696969",
                                 "airplanecolor": null,
                                 "tooltipcolor": "#414141",
                                 "tooltipTextColor": "#FFFFFF",
@@ -2438,7 +2438,7 @@
                                 "misconnection": false
                             },
                             "config": {
-                                "linecolor": "#BFBFBF",
+                                "linecolor": "#696969",
                                 "airplanecolor": null,
                                 "tooltipcolor": "#414141",
                                 "tooltipTextColor": "#FFFFFF",
@@ -2513,7 +2513,7 @@
                                 "misconnection": false
                             },
                             "config": {
-                                "linecolor": "#BFBFBF",
+                                "linecolor": "#696969",
                                 "airplanecolor": null,
                                 "tooltipcolor": "#414141",
                                 "tooltipTextColor": "#FFFFFF",
@@ -2668,7 +2668,7 @@
                             "misconnection": true
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -2743,7 +2743,7 @@
                             "misconnection": true
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -2818,7 +2818,7 @@
                             "misconnection": true
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -2893,7 +2893,7 @@
                             "misconnection": false
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -3043,7 +3043,7 @@
                             "misconnection": true
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -3118,7 +3118,7 @@
                             "misconnection": true
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -3193,7 +3193,7 @@
                             "misconnection": true
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -3268,7 +3268,7 @@
                             "misconnection": true
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -3343,7 +3343,7 @@
                             "misconnection": true
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -3426,7 +3426,7 @@
                     "handled": false
                 },
                 "config": {
-                    "linecolor": "#BFBFBF",
+                    "linecolor": "#696969",
                     "airplanecolor": null,
                     "tooltipcolor": "#414141",
                     "tooltipTextColor": "#FFFFFF",
@@ -3563,7 +3563,7 @@
                                     "misconnection": true
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -3638,7 +3638,7 @@
                                     "misconnection": true
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -3713,7 +3713,7 @@
                                     "misconnection": true
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -3788,7 +3788,7 @@
                                     "misconnection": true
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -3863,7 +3863,7 @@
                                     "misconnection": true
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -4013,7 +4013,7 @@
                                     "misconnection": true
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -4088,7 +4088,7 @@
                                     "misconnection": true
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -4163,7 +4163,7 @@
                                     "misconnection": true
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -4238,7 +4238,7 @@
                                     "misconnection": false
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -4320,8 +4320,8 @@
                             "misconnection": false
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
-                            "airplanecolor": "#BFBFBF",
+                            "linecolor": "#696969",
+                            "airplanecolor": "#777777",
                             "tooltipcolor": "#0483F8",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
@@ -4388,7 +4388,7 @@
                                     "misconnection": false
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -4463,7 +4463,7 @@
                                     "misconnection": false
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -4538,7 +4538,7 @@
                                     "misconnection": false
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -4613,7 +4613,7 @@
                                     "misconnection": false
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -4688,7 +4688,7 @@
                                     "misconnection": false
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -4738,7 +4738,7 @@
                                 "stdLocal": "2020-03-15 18:40:00",
                                 "staLocal": "2020-03-15 19:25:00",
                                 "rtd": null,
-                                "etd": "2020-08-15 10:45:00",
+                                "etd": "2020-07-14 12:45:00",
                                 "atd": null,
                                 "ab": null,
                                 "sta": "2020-03-15 12:25:00",
@@ -4763,7 +4763,7 @@
                                     "misconnection": true
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -4838,7 +4838,7 @@
                                     "misconnection": false
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -4913,7 +4913,7 @@
                                     "misconnection": false
                                 },
                                 "config": {
-                                    "linecolor": "#BFBFBF",
+                                    "linecolor": "#696969",
                                     "airplanecolor": null,
                                     "tooltipcolor": "#414141",
                                     "tooltipTextColor": "#FFFFFF",
@@ -5069,7 +5069,7 @@
                             "misconnection": true
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -5144,7 +5144,7 @@
                             "misconnection": true
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -5219,7 +5219,7 @@
                             "misconnection": true
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -5294,7 +5294,7 @@
                             "misconnection": false
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -5369,7 +5369,7 @@
                             "misconnection": true
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
+                            "linecolor": "#696969",
                             "airplanecolor": null,
                             "tooltipcolor": "#414141",
                             "tooltipTextColor": "#FFFFFF",
@@ -5451,8 +5451,8 @@
                     "misconnection": false
                 },
                 "config": {
-                    "linecolor": "#BFBFBF",
-                    "airplanecolor": "#BFBFBF",
+                    "linecolor": "#696969",
+                    "airplanecolor": "#777777",
                     "tooltipcolor": "#0483F8",
                     "tooltipTextColor": "#FFFFFF",
                     "bulletColor": "#FFFFFF"
@@ -5519,7 +5519,7 @@
                         "misconnection": false
                     },
                     "config": {
-                        "linecolor": "#BFBFBF",
+                        "linecolor": "#696969",
                         "airplanecolor": null,
                         "tooltipcolor": "#414141",
                         "tooltipTextColor": "#FFFFFF",
@@ -5600,8 +5600,8 @@
                     "misconnection": false
                 },
                 "config": {
-                    "linecolor": "#BFBFBF",
-                    "airplanecolor": "#BFBFBF",
+                    "linecolor": "#696969",
+                    "airplanecolor": "#777777",
                     "tooltipcolor": "#0483F8",
                     "tooltipTextColor": "#FFFFFF",
                     "bulletColor": "#FFFFFF"
@@ -5675,8 +5675,8 @@
                     "misconnection": false
                 },
                 "config": {
-                    "linecolor": "#BFBFBF",
-                    "airplanecolor": "#BFBFBF",
+                    "linecolor": "#696969",
+                    "airplanecolor": "#777777",
                     "tooltipcolor": "#0483F8",
                     "tooltipTextColor": "#FFFFFF",
                     "bulletColor": "#FFFFFF"
@@ -5750,8 +5750,8 @@
                     "misconnection": false
                 },
                 "config": {
-                    "linecolor": "#BFBFBF",
-                    "airplanecolor": "#BFBFBF",
+                    "linecolor": "#696969",
+                    "airplanecolor": "#777777",
                     "tooltipcolor": "#0483F8",
                     "tooltipTextColor": "#FFFFFF",
                     "bulletColor": "#FFFFFF"
@@ -5818,7 +5818,7 @@
                         "misconnection": false
                     },
                     "config": {
-                        "linecolor": "#BFBFBF",
+                        "linecolor": "#696969",
                         "airplanecolor": null,
                         "tooltipcolor": "#414141",
                         "tooltipTextColor": "#FFFFFF",
@@ -5899,8 +5899,8 @@
                     "misconnection": false
                 },
                 "config": {
-                    "linecolor": "#BFBFBF",
-                    "airplanecolor": "#BFBFBF",
+                    "linecolor": "#696969",
+                    "airplanecolor": "#777777",
                     "tooltipcolor": "#0483F8",
                     "tooltipTextColor": "#FFFFFF",
                     "bulletColor": "#FFFFFF"
@@ -5974,8 +5974,8 @@
                     "misconnection": false
                 },
                 "config": {
-                    "linecolor": "#BFBFBF",
-                    "airplanecolor": "#BFBFBF",
+                    "linecolor": "#696969",
+                    "airplanecolor": "#777777",
                     "tooltipcolor": "#0483F8",
                     "tooltipTextColor": "#FFFFFF",
                     "bulletColor": "#FFFFFF"
@@ -6049,8 +6049,8 @@
                     "misconnection": false
                 },
                 "config": {
-                    "linecolor": "#BFBFBF",
-                    "airplanecolor": "#BFBFBF",
+                    "linecolor": "#696969",
+                    "airplanecolor": "#777777",
                     "tooltipcolor": "#0483F8",
                     "tooltipTextColor": "#FFFFFF",
                     "bulletColor": "#FFFFFF"
@@ -6124,8 +6124,8 @@
                     "misconnection": false
                 },
                 "config": {
-                    "linecolor": "#BFBFBF",
-                    "airplanecolor": "#BFBFBF",
+                    "linecolor": "#696969",
+                    "airplanecolor": "#777777",
                     "tooltipcolor": "#0483F8",
                     "tooltipTextColor": "#FFFFFF",
                     "bulletColor": "#FFFFFF"
@@ -6199,8 +6199,8 @@
                     "misconnection": false
                 },
                 "config": {
-                    "linecolor": "#BFBFBF",
-                    "airplanecolor": "#BFBFBF",
+                    "linecolor": "#696969",
+                    "airplanecolor": "#777777",
                     "tooltipcolor": "#0483F8",
                     "tooltipTextColor": "#FFFFFF",
                     "bulletColor": "#FFFFFF"
@@ -6274,8 +6274,8 @@
                     "misconnection": false
                 },
                 "config": {
-                    "linecolor": "#BFBFBF",
-                    "airplanecolor": "#BFBFBF",
+                    "linecolor": "#696969",
+                    "airplanecolor": "#777777",
                     "tooltipcolor": "#0483F8",
                     "tooltipTextColor": "#FFFFFF",
                     "bulletColor": "#FFFFFF"
@@ -6417,7 +6417,7 @@
                         "misconnection": true
                     },
                     "config": {
-                        "linecolor": "#BFBFBF",
+                        "linecolor": "#696969",
                         "airplanecolor": null,
                         "tooltipcolor": "#414141",
                         "tooltipTextColor": "#FFFFFF",
@@ -6566,7 +6566,7 @@
                         "misconnection": true
                     },
                     "config": {
-                        "linecolor": "#BFBFBF",
+                        "linecolor": "#696969",
                         "airplanecolor": null,
                         "tooltipcolor": "#414141",
                         "tooltipTextColor": "#FFFFFF",
@@ -6648,7 +6648,7 @@
                     "handled": true
                 },
                 "config": {
-                    "linecolor": "#BFBFBF",
+                    "linecolor": "#696969",
                     "airplanecolor": null,
                     "tooltipcolor": "#414141",
                     "tooltipTextColor": "#FFFFFF",
@@ -6785,7 +6785,7 @@
                                 "misconnection": true
                             },
                             "config": {
-                                "linecolor": "#BFBFBF",
+                                "linecolor": "#696969",
                                 "airplanecolor": null,
                                 "tooltipcolor": "#414141",
                                 "tooltipTextColor": "#FFFFFF",
@@ -6934,7 +6934,7 @@
                                 "misconnection": true
                             },
                             "config": {
-                                "linecolor": "#BFBFBF",
+                                "linecolor": "#696969",
                                 "airplanecolor": null,
                                 "tooltipcolor": "#414141",
                                 "tooltipTextColor": "#FFFFFF",
@@ -7015,8 +7015,8 @@
                             "misconnection": false
                         },
                         "config": {
-                            "linecolor": "#BFBFBF",
-                            "airplanecolor": "#BFBFBF",
+                            "linecolor": "#696969",
+                            "airplanecolor": "#777777",
                             "tooltipcolor": "#0483F8",
                             "tooltipTextColor": "#FFFFFF",
                             "bulletColor": "#FFFFFF"
@@ -7096,8 +7096,8 @@
                     "misconnection": false
                 },
                 "config": {
-                    "linecolor": "#BFBFBF",
-                    "airplanecolor": "#BFBFBF",
+                    "linecolor": "#696969",
+                    "airplanecolor": "#777777",
                     "tooltipcolor": "#0483F8",
                     "tooltipTextColor": "#FFFFFF",
                     "bulletColor": "#FFFFFF"

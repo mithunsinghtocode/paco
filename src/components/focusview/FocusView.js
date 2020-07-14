@@ -632,9 +632,7 @@ adjustHeight = async (e) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('====state st =====> ');
-  console.log(state);
-  console.log('====state end =====> ');
+  //console.log(state);
   // console.log('=====FocusView.state======>' + JSON.stringify(state) );
   // console.log('=====ownProps======>' + JSON.stringify(ownProps) );
   return { selectedFlightObj: state.selectedFlight, inboundFlights: state.inboundFlightData
