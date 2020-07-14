@@ -203,20 +203,11 @@ class FlightList extends React.Component {
 
                          <div className="rectangle-copy-2-2">
                          <p className="flight-details" style={{ display: "inline-block" }}> 
-                             <b style={{ marginRight: "5px" }}>
-                                 {flightObj.arrStn === 'SIN' ? 'STA' : 'STD'}
-                                 </b>
-                                 <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900" }}>
-                                    { flightObj.arrStn === 'SIN' ? getHoursAndMinutesAfterFormat(flightObj.sta) : getHoursAndMinutesAfterFormat(flightObj.std)} 
-                                 </b>                                                      
-                                 <b style={{ display: "inline-block", marginLeft: "6px", opacity: "0.3" }} className="line">
-                                 </b> 
-                                 <b style={{ marginLeft: "15px", marginRight: "5px"}}>
-                                     {flightObj.arrStn === 'SIN' ? 'ETA' : 'ETD' } 
-                                 </b> 
-                                 <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900" }}>
-                                    { flightObj.arrStn === 'SIN' ? getHoursAndMinutesAfterFormat(flightObj.eta) : getHoursAndMinutesAfterFormat(flightObj.etd)} 
-                                 </b>
+                           
+                                { flightObj.arrStn === 'SIN' && this.getInboundScheduleTiming(flightObj)}                         
+                                 { flightObj.arrStn === 'SIN' && this.line()}
+                                 {flightObj.arrStn === 'SIN' && this.getInboundTiming(flightObj) } 
+                                 {flightObj.depStn === 'SIN' && this.getOutboundTiming(flightObj)}
                          </p>  
                          <p className="flight-delay" style={{ display: "inline-block" }}> 
                              {
@@ -238,7 +229,41 @@ class FlightList extends React.Component {
         // console.log("===== flightList.length =====>" + flightList.length);
        return flightList && ((flightList.length*SINGLE_RECORD < 50) ? flightList.length*SINGLE_RECORD +"%" : "50%");   
     };
+    
+    getInboundScheduleTiming = (flightObj) => {
+        return (<div style={{display: "inline-block"}}><b style={{ marginRight: "5px" }}>
+                                 {flightObj.arrStn === 'SIN' && 'STA' }
+                                 </b>
+                                 <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900" }}>
+                                    { flightObj.arrStn === 'SIN' && getHoursAndMinutesAfterFormat(flightObj.sta) }
+        </b> </div>);
+    }
+    getOutboundTiming = (flightObj) => {
+        return (
+            <div>
+                <b style={{ marginRight: "5px"}}>
+                                     {flightObj.etd ? 'ETD' : 'STD' } 
+                                 </b> 
+                                 <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900" }}>
+                                    { flightObj.etd ? getHoursAndMinutesAfterFormat(flightObj.etd) : getHoursAndMinutesAfterFormat(flightObj.std)} 
+                                 </b>
+                                 </div>
+                );
+    };
 
+    getInboundTiming = (flightObj) => {
+        return (<div style={{display: 'inline'}}><b style={{ marginLeft: "15px", marginRight: "5px"}}>
+                                     {flightObj.arrStn === 'SIN' && 'ETA' } 
+                                 </b> 
+                                 <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900" }}>
+                                    { flightObj.arrStn === 'SIN' && getHoursAndMinutesAfterFormat(flightObj.eta) }
+                                    {/* : getHoursAndMinutesAfterFormat(flightObj.etd) */}
+                                 </b> </div>);
+    }
+    line = () => {
+        return (<b style={{ display: "inline-block", marginLeft: "6px", opacity: "0.3" }} className="line">
+        </b>);
+    }
     shrink = () => {
         let downArrow = document.getElementById("down-arrow");
         downArrow.style.display = "none";

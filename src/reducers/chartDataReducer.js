@@ -82,7 +82,7 @@ const prepareCoordinatesObject = (stationObj) => {
   return { latitude : Number(stationObj.latitude), longitude : Number(stationObj.longitude), title: stationObj.title };
 }
 
-export const setFlightsViewByInBoundOrOutbound = (screenViewSelected="OUTBOUND", action) => {
+export const setFlightsViewByInBoundOrOutbound = (screenViewSelected="INBOUND", action) => {
   if (action.type === "TOGGLE_INBOUND_OUTBOUND_VIEW") {
     return action.payload;
   }
