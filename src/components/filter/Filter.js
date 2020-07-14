@@ -190,9 +190,8 @@ export class Filter extends React.PureComponent {
       return this;
     }
     return this.props.flightData && this.props.flightData.flightSchedule.flightList.some( (flight) => {
-      return !(new Date(flight.etd).getTime() < (new Date().addHours(-5).getTime()));
+      return (new Date(flight.etd).getTime() < (new Date().addHours(-5).getTime()));
     });
-    //console.log(temp);
   }
 
   gethandleCheckBox = () => {
