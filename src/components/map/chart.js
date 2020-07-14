@@ -18,6 +18,8 @@ import { freeUpMemory } from './objects/clearChartObjects';
 import SideMenu from "./SideMenu";
 import { setChartEvents } from '../map/objects/chartEvents';
 
+import {setDefaultZoomAndGeoPointFocus}  from './objects/defaultZoomFocus';
+
 class MapChartLayer extends React.PureComponent {
   componentDidMount() {
     // Create map instance
@@ -25,12 +27,12 @@ class MapChartLayer extends React.PureComponent {
     am4core.options.onlyShowOnViewport = true;
     let chart = am4core.create("chartdiv", am4maps.MapChart);
 
+    chart.panBehavior = "rotateLong";
+    chart.maxPanOut = 0;
     //chart.seriesContainer.draggable = false;
-    chart.panBehavior = 'rotateLong';
     chart.chartContainer.wheelable = false;
     chart.paddingLeft = '0px';
     //chart.paddingRight = '80px';
-    chart.maxPanOut=0;
 
     // var slider = chart.chartContainer.createChild(am4core.Slider);
     // slider.start = 0.5;
@@ -61,6 +63,7 @@ class MapChartLayer extends React.PureComponent {
 
       // render home object to default zoom
       homeObjectRender(chartObj, am4core);
+      // chartObj.zoomControl.plusButton.events.on("hit", setDefaultZoomAndGeoPointFocus(chartObj) );
     }
     //freeUpMemory([chartObj]);
   };

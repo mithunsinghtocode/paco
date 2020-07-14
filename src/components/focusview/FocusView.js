@@ -413,7 +413,8 @@ adjustHeight = async (e) => {
                     {this.getFormattedFltNum( 'SQXXX' )}
                   </div>
                   <div className="col-1 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
-                    {getHoursAndMinutesAfterFormat( getMock2hTimeFromDateTime(selectedFlight.eta, 2) )}
+                    {selectedFlight.eta!==null && selectedFlight.eta!==undefined? getHoursAndMinutesAfterFormat( getMock2hTimeFromDateTime(selectedFlight.eta, 2) ) : 
+                      getHoursAndMinutesAfterFormat( getMock2hTimeFromDateTime(selectedFlight.sta, 2) )}
                     
                   </div>
                   <div className="col-3 col-md-5"

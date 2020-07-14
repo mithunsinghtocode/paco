@@ -31,6 +31,7 @@ export const mapLayoutObj = (chartObj, am4core, am4maps, am4geodataWorldLow ) =>
     // Remove Antarctica
     polygonSeries.exclude = ["AQ"];
 
+
     //chart.smallMap = new am4maps.SmallMap();
     //chart.smallMap.series.push(polygonSeries);
 }
