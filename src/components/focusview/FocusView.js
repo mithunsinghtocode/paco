@@ -413,7 +413,7 @@ adjustHeight = async (e) => {
                     {this.getFormattedFltNum( 'SQXXX' )}
                   </div>
                   <div className="col-1 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
-                    {getHoursAndMinutesAfterFormat( getMock2hTimeFromDateTime(selectedFlight.std, 2) )}
+                    {getHoursAndMinutesAfterFormat( getMock2hTimeFromDateTime(selectedFlight.eta, 2) )}
                     
                   </div>
                   <div className="col-3 col-md-5"
@@ -535,7 +535,7 @@ adjustHeight = async (e) => {
   getFlightBasedOnFlightIdFromOutbound() {
     return this.props.outboundFlights && this.props.outboundFlights.flightList.filter((flight) => {
       return flight.flightId === this.props.selectedFlightObj.flightId;
-    })
+    });
   }
   setTheOutboundViewForSelectedFlight(selectedFlight){
     this.props.userClick(false);
@@ -560,12 +560,16 @@ adjustHeight = async (e) => {
 
       let selectedFlightList = this.getFlightBasedOnFlightIdFromOutbound();      
       // console.log("##### debug 1 : ");
-      // console.log(selectedFlightList );
-      let selectedFlight = selectedFlightList[0];      
-      this.setTheOutboundViewForSelectedFlight(selectedFlight);
+      // console.log(selectedFlightList.length );
+      if(selectedFlightList.length>0){
+        let selectedFlight = selectedFlightList[0];      
+        this.setTheOutboundViewForSelectedFlight(selectedFlight);
+      }
+      
 
       return (
         // <div id="showHide">
+        selectedFlightList.length>0 &&
         this.props.selectedFlightObj !== null &&
         <div>
         
