@@ -21,9 +21,12 @@ class App extends React.PureComponent {
                 this.props.chartObj.zoomDuration = 500;
                 this.props.chartObj.goHome();
                 this.props.chartObj.zoomDuration = 200;
-        });     
+        });
 
-
+        // If needed to reduce memory usage then execute this function say every 15 minutes which will reset all objects.
+        // setInterval(() => {
+        //     window.location.reload();
+        // },60000)
 
     setInterval(() => {
         this.props.setCurrentTimeInUTC(getCurrentTimeInUTC());
