@@ -61,7 +61,7 @@ class Header extends React.PureComponent {
               {/* to avoid warning */ ""}
             </a>          
             <div className="project-title">                
-                PaCo -{this.props.appData.name}
+                PaCo
             </div>
             
           </div>
