@@ -16,6 +16,8 @@ export const plotFlightObj = (flight, lineSeries, dispatchFuncforAction, isMapOb
     }
     
     // Adds the position of the airplane object with svg
-    airplaneObj(am4core, bullet, flight);
+    let airplane = airplaneObj(am4core, bullet, flight);
+
+    return airplane;
   
 }

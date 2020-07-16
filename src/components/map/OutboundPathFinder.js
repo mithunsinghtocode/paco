@@ -72,19 +72,25 @@ class OutboundPathFinder extends React.PureComponent {
 
         // adds tooltip for the flights
         let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView, index, false, coordinatesList,false) ;
+        if(!this.props.isUserClick){
+          bullet.hide();
+        }
+        requestAnimationFrame (() => {
         // Adds click event on the tooltip, icon and line
         mapObjectEvents(bullet, line, lineSeries, flight, this.props.showSelectedFlightInMap, this.props.showFocusViewForSelectedFlight);
-        //requestAnimationFrame (() => {
         // Adds the position of the airplane object with svg
-        airplaneObj(am4core, bullet, flight);
-
+        let planeObj = airplaneObj(am4core, bullet, flight);
+        
         // Create image series
         let imageSeries = chartObj.series.push(new am4maps.MapImageSeries());
         // Create a circle image in image series template so it gets replicated to all new images
         let imageSeriesTemplate = imageSeries.mapImages.template;
 
         plotStationObj( am4core, chartObj, flight, imageSeries, imageSeriesTemplate,this.props.displayView, false );
-        //});
+
+        planeObj.show();
+        bullet.show();
+        });
       });
 
       // Restore the state of the chart object to store
@@ -95,7 +101,7 @@ class OutboundPathFinder extends React.PureComponent {
         //requestAnimationFrame (() => {
           goToHome(chartObj);
         //});
-      //freeUpMemory([chartObj, flightObj]);
+      freeUpMemory([chartObj, flightObj]);
     });
     }
     }

@@ -41,7 +41,8 @@ class FocusFlight extends React.Component {
                 if(this.props.displayView === "INBOUND"){
 
                     let coordinatesList = consolidatedCoordinates(selectedFlight.outboundFlt,"OUTBOUND");
-                    plotFlightObj(selectedFlight, lineSeries, null , false, am4core, this.props.displayView, chartObj,am4maps,0, false,coordinatesList, true);
+                    let airplane = plotFlightObj(selectedFlight, lineSeries, null , false, am4core, this.props.displayView, chartObj,am4maps,0, false,coordinatesList, true);
+                    airplane.show();
                     //plotStationObj( am4core, chartObj, selectedFlight,null, null,this.props.displayView );
                         // Create image series
                         let imageSeries = chartObj.series.push(new am4maps.MapImageSeries());
@@ -69,8 +70,8 @@ class FocusFlight extends React.Component {
                         //console.log(outboundFlt);
                         outboundFlt.tooltip = "OUTBOUND";
                         outboundFlt.aircraft.position = 0.95;
-                        plotFlightObj(outboundFlt, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView, chartObj,am4maps, index,false, coordinatesList, true);
-
+                        let airplane = plotFlightObj(outboundFlt, lineSeries, this.props.showFocusViewForSelectedFlight , true, am4core, this.props.displayView, chartObj,am4maps, index,false, coordinatesList, true);
+                        airplane.show();
                          // Create image series
                          let imageSeries = chartObj.series.push(new am4maps.MapImageSeries());
                          // Create a circle image in image series template so it gets replicated to all new images
@@ -82,7 +83,8 @@ class FocusFlight extends React.Component {
                 if(this.props.displayView === "OUTBOUND"){
                     let coordinatesList = consolidatedCoordinates(selectedFlight.inboundFlt,"INBOUND");
                     selectedFlight.aircraft.position = 0.95;
-                    plotFlightObj(selectedFlight, lineSeries, this.props.showFocusViewForSelectedFlight , false, am4core, this.props.displayView, chartObj,am4maps, 0, true, coordinatesList, true);
+                    let airplane = plotFlightObj(selectedFlight, lineSeries, this.props.showFocusViewForSelectedFlight , false, am4core, this.props.displayView, chartObj,am4maps, 0, true, coordinatesList, true);
+                    airplane.show();
                     //plotStationObj( am4core, chartObj, selectedFlight,null, null,this.props.displayView, true );
                      // Create image series
                      let imageSeries = chartObj.series.push(new am4maps.MapImageSeries());
@@ -110,7 +112,8 @@ class FocusFlight extends React.Component {
                         
                         //console.log(inboundFlt);
                         inboundFlt.tooltip = "INBOUND";
-                        plotFlightObj(inboundFlt, lineSeries, null , false, am4core, this.props.displayView, chartObj,am4maps, index, false, coordinatesList, true);
+                        let airplane =plotFlightObj(inboundFlt, lineSeries, null , false, am4core, this.props.displayView, chartObj,am4maps, index, false, coordinatesList, true);
+                        airplane.show();
                     }
                      // Create image series
                      let imageSeries = chartObj.series.push(new am4maps.MapImageSeries());
