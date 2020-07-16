@@ -204,7 +204,7 @@ class FlightList extends React.Component {
                          <div className="rectangle-copy-2-2">
                          <p className="flight-details" style={{ display: "inline-block" }}> 
                            
-                                { flightObj.arrStn === 'SIN' && this.getInboundScheduleTiming(flightObj)}                         
+                                 { flightObj.arrStn === 'SIN' && this.getInboundScheduleTiming(flightObj)}                         
                                  { flightObj.arrStn === 'SIN' && this.line()}
                                  {flightObj.arrStn === 'SIN' && this.getInboundTiming(flightObj) } 
                                  {flightObj.depStn === 'SIN' && this.getOutboundTiming(flightObj)}
@@ -242,12 +242,12 @@ class FlightList extends React.Component {
         return (
             <div>
                 <b style={{ marginRight: "5px"}}>
-                                     {flightObj.etd ? 'ETD' : 'STD' } 
+                                     {flightObj.etd ? 'ETD' : 'STD' }
                                  </b> 
                                  <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900" }}>
                                     { flightObj.etd ? getHoursAndMinutesAfterFormat(flightObj.etd) : getHoursAndMinutesAfterFormat(flightObj.std)} 
                                  </b>
-                                 </div>
+            </div>
                 );
     };
 
