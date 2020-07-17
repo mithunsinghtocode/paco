@@ -11,7 +11,7 @@ import { mapObjectEvents } from "./objects/events";
 import { plotStationObj } from "./objects/plotStationObj";
 import { initChart } from "../../actions/chartAction";
 import Loader from '../loader/Loader';
-import { freeUpMemory } from './objects/clearChartObjects';
+import { freeUpMemory, removeTooltip } from './objects/clearChartObjects';
 import { setDefaultZoomAndGeoPointFocus, goToHome } from './objects/defaultZoomFocus';
 import { sort } from '../../utils/sortUtils';
 import { consolidatedCoordinates } from '../map/objects/consolidatedCoordinates';
@@ -68,10 +68,11 @@ class OutboundPathFinder extends React.PureComponent {
         // Add line series
         sortedFlightList.forEach((flight , index) => {
         flight.aircraft.position = 0.95;
+        this.props.isTest && removeTooltip(chartObj);
         let line = lineObj(am4core, flight, lineSeries, chartObj,am4maps,false,this.props.displayView);
 
         // adds tooltip for the flights
-        let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView, index, false, coordinatesList,false) ;
+        let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView, index, false, coordinatesList,false, this.props.isTest, this.props.testTime) ;
         if(!this.props.isUserClick){
           bullet.hide();
         }
@@ -117,7 +118,8 @@ class OutboundPathFinder extends React.PureComponent {
 }
 
 const mapStateToProps = (state, ownprops) => {
-  return { chartObj: state.chartInit, outboundFlights: state.outboundFlightData, displayView: state.getDisplayView, fltToDisplayInMap : state.getFltToShowInMap, flightData : state.allFlightData, isUserClick: state.isUserClick };
+  return { chartObj: state.chartInit, outboundFlights: state.outboundFlightData, displayView: state.getDisplayView, fltToDisplayInMap : state.getFltToShowInMap, flightData : state.allFlightData, isUserClick: state.isUserClick, 
+     isTest: state.isTest, testTime : state.testTime};
 };
 
 export default connect(mapStateToProps, { getFlightDataForOutBound, showFocusViewForSelectedFlight, showSelectedFlightInMap, initChart })(

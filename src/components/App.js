@@ -37,7 +37,7 @@ class App extends React.PureComponent {
             <>
                 <Header />
                 <Filter goBackFunction={() => {this.props.removeSelectedFlightFromMap(null); this.props.removeFocusViewForSelectedFlight(null); clearChartComponents(this.props.chartObj, ["ALL"]); renderChartLayout(this.props.chartObj); this.props.userClick(false) }}/>
-                <MapChartLayer />
+                <MapChartLayer/>
                 <FocusView />
             </>
         );

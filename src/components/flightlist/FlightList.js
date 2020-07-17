@@ -68,8 +68,8 @@ class FlightList extends React.Component {
           if(this.props.displayView === 'INBOUND') return flightObj.status.misconnection ? "rectangle-copy-2-1-misconnected" : "rectangle-copy-2-1-delay";
           if(this.props.displayView === 'OUTBOUND') {
               if(flightObj.status.handled) return 'rectangle-copy-2-1-handled';
-              if(flightObj.status.misconnection && isDepNxt3Hrs(flightObj)) return 'rectangle-copy-2-1-misconnected-within3hrs';
-              if(flightObj.status.misconnection && !isDepNxt3Hrs(flightObj)) return 'rectangle-copy-2-1-misconnected-outside3hrs';
+              if(flightObj.status.misconnection && isDepNxt3Hrs(flightObj, this.props.isTest, this.props.testTime )) return 'rectangle-copy-2-1-misconnected-within3hrs';
+              if(flightObj.status.misconnection && !isDepNxt3Hrs(flightObj, this.props.isTest, this.props.testTime)) return 'rectangle-copy-2-1-misconnected-outside3hrs';
           } 
       };
 
@@ -152,8 +152,8 @@ class FlightList extends React.Component {
         }else{
 
             let flightHandledList = flightList.filter(flight => flight.status.handled);
-            let flightOutside3HrsList = flightList.filter(flight => !isDepNxt3Hrs(flight));
-            let flightNotHandledList = flightList.filter(flight => !flight.status.handled && isDepNxt3Hrs(flight));
+            let flightOutside3HrsList = flightList.filter(flight => !flight.status.handled && !isDepNxt3Hrs(flight, this.props.isTest, this.props.testTime));
+            let flightNotHandledList = flightList.filter(flight => !flight.status.handled && isDepNxt3Hrs(flight, this.props.isTest, this.props.testTime));
 
             sort({
                 inputList: flightNotHandledList, 
@@ -211,8 +211,8 @@ class FlightList extends React.Component {
                          </p>  
                          <p className="flight-delay" style={{ display: "inline-block" }}> 
                              {
-                                this.props.getCurrentTime ? flightObj.depStn === 'SIN' && this.timeConvert(this.getDelayInMin(flightObj, false, getCurrentTimeInUTC())) : 
-                                flightObj.depStn === 'SIN' && this.timeConvert(this.getDelayInMin(flightObj, false, getCurrentTimeInUTC()))
+                                this.props.getCurrentTime ? flightObj.depStn === 'SIN' && this.timeConvert(this.getDelayInMin(flightObj, false, getCurrentTimeInUTC(this.props.isTest, this.props.testTime))) : 
+                                flightObj.depStn === 'SIN' && this.timeConvert(this.getDelayInMin(flightObj, false, getCurrentTimeInUTC(this.props.isTest, this.props.testTime)))
                             }
                             {
                                 flightObj.arrStn === 'SIN' && this.getDelayInMin(flightObj, true) + " min"
@@ -364,7 +364,7 @@ const mapStateToProps = (state, ownProps) => {
     //console.log(state);
     return { fltToDisplayInMap : state.getFltToShowInMap, chartObj: state.chartInit, inboundFlights: state.inboundFlightData, 
         outboundFlights: state.outboundFlightData, displayView: state.getDisplayView, selectedFlightObj: state.selectedFlight,
-    isUserClick: state.isUserClick, getCurrentTime: state.getCurrentTime};
+    isUserClick: state.isUserClick, getCurrentTime: state.getCurrentTime, isTest: state.isTest, testTime : state.testTime};
   }
 
 export default connect(mapStateToProps , { showSelectedFlightInMap, removeSelectedFlightFromMap, userClick })(FlightList);

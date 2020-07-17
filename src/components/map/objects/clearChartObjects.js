@@ -34,3 +34,15 @@ export const freeUpMemory = (...uselessObjInMemory) => {
 //   const myNode = document.getElementById("chartdiv");
 //   if(myNode !=null) myNode.innerHTML = '';
 // }
+
+export const removeTooltip = (chart) => {
+
+  chart.series.values[1].mapLines && chart.series.values[1].mapLines.values.forEach((inObj, index1) => {
+            chart.series.values[1].mapLines.values[index1].lineObjects.values.forEach((inObj2, index2) => {
+              chart.series.values[1].mapLines.values[index1].lineObjects.getIndex(index2).tooltip.remove && chart.series.values[1].mapLines.values[index1].lineObjects.getIndex(index2).tooltip.remove();
+            });
+          });
+
+  chart.series.values[1].remove && 
+  chart.series.values[1].remove();
+}

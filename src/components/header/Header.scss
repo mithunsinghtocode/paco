@@ -5,25 +5,20 @@
     margin-top: 0px;
     height: 47px;
     // width : 170px;
-
     margin-bottom: 16px;
     // float: right;
     margin-right: 1px;
-    
-
-    .notification-bell-component{
+    .notification-bell-component {
         float: left;
-        display:inline-block;        
-        margin-right: 15px;    
+        display: inline-block;
+        margin-right: 15px;
         margin-top: 4px;
-        
     }
-    .current-time{
-        float:left;
-        display:inline-block;
+    .current-time {
+        float: left;
+        display: inline-block;
         font-family: "Proxima Nova";
         font-size: 30px;
-    
         height: 37px;
         // width: 79px;
         color: #FFFFFF;
@@ -53,7 +48,6 @@
     letter-spacing: 0.06px;
     // line-height: 25px;
     margin-bottom: 16px;
-
     .sia-logo {
         // width: 99px;
         width: 119px; // test
@@ -64,9 +58,9 @@
         margin-top: 2px;
         float: left;
     }
-    .project-title{
+    .project-title {
         float: left;
-        display:inline-block;
+        display: inline-block;
         font-family: 'Sigvar-Light';
         // font-weight: 1;
         height: 37px;
@@ -79,17 +73,32 @@
         margin-top: 14px;
         height: 37px;
     }
+    .test-area {
+        float: left;
+        display: inline-block;
+        font-family: 'Sigvar-Light';
+        // font-weight: 1;
+        height: 37px;
+        font-size: 16px;
+        letter-spacing: 0.01px;
+        line-height: 25px;
+        text-transform: none;
+        margin-left: 28px;
+        margin-bottom: 28px;
+        margin-top: 14px;
+        height: 37px;
+    }
 }
 
 .line-2-copy-1 {
-    display:inline-block;
+    display: inline-block;
     box-sizing: border-box;
     height: 37px;
     width: 1px;
     border: 1px solid #FFFFFF;
     opacity: 0.15;
     margin-top: 5px;
-    float:left;
+    float: left;
 }
 
 .icons-notification {
@@ -106,7 +115,6 @@
 .circle.icon {
     color: red;
 }
-
 
 .navbar.navbar-light.justify-content-between {
     background-color: #00266B;

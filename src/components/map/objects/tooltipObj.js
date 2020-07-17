@@ -20,18 +20,23 @@ const ishandleNeeded = (flight) => {
   return flight.status.handled && handleIcon();
 }
 
-export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index, isFocusOutbound, consolidatedCoordinates, isFocusView) => {
-
-  if(displayView==='OUTBOUND' && isDepNxt3Hrs(flight)) {
+export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index, isFocusOutbound, consolidatedCoordinates, isFocusView, isTest, testTime) => {
+  
+  if(displayView==='OUTBOUND' && isDepNxt3Hrs(flight, isTest, testTime)) {
     //flight.config.linecolor = OUTBOUND_VIEW_WITHIN_3HOURS_COLOR;
     flight.config.tooltipcolor = OUTBOUND_VIEW_WITHIN_3HOURS_COLOR;
     flight.config.bulletColor = OUTBOUND_VIEW_WITHIN_3HOURS_COLOR;
+  }
+  if(displayView==='OUTBOUND' && !isDepNxt3Hrs(flight, isTest, testTime)) {
+    //flight.config.linecolor = OUTBOUND_VIEW_WITHIN_3HOURS_COLOR;
+    flight.config.tooltipcolor = OUTBOUND_HANDLED;
+    flight.config.bulletColor = OUTBOUND_HANDLED;
   }
   // Add a map object to line
   let bullet = line.lineObjects.create();
   bullet.nonScaling = true;
   bullet.tooltip.getFillFromObject = false;
-  let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, isTest);
+  let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, true);
   bullet.position =  flight.arrStn === 'SIN' ? checkAircraftPosition(aircraftPosition) : isFocusOutbound ? 0 : flight.aircraft.position;
   bullet.fill = am4core.color(isFocusOutbound ? FOCUSSED_OUTBOUND_COLOR : flight.config.tooltipcolor);
   //bullet.height = "35px";
@@ -93,11 +98,13 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   dropShadow.clonedFrom = bullet;
   dropShadow.filterUnits='objectBoundingBox';
   // commented as using different algorithm
-  if(!isFocusOutbound && flight.depStn==='SIN' && flight.status.misconnection ) bullet.tooltip.filters.push(dropShadow);
-  (displayView==='OUTBOUND' && isDepNxt3Hrs(flight)) && bullet.tooltip.filters.clear();
+  if(!isFocusOutbound && flight.depStn==='SIN' && flight.status.misconnection && displayView === 'INBOUND') bullet.tooltip.filters.push(dropShadow);
+  if(displayView==='OUTBOUND' && flight.depStn==='SIN' && !isDepNxt3Hrs(flight, isTest, testTime)) bullet.tooltip.filters.push(dropShadow);
+  (displayView==='OUTBOUND' && isDepNxt3Hrs(flight, isTest, testTime)) && bullet.tooltip.filters.clear();
   (displayView==='OUTBOUND' && flight.status.handled) && bullet.tooltip.filters.clear();
 
   bullet.tooltip.background.filters.clear();
+
 
   //(flight.depStn==='SIN') && bullet.tooltip.background.filters.push(dropShadow1);
 
@@ -158,9 +165,11 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
       bullet.tooltip.background.filters.push(dropShadow1);
       break;
     }
+    bullet.tooltip.background.filters.clear();
   };
 }
 
+isTest  && bullet.tooltip.background.filters.clear();;
 
   if(flight.tooltip != null && flight.tooltip === "OUTBOUND")
   {

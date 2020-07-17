@@ -4,19 +4,20 @@ export const getHoursAndMinutesAfterFormat = (jsonDate) => {
 
 // getCurrentUTCTime - FlightATDTime/(FlightETATime - FlightATDTime)
 
-export const getTestTime = () => {
+export const getTestTime = (testDateTime) => {
     //2020-03-15 01:30:00
-    return new Date(2020, 2, 12, 14, 55, 0, 0); 
+    if(testDateTime === undefined || testDateTime === null) return new Date(2020, 2, 12, 14, 55, 0, 0); 
+    return new Date(testDateTime.year, testDateTime.mon-1, testDateTime.dd, testDateTime.hh, testDateTime.mm, testDateTime.ss, 0); 
 }
 
 export const getAircraftPositionBasedOnFlightObj = (fltObj, isTest) => {
-    if(isTest) return (( getTestTime().getTime() - getDateFromJsonField(fltObj.atd).getTime() ) / ( getDateFromJsonField(fltObj.eta).getTime() - getDateFromJsonField(fltObj.atd).getTime()));
+    if(isTest) return (( getTestTime(undefined).getTime() - getDateFromJsonField(fltObj.atd).getTime() ) / ( getDateFromJsonField(fltObj.eta).getTime() - getDateFromJsonField(fltObj.atd).getTime()));
 
-    return (( getCurrentTimeInUTC().getTime() - getDateFromJsonField(fltObj.atd).getTime() ) /
+    return (( new Date(getCurrentTimeInUTC(isTest, undefined)).getTime() - getDateFromJsonField(fltObj.atd).getTime() ) /
                 ( getDateFromJsonField(fltObj.eta).getTime() - getDateFromJsonField(fltObj.atd).getTime()));
 };
 
-export const getCurrentTimeInUTC = () => {
+export const getCurrentTimeInUTC = (isTest, testDateTime) => {
     Date.prototype.getUTCTime = function(){ 
         return this.getTime()+(this.getTimezoneOffset()*60000); 
       };
@@ -24,6 +25,7 @@ export const getCurrentTimeInUTC = () => {
     // var now_utc =  Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
     // date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
     // return new Date(now_utc).toUTCString();
+    if(isTest) return getTestTime(testDateTime);
     return new Date().getUTCTime();
 }
 

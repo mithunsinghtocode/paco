@@ -8,7 +8,7 @@ import {
   setFlightsViewByInBoundOrOutbound,
   selectedFlightInMapReducer,
   outboundFlightDataReducer,
-  userClick, getCurrentTime
+  userClick, getCurrentTime, getTestState, getTestDateTime
 } from "./chartDataReducer";
 
 export default combineReducers({
@@ -21,5 +21,7 @@ export default combineReducers({
   getDisplayView: setFlightsViewByInBoundOrOutbound,
   getFltToShowInMap: selectedFlightInMapReducer,
   isUserClick: userClick,
-  getCurrentTime : getCurrentTime
+  getCurrentTime : getCurrentTime,
+  isTest: getTestState,
+  testTime : getTestDateTime
 });

@@ -85,3 +85,11 @@ export const removeSelectedFlightFromMap = selectedFlt => dispatch => {
 export const setCurrentTimeInUTC = currTime => dispatch => {
     dispatch({ type: 'CURRENT_TIME', payload: currTime});
 }
+
+export const setTestState = isTest => dispatch => {
+    dispatch({ type: 'TEST_STATE', payload: isTest});
+}
+
+export const setTestDateTimeStamp = dateTime => dispatch => {
+    dispatch({ type: 'DATE_TIME', payload: dateTime});
+}

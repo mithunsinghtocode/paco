@@ -4,6 +4,7 @@ import "./Filter.scss";
 import { getFilteredFlightDataForInbound, getFilteredFlightDataForOutbound } from '../../actions/chartDataAction';
 import { clearChartComponents } from '../map/objects/clearChartObjects';
 import { renderChartLayout } from '../map/objects/renderChartLayOut';
+import { isDepNxt3Hrs, isArrNxt3Hrs } from '../../utils/filterUtils';
 
 let switch1On = false;
 let switch2On = false;
@@ -43,10 +44,17 @@ export class Filter extends React.PureComponent {
           );
   }
   frameFlightsForMap = (flightList) => {
+    Promise.resolve().then(() => {
     clearChartComponents(this.props.chartObj, ["ALL"]);
+  }).then(() => {
     renderChartLayout(this.props.chartObj);
-    this.props.displayView === "INBOUND" && this.props.getFilteredFlightDataForInbound(flightList);
-    this.props.displayView === "OUTBOUND" && this.props.getFilteredFlightDataForOutbound(flightList);  
+    renderChartLayout(this.props.chartObj);
+  }).then(() => {
+    requestAnimationFrame (() => {
+      this.props.displayView === "INBOUND" && this.props.getFilteredFlightDataForInbound(flightList);
+      this.props.displayView === "OUTBOUND" && this.props.getFilteredFlightDataForOutbound(flightList);  
+    });
+  });
   }
   renderPadding(){
     return (<div style={{"width": "172px"}} > </div> );
@@ -65,7 +73,7 @@ export class Filter extends React.PureComponent {
       let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
           return flight.status && 
             // Singapore variance is +8 and arriving within 3 hours => -8+3 = -5
-            (flight.status.misconnection === true && (new Date(flight.eta).getTime() < (new Date().addHours(-5)).getTime()))
+            (flight.status.misconnection === true && isArrNxt3Hrs(flight, this.props.isTest, this.props.testTime))
           }
         );
         this.frameFlightsForMap(flightList);
@@ -76,7 +84,8 @@ export class Filter extends React.PureComponent {
         this.frameFlightsForMap(flightList);
     } else if (arrivWithin3HoursToggle){
       let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
-        return flight.status && (new Date(flight.eta).getTime() < (new Date().addHours(-5)).getTime());
+        //return (new Date(flight.etd).getTime() < (new Date().addHours(-5).getTime()));
+        return flight.status && isArrNxt3Hrs(flight, this.props.isTest, this.props.testTime);
       });
         this.frameFlightsForMap(flightList);
     } else{
@@ -99,7 +108,7 @@ export class Filter extends React.PureComponent {
       let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
           return flight.status && 
             // Singapore variance is +8 and arriving within 3 hours => -8+3 = -5
-            (!flight.status.handled === true && (new Date(flight.etd).getTime() < (new Date().addHours(-5).getTime())))
+            (!flight.status.handled === true && isDepNxt3Hrs(flight, this.props.isTest, this.props.testTime))
           }
         );
         this.frameFlightsForMap(flightList);
@@ -110,7 +119,8 @@ export class Filter extends React.PureComponent {
         this.frameFlightsForMap(flightList);
     } else if (departWithin3HoursToggle){
       let flightList = this.props.flightData.flightSchedule.flightList.filter((flight) => {
-        return (new Date(flight.etd).getTime() < (new Date().addHours(-5).getTime()));
+        //return (new Date(flight.etd).getTime() < (new Date().addHours(-5).getTime()));
+        return isDepNxt3Hrs(flight, this.props.isTest, this.props.testTime)
       });
         this.frameFlightsForMap(flightList);
     } else{
@@ -134,7 +144,8 @@ export class Filter extends React.PureComponent {
       return this;
     }
     return this.props.flightData && this.props.flightData.flightSchedule.flightList.some( (flight) => {
-      return (new Date(flight.eta).getTime() < (new Date().addHours(-5)));
+      //return (new Date(flight.eta).getTime() < (new Date().addHours(-5)));
+      return isArrNxt3Hrs(flight, this.props.isTest, this.props.testTime)
     });
   }
 
@@ -190,7 +201,8 @@ export class Filter extends React.PureComponent {
       return this;
     }
     return this.props.flightData && this.props.flightData.flightSchedule.flightList.some( (flight) => {
-      return (new Date(flight.etd).getTime() < (new Date().addHours(-5).getTime()));
+      //return (new Date(flight.etd).getTime() < (new Date().addHours(-5).getTime()));
+      return isDepNxt3Hrs(flight, this.props.isTest, this.props.testTime)
     });
   }
 
@@ -210,6 +222,7 @@ export class Filter extends React.PureComponent {
       return <input type="checkbox" disabled checked={switch4On} id="switch2" className="switch__input" onClick = { this.filterOutboundFlightBasedOnToggle }/>
     }
   }
+
 
   getOutBoundFilter = () => {
      return ( <div className="div-switch">
@@ -235,6 +248,7 @@ export class Filter extends React.PureComponent {
      )
   };
 
+
   render() {
     return (
       <>
@@ -245,7 +259,7 @@ export class Filter extends React.PureComponent {
           {this.props.fltToDisplayInMap === null && this.getInBoundFilter()}          
           { ( this.props.fltToDisplayInMap !== null &&  this.renderPadding() ) ||
               ( this.props.selectedFlightObj !== null &&  this.renderLockDecisionButton())
-          }               
+          }  
         </nav> }
 
         {this.props.displayView === "OUTBOUND" &&
@@ -268,7 +282,7 @@ const mapStateToProps = (state, ownprops) => {
   // return { chartObj: state.chartInit, displayView: state.getDisplayView, goBackFunction : ownprops.goBackFunction, fltToDisplayInMap : state.getFltToShowInMap, flightData : state.allFlightData };
   return { chartObj: state.chartInit, displayView: state.getDisplayView, 
             goBackFunction : ownprops.goBackFunction, fltToDisplayInMap : state.getFltToShowInMap, 
-            flightData : state.allFlightData, selectedFlightObj: state.selectedFlight  };
+            flightData : state.allFlightData, selectedFlightObj: state.selectedFlight, isTest: state.isTest, testTime : state.testTime  };
 };
 
 export default connect(mapStateToProps, { getFilteredFlightDataForInbound, getFilteredFlightDataForOutbound })(Filter);

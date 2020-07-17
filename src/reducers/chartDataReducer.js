@@ -102,3 +102,16 @@ export const getCurrentTime = (currentTime = null, action) => {
   }
   return currentTime;
 }
+export const getTestState = (isTest = false, action) => {
+  if (action.type === "TEST_STATE") {
+    return action.payload;
+  }
+  return isTest;
+}
+export const getTestDateTime = (dateTime = null, action) => {
+  if (action.type === "DATE_TIME") {
+    return action.payload;
+  }
+  return dateTime;
+}
+

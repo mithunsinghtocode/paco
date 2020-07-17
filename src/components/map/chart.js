@@ -114,7 +114,7 @@ class MapChartLayer extends React.PureComponent {
 }
 
 const mapStateToProps = (state, ownprops) => {
-  return { chartObj: state.chartInit, displayView: state.getDisplayView, isUserClick: state.isUserClick };
+  return { chartObj: state.chartInit, displayView: state.getDisplayView, isUserClick: state.isUserClick, isTest: ownprops.isTest, testTime : ownprops.testTime};
 };
 
 export default connect(mapStateToProps, { removeSelectedFlightFromMap, removeFocusViewForSelectedFlight, initChart })(MapChartLayer);
