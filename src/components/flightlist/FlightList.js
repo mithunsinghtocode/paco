@@ -125,7 +125,8 @@ class FlightList extends React.Component {
         let misconxCount = 0;
         if(this.props.displayView === "OUTBOUND"){
             flightList  = flightList.filter((flight) => {
-                return flight.etd !== null && flight.etd > (flight.rtd || flight.std);
+                //return flight.etd !== null && flight.etd > (flight.rtd || flight.std);
+                return flight.status.misconnection;
               });
         }
         if(this.props.displayView === 'INBOUND'){
