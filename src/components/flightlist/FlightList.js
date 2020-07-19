@@ -110,7 +110,7 @@ class FlightList extends React.Component {
     renderFlightList = (flightList, highlightFlight) => {
         flightListVar = flightList;
         flightList.forEach( (inObj) => {
-            inObj.diffInMin = this.getDelayInMin(inObj);
+            inObj.diffInMin = this.getDelayInMin(inObj, true);
         });
         // sort based on misconnection
         sort({
