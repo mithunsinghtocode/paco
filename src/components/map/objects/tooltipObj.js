@@ -77,7 +77,8 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
     // set the position of the aircraft.
     // Logic to move airplane based on current time needs to be added on.
     var setPositionOfPlane = setInterval(() => {
-      let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, isTest);
+      let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, isTest, testTime);
+      console.log("aircraft pos : "+aircraftPosition)
       let bulletPosition = checkAircraftPosition(aircraftPosition);
       bullet.position = isFocusOutbound ? 0 : bulletPosition;      
     }, TIME_TO_CHECK_AIRCRAFT_POSITION);
@@ -169,7 +170,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   };
 }
 
-isTest  && bullet.tooltip.background.filters.clear();;
+//isTest  && bullet.tooltip.background.filters.clear();;
 
   if(flight.tooltip != null && flight.tooltip === "OUTBOUND")
   {

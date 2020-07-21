@@ -87,7 +87,7 @@ class InboundPathFinder extends React.PureComponent {
   
           plotStationObj( am4core, chartObj, flight, imageSeries, imageSeriesTemplate,this.props.displayView, false );
           bullet.show();
-          planeObj.show();
+          planeObj && planeObj.show();
           });
         });
         // Restore the state of the chart object to store

@@ -5,6 +5,7 @@ export const isDepNxt3Hrs = (flight, isTest, testTime) => {
                     this.setHours(this.getHours()+h);
                     return this;
                   }
+                  
                   return (new Date(flight.etd).getTime() <= (new Date(getCurrentTimeInUTC(isTest, testTime)).addHours(3).getTime()));
                   
 }
@@ -14,6 +15,6 @@ export const isArrNxt3Hrs = (flight, isTest, testTime) => {
             this.setHours(this.getHours()+h);
             return this;
           }
-          return (new Date(flight.etd).getTime() <= (new Date(getCurrentTimeInUTC(isTest, testTime)).addHours(3).getTime()));
+          return (new Date(flight.eta).getTime() <= (new Date(getCurrentTimeInUTC(isTest, testTime)).addHours(3).getTime()));
           
 }

@@ -7,6 +7,7 @@ import { getTotalPaxCountBasedGroupByClassForFlight } from "../../utils/paxUtils
 import { sort } from "../../utils/sortUtils";
 import { isDepNxt3Hrs } from "../../utils/filterUtils";
 
+
 var scrollHeight = 0;
 let MAX_HEIGHT = 86;
 let MIN_HEIGHT = 50;
@@ -74,8 +75,6 @@ class FlightList extends React.Component {
       };
 
       getDelayInMin = (flightObj, isInbound, currentTime) => {
-        //console.log(new Date(currentTime))
-        //console.log(new Date(flightObj.etd))
           if(isInbound !== undefined){
             let dif = isInbound ? 
               (new Date(flightObj.eta).getTime() - ((flightObj.rta !== undefined && flightObj.rta !== null) ? new Date(flightObj.rta).getTime() : new Date(flightObj.sta).getTime()))

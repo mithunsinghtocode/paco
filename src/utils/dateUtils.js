@@ -10,10 +10,10 @@ export const getTestTime = (testDateTime) => {
     return new Date(testDateTime.year, testDateTime.mon-1, testDateTime.dd, testDateTime.hh, testDateTime.mm, testDateTime.ss, 0); 
 }
 
-export const getAircraftPositionBasedOnFlightObj = (fltObj, isTest) => {
-    if(isTest) return (( getTestTime(undefined).getTime() - getDateFromJsonField(fltObj.atd).getTime() ) / ( getDateFromJsonField(fltObj.eta).getTime() - getDateFromJsonField(fltObj.atd).getTime()));
+export const getAircraftPositionBasedOnFlightObj = (fltObj, isTest, testTime) => {
+    if(isTest) return (( getTestTime(testTime).getTime() - getDateFromJsonField(fltObj.atd).getTime() ) / ( getDateFromJsonField(fltObj.eta).getTime() - getDateFromJsonField(fltObj.atd).getTime()));
 
-    return (( new Date(getCurrentTimeInUTC(isTest, undefined)).getTime() - getDateFromJsonField(fltObj.atd).getTime() ) /
+    return (( new Date(getCurrentTimeInUTC(isTest, testTime)).getTime() - getDateFromJsonField(fltObj.atd).getTime() ) /
                 ( getDateFromJsonField(fltObj.eta).getTime() - getDateFromJsonField(fltObj.atd).getTime()));
 };
 

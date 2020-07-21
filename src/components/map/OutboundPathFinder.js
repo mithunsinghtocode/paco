@@ -89,8 +89,8 @@ class OutboundPathFinder extends React.PureComponent {
 
         plotStationObj( am4core, chartObj, flight, imageSeries, imageSeriesTemplate,this.props.displayView, false );
 
-        planeObj.show();
         bullet.show();
+        planeObj.show();
         });
       });
 
