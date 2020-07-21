@@ -13,7 +13,9 @@ let MAX_HEIGHT = 86;
 let MIN_HEIGHT = 50;
 const TRANSITION_MULTIPLIER=1.4;
 const SINGLE_RECORD = 16;
+const SINGLE_RECORD_PX = 108;
 let flightListVar;
+
 class FlightList extends React.Component {
 
     off = () => {
@@ -75,6 +77,8 @@ class FlightList extends React.Component {
       };
 
       getDelayInMin = (flightObj, isInbound, currentTime) => {
+        //console.log(new Date(currentTime))
+        //console.log(new Date(flightObj.etd))
           if(isInbound !== undefined){
             let dif = isInbound ? 
               (new Date(flightObj.eta).getTime() - ((flightObj.rta !== undefined && flightObj.rta !== null) ? new Date(flightObj.rta).getTime() : new Date(flightObj.sta).getTime()))
@@ -108,9 +112,6 @@ class FlightList extends React.Component {
 
     renderFlightList = (flightList, highlightFlight) => {
         flightListVar = flightList;
-        flightList.forEach( (inObj) => {
-            inObj.diffInMin = this.getDelayInMin(inObj, true);
-        });
         // sort based on misconnection
         sort({
             inputList: flightList, 
@@ -129,6 +130,9 @@ class FlightList extends React.Component {
               });
         }
         if(this.props.displayView === 'INBOUND'){
+            flightList.forEach( (inObj) => {
+                inObj.diffInMin = this.getDelayInMin(inObj,true);;
+            });
             let flightMisconnectionList = flightList.filter(flight => flight.status.misconnection);
             let flightDelayList = flightList.filter(flight => !flight.status.misconnection);
             sort({
@@ -181,7 +185,7 @@ class FlightList extends React.Component {
             });
             flightHandledList = [...flightOutside3HrsList, ...flightHandledList]
             flightList = [...flightNotHandledList, ...flightHandledList];
-            misconxCount = flightNotHandledList.length;        
+            misconxCount = flightNotHandledList.length;      
         }
         var legendDiv = document.getElementById("legend");
         if(legendDiv !== null){
@@ -211,7 +215,7 @@ class FlightList extends React.Component {
                          </p>  
                          <p className="flight-delay" style={{ display: "inline-block" }}> 
                              {
-                                this.props.getCurrentTime ? flightObj.depStn === 'SIN' && this.timeConvert(this.getDelayInMin(flightObj, false, getCurrentTimeInUTC(this.props.isTest, this.props.testTime))) :     
+                                this.props.getCurrentTime ? flightObj.depStn === 'SIN' && this.timeConvert(this.getDelayInMin(flightObj, false, getCurrentTimeInUTC(this.props.isTest, this.props.testTime))) : 
                                 flightObj.depStn === 'SIN' && this.timeConvert(this.getDelayInMin(flightObj, false, getCurrentTimeInUTC(this.props.isTest, this.props.testTime)))
                             }
                             {
@@ -226,16 +230,65 @@ class FlightList extends React.Component {
         });
     };
     setHeight = (flightList) => {
-        // console.log("===== flightList.length =====>" + flightList.length);
-       return flightList && ((flightList.length*SINGLE_RECORD < 50) ? flightList.length*SINGLE_RECORD +"%" : "50%");   
+        let totLen = document.body.clientHeight;  
+        let paneLen = flightList.length*SINGLE_RECORD_PX;    
+        let len = 0;
+        let gapAmnt = this.calcPaneHeightOffset();
+        if(paneLen< (totLen-133) ){
+            len = Number(( (paneLen +gapAmnt )/totLen).toFixed(2)) 
+        }else{
+            len = Number(((totLen-133)/totLen).toFixed(2)) ;
+        }
+        len = 100*len;
+        return flightList && ( len +".25%");    
+    };  
+    calcPaneHeightOffset = () => {
+        let gapAmnt = 0;
+        if( this.props.displayView==="INBOUND" ){
+            if(this.props.inboundFlights!=null && this.props.inboundFlights!=undefined ){
+                // let flightList = this.props.inboundFlights.filter(flight => !flight.status.misconnection);    
+                let flightMisconnectionList = this.props.inboundFlights.filter(flight => flight.status.misconnection);
+                let flightDelayList = this.props.inboundFlights.filter(flight => !flight.status.misconnection);
+                if(flightMisconnectionList.length>0 && flightDelayList.length>0){
+                    gapAmnt += 64;
+                }else{
+                    gapAmnt += 32;
+                }
+            }
+        }else{            
+            let flightOutside3HrsList = this.props.outboundFlights.filter(flight => !flight.status.handled && !isDepNxt3Hrs(flight, this.props.isTest, this.props.testTime));
+            let flightNotHandledList = this.props.outboundFlights.filter(flight => !flight.status.handled && isDepNxt3Hrs(flight, this.props.isTest, this.props.testTime));
+            if(flightOutside3HrsList.length>0 && flightNotHandledList.length>0){
+                gapAmnt += 64;
+            }else{
+                gapAmnt += 32;
+            }
+        }
+        return gapAmnt;
+    }
+    setPaneHeight = () => {
+        let flightListVarLen =  this.props.displayView==="INBOUND" && this.props.inboundFlights!=null && this.props.inboundFlights!=undefined ? this.props.inboundFlights.flightList.length :
+                            this.props.displayView==="OUTBOUND" && this.props.outboundFlights!==null && this.props.outboundFlights!==undefined  ?  this.props.outboundFlights.flightList.length : 0;
+
+        let gapAmnt = this.calcPaneHeightOffset();
+
+        let totLen = document.body.clientHeight; 
+        let paneLen = flightListVarLen*SINGLE_RECORD_PX;    
+        if(paneLen< (totLen-133) ){
+            paneLen = Number(( (paneLen +gapAmnt )/totLen).toFixed(2)) 
+        }else{
+            paneLen = Number(((totLen-133)/totLen).toFixed(2)) ;
+        }
+        paneLen = 100*paneLen;
+        return paneLen+"%";
     };
-    
+
     getInboundScheduleTiming = (flightObj) => {
         return (<div style={{display: "inline-block"}}><b style={{ marginRight: "5px" }}>
-                                 {flightObj.arrStn === 'SIN' && 'STA' }
+                                 {flightObj.arrStn === 'SIN' && (flightObj.rta!==null && flightObj!==undefined ? 'RTA' : 'STA') }
                                  </b>
                                  <b style={{fontFamily: "Proxima Nova Thin", fontWeight:"900" }}>
-                                    { flightObj.arrStn === 'SIN' && getHoursAndMinutesAfterFormat(flightObj.sta) }
+                                    { flightObj.arrStn === 'SIN' && (flightObj.rta!==null && flightObj!==undefined ? getHoursAndMinutesAfterFormat(flightObj.rta) : getHoursAndMinutesAfterFormat(flightObj.sta) ) }
         </b> </div>);
     }
     getOutboundTiming = (flightObj) => {
@@ -280,10 +333,20 @@ class FlightList extends React.Component {
     };
 
     adjustHeight = async (e) => {
-        if(flightListVar && flightListVar.length*SINGLE_RECORD < 50) document.getElementById("legend").style.height= flightListVar.length*SINGLE_RECORD +"% !important";
-        MAX_HEIGHT = MAX_HEIGHT > flightListVar.length*SINGLE_RECORD ? flightListVar.length*SINGLE_RECORD : MAX_HEIGHT;
-        MIN_HEIGHT = MIN_HEIGHT > flightListVar.length*SINGLE_RECORD ? flightListVar.length*SINGLE_RECORD : MIN_HEIGHT;
-        //console.log(MAX_HEIGHT);
+        let totLen = document.body.clientHeight;  
+        // if(flightListVar && flightListVar.length*SINGLE_RECORD_PX < (totLen-133) ) document.getElementById("legend").style.height= flightListVar.length*SINGLE_RECORD_PX +".25px !important";
+        
+        let paneLen = flightListVar.length*SINGLE_RECORD_PX;   
+        let gapAmnt = this.calcPaneHeightOffset();
+        let testVal = 0;
+        if(paneLen< (totLen-133) ){
+            testVal = Number(( (paneLen +gapAmnt )/totLen).toFixed(2)) 
+        }else{
+            testVal = Number(((totLen-133)/totLen).toFixed(2)) ;
+        }
+        MAX_HEIGHT = testVal*100;
+        MIN_HEIGHT = testVal*100;
+        
         let y = e.deltaY;
         var element = document.querySelector("#legend");
         var st = element.scrollTop;
@@ -293,19 +356,31 @@ class FlightList extends React.Component {
                     if(currHeight >= 0 && currHeight < MAX_HEIGHT) {
                         document.getElementById("down-arrow").style.display = "block";
                         document.getElementById("up-arrow").style.display = "none";
-                        this.setScrollStyle('hidden', MIN_HEIGHT + scrollHeight*TRANSITION_MULTIPLIER  +'%');
+
+                        // this.setScrollStyle('hidden', MIN_HEIGHT + scrollHeight*TRANSITION_MULTIPLIER  +'%');
+                        let tempH = MIN_HEIGHT + scrollHeight*TRANSITION_MULTIPLIER ;
+                        tempH = MAX_HEIGHT>tempH ? tempH : MAX_HEIGHT;
+                        this.setScrollStyle('hidden', tempH  +'.25%');
+                        // console.log("##### 111111111 =>\n\n" );
+
                         scrollHeight+=1;
                     }
                     if(currHeight >= MAX_HEIGHT){ 
-                        this.setScrollStyle('auto', MAX_HEIGHT +'%');
+                        this.setScrollStyle('auto', MAX_HEIGHT +'.25%');
+                        // console.log("##### 222222222 => currHeight / MAX_HEIGHT : " + currHeight + " / " + MAX_HEIGHT + "\n\n" );
                     }
             }else{
                 if(currHeight > MIN_HEIGHT && st <=1){
-                        this.setScrollStyle('hidden', MIN_HEIGHT + scrollHeight*TRANSITION_MULTIPLIER  +'%');
+                        // this.setScrollStyle('hidden', MIN_HEIGHT + scrollHeight*TRANSITION_MULTIPLIER  +'%');
+                        let tempH = MIN_HEIGHT + scrollHeight*TRANSITION_MULTIPLIER ;                
+                        tempH = MIN_HEIGHT<tempH ? tempH : MIN_HEIGHT;
+                        this.setScrollStyle('hidden', tempH  +'.25%');
+                        // console.log("##### 333333333 =>\n\n" );
                         scrollHeight-=1;
                 }
                 if(currHeight <= MIN_HEIGHT){
-                    this.setScrollStyle('auto', MIN_HEIGHT +'%');
+                    // console.log("##### 44444444 =>\n\n" );
+                    this.setScrollStyle('auto', MIN_HEIGHT +'.25%');
                 }
             }
         }       
@@ -313,12 +388,13 @@ class FlightList extends React.Component {
     setScrollStyle = (overflowVal, heightVal) => {
         document.getElementById("legend").style.overflow = overflowVal;
         document.getElementById("legend").style.height= heightVal;
+        // console.log("##### heightVal =>" + heightVal);
     }
     render(){
         return (
         this.props.selectedFlightObj === null &&
         <div>
-            <div className="legend" id="legend" onWheel={this.adjustHeight} onScroll={this.adjustHeight}>
+            <div className="legend" id="legend" onWheel={this.adjustHeight} onScroll={this.adjustHeight}  style={{height:this.setPaneHeight()}} >            
                 {this.props.displayView === "INBOUND" &&  (this.props.fltToDisplayInMap !== null ? this.renderFlightList(this.props.inboundFlights.flightList, this.props.fltToDisplayInMap) : this.props.inboundFlights && this.renderFlightList(this.props.inboundFlights.flightList)) }
                 {this.props.displayView === "OUTBOUND" &&  (this.props.fltToDisplayInMap !== null ? this.renderFlightList(this.props.outboundFlights.flightList,this.props.fltToDisplayInMap) : this.props.outboundFlights && this.renderFlightList(this.props.outboundFlights.flightList))}
             </div>
@@ -362,6 +438,9 @@ class FlightList extends React.Component {
 }
 const mapStateToProps = (state, ownProps) => {
     //console.log(state);
+//     console.log("********* start state FlightList *********");
+//   console.log(state);
+//   console.log("********* start end *********");
     return { fltToDisplayInMap : state.getFltToShowInMap, chartObj: state.chartInit, inboundFlights: state.inboundFlightData, 
         outboundFlights: state.outboundFlightData, displayView: state.getDisplayView, selectedFlightObj: state.selectedFlight,
     isUserClick: state.isUserClick, getCurrentTime: state.getCurrentTime, isTest: state.isTest, testTime : state.testTime};

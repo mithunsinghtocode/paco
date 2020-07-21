@@ -105,15 +105,16 @@
 .legend {
     position: absolute;
     width: 420px;
-    max-height: 86%;
-    height: 50%;
+    // max-height: 86%;
+    // height: 50%;
     left: 60px;
     bottom: 0%;
     background-color: transparent;
     z-index: 2;
     cursor: pointer;
     overflow: hidden;
-    padding: 1em 0em 0em 1em;
+    // padding: 1em 0em 0em 1em;
+    padding: 16px 0px 16px 16px;
 }
 
 
@@ -132,7 +133,7 @@
 
 .flight-num {
     height: 28px;
-    width: 88px;
+    // width: 88px;
     color: #FFFFFF;
     font-family: "Proxima Nova Semibold";
     font-size: 21px;
