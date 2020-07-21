@@ -1,7 +1,7 @@
 import React from  'react';
 import "./flightList.scss";
 import { connect } from "react-redux";
-import { getHoursAndMinutesAfterFormat, getCurrentTimeInUTC, getTestTime } from "../../utils/dateUtils";
+import { getHoursAndMinutesAfterFormat, getCurrentTimeInUTC, getTestTime, nvl } from "../../utils/dateUtils";
 import { showSelectedFlightInMap, removeSelectedFlightFromMap, userClick } from "../../actions/chartDataAction";
 import { getTotalPaxCountBasedGroupByClassForFlight } from "../../utils/paxUtils";
 import { sort } from "../../utils/sortUtils";
@@ -78,7 +78,7 @@ class FlightList extends React.Component {
           if(isInbound !== undefined){
             let dif = isInbound ? 
               (new Date(flightObj.eta).getTime() - ((flightObj.rta !== undefined && flightObj.rta !== null) ? new Date(flightObj.rta).getTime() : new Date(flightObj.sta).getTime()))
-            : (new Date(flightObj.etd).getTime() - new Date(currentTime).getTime());
+            : (new Date(nvl(flightObj.etd, flightObj.std)).getTime() - new Date(currentTime).getTime());
             
             if(isInbound && dif !== NaN && dif >= 0){
                 return  `${Math.round((dif/1000)/60)}`; 
@@ -211,7 +211,7 @@ class FlightList extends React.Component {
                          </p>  
                          <p className="flight-delay" style={{ display: "inline-block" }}> 
                              {
-                                this.props.getCurrentTime ? flightObj.depStn === 'SIN' && this.timeConvert(this.getDelayInMin(flightObj, false, getCurrentTimeInUTC(this.props.isTest, this.props.testTime))) : 
+                                this.props.getCurrentTime ? flightObj.depStn === 'SIN' && this.timeConvert(this.getDelayInMin(flightObj, false, getCurrentTimeInUTC(this.props.isTest, this.props.testTime))) :     
                                 flightObj.depStn === 'SIN' && this.timeConvert(this.getDelayInMin(flightObj, false, getCurrentTimeInUTC(this.props.isTest, this.props.testTime)))
                             }
                             {

@@ -3,15 +3,15 @@ import { getTotalPaxCountForFlight } from "../../../utils/paxUtils";
 import { isDepNxt3Hrs } from "../../../utils/filterUtils";
 
 // 5 minutes once
-const TIME_TO_CHECK_AIRCRAFT_POSITION = 300000;
+const TIME_TO_CHECK_AIRCRAFT_POSITION = 60000;
 const isTest = true;
 const FOCUSSED_OUTBOUND_COLOR = "#0483F8";
 const OUTBOUND_VIEW_WITHIN_3HOURS_COLOR = "#E55541";
 const OUTBOUND_HANDLED = "#414141";
 
 const checkAircraftPosition = (aircraftPosition) => {
-  if(!isFinite(aircraftPosition)) return 1;
-  if(aircraftPosition>1) return 1;
+  if(!isFinite(aircraftPosition)) return 0.95;
+  if(Number(aircraftPosition)>1) return 0.95;
   return (aircraftPosition < 0 ? 0 : aircraftPosition);
 }
 
@@ -36,7 +36,12 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   let bullet = line.lineObjects.create();
   bullet.nonScaling = true;
   bullet.tooltip.getFillFromObject = false;
-  let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, true);
+  let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, isTest, testTime);
+  if(flight.flightId === 'MI562202003150450CEBSIN3'){
+    console.log(flight.atd)
+    console.log(aircraftPosition);
+    console.log(checkAircraftPosition(aircraftPosition) );
+  }
   bullet.position =  flight.arrStn === 'SIN' ? checkAircraftPosition(aircraftPosition) : isFocusOutbound ? 0 : flight.aircraft.position;
   bullet.fill = am4core.color(isFocusOutbound ? FOCUSSED_OUTBOUND_COLOR : flight.config.tooltipcolor);
   //bullet.height = "35px";
@@ -78,7 +83,6 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
     // Logic to move airplane based on current time needs to be added on.
     var setPositionOfPlane = setInterval(() => {
       let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, isTest, testTime);
-      console.log("aircraft pos : "+aircraftPosition)
       let bulletPosition = checkAircraftPosition(aircraftPosition);
       bullet.position = isFocusOutbound ? 0 : bulletPosition;      
     }, TIME_TO_CHECK_AIRCRAFT_POSITION);

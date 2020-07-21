@@ -127,7 +127,8 @@ class Header extends React.PureComponent {
 
             <div className="test-area">Enter Test Date</div>
           <div className="switch" style={{display:"inline-block", marginTop:"10px", marginLeft: "15px"}}>         
-              <input type="text" id="testdate" className="form-control form-control-sm" onClick={this.enableField} disabled="true" value="15/03/2020 13:54:00" placeholder="dd/mm/yyyy hh:mm:ss"/>
+              <input type="text" id="testdate" className="form-control form-control-sm" placeholder="dd/mm/yyyy hh:mm:ss"/>
+              {/* onClick={this.enableField} disabled="true" value="15/03/2020 13:54:00"  */}
           </div>
           </div>
           </div>

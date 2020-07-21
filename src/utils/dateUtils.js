@@ -11,6 +11,9 @@ export const getTestTime = (testDateTime) => {
 }
 
 export const getAircraftPositionBasedOnFlightObj = (fltObj, isTest, testTime) => {
+    if(fltObj.atd === undefined || fltObj.atd === null) {
+        return 0;
+    }
     if(isTest) return (( getTestTime(testTime).getTime() - getDateFromJsonField(fltObj.atd).getTime() ) / ( getDateFromJsonField(fltObj.eta).getTime() - getDateFromJsonField(fltObj.atd).getTime()));
 
     return (( new Date(getCurrentTimeInUTC(isTest, testTime)).getTime() - getDateFromJsonField(fltObj.atd).getTime() ) /
@@ -50,3 +53,7 @@ export const convertMillisecondsToHoursAndMinutesAfterFormat = (duration) => {
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     return hours+":"+minutes;
 };
+
+export const nvl = (obj1, obj2) => {
+    return (obj1 !== null && obj1 !== undefined) ? obj1 : obj2
+}

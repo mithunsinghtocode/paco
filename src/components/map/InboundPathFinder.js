@@ -80,6 +80,11 @@ class InboundPathFinder extends React.PureComponent {
           requestAnimationFrame (() => {
           // Adds the position of the airplane object with svg
           let planeObj = airplaneObj(am4core, bullet, flight);
+          setInterval(() => {
+            if(bullet.position >= 0.95){
+              planeObj.dispose();
+            }
+          }, 60000);
           // Create image series
           let imageSeries = chartObj.series.push(new am4maps.MapImageSeries());
           // Create a circle image in image series template so it gets replicated to all new images

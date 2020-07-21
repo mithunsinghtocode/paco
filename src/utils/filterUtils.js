@@ -1,4 +1,4 @@
-import {getCurrentTimeInUTC} from './dateUtils';
+import {getCurrentTimeInUTC, nvl} from './dateUtils';
 
 export const isDepNxt3Hrs = (flight, isTest, testTime) => {
           Date.prototype.addHours = function(h) {
@@ -6,7 +6,7 @@ export const isDepNxt3Hrs = (flight, isTest, testTime) => {
                     return this;
                   }
                   
-                  return (new Date(flight.etd).getTime() <= (new Date(getCurrentTimeInUTC(isTest, testTime)).addHours(3).getTime()));
+                  return (new Date(nvl(flight.etd, flight.std)).getTime() <= (new Date(getCurrentTimeInUTC(isTest, testTime)).addHours(3).getTime()));
                   
 }
 
