@@ -6,14 +6,17 @@ const FOCUSSED_OUTBOUND_COLOR = "#0483F8";
 const OUTBOUND_VIEW_WITHIN_3HOURS_COLOR = "#E55541";
 const OUTBOUND_HANDLED = "#696969";
 
-export const lineObj = (am4core, flight,lineSeries, chartObj, am4maps, isFocusOutbound, displayView) => {
+export const lineObj = (am4core, flight,lineSeries, chartObj, am4maps, isFocusOutbound, displayView, isTest, testTime) => {
   
   // if((flight.depcoordinates.latitude > 100 && flight.depcoordinates.longitude < 100) || (flight.depcoordinates.longitude < -60 && flight.depcoordinates.latitude < 100)) {
   //   lineSeries = chartObj.series.push(new am4maps.MapArcSeries())
   // };
 
-  if(displayView!== undefined && displayView==='OUTBOUND' && isDepNxt3Hrs(flight)) {
+  if(displayView!== undefined && displayView==='OUTBOUND' && isDepNxt3Hrs(flight, isTest, testTime)) {
     flight.config.linecolor = OUTBOUND_VIEW_WITHIN_3HOURS_COLOR;
+  }
+  if(displayView!== undefined && displayView==='OUTBOUND' && !isDepNxt3Hrs(flight, isTest, testTime)) {
+    flight.config.linecolor = OUTBOUND_HANDLED;
   }
 
   if(displayView!== undefined && displayView==='OUTBOUND' && flight.status.handled) {

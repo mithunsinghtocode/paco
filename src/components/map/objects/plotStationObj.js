@@ -3,7 +3,7 @@ import { isDepNxt3Hrs } from "../../../utils/filterUtils";
 const OUTBOUND_VIEW_WITHIN_3HOURS_COLOR = "#E55541";
 const FOCUSSED_OUTBOUND_COLOR = "#FFFFFF";
 
-export const plotStationObj = (am4core, chartObj, objData, imageSeries, imageSeriesTemplate, displayView, isFocusOutbound) => {
+export const plotStationObj = (am4core, chartObj, objData, imageSeries, imageSeriesTemplate, displayView, isFocusOutbound, isTest, testTime) => {
 
   if(displayView !== undefined && displayView==='OUTBOUND' && isDepNxt3Hrs(objData)) {
     objData.config.linecolor = OUTBOUND_VIEW_WITHIN_3HOURS_COLOR;
@@ -18,8 +18,8 @@ export const plotStationObj = (am4core, chartObj, objData, imageSeries, imageSer
   }
   var circle = imageSeriesTemplate.createChild(am4core.Circle);
   circle.radius = 1.5;
-  circle.fill = objData.status ? ((objData.status.misconnection && objData.depStn!=='SIN') || (displayView==='OUTBOUND' && isDepNxt3Hrs(objData)) ? objData.config.linecolor : "#FFFFFF") : "#FFFFFF";
-  circle.stroke = objData.status ? ((objData.status.misconnection && objData.depStn!=='SIN') || (displayView==='OUTBOUND' && isDepNxt3Hrs(objData)) ? objData.config.linecolor : "#FFFFFF") : "#FFFFFF";
+  circle.fill = objData.status ? ((objData.status.misconnection && objData.depStn!=='SIN') || (displayView==='OUTBOUND' && isDepNxt3Hrs(objData, isTest, testTime)) ? objData.config.linecolor : "#FFFFFF") : "#FFFFFF";
+  circle.stroke = objData.status ? ((objData.status.misconnection && objData.depStn!=='SIN') || (displayView==='OUTBOUND' && isDepNxt3Hrs(objData, isTest, testTime)) ? objData.config.linecolor : "#FFFFFF") : "#FFFFFF";
   
   if(isFocusOutbound){
     circle.fill = FOCUSSED_OUTBOUND_COLOR;

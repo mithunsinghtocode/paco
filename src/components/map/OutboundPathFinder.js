@@ -69,7 +69,7 @@ class OutboundPathFinder extends React.PureComponent {
         sortedFlightList.forEach((flight , index) => {
         flight.aircraft.position = 0.95;
         this.props.isTest && removeTooltip(chartObj);
-        let line = lineObj(am4core, flight, lineSeries, chartObj,am4maps,false,this.props.displayView);
+        let line = lineObj(am4core, flight, lineSeries, chartObj,am4maps,false,this.props.displayView, this.props.isTest, this.props.testTime);
 
         // adds tooltip for the flights
         let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView, index, false, coordinatesList,false, this.props.isTest, this.props.testTime) ;
@@ -87,7 +87,7 @@ class OutboundPathFinder extends React.PureComponent {
         // Create a circle image in image series template so it gets replicated to all new images
         let imageSeriesTemplate = imageSeries.mapImages.template;
 
-        plotStationObj( am4core, chartObj, flight, imageSeries, imageSeriesTemplate,this.props.displayView, false );
+        plotStationObj( am4core, chartObj, flight, imageSeries, imageSeriesTemplate,this.props.displayView, false, this.props.isTest, this.props.testTime );
 
         bullet.show();
         planeObj.show();

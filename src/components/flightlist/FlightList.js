@@ -168,6 +168,14 @@ class FlightList extends React.Component {
                 isNewCopyOfArr: false
             });
             sort({
+                inputList: flightNotHandledList, 
+                objectProp: 'std', 
+                typeOfProp: 'date', 
+                conversionRequired: true, 
+                isAscending: true, 
+                isNewCopyOfArr: false
+            });
+            sort({
                 inputList: flightHandledList, 
                 objectProp: 'status.handled', 
                 typeOfProp: 'boolean', 
@@ -178,6 +186,14 @@ class FlightList extends React.Component {
             sort({
                 inputList: flightOutside3HrsList, 
                 objectProp: 'etd', 
+                typeOfProp: 'date', 
+                conversionRequired: true, 
+                isAscending: true, 
+                isNewCopyOfArr: false
+            });
+            sort({
+                inputList: flightOutside3HrsList, 
+                objectProp: 'std', 
                 typeOfProp: 'date', 
                 conversionRequired: true, 
                 isAscending: true, 
