@@ -2,7 +2,7 @@ import React from  'react';
 import "./flightList.scss";
 import { connect } from "react-redux";
 import { getHoursAndMinutesAfterFormat, getCurrentTimeInUTC, getTestTime, nvl } from "../../utils/dateUtils";
-import { showSelectedFlightInMap, removeSelectedFlightFromMap, userClick } from "../../actions/chartDataAction";
+import { showSelectedFlightInMap, removeSelectedFlightFromMap, userClick, showFocusViewForSelectedFlight } from "../../actions/chartDataAction";
 import { getTotalPaxCountBasedGroupByClassForFlight } from "../../utils/paxUtils";
 import { sort } from "../../utils/sortUtils";
 import { isDepNxt3Hrs } from "../../utils/filterUtils";
@@ -210,7 +210,7 @@ class FlightList extends React.Component {
         return flightList.map((flightObj, index) => {
             return(
                 flightObj && <div className="rectangle-container"><div key={ flightObj.flightId} value={ flightObj.flightId } 
-                onClick={ (e) => this.props.showSelectedFlightInMap(flightObj)} 
+                onClick={ (e) => this.props.displayView === "OUTBOUND" ? this.onClickOutboundFlightList(flightObj) : this.props.showSelectedFlightInMap(flightObj)} 
                     style= {{ opacity: this.setHighlightedFlight(highlightFlight, flightObj) ? '1' : '0.32',
                             filter: this.setHighlightedFlight(highlightFlight, flightObj) ? 'grayscale(0%)' : 'grayscale(20%)',
                             marginTop: misconxCount===index ? '32px' : '0px'}}>
@@ -245,6 +245,12 @@ class FlightList extends React.Component {
            )
         });
     };
+
+    onClickOutboundFlightList = (flight) => {
+        this.props.showSelectedFlightInMap(flight);
+        this.props.showFocusViewForSelectedFlight(flight);
+    }
+
     setHeight = (flightList) => {
         let totLen = document.body.clientHeight;  
         let paneLen = flightList.length*SINGLE_RECORD_PX;    
@@ -462,4 +468,4 @@ const mapStateToProps = (state, ownProps) => {
     isUserClick: state.isUserClick, getCurrentTime: state.getCurrentTime, isTest: state.isTest, testTime : state.testTime};
   }
 
-export default connect(mapStateToProps , { showSelectedFlightInMap, removeSelectedFlightFromMap, userClick })(FlightList);
+export default connect(mapStateToProps , { showSelectedFlightInMap, removeSelectedFlightFromMap, userClick, showFocusViewForSelectedFlight })(FlightList);
