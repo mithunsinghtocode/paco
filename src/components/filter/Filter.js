@@ -133,8 +133,8 @@ export class Filter extends React.PureComponent {
   };
 
   isPotentialMisconnectionPresent = () => {
-    return this.props.flightData && this.props.flightData.flightSchedule.flightList.some( (flight) => {
-      return flight.status && !flight.status.misconnection;
+    return this.props.inboundFlights && this.props.inboundFlights.flightList.some( (flight) => {
+      return flight.status && flight.status.misconnection;
     })
   }
 
@@ -143,7 +143,7 @@ export class Filter extends React.PureComponent {
       this.setHours(this.getHours()+h);
       return this;
     }
-    return this.props.flightData && this.props.flightData.flightSchedule.flightList.some( (flight) => {
+    return this.props.inboundFlights && this.props.inboundFlights.flightList.some( (flight) => {
       //return (new Date(flight.eta).getTime() < (new Date().addHours(-5)));
       return isArrNxt3Hrs(flight, this.props.isTest, this.props.testTime)
     });
@@ -285,7 +285,7 @@ const mapStateToProps = (state, ownprops) => {
   // return { chartObj: state.chartInit, displayView: state.getDisplayView, goBackFunction : ownprops.goBackFunction, fltToDisplayInMap : state.getFltToShowInMap, flightData : state.allFlightData };
   return { chartObj: state.chartInit, displayView: state.getDisplayView, 
             goBackFunction : ownprops.goBackFunction, fltToDisplayInMap : state.getFltToShowInMap, 
-            flightData : state.allFlightData, selectedFlightObj: state.selectedFlight, isTest: state.isTest, testTime : state.testTime, outboundFlights: state.outboundFlightData  };
+            flightData : state.allFlightData, selectedFlightObj: state.selectedFlight, isTest: state.isTest, testTime : state.testTime, outboundFlights: state.outboundFlightData, inboundFlights: state.inboundFlightData };
 };
 
 export default connect(mapStateToProps, { getFilteredFlightDataForInbound, getFilteredFlightDataForOutbound })(Filter);

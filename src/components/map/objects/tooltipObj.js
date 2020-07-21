@@ -37,11 +37,6 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   bullet.nonScaling = true;
   bullet.tooltip.getFillFromObject = false;
   let aircraftPosition = getAircraftPositionBasedOnFlightObj(flight, isTest, testTime);
-  if(flight.flightId === 'MI562202003150450CEBSIN3'){
-    console.log(flight.atd)
-    console.log(aircraftPosition);
-    console.log(checkAircraftPosition(aircraftPosition) );
-  }
   bullet.position =  flight.arrStn === 'SIN' ? checkAircraftPosition(aircraftPosition) : isFocusOutbound ? 0 : flight.aircraft.position;
   bullet.fill = am4core.color(isFocusOutbound ? FOCUSSED_OUTBOUND_COLOR : flight.config.tooltipcolor);
   //bullet.height = "35px";
