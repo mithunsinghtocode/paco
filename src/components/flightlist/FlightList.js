@@ -144,11 +144,27 @@ class FlightList extends React.Component {
                 isNewCopyOfArr: false
             });
             sort({
+                inputList: flightMisconnectionList, 
+                objectProp: 'eta', 
+                typeOfProp: 'date', 
+                conversionRequired: true, 
+                isAscending: true, 
+                isNewCopyOfArr: false
+            });
+            sort({
                 inputList: flightDelayList, 
                 objectProp: 'diffInMin', 
                 typeOfProp: 'number', 
                 conversionRequired: true, 
                 isAscending: false, 
+                isNewCopyOfArr: false
+            });
+            sort({
+                inputList: flightDelayList, 
+                objectProp: 'eta', 
+                typeOfProp: 'date', 
+                conversionRequired: true, 
+                isAscending: true, 
                 isNewCopyOfArr: false
             });
             flightList = [...flightMisconnectionList, ...flightDelayList]
