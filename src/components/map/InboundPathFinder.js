@@ -48,7 +48,8 @@ class InboundPathFinder extends React.PureComponent {
         });
         var sortedFlightList = sort({
             inputList: flightObj.flightList, 
-            objectProp: 'depcoordinates.longitude', 
+            //objectProp: 'depcoordinates.longitude', 
+            objectProp: 'sumCoordinates', 
             typeOfProp: 'number', 
             conversionRequired: true, 
             isAscending: false, 
