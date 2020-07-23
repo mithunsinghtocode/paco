@@ -68,8 +68,8 @@ class Header extends React.PureComponent {
         )}`
       });
       updatedTestTime ?  this.setState({ 
-          hours: `${this.addZero(updatedTestTime.getHours().getHours())}`,
-          minutes: `${this.addZero(updatedTestTime.getHours().getMinutes())}`
+          hours: `${this.addZero(updatedTestTime.getHours())}`,
+          minutes: `${this.addZero(updatedTestTime.getMinutes())}`
         }) : 
         this.setState({ 
           hours: `${this.addZero(new Date(getCurrentTimeInUTC(this.props.isTest, this.props.testTime)).getHours())}`,
@@ -106,8 +106,8 @@ class Header extends React.PureComponent {
       )}`
     });
     this.setState({ 
-      hours: `${this.addZero(new Date(getCurrentTimeInUTC(this.props.isTest, this.props.testTime)).getHours())}`,
-      minutes: `${this.addZero(new Date(getCurrentTimeInUTC(this.props.isTest, this.props.testTime)).getMinutes())}`
+      hours: `${this.addZero(new Date(getCurrentTimeInUTC(isTest, dateTimeStamp)).getHours())}`,
+      minutes: `${this.addZero(new Date(getCurrentTimeInUTC(isTest, dateTimeStamp)).getMinutes())}`
     });
   }
 
