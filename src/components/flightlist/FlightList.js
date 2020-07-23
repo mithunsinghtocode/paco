@@ -283,7 +283,7 @@ class FlightList extends React.Component {
     calcPaneHeightOffset = () => {
         let gapAmnt = 0;
         if( this.props.displayView==="INBOUND" ){
-            if(this.props.inboundFlights!=null && this.props.inboundFlights!=undefined ){
+            if(this.props.inboundFlights!=null && this.props.inboundFlights!==undefined ){
                 // let flightList = this.props.inboundFlights.filter(flight => !flight.status.misconnection);    
                 let flightMisconnectionList = this.props.inboundFlights.filter(flight => flight.status.misconnection);
                 let flightDelayList = this.props.inboundFlights.filter(flight => !flight.status.misconnection);
@@ -293,7 +293,8 @@ class FlightList extends React.Component {
                     gapAmnt += 32;
                 }
             }
-        }else{            
+        }else{          
+            if(this.props.outboundFlights!=null && this.props.outboundFlights!==undefined ){  
             let flightOutside3HrsList = this.props.outboundFlights.filter(flight => !flight.status.handled && !isDepNxt3Hrs(flight, this.props.isTest, this.props.testTime));
             let flightNotHandledList = this.props.outboundFlights.filter(flight => !flight.status.handled && isDepNxt3Hrs(flight, this.props.isTest, this.props.testTime));
             if(flightOutside3HrsList.length>0 && flightNotHandledList.length>0){
@@ -301,6 +302,7 @@ class FlightList extends React.Component {
             }else{
                 gapAmnt += 32;
             }
+        }
         }
         return gapAmnt;
     }

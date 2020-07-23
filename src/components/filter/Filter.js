@@ -200,13 +200,14 @@ export class Filter extends React.PureComponent {
       this.setHours(this.getHours()+h);
       return this;
     }
-    this.props.outboundFlights.filter( (flight) => {
+    this.props.outboundFlights && this.props.outboundFlights.filter( (flight) => {
       return flight.status && flight.status.misconnection;
     });
     return this.props.outboundFlights && this.props.outboundFlights.flightList.some( (flight) => {
       //return (new Date(flight.etd).getTime() < (new Date().addHours(-5).getTime()));
-      return isDepNxt3Hrs(flight, this.props.isTest, this.props.testTime)
-    });
+      if(flight.status.misconnection){
+        return isDepNxt3Hrs(flight, this.props.isTest, this.props.testTime)
+      }});
   }
 
   gethandleCheckBox = () => {

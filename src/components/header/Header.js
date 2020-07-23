@@ -21,6 +21,8 @@ class Header extends React.PureComponent {
     time: `${this.addZero(new Date(getCurrentTimeInUTC(this.props.isTest, this.props.testTime)).getHours())} : ${this.addZero(
       new Date(getCurrentTimeInUTC(this.props.isTest, this.props.testTime)).getMinutes()
     )}`,
+    hours: `${this.addZero(new Date(getCurrentTimeInUTC(this.props.isTest, this.props.testTime)).getHours())}`,
+    minutes: `${this.addZero(new Date(getCurrentTimeInUTC(this.props.isTest, this.props.testTime)).getMinutes())}`,
     alerts: [1, 2]
   };
 
@@ -64,7 +66,15 @@ class Header extends React.PureComponent {
         time: `${this.addZero(new Date(getCurrentTimeInUTC(isTest, testDateTime)).getHours())} : ${this.addZero(
           new Date(getCurrentTimeInUTC(isTest, testDateTime)).getMinutes()
         )}`
-      }) ;
+      });
+      updatedTestTime ?  this.setState({ 
+          hours: `${this.addZero(updatedTestTime.getHours().getHours())}`,
+          minutes: `${this.addZero(updatedTestTime.getHours().getMinutes())}`
+        }) : 
+        this.setState({ 
+          hours: `${this.addZero(new Date(getCurrentTimeInUTC(this.props.isTest, this.props.testTime)).getHours())}`,
+          minutes: `${this.addZero(new Date(getCurrentTimeInUTC(this.props.isTest, this.props.testTime)).getMinutes())}`
+        });
   };
 
   setTestState = () => {
@@ -94,6 +104,10 @@ class Header extends React.PureComponent {
       time: `${this.addZero(new Date(getCurrentTimeInUTC(isTest, dateTimeStamp)).getHours())} : ${this.addZero(
         new Date(getCurrentTimeInUTC(isTest, dateTimeStamp)).getMinutes()
       )}`
+    });
+    this.setState({ 
+      hours: `${this.addZero(new Date(getCurrentTimeInUTC(this.props.isTest, this.props.testTime)).getHours())}`,
+      minutes: `${this.addZero(new Date(getCurrentTimeInUTC(this.props.isTest, this.props.testTime)).getMinutes())}`
     });
   }
 
@@ -143,7 +157,8 @@ class Header extends React.PureComponent {
                 {/* to avoid warning */ ""}
               </a>   
             <div className="current-time" >
-                {this.state.time}
+                {/* {this.state.time}  */}
+                {this.state.hours}<span class="blinking"> : </span> {this.state.minutes}
             </div>
           </div>
         </nav>

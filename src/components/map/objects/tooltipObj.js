@@ -116,7 +116,11 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   if(getETA(flight) === "") bullet.tooltip.dx = 40;
   //flight.depcoordinates.longitude > 100 ? bullet.tooltip.dy = 45 : bullet.tooltip.dy = 35;
 
-  bullet.tooltip.cursorOverStyle = am4core.MouseCursorStyle.pointer;
+  if(displayView === 'INBOUND' && flight.depStn==='SIN' && flight.status.misconnection === false){
+
+  }else{
+    bullet.tooltip.cursorOverStyle = am4core.MouseCursorStyle.pointer;
+  }
   bullet.tooltip.flightId = flight.flightId;  
   // removed as airplane icon does not need click
   //bullet.cursorOverStyle = am4core.MouseCursorStyle.pointer;  

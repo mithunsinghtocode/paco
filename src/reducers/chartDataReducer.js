@@ -82,8 +82,24 @@ const prepareCoordinatesObject = (stationObj) => {
   return { latitude : Number(stationObj.latitude), longitude : Number(stationObj.longitude), title: stationObj.title };
 }
 
-export const setFlightsViewByInBoundOrOutbound = (screenViewSelected="INBOUND", action) => {
+const getLocalStorage = (key) => {
+  if (typeof(Storage) !== "undefined") {
+    // Retrieve
+    return localStorage.getItem(key);
+    }
+  }
+
+const setLocalStorage = (key, value) => {
+  if (typeof(Storage) !== "undefined") {
+    // Store
+    return localStorage.setItem(key, value);
+}
+}
+
+
+export const setFlightsViewByInBoundOrOutbound = (screenViewSelected=getLocalStorage('screenname') ? getLocalStorage('screenname') : "INBOUND", action) => {
   if (action.type === "TOGGLE_INBOUND_OUTBOUND_VIEW") {
+    setLocalStorage('screenname',action.payload);
     return action.payload;
   }
   return screenViewSelected;

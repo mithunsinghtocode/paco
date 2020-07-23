@@ -13,7 +13,11 @@ export const plotFlightObj = (flight, lineSeries, dispatchFuncforAction, isMapOb
 
     if(isMapObjectEvents){
         // Adds click event on the tooltip, icon and line
-        mapObjectEvents(bullet, line, lineSeries, flight, dispatchFuncforAction);    
+        if(displayView === 'INBOUND' && flight.depStn==='SIN' && flight.status.misconnection === false){
+
+        }else{
+            mapObjectEvents(bullet, line, lineSeries, flight, dispatchFuncforAction);    
+        }
     }
     
     // Adds the position of the airplane object with svg

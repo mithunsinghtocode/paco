@@ -56,7 +56,8 @@ class FocusFlight extends React.Component {
                     });
                     sort({
                         inputList: selectedFlight.outboundFlt, 
-                        objectProp: 'sumCoordinates', 
+                        //objectProp: 'sumCoordinates', 
+                        objectProp: 'arrcoordinates.longitude', 
                         typeOfProp: 'number', 
                         conversionRequired: false, 
                         isAscending: true, 
