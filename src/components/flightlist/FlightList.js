@@ -135,6 +135,15 @@ class FlightList extends React.Component {
             });
             let flightMisconnectionList = flightList.filter(flight => flight.status.misconnection);
             let flightDelayList = flightList.filter(flight => !flight.status.misconnection);
+
+            sort({
+                inputList: flightMisconnectionList, 
+                objectProp: 'eta', 
+                typeOfProp: 'date', 
+                conversionRequired: true, 
+                isAscending: true, 
+                isNewCopyOfArr: false
+            });
             sort({
                 inputList: flightMisconnectionList, 
                 objectProp: 'diffInMin', 
@@ -143,8 +152,9 @@ class FlightList extends React.Component {
                 isAscending: false, 
                 isNewCopyOfArr: false
             });
+
             sort({
-                inputList: flightMisconnectionList, 
+                inputList: flightDelayList, 
                 objectProp: 'eta', 
                 typeOfProp: 'date', 
                 conversionRequired: true, 
@@ -157,14 +167,6 @@ class FlightList extends React.Component {
                 typeOfProp: 'number', 
                 conversionRequired: true, 
                 isAscending: false, 
-                isNewCopyOfArr: false
-            });
-            sort({
-                inputList: flightDelayList, 
-                objectProp: 'eta', 
-                typeOfProp: 'date', 
-                conversionRequired: true, 
-                isAscending: true, 
                 isNewCopyOfArr: false
             });
             flightList = [...flightMisconnectionList, ...flightDelayList]
