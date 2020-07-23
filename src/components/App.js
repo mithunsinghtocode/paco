@@ -30,8 +30,19 @@ class App extends React.PureComponent {
 
     setInterval(() => {
         this.props.setCurrentTimeInUTC(getCurrentTimeInUTC());
-    },30000)
+    },30000);
+
+    setInterval(() => {
+        this.getFlightDataInTimeInterval();
+    },60000);
     }
+
+    getFlightDataInTimeInterval = () => {
+        new Promise((resolve, reject) => {
+            resolve(this.props.getFlightData());
+        });
+    }
+
     render(){
         return (
             <>
