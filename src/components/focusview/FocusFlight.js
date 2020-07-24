@@ -28,6 +28,11 @@ class FocusFlight extends React.Component {
         let selectedFlight = this.props.fltToDisplayInMap;
         
         if(chartObj != null && selectedFlight != null){
+            if(selectedFlight.arrstn==='SIN'){
+                selectedFlight = this.props.inboundFlights.flightList.filter((flight) => {
+                    return flight.flightId === selectedFlight.flightId;
+                });
+            }
             Promise.resolve().then(() => {
             //console.log(selectedFlight);
             //clearChartComponents(chartObj, ["MapLineSeries", "MapImageSeries","MapArcSeries"]);
@@ -219,7 +224,8 @@ class FocusFlight extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   //console.log(state);
-  return { fltToDisplayInMap : state.getFltToShowInMap, chartObj: state.chartInit, displayView: state.getDisplayView, isTest: state.isTest, testTime : state.testTime };
+  return { fltToDisplayInMap : state.getFltToShowInMap, chartObj: state.chartInit, displayView: state.getDisplayView, isTest: state.isTest, testTime : state.testTime, 
+    inboundFlights: state.inboundFlightData};
 }
 
 export default connect(mapStateToProps , { showFocusViewForSelectedFlight, showSelectedFlightInMap, removeSelectedFlightFromMap, initChart })(FocusFlight);

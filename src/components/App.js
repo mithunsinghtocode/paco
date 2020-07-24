@@ -35,6 +35,7 @@ class App extends React.PureComponent {
     setInterval(() => {
         this.getFlightDataInTimeInterval();
     },60000);
+        
     }
 
     getFlightDataInTimeInterval = () => {
@@ -56,6 +57,7 @@ class App extends React.PureComponent {
 };
 
 const mapStateToProps = (state, ownProps) => {
+    console.log(state)
     return { state, chartObj: state.chartInit, flightData : state.allFlightData, isUserClick: state.isUserClick};
 }
   
