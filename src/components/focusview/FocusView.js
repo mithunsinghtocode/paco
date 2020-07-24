@@ -237,15 +237,19 @@ adjustHeight = async (e) => {
 
             <div className="card-body" >
               <div className="row dimmed" style={{marginTop:"8px"}}>
-                <div className="col-2 col-md-3">STD</div>
+                {/* <div className="col-2 col-md-3">STD</div> */}
+                <div className="col-2 col-md-3">{selectedFlight.etd!==null && selectedFlight.etd!==undefined ? 'ETD':'STD' }</div>
                 <div className="col-1 col-md-3">GATE</div>
                 <div className="col-3 col-md-5">BOOKED</div>
               </div>
 
               <div className="row value">
-                <div className="col-2 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
+                {/* <div className="col-2 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
                   {getHoursAndMinutesAfterFormat(selectedFlight.std)}
-                </div>
+                </div> */}
+                <div className="col-2 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
+                    {selectedFlight.etd!==null && selectedFlight.etd!==undefined ? getHoursAndMinutesAfterFormat(selectedFlight.etd) : getHoursAndMinutesAfterFormat(selectedFlight.std)}
+                </div>                
                 <div className="col-1 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
                   {this.getBayGateTerminalDetailsOutbound(selectedFlight)}
                 </div>
@@ -343,8 +347,8 @@ adjustHeight = async (e) => {
               <div className="row option">
                 <div className="col-6 first-col">
                     <button type="button" 
-                      className="btn btn-block cost"
-                      // className="btn btn-primary btn-block"
+                      // className="btn btn-block cost"
+                      className="btn btn-primary btn-block"
                     >
                       <bigfont className="big-font"> 0 min </bigfont> 
                     <br/> 
@@ -353,8 +357,8 @@ adjustHeight = async (e) => {
                 </div>
                 <div className="col-6">
                     <button type="button" 
-                        className="btn btn-primary btn-block"
-                        // className="btn btn-block cost"
+                        // className="btn btn-primary btn-block"
+                        className="btn btn-block cost"
                       > 
                       <bigfont className="big-font"> +30 min </bigfont> 
                         <br/> 
@@ -637,9 +641,9 @@ adjustHeight = async (e) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  //console.log(state);
-  // console.log('=====FocusView.state======>' + JSON.stringify(state) );
-  // console.log('=====ownProps======>' + JSON.stringify(ownProps) );
+  // console.log("********* state start FocusView *********");
+  // console.log(state);
+  // console.log("********* state end *********\n");
   return { selectedFlightObj: state.selectedFlight, inboundFlights: state.inboundFlightData
 
             , outboundFlights: state.outboundFlightData, fltToDisplayInMap : state.getFltToShowInMap 

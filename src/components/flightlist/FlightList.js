@@ -235,8 +235,10 @@ class FlightList extends React.Component {
                      <div className= { index !== flightList.length-1 ? "rectangle-copy-2" : 'rectangle-copy-2-last-cell'} >
                         <div className={ this.getClassName(flightObj) }>
                             {flightObj.status.handled && this.getIconForHandle()}
-                             <div className={!flightObj.status.handled ? "flight-num" : "flight-num-handle"} style={{ display: "inline-block" }}>{this.getFormattedFltNum(flightObj.fltNum)}</div>  
-                             <div className={!flightObj.status.handled ? "cabin-class" : "cabin-class-handle"}  style={{ display: "inline-block" }}>{this.getPaxDetailsFormat(flightObj)}</div>
+                             <div className={!flightObj.status.handled ? "flight-num" : "flight-num-handle"} style={{ display: "inline-block" }}>{this.getFormattedFltNum(flightObj.fltNum)}</div>                                                                                         
+                             <div className={!flightObj.status.handled ? "cabin-class" : "cabin-class-handle"}  style={{ display: "inline-block" }}>
+                                    { this.props.displayView === 'INBOUND' && !flightObj.status.misconnection ? '': this.getPaxDetailsFormat(flightObj)}
+                             </div>
                          </div>
 
                          <div className="rectangle-copy-2-2">

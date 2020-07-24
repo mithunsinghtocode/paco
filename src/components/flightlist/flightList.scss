@@ -141,11 +141,12 @@
     letter-spacing: 0;
     line-height: 25px;
     padding: 8px 0px 12px 16px;
+    float: left;
 }
 
 .flight-num-handle {
     height: 28px;
-    width: 88px;
+    // width: 88px;
     color: #FFFFFF;
     font-family: "Proxima Nova Semibold";
     font-size: 21px;
@@ -153,49 +154,49 @@
     letter-spacing: 0;
     line-height: 25px;
     padding: 8px 0px 12px 1px;
+    float: left;
 }
 
 .cabin-class {
     height: 28px;
-    width: 280px;
+    // width: 280px;
     color: #FFFFFF;
     font-family: "Proxima Nova";
     font-size: 18px;
     font-weight: 100;
     letter-spacing: 1.9px;
     line-height: 25px;
-    padding: 10px 0px 12px;
+    // padding: 10px 0px 12px;
+    padding: 10px 16px 12px 0px;
     text-align: right;
-    //margin-top: 10px;
-    //margin-left: 100px;
-    margin-left: 2.5%
+    float: right;
 }
 
 .cabin-class-handle {
     height: 28px;
-    width: 247px;
+    // width: 247px;
     color: #FFFFFF;
     font-family: "Proxima Nova";
     font-size: 18px;
     font-weight: 100;
     letter-spacing: 1.9px;
     line-height: 25px;
-    padding: 10px 0px 12px;
+    // padding: 10px 0px 12px;
+    padding: 10px 16px 12px 0px;
     text-align: right;
-    //margin-top: 10px;
-    //margin-left: 100px;
-    margin-left: 2.5%
+    float: right;
 }
 
 .flight-details {
     height: 22px;
-    width: 250px;
+    // width: 250px;
     color: #FFFFFF;
     font-family: "Proxima Nova Semibold";
     font-size: 18px;
     letter-spacing: 0;
     line-height: 22px;
     padding: 10px 0px 17px 16px;
+    float: left;
 }
 
 .line {
@@ -209,7 +210,7 @@
 
 .flight-delay {
     height: 22px;
-    width: 120px;
+    // width: 120px;
     color: #FFFFFF;
     font-family: "Proxima Nova Thin";
     font-weight: 900;
@@ -217,8 +218,11 @@
     letter-spacing: -0.23px;
     line-height: 22px;
     text-align: right;
-    padding: 10px 0px 16px 0px;
-    margin-left: 1.5%
+    // padding: 10px 0px 16px 0px;
+    // margin-left: 1.5%
+    padding: 10px 16px 16px 0px;
+    margin-right: 0px;
+    float: right;
 }
 
 .overlay-arrow {
