@@ -1,0 +1,455 @@
+{
+    "flightSchedule": {
+        "flightList": [{
+            "flightId": "SQ208202003150825MELSIN1",
+            "carrierCode": null,
+            "fltNum": "SQ208",
+            "fbpDate": "2020-03-15 08:25:00",
+            "sectorNum": "1",
+            "cancelledIndicator": "N",
+            "owner": "SQ",
+            "route": "MELSIN",
+            "serviceType": "J",
+            "acReg": "9VSMR",
+            "plannedAcType": "359",
+            "actualAcType": "359",
+            "depStn": "MEL",
+            "arrStn": "SIN",
+            "blkTime": "0740",
+            "eet": "0708",
+            "depBayGateNo": null,
+            "depTerminal": null,
+            "arrBayGateNo": "B8",
+            "arrTerminal": "T3",
+            "std": "2020-03-15 08:25:00",
+            "stdLocal": "2020-03-15 19:25:00",
+            "staLocal": "2020-03-16 00:05:00",
+            "rtd": null,
+            "etd": null,
+            "atd": null,
+            "ab": null,
+            "sta": "2020-03-15 16:05:00",
+            "rta": null,
+            "eta": "2020-03-15 16:57:00",
+            "lt": null,
+            "ata": null,
+            "updatedDatetime": "2020-08-04 16:19:31",
+            "depcoordinates": {
+                "latitude": "-37.673302",
+                "longitude": "144.843002",
+                "title": "MELBOURNE"
+            },
+            "arrcoordinates": {
+                "latitude": "1.35019",
+                "longitude": "103.994003",
+                "title": "SINGAPORE"
+            },
+            "paxDetWrapperVo": null,
+            "status": {
+                "delayed": true,
+                "misconnection": true
+            },
+            "config": {
+                "linecolor": "#E55541",
+                "airplanecolor": "#E55541",
+                "tooltipcolor": "#E55541",
+                "tooltipTextColor": "#FFFFFF",
+                "bulletColor": "#E55541"
+            },
+            "paxDetails": null,
+            "paxCountVo": {
+                "infCnt": 0,
+                "vipPaxCnt": 0,
+                "medaPaxCnt": 0,
+                "errorMessage": null,
+                "paxUpdatedDateTime": "2020-03-15 18:40:13",
+                "fclassCnt": 0,
+                "jclassCnt": 15,
+                "sclassCnt": 13,
+                "yclassCnt": 130
+            },
+            "outboundFlt": [{
+                    "flightId": "SQ402202003151825SINDEL1",
+                    "carrierCode": null,
+                    "fltNum": "SQ402",
+                    "fbpDate": "2020-03-15 18:25:00",
+                    "sectorNum": "1",
+                    "cancelledIndicator": "N",
+                    "owner": "SQ",
+                    "route": "SINDEL",
+                    "serviceType": "J",
+                    "acReg": "9VSCL",
+                    "plannedAcType": "787",
+                    "actualAcType": "787",
+                    "depStn": "SIN",
+                    "arrStn": "DEL",
+                    "blkTime": "0600",
+                    "eet": "0512",
+                    "depBayGateNo": "B7",
+                    "depTerminal": "T3",
+                    "arrBayGateNo": null,
+                    "arrTerminal": null,
+                    "std": "2020-03-15 18:25:00",
+                    "stdLocal": "2020-03-16 02:25:00",
+                    "staLocal": "2020-03-16 05:55:00",
+                    "rtd": null,
+                    "etd": "2020-03-15 18:35:00",
+                    "atd": null,
+                    "ab": null,
+                    "sta": "2020-03-16 00:25:00",
+                    "rta": null,
+                    "eta": "2020-03-16 01:25:00",
+                    "lt": null,
+                    "ata": null,
+                    "updatedDatetime": "2020-03-16 02:02:45",
+                    "depcoordinates": {
+                        "latitude": "1.35019",
+                        "longitude": "103.994003",
+                        "title": "SINGAPORE"
+                    },
+                    "arrcoordinates": {
+                        "latitude": "28.5665",
+                        "longitude": "77.103104",
+                        "title": "DELHI"
+                    },
+                    "paxDetWrapperVo": null,
+                    "status": {
+                        "delayed": false,
+                        "misconnection": false
+                    },
+                    "config": {
+                        "linecolor": "#696969",
+                        "airplanecolor": null,
+                        "tooltipcolor": "#414141",
+                        "tooltipTextColor": "#FFFFFF",
+                        "bulletColor": "#FFFFFF"
+                    },
+                    "paxDetails": null,
+                    "paxCountVo": {
+                        "infCnt": 0,
+                        "vipPaxCnt": 0,
+                        "medaPaxCnt": 0,
+                        "errorMessage": null,
+                        "paxUpdatedDateTime": null,
+                        "fclassCnt": 0,
+                        "jclassCnt": 0,
+                        "sclassCnt": 0,
+                        "yclassCnt": 22
+                    },
+                    "outboundFlt": null,
+                    "inboundFlt": null,
+                    "aircraft": {
+                        "position": 0.0,
+                        "required": false
+                    }
+                },
+                {
+                    "flightId": "SQ306202003151710SINLHR1",
+                    "carrierCode": null,
+                    "fltNum": "SQ306",
+                    "fbpDate": "2020-03-15 17:10:00",
+                    "sectorNum": "1",
+                    "cancelledIndicator": "N",
+                    "owner": "SQ",
+                    "route": "SINLHR",
+                    "serviceType": "J",
+                    "acReg": "9VSWL",
+                    "plannedAcType": "77WR",
+                    "actualAcType": "77WR",
+                    "depStn": "SIN",
+                    "arrStn": "LHR",
+                    "blkTime": "1410",
+                    "eet": "1330",
+                    "depBayGateNo": "B9",
+                    "depTerminal": "T3",
+                    "arrBayGateNo": null,
+                    "arrTerminal": null,
+                    "std": "2020-03-15 17:10:00",
+                    "stdLocal": "2020-03-16 01:10:00",
+                    "staLocal": "2020-03-16 07:20:00",
+                    "rtd": null,
+                    "etd": null,
+                    "atd": null,
+                    "ab": null,
+                    "sta": "2020-03-16 07:20:00",
+                    "rta": null,
+                    "eta": "2020-03-16 08:20:00",
+                    "lt": null,
+                    "ata": null,
+                    "updatedDatetime": "2020-03-16 01:02:20",
+                    "depcoordinates": {
+                        "latitude": "1.35019",
+                        "longitude": "103.994003",
+                        "title": "SINGAPORE"
+                    },
+                    "arrcoordinates": {
+                        "latitude": "51.4706",
+                        "longitude": "-0.461941",
+                        "title": "LONDON"
+                    },
+                    "paxDetWrapperVo": null,
+                    "status": {
+                        "delayed": false,
+                        "misconnection": true
+                    },
+                    "config": {
+                        "linecolor": "#696969",
+                        "airplanecolor": null,
+                        "tooltipcolor": "#414141",
+                        "tooltipTextColor": "#FFFFFF",
+                        "bulletColor": "#FFFFFF"
+                    },
+                    "paxDetails": null,
+                    "paxCountVo": {
+                        "infCnt": 0,
+                        "vipPaxCnt": 0,
+                        "medaPaxCnt": 0,
+                        "errorMessage": null,
+                        "paxUpdatedDateTime": null,
+                        "fclassCnt": 0,
+                        "jclassCnt": 1,
+                        "sclassCnt": 5,
+                        "yclassCnt": 33
+                    },
+                    "outboundFlt": null,
+                    "inboundFlt": null,
+                    "aircraft": {
+                        "position": 0.0,
+                        "required": false
+                    }
+                },
+                {
+                    "flightId": "SQ346202003151730SINZRH1",
+                    "carrierCode": null,
+                    "fltNum": "SQ346",
+                    "fbpDate": "2020-03-15 17:30:00",
+                    "sectorNum": "1",
+                    "cancelledIndicator": "N",
+                    "owner": "SQ",
+                    "route": "SINZRH",
+                    "serviceType": "J",
+                    "acReg": "9VSKW",
+                    "plannedAcType": "388R",
+                    "actualAcType": "388R",
+                    "depStn": "SIN",
+                    "arrStn": "ZRH",
+                    "blkTime": "1320",
+                    "eet": "1232",
+                    "depBayGateNo": "A4",
+                    "depTerminal": "T3",
+                    "arrBayGateNo": null,
+                    "arrTerminal": null,
+                    "std": "2020-03-15 17:30:00",
+                    "stdLocal": "2020-03-16 01:30:00",
+                    "staLocal": "2020-03-16 07:50:00",
+                    "rtd": null,
+                    "etd": null,
+                    "atd": null,
+                    "ab": null,
+                    "sta": "2020-03-16 06:50:00",
+                    "rta": null,
+                    "eta": null,
+                    "lt": null,
+                    "ata": null,
+                    "updatedDatetime": "2020-05-06 17:25:28",
+                    "depcoordinates": {
+                        "latitude": "1.35019",
+                        "longitude": "103.994003",
+                        "title": "SINGAPORE"
+                    },
+                    "arrcoordinates": {
+                        "latitude": "47.464699",
+                        "longitude": "8.54917",
+                        "title": "ZURICH"
+                    },
+                    "paxDetWrapperVo": null,
+                    "status": {
+                        "delayed": false,
+                        "misconnection": true
+                    },
+                    "config": {
+                        "linecolor": "#696969",
+                        "airplanecolor": null,
+                        "tooltipcolor": "#414141",
+                        "tooltipTextColor": "#FFFFFF",
+                        "bulletColor": "#FFFFFF"
+                    },
+                    "paxDetails": null,
+                    "paxCountVo": {
+                        "infCnt": 0,
+                        "vipPaxCnt": 0,
+                        "medaPaxCnt": 0,
+                        "errorMessage": null,
+                        "paxUpdatedDateTime": null,
+                        "fclassCnt": 0,
+                        "jclassCnt": 3,
+                        "sclassCnt": 1,
+                        "yclassCnt": 8
+                    },
+                    "outboundFlt": null,
+                    "inboundFlt": null,
+                    "aircraft": {
+                        "position": 0.0,
+                        "required": false
+                    }
+                },
+                {
+                    "flightId": "SQ618202003151730SINKIX1",
+                    "carrierCode": null,
+                    "fltNum": "SQ618",
+                    "fbpDate": "2020-03-15 17:30:00",
+                    "sectorNum": "1",
+                    "cancelledIndicator": "N",
+                    "owner": "SQ",
+                    "route": "SINKIX",
+                    "serviceType": "J",
+                    "acReg": "9VSCC",
+                    "plannedAcType": "787",
+                    "actualAcType": "787",
+                    "depStn": "SIN",
+                    "arrStn": "KIX",
+                    "blkTime": "0615",
+                    "eet": "0533",
+                    "depBayGateNo": "A13",
+                    "depTerminal": "T3",
+                    "arrBayGateNo": null,
+                    "arrTerminal": null,
+                    "std": "2020-03-15 17:30:00",
+                    "stdLocal": "2020-03-16 01:30:00",
+                    "staLocal": "2020-03-16 08:45:00",
+                    "rtd": null,
+                    "etd": null,
+                    "atd": null,
+                    "ab": null,
+                    "sta": "2020-03-15 23:45:00",
+                    "rta": null,
+                    "eta": null,
+                    "lt": null,
+                    "ata": null,
+                    "updatedDatetime": "2020-05-06 17:25:53",
+                    "depcoordinates": {
+                        "latitude": "1.35019",
+                        "longitude": "103.994003",
+                        "title": "SINGAPORE"
+                    },
+                    "arrcoordinates": {
+                        "latitude": "34.4272995",
+                        "longitude": "135.2440033",
+                        "title": "OSAKA"
+                    },
+                    "paxDetWrapperVo": null,
+                    "status": {
+                        "delayed": false,
+                        "misconnection": true
+                    },
+                    "config": {
+                        "linecolor": "#696969",
+                        "airplanecolor": null,
+                        "tooltipcolor": "#414141",
+                        "tooltipTextColor": "#FFFFFF",
+                        "bulletColor": "#FFFFFF"
+                    },
+                    "paxDetails": null,
+                    "paxCountVo": {
+                        "infCnt": 0,
+                        "vipPaxCnt": 0,
+                        "medaPaxCnt": 0,
+                        "errorMessage": null,
+                        "paxUpdatedDateTime": null,
+                        "fclassCnt": 0,
+                        "jclassCnt": 0,
+                        "sclassCnt": 0,
+                        "yclassCnt": 5
+                    },
+                    "outboundFlt": null,
+                    "inboundFlt": null,
+                    "aircraft": {
+                        "position": 0.0,
+                        "required": false
+                    }
+                },
+                {
+                    "flightId": "SQ656202003151720SINFUK1",
+                    "carrierCode": null,
+                    "fltNum": "SQ656",
+                    "fbpDate": "2020-03-15 17:20:00",
+                    "sectorNum": "1",
+                    "cancelledIndicator": "N",
+                    "owner": "SQ",
+                    "route": "SINFUK",
+                    "serviceType": "J",
+                    "acReg": "9VSCB",
+                    "plannedAcType": "787",
+                    "actualAcType": "787",
+                    "depStn": "SIN",
+                    "arrStn": "FUK",
+                    "blkTime": "0550",
+                    "eet": "0524",
+                    "depBayGateNo": "A11",
+                    "depTerminal": "T3",
+                    "arrBayGateNo": null,
+                    "arrTerminal": null,
+                    "std": "2020-03-15 17:20:00",
+                    "stdLocal": "2020-03-16 01:20:00",
+                    "staLocal": "2020-03-16 08:10:00",
+                    "rtd": null,
+                    "etd": null,
+                    "atd": null,
+                    "ab": null,
+                    "sta": "2020-03-15 23:10:00",
+                    "rta": null,
+                    "eta": null,
+                    "lt": null,
+                    "ata": null,
+                    "updatedDatetime": "2020-05-06 17:25:10",
+                    "depcoordinates": {
+                        "latitude": "1.35019",
+                        "longitude": "103.994003",
+                        "title": "SINGAPORE"
+                    },
+                    "arrcoordinates": {
+                        "latitude": "33.58589935",
+                        "longitude": "130.451004",
+                        "title": "FUKUOKA"
+                    },
+                    "paxDetWrapperVo": null,
+                    "status": {
+                        "delayed": false,
+                        "misconnection": true
+                    },
+                    "config": {
+                        "linecolor": "#696969",
+                        "airplanecolor": null,
+                        "tooltipcolor": "#414141",
+                        "tooltipTextColor": "#FFFFFF",
+                        "bulletColor": "#FFFFFF"
+                    },
+                    "paxDetails": null,
+                    "paxCountVo": {
+                        "infCnt": 0,
+                        "vipPaxCnt": 0,
+                        "medaPaxCnt": 0,
+                        "errorMessage": null,
+                        "paxUpdatedDateTime": null,
+                        "fclassCnt": 0,
+                        "jclassCnt": 0,
+                        "sclassCnt": 0,
+                        "yclassCnt": 1
+                    },
+                    "outboundFlt": null,
+                    "inboundFlt": null,
+                    "aircraft": {
+                        "position": 0.0,
+                        "required": false
+                    }
+                }
+            ],
+            "inboundFlt": [],
+            "aircraft": {
+                "position": 0.0,
+                "required": false
+            }
+        }]
+    },
+    "stationcoordinates": null
+}

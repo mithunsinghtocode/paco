@@ -17,7 +17,7 @@ export const inboundFlightDataReducer = (state = null, action) => {
       );
       let newState =  state.flightList;
       let filterState =  newState.filter((flight) => {
-          return inboundFlightData1.find((newObj) => flight.flightId !== newObj.flightId) === undefined ? true : false;
+          return inboundFlightData1.find((newObj) => flight.flightId === newObj.flightId) === undefined ? true : false;
         });
         console.log(filterState);
       let payload1 = [];
@@ -50,7 +50,7 @@ export const outboundFlightDataReducer = (state = null, action) => {
     );
     let newState =  state.flightList;
     let filterState =  newState.filter((flight) => {
-        return outboundFlightData1.find((newObj) => flight.flightId !== newObj.flightId)  === undefined ? true : false;;
+        return outboundFlightData1.find((newObj) => flight.flightId === newObj.flightId)  === undefined ? true : false;;
       });
       console.log(filterState);
     let payload1 = [];
