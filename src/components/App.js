@@ -32,7 +32,7 @@ class App extends React.PureComponent {
     setInterval(() => {
         this.props.setCurrentTimeInUTC(getCurrentTimeInUTC());
         this.getFlightDataInTimeInterval();
-    },20000);
+    },60000);
 
     // setInterval(() => {
     //     this.getFlightDataInTimeInterval();
