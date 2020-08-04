@@ -19,7 +19,7 @@ export const inboundFlightDataReducer = (state = null, action) => {
       let filterState =  newState.filter((flight) => {
           return inboundFlightData1.find((newObj) => flight.flightId === newObj.flightId) === undefined ? true : false;
         });
-        console.log(filterState);
+        //console.log(filterState);
       let payload1 = [];
       payload1.flightList = [...filterState,...inboundFlightData1];
       payload1.stationcoordinates = getStationCoordinatesFromTheFlightList(payload1.flightList);
@@ -52,7 +52,7 @@ export const outboundFlightDataReducer = (state = null, action) => {
     let filterState =  newState.filter((flight) => {
         return outboundFlightData1.find((newObj) => flight.flightId === newObj.flightId)  === undefined ? true : false;;
       });
-      console.log(filterState);
+      //console.log(filterState);
     let payload1 = [];
     payload1.flightList = [...filterState,...outboundFlightData1];
     payload1.stationcoordinates = getStationCoordinatesFromTheFlightList(payload1.flightList);
@@ -66,6 +66,24 @@ export const outboundFlightDataReducer = (state = null, action) => {
 export const allFlightDataReducer = (state = null, action) => {
   switch (action.type) {
     case "GET_FLIGHT_DATA":
+      return action.payload;
+    case "GET_FLIGHT_DATA_TRANSITION":
+      let newState =  state.flightSchedule.flightList;
+    let filterState =  newState.filter((flight) => {
+        return action.payload.flightSchedule.flightList.find((newObj) => flight.flightId === newObj.flightId)  === undefined ? true : false;;
+      });
+    let allFlightData = {};
+    allFlightData.flightSchedule = {};
+    allFlightData.flightSchedule.flightList = [...filterState,...action.payload.flightSchedule.flightList];
+      return allFlightData;
+    default:
+      return state;
+  }
+};
+
+export const allFlightDataReducerTransition = (state = null, action) => {
+  switch (action.type) {
+    case "GET_FLIGHT_DATA_TRANSITION":
       return action.payload;
     default:
       return state;

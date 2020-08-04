@@ -38,10 +38,10 @@ class InboundPathFinder extends React.PureComponent {
 
     }else{
     if (chartObj !== null && flightObj !== null) {
-      console.log("<><><> Inbound Path Filter - State re-renders the flight data component");
-
-      // set initial zoom and map points
+      clearChartComponents(chartObj, ["ALL"]);
+      renderChartLayout(chartObj);
       setDefaultZoomAndGeoPointFocus(chartObj);
+      console.log("<><><> Inbound Path Filter - State re-renders the flight data component");
         // sorting to serve overlap algorithm
         flightObj.flightList.forEach( (in2) => {
             in2.sumCoordinates = Number(in2.depcoordinates.longitude) + Number(in2.depcoordinates.latitude) + Number(in2.aircraft.position);
@@ -58,16 +58,16 @@ class InboundPathFinder extends React.PureComponent {
 
         let coordinatesList = consolidatedCoordinates(flightObj.flightList,"INBOUND");
 
+        requestAnimationFrame (() => {
+          // set initial zoom and map points
+          setDefaultZoomAndGeoPointFocus(chartObj);
+        Promise.resolve().then(() => {
+         requestAnimationFrame (() => {
         // Adds line or arc based on the coordinates
         let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
         
         /** If you require full control of the arc drawn use  MapArcSeries*/
         //let lineSeries = chartObj.series.push(new am4maps.MapArcSeries());
-
-        requestAnimationFrame (() => {
-        Promise.resolve().then(() => {
-          removeTooltip(chartObj);
-        }).then(() => {
           lineSeries.STATUS = "LINESERIES";
           // Add line series
           sortedFlightList.forEach( async (flight, index) => {
@@ -79,6 +79,7 @@ class InboundPathFinder extends React.PureComponent {
           if(!this.props.isUserClick){
             bullet.hide();
           }
+          bullet.hide();
           // Adds click event on the tooltip, icon and line
           mapObjectEvents(bullet, line, lineSeries, flight, this.props.showSelectedFlightInMap);
 
@@ -97,24 +98,24 @@ class InboundPathFinder extends React.PureComponent {
   
           plotStationObj( am4core, chartObj, flight, imageSeries, imageSeriesTemplate,this.props.displayView, false , this.props.isTest, this.props.testTime);
           bullet.show();
+          bullet.show();
+          bullet.show();
+          bullet.show();
           planeObj && planeObj.show();
           });
         });
         // Restore the state of the chart object to store
         this.props.initChart(chartObj);
-        
+      });        
         }).then(() => {
           
             // refocus map
             //requestAnimationFrame (() => {
-              //goToHome(chartObj);
-              //freeUpMemory([chartObj, flightObj]);
+              goToHome(chartObj);
+              freeUpMemory([chartObj, flightObj]);
             });
         //});
       });
-
-      goToHome(chartObj);
-      freeUpMemory([chartObj, flightObj]);
     }
     }
   };

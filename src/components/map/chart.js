@@ -57,6 +57,7 @@ class MapChartLayer extends React.PureComponent {
   };
 
   renderChart = () => {
+    console.log("<><><> Rendering Chart")
     let chartObj = this.props.chartObj;
     if (chartObj !== null) {
       // create mapLayout base and set countries and border

@@ -28,16 +28,26 @@ class FocusFlight extends React.Component {
         let selectedFlight = this.props.fltToDisplayInMap;
         
         if(chartObj != null && selectedFlight != null){
-            if(selectedFlight.arrstn==='SIN'){
-                selectedFlight =this.props.inboundFlights.flightList.filter((flight) => {
+            let selectedFlightArr = [];
+            if(selectedFlight.arrStn==='SIN'){
+                selectedFlightArr = this.props.inboundFlights.flightList && this.props.inboundFlights.flightList.filter((flight) => {
                     return flight.flightId === selectedFlight.flightId;
                 });
             }
+            if(selectedFlight.depStn === 'SIN'){
+                selectedFlightArr = this.props.outboundFlights.flightList && this.props.outboundFlights.flightList.filter((flight) => {
+                    return flight.flightId === selectedFlight.flightId;
+                });
+            }
+            if(selectedFlightArr && selectedFlightArr.length>0){
+                selectedFlight = selectedFlightArr[0];
+            }
+
+            clearChartComponents(chartObj, ["ALL"]);
+            renderChartLayout(chartObj);
             Promise.resolve().then(() => {
             //console.log(selectedFlight);
             //clearChartComponents(chartObj, ["MapLineSeries", "MapImageSeries","MapArcSeries"]);
-                    clearChartComponents(chartObj, ["ALL"]);
-                    renderChartLayout(chartObj);
             }).then(() => {
                 // Adds line or arc based on the coordinates
                 let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
@@ -225,7 +235,7 @@ class FocusFlight extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   //console.log(state);
   return { fltToDisplayInMap : state.getFltToShowInMap, chartObj: state.chartInit, displayView: state.getDisplayView, isTest: state.isTest, testTime : state.testTime, 
-    inboundFlights: state.inboundFlightData};
+    inboundFlights: state.inboundFlightData, outboundFlights: state.outboundFlightData};
 }
 
 export default connect(mapStateToProps , { showFocusViewForSelectedFlight, showSelectedFlightInMap, removeSelectedFlightFromMap, initChart })(FocusFlight);

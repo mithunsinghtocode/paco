@@ -50,11 +50,9 @@ export class Filter extends React.PureComponent {
     renderChartLayout(this.props.chartObj);
     renderChartLayout(this.props.chartObj);
   }).then(() => {
-    requestAnimationFrame (() => {
       this.props.displayView === "INBOUND" && this.props.getFilteredFlightDataForInbound(flightList);
       this.props.displayView === "OUTBOUND" && this.props.getFilteredFlightDataForOutbound(flightList);  
     });
-  });
   }
   renderPadding(){
     return (<div style={{"width": "172px"}} > </div> );

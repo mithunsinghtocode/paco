@@ -63,7 +63,7 @@ export const getFlightData = () => (dispatch, getState) => {
 export const getTransitionFlightData = () => (dispatch, getState) => {
     console.log("<><><> About to fetch from Sample File...");
     Promise.resolve( 
-        dispatch({ type: 'GET_FLIGHT_DATA', payload: flightJSONData1})
+        dispatch({ type: 'GET_FLIGHT_DATA_TRANSITION', payload: flightJSONData1})
     ).then(
         (data) => { 
            dispatch(getTransitionFlightDataForInbound(data.payload.flightSchedule.flightList));
