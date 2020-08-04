@@ -152,6 +152,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
   // longitude within +-50
   let currentLatitude = (!isFocusView && displayView==='INBOUND') ? flight.depcoordinates.latitude : flight.arrcoordinates.latitude;
   let currentLongitude = (!isFocusView && displayView==='INBOUND') ? flight.depcoordinates.longitude : flight.arrcoordinates.longitude;
+  bullet.tooltip.background.filters.clear();
   if(consolidatedCoordinates !== null && consolidatedCoordinates !== undefined){
   for(var i=0; i<consolidatedCoordinates.length ; i++){
     if (currentLatitude === consolidatedCoordinates[i].latitude && currentLongitude === consolidatedCoordinates[i].longitude) continue;

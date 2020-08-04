@@ -66,6 +66,8 @@ class InboundPathFinder extends React.PureComponent {
 
         requestAnimationFrame (() => {
         Promise.resolve().then(() => {
+          removeTooltip(chartObj);
+        }).then(() => {
           lineSeries.STATUS = "LINESERIES";
           // Add line series
           sortedFlightList.forEach( async (flight, index) => {
