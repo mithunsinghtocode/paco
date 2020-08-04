@@ -25,9 +25,9 @@ class App extends React.PureComponent {
         });
 
         // If needed to reduce memory usage then execute this function say every 15 minutes which will reset all objects.
-        // setInterval(() => {
-        //     window.location.reload();
-        // },60000)
+        setInterval(() => {
+            window.location.reload();
+        },900000)
 
     setInterval(() => {
         this.props.setCurrentTimeInUTC(getCurrentTimeInUTC());
