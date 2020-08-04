@@ -23,18 +23,62 @@ import backend from '../api/backend';
 //     };
 // };
 
+// export const getTransitionFlightData = () => async (dispatch, getState) => {
+//     console.log("<><><> About to fetch from Backend...");
+//     Promise.resolve(
+//         await dispatch(fetchTransitionFlightData())
+//     ).then(
+//         (data) => {
+//             dispatch( getTransitionFlightDataForInbound(data.payload.flightSchedule.flightList))
+//             return data;
+//         }
+//     ).then(
+//         (data) => { dispatch( getTransitionFlightDataForOutBound(data.payload.flightSchedule.flightList))}
+//     );
+// };
+
+// export const fetchTransitionFlightData = () => {
+//     // Bad Approach !!! - Breaking rules of redux if not used thunk as below
+//     return async (dispatch) => {
+//         const response = await backend.get('/paco-api/getTransitionFlightDetails');
+//        return dispatch({ type: 'GET_FLIGHT_DATA', payload: response.data});
+//     };
+// };
+
 export const getFlightData = () => (dispatch, getState) => {
     console.log("<><><> About to fetch from Sample File...");
     Promise.resolve( 
         dispatch({ type: 'GET_FLIGHT_DATA', payload: flightJSONData})
     ).then(
-        (data) => { 
+        (data) => {
            dispatch(getFlightDataForInbound(data.payload.flightSchedule.flightList));
            return data;
         }
     ).then(
         (data) => dispatch(getFlightDataForOutBound(data.payload.flightSchedule.flightList))
     );
+};
+
+export const getTransitionFlightData = () => (dispatch, getState) => {
+    console.log("<><><> About to fetch from Sample File...");
+    Promise.resolve( 
+        dispatch({ type: 'GET_FLIGHT_DATA', payload: flightJSONData})
+    ).then(
+        (data) => { 
+           dispatch(getTransitionFlightDataForInbound(data.payload.flightSchedule.flightList));
+           return data;
+        }
+    ).then(
+        (data) => dispatch(getTransitionFlightDataForOutBound(data.payload.flightSchedule.flightList))
+    );
+};
+
+export const getTransitionFlightDataForOutBound = (flightData) => dispatch => {
+    dispatch({ type: 'GET_TRANSITION_OUTBOUND_FLIGHT_DATA', payload: flightData});
+};
+
+export const getTransitionFlightDataForInbound = (flightData) => dispatch => {
+    dispatch({ type: 'GET_TRANSITION_INBOUND_FLIGHT_DATA', payload: flightData});
 };
 
 export const getFlightDataForOutBound = (flightData) => dispatch => {

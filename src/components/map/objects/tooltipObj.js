@@ -3,7 +3,7 @@ import { getTotalPaxCountForFlight } from "../../../utils/paxUtils";
 import { isDepNxt3Hrs } from "../../../utils/filterUtils";
 
 // 5 minutes once
-const TIME_TO_CHECK_AIRCRAFT_POSITION = 60000;
+const TIME_TO_CHECK_AIRCRAFT_POSITION = 300000;
 const isTest = true;
 const FOCUSSED_OUTBOUND_COLOR = "#0483F8";
 const OUTBOUND_VIEW_WITHIN_3HOURS_COLOR = "#E55541";
@@ -132,10 +132,10 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
     bullet.tooltip.opacity = 0.32;
   }
   if(index % 2 === 0) {bullet.tooltip.dx = -20;bullet.tooltip.dy = -20;bullet.tooltip.pointerOrientation = 'right'};
-  if(index % 3 === 0) {bullet.tooltip.dy = 20;bullet.tooltip.pointerOrientation = 'top'};
-  if(index % 5 === 0) {bullet.tooltip.dy = -45;bullet.tooltip.pointerOrientation = 'bottom'};
+  //if(index % 3 === 0) {bullet.tooltip.dy = 20;bullet.tooltip.pointerOrientation = 'top'};
+  //if(index % 5 === 0) {bullet.tooltip.dy = -45;bullet.tooltip.pointerOrientation = 'bottom'};
   if(index % 2 === 1) {bullet.tooltip.dx = 20;bullet.tooltip.dy = 20;bullet.tooltip.pointerOrientation = 'left'};
-  if(flight.depcoordinates.longitude > 120) {bullet.tooltip.dx = 20;bullet.tooltip.pointerOrientation = 'left'}; 
+  //if(flight.depcoordinates.longitude > 120) {bullet.tooltip.dx = 20;bullet.tooltip.pointerOrientation = 'left'}; 
 
   bullet.tooltip.pointerOrientation = isFocusOutbound ? 'left' : bullet.tooltip.pointerOrientation;
   bullet.tooltip.dx = isFocusOutbound ? 20 : bullet.tooltip.dx;

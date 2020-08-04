@@ -63,6 +63,8 @@ class InboundPathFinder extends React.PureComponent {
         
         /** If you require full control of the arc drawn use  MapArcSeries*/
         //let lineSeries = chartObj.series.push(new am4maps.MapArcSeries());
+
+        requestAnimationFrame (() => {
         Promise.resolve().then(() => {
           lineSeries.STATUS = "LINESERIES";
           // Add line series
@@ -103,10 +105,14 @@ class InboundPathFinder extends React.PureComponent {
           
             // refocus map
             //requestAnimationFrame (() => {
-              goToHome(chartObj);
-              freeUpMemory([chartObj, flightObj]);
+              //goToHome(chartObj);
+              //freeUpMemory([chartObj, flightObj]);
             });
         //});
+      });
+
+      goToHome(chartObj);
+      freeUpMemory([chartObj, flightObj]);
     }
     }
   };

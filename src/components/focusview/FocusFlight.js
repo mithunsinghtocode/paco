@@ -29,7 +29,7 @@ class FocusFlight extends React.Component {
         
         if(chartObj != null && selectedFlight != null){
             if(selectedFlight.arrstn==='SIN'){
-                selectedFlight = this.props.inboundFlights.flightList.filter((flight) => {
+                selectedFlight =this.props.inboundFlights.flightList.filter((flight) => {
                     return flight.flightId === selectedFlight.flightId;
                 });
             }

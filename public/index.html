@@ -33,7 +33,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title> PaCo </title>
     <style>
         @font-face {
             font-family: Proxima Nova;
@@ -88,9 +88,19 @@
     </style>
 </head>
 
-<body>
+<script>
+    function titleFunc() {
+        if (window.location.href.includes('uat')) document.title = 'PaCo - UAT';
+        else if (window.location.href.includes('sit')) document.title = 'PaCo - SIT';
+        else if (window.location.href.includes('local')) document.title = 'PaCo - LOCAL';
+        else document.title = 'PaCo - PROD';
+    }
+</script>
+
+<body onload="titleFunc()">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

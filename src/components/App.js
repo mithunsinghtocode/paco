@@ -5,7 +5,8 @@ import Header from './header/Header';
 import Filter from './filter/Filter';
 import MapChartLayer from './map/chart';
 import FocusView from './focusview/FocusView';
-import { removeSelectedFlightFromMap, getFlightData, removeFocusViewForSelectedFlight, getFlightDataForInbound, userClick, setCurrentTimeInUTC  } from '../actions/chartDataAction';
+import { removeSelectedFlightFromMap, getFlightData, removeFocusViewForSelectedFlight, getFlightDataForInbound, userClick, setCurrentTimeInUTC,
+    getTransitionFlightData  } from '../actions/chartDataAction';
 import { clearChartComponents } from "../components/map/objects/clearChartObjects";
 import { renderChartLayout } from "../components/map/objects/renderChartLayOut";
 import { initChart } from "../actions/chartAction";
@@ -30,7 +31,8 @@ class App extends React.PureComponent {
 
     setInterval(() => {
         this.props.setCurrentTimeInUTC(getCurrentTimeInUTC());
-    },30000);
+        this.getFlightDataInTimeInterval();
+    },60000);
 
     // setInterval(() => {
     //     this.getFlightDataInTimeInterval();
@@ -40,7 +42,7 @@ class App extends React.PureComponent {
 
     getFlightDataInTimeInterval = () => {
         new Promise((resolve, reject) => {
-            resolve(this.props.getFlightData());
+            resolve(this.props.getTransitionFlightData());
         });
     }
 
@@ -61,4 +63,4 @@ const mapStateToProps = (state, ownProps) => {
     return { state, chartObj: state.chartInit, flightData : state.allFlightData, isUserClick: state.isUserClick};
 }
   
-  export default connect(mapStateToProps , { removeSelectedFlightFromMap, removeFocusViewForSelectedFlight, initChart, getFlightData, getFlightDataForInbound, userClick, setCurrentTimeInUTC  })(App);
+  export default connect(mapStateToProps , { removeSelectedFlightFromMap, removeFocusViewForSelectedFlight, initChart, getFlightData, getFlightDataForInbound, userClick, setCurrentTimeInUTC, getTransitionFlightData  })(App);
