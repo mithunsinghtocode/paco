@@ -42,7 +42,7 @@ export const fetchTransitionFlightData = () => {
     // Bad Approach !!! - Breaking rules of redux if not used thunk as below
     return async (dispatch) => {
         const response = await backend.get('/paco-api/getTransitionFlightDetails');
-       return dispatch({ type: 'GET_FLIGHT_DATA', payload: response.data});
+       return dispatch({ type: 'GET_FLIGHT_DATA_TRANSITION', payload: response.data});
     };
 };
 
