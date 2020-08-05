@@ -433,6 +433,7 @@ class FlightList extends React.Component {
         document.getElementById("legend").style.overflow = overflowVal;
         document.getElementById("legend").style.height= heightVal;
         // console.log("##### heightVal =>" + heightVal);
+        document.getElementById("legend").style.overflowY = "scroll";
     }
     render(){
         return (

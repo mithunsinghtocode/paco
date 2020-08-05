@@ -112,11 +112,11 @@ class InboundPathFinder extends React.PureComponent {
             // refocus map
             //requestAnimationFrame (() => {
               goToHome(chartObj);
-              //freeUpMemory([chartObj, flightObj]);
+             // freeUpMemory([chartObj, flightObj]);
             });
         //});
       });
-      goToHome(chartObj);
+        goToHome(chartObj);
     }
     }
   };

@@ -150,6 +150,7 @@ setScrollStyle = (overflowVal, heightVal) => {
   document.getElementById("legend-focusview").style.overflow = overflowVal;
   document.getElementById("legend-focusview").style.height= heightVal;
   // console.log("##### heightVal =>" + heightVal);
+  document.getElementById("legend-focusview").style.overflowY = "scroll";
 }
 adjustHeight = async (e) => {
 
@@ -237,19 +238,19 @@ adjustHeight = async (e) => {
 
             <div className="card-body" >
               <div className="row dimmed" style={{marginTop:"8px"}}>
-                {/* <div className="col-2 col-md-3">STD</div> */}
-                <div className="col-2 col-md-3">{selectedFlight.etd!==null && selectedFlight.etd!==undefined ? 'ETD':'STD' }</div>
+                <div className="col-2 col-md-3">STD</div>
+                {/* <div className="col-2 col-md-3">{selectedFlight.etd!==null && selectedFlight.etd!==undefined ? 'ETD':'STD' }</div> */}
                 <div className="col-1 col-md-3">GATE</div>
                 <div className="col-3 col-md-5">BOOKED</div>
               </div>
 
               <div className="row value">
-                {/* <div className="col-2 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
-                  {getHoursAndMinutesAfterFormat(selectedFlight.std)}
-                </div> */}
                 <div className="col-2 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
+                  {getHoursAndMinutesAfterFormat(selectedFlight.std)}
+                </div>
+                {/* <div className="col-2 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
                     {selectedFlight.etd!==null && selectedFlight.etd!==undefined ? getHoursAndMinutesAfterFormat(selectedFlight.etd) : getHoursAndMinutesAfterFormat(selectedFlight.std)}
-                </div>                
+                </div>                 */}
                 <div className="col-1 col-md-3"  style={{fontFamily: "Proxima Nova Regular"}}>
                   {this.getBayGateTerminalDetailsOutbound(selectedFlight)}
                 </div>
