@@ -57,10 +57,10 @@ class InboundPathFinder extends React.PureComponent {
         });
 
         let coordinatesList = consolidatedCoordinates(flightObj.flightList,"INBOUND");
+        // set initial zoom and map points
+        setDefaultZoomAndGeoPointFocus(chartObj);
 
         requestAnimationFrame (() => {
-          // set initial zoom and map points
-          setDefaultZoomAndGeoPointFocus(chartObj);
         Promise.resolve().then(() => {
          requestAnimationFrame (() => {
         // Adds line or arc based on the coordinates
@@ -112,10 +112,11 @@ class InboundPathFinder extends React.PureComponent {
             // refocus map
             //requestAnimationFrame (() => {
               goToHome(chartObj);
-              freeUpMemory([chartObj, flightObj]);
+              //freeUpMemory([chartObj, flightObj]);
             });
         //});
       });
+      goToHome(chartObj);
     }
     }
   };

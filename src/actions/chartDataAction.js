@@ -2,77 +2,77 @@ import flightJSONData from '../test/flight.json';
 import flightJSONData1 from '../test/flight1.json';
 import backend from '../api/backend';
 
-export const getFlightData = () => async (dispatch, getState) => {
-    console.log("<><><> About to fetch from Backend...");
-    Promise.resolve(
-        await dispatch(fetchFlightData())
-    ).then(
-        (data) => {
-            dispatch( getFlightDataForInbound(data.payload.flightSchedule.flightList))
-            return data;
-        }
-    ).then(
-        (data) => { dispatch( getFlightDataForOutBound(data.payload.flightSchedule.flightList))}
-    );
-};
-
-export const fetchFlightData = () => {
-    // Bad Approach !!! - Breaking rules of redux if not used thunk as below
-    return async (dispatch) => {
-        const response = await backend.get('/paco-api/getFlightDetails');
-       return dispatch({ type: 'GET_FLIGHT_DATA', payload: response.data});
-    };
-};
-
-export const getTransitionFlightData = () => async (dispatch, getState) => {
-    console.log("<><><> About to fetch from Backend...");
-    Promise.resolve(
-        await dispatch(fetchTransitionFlightData())
-    ).then(
-        (data) => {
-            dispatch( getTransitionFlightDataForInbound(data.payload.flightSchedule.flightList))
-            return data;
-        }
-    ).then(
-        (data) => { dispatch( getTransitionFlightDataForOutBound(data.payload.flightSchedule.flightList))}
-    );
-};
-
-export const fetchTransitionFlightData = () => {
-    // Bad Approach !!! - Breaking rules of redux if not used thunk as below
-    return async (dispatch) => {
-        const response = await backend.get('/paco-api/getTransitionFlightDetails');
-       return dispatch({ type: 'GET_FLIGHT_DATA_TRANSITION', payload: response.data});
-    };
-};
-
-// export const getFlightData = () => (dispatch, getState) => {
-//     console.log("<><><> About to fetch from Sample File...");
-//     Promise.resolve( 
-//         dispatch({ type: 'GET_FLIGHT_DATA', payload: flightJSONData})
+// export const getFlightData = () => async (dispatch, getState) => {
+//     console.log("<><><> About to fetch from Backend...");
+//     Promise.resolve(
+//         await dispatch(fetchFlightData())
 //     ).then(
 //         (data) => {
-//            dispatch(getFlightDataForInbound(data.payload.flightSchedule.flightList));
-//            return data;
+//             dispatch( getFlightDataForInbound(data.payload.flightSchedule.flightList))
+//             return data;
 //         }
 //     ).then(
-//         (data) => dispatch(getFlightDataForOutBound(data.payload.flightSchedule.flightList))
+//         (data) => { dispatch( getFlightDataForOutBound(data.payload.flightSchedule.flightList))}
 //     );
 // };
 
-// export const getTransitionFlightData = () => (dispatch, getState) => {
-//     console.log("<><><> About to fetch from Sample File...");
-//     Promise.resolve( 
-//         dispatch({ type: 'GET_FLIGHT_DATA_TRANSITION', payload: flightJSONData1})
+// export const fetchFlightData = () => {
+//     // Bad Approach !!! - Breaking rules of redux if not used thunk as below
+//     return async (dispatch) => {
+//         const response = await backend.get('/paco-api/getFlightDetails');
+//        return dispatch({ type: 'GET_FLIGHT_DATA', payload: response.data});
+//     };
+// };
+
+// export const getTransitionFlightData = () => async (dispatch, getState) => {
+//     console.log("<><><> About to fetch from Backend...");
+//     Promise.resolve(
+//         await dispatch(fetchTransitionFlightData())
 //     ).then(
-//         (data) => { 
-//            dispatch(getTransitionFlightDataForInbound(data.payload.flightSchedule.flightList));
-//            return data;
+//         (data) => {
+//             dispatch( getTransitionFlightDataForInbound(data.payload.flightSchedule.flightList))
+//             return data;
 //         }
 //     ).then(
-//         (data) => dispatch(getTransitionFlightDataForOutBound(data.payload.flightSchedule.flightList))
+//         (data) => { dispatch( getTransitionFlightDataForOutBound(data.payload.flightSchedule.flightList))}
 //     );
 // };
+
+// export const fetchTransitionFlightData = () => {
+//     // Bad Approach !!! - Breaking rules of redux if not used thunk as below
+//     return async (dispatch) => {
+//         const response = await backend.get('/paco-api/getTransitionFlightDetails');
+//        return dispatch({ type: 'GET_FLIGHT_DATA_TRANSITION', payload: response.data});
+//     };
+// };
+
+export const getFlightData = () => (dispatch, getState) => {
+    console.log("<><><> About to fetch from Sample File...");
+    Promise.resolve( 
+        dispatch({ type: 'GET_FLIGHT_DATA', payload: flightJSONData})
+    ).then(
+        (data) => {
+           dispatch(getFlightDataForInbound(data.payload.flightSchedule.flightList));
+           return data;
+        }
+    ).then(
+        (data) => dispatch(getFlightDataForOutBound(data.payload.flightSchedule.flightList))
+    );
+};
+
+export const getTransitionFlightData = () => (dispatch, getState) => {
+    console.log("<><><> About to fetch from Sample File...");
+    Promise.resolve( 
+        dispatch({ type: 'GET_FLIGHT_DATA_TRANSITION', payload: flightJSONData1})
+    ).then(
+        (data) => { 
+           dispatch(getTransitionFlightDataForInbound(data.payload.flightSchedule.flightList));
+           return data;
+        }
+    ).then(
+        (data) => dispatch(getTransitionFlightDataForOutBound(data.payload.flightSchedule.flightList))
+    );
+};
 
 export const getTransitionFlightDataForOutBound = (flightData) => dispatch => {
     dispatch({ type: 'GET_TRANSITION_OUTBOUND_FLIGHT_DATA', payload: flightData});
