@@ -42,4 +42,7 @@ export const removeTooltip = (chart) => {
               chart.series.values[1].mapLines.values[index1].lineObjects.getIndex(index2).tooltip.remove && chart.series.values[1].mapLines.values[index1].lineObjects.getIndex(index2).tooltip.remove();
             });
           });
+
+  chart.series.values[1].remove && 
+  chart.series.values[1].remove();
 }

@@ -110,9 +110,11 @@ class OutboundPathFinder extends React.PureComponent {
         //requestAnimationFrame (() => {
           goToHome(chartObj);
         //});
-      freeUpMemory([chartObj, flightObj]);
+      //freeUpMemory([chartObj, flightObj]);
     });
   });
+
+      goToHome(chartObj);
     }
     }
   };
