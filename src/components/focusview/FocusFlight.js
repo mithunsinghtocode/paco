@@ -17,7 +17,26 @@ import { sort } from '../../utils/sortUtils';
 import { setZoomAndGeoPointFocus } from '../map/objects/setZoomPoint';
 import { consolidatedCoordinates } from '../map/objects/consolidatedCoordinates';
 
-class FocusFlight extends React.Component {
+class FocusFlight extends React.PureComponent {
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("Rendering happening due to update");
+        if(nextProps.fltToDisplayInMap){
+            //console.log(this.props.fltToDisplayInMap);
+            //console.log(nextProps.fltToDisplayInMap);
+            if(this.props.fltToDisplayInMap === null && nextProps.fltToDisplayInMap !== null) {
+                return true;
+            } 
+            if (this.props.flightData.flightSchedule.flightList === nextProps.flightData.flightSchedule.flightList){
+                //console.log("Inside True for the component !!!");
+                return false;
+            }else{
+                return true;
+            }
+        }
+      }
+
+      
     off = () => {
         this.props.removeSelectedFlightFromMap(null);
     }
@@ -30,23 +49,24 @@ class FocusFlight extends React.Component {
         if(chartObj != null && selectedFlight != null){
             let selectedFlightArr = [];
             if(selectedFlight.arrStn==='SIN'){
-                selectedFlightArr = this.props.inboundFlights.flightList && this.props.inboundFlights.flightList.filter((flight) => {
+                selectedFlightArr = this.props.flightData.flightSchedule.flightList && this.props.flightData.flightSchedule.flightList.filter((flight) => {
                     return flight.flightId === selectedFlight.flightId;
                 });
             }
+            console.log(selectedFlightArr.length)
             if(selectedFlight.depStn === 'SIN'){
-                selectedFlightArr = this.props.outboundFlights.flightList && this.props.outboundFlights.flightList.filter((flight) => {
+                selectedFlightArr = this.props.flightData.flightSchedule.flightList && this.props.flightData.flightSchedule.flightList.filter((flight) => {
                     return flight.flightId === selectedFlight.flightId;
                 });
             }
             if(selectedFlightArr && selectedFlightArr.length>0){
                 selectedFlight = selectedFlightArr[0];
             }
+            console.log(selectedFlight);
 
             clearChartComponents(chartObj, ["ALL"]);
             renderChartLayout(chartObj);
             Promise.resolve().then(() => {
-            //console.log(selectedFlight);
             //clearChartComponents(chartObj, ["MapLineSeries", "MapImageSeries","MapArcSeries"]);
             }).then(() => {
                 // Adds line or arc based on the coordinates
@@ -235,7 +255,7 @@ class FocusFlight extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   //console.log(state);
   return { fltToDisplayInMap : state.getFltToShowInMap, chartObj: state.chartInit, displayView: state.getDisplayView, isTest: state.isTest, testTime : state.testTime
-    ,inboundFlights: state.inboundFlightData, outboundFlights: state.outboundFlightData
+    ,inboundFlights: state.inboundFlightData, outboundFlights: state.outboundFlightData, flightData : state.allFlightData
 };
 }
 

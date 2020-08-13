@@ -30,6 +30,7 @@ class App extends React.PureComponent {
         },900000)
 
     setInterval(() => {
+        this.props.setCurrentTimeInUTC(getCurrentTimeInUTC());
         this.getFlightDataInTimeInterval();
          console.log(this.props.flightData);
         //  this.props.fltToDisplayInMap && this.props.flightData && this.props.flightData.flightSchedule.flightList.forEach((flight) => {
@@ -37,8 +38,8 @@ class App extends React.PureComponent {
         //         this.props.showSelectedFlightInMap(flight);
         //     }
         //  });
-         this.props.setCurrentTimeInUTC(getCurrentTimeInUTC());
-    },60000);
+         //this.props.setCurrentTimeInUTC(getCurrentTimeInUTC());
+    },30000);
 
     // setInterval(() => {
     //     this.getFlightDataInTimeInterval();
