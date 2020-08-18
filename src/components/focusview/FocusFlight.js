@@ -27,7 +27,7 @@ class FocusFlight extends React.PureComponent {
             if(this.props.fltToDisplayInMap === null && nextProps.fltToDisplayInMap !== null) {
                 return true;
             } 
-            if(this.props.fltToDisplayInMap !== nextProps.fltToDisplayInMap) {
+            if(this.props.displayView === 'INBOUND' && this.props.fltToDisplayInMap !== nextProps.fltToDisplayInMap) {
                 return true;
             }
             if (this.props.flightData.flightSchedule.flightList === nextProps.flightData.flightSchedule.flightList){
@@ -37,6 +37,7 @@ class FocusFlight extends React.PureComponent {
                 return true;
             }
         }
+        return false;
       }
 
       

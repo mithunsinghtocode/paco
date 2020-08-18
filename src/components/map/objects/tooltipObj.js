@@ -160,6 +160,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
     (Number(currentLatitude) - Number(consolidatedCoordinates[i].latitude) >= -3) 
       &&  (Number(currentLongitude) - Number(consolidatedCoordinates[i].longitude) <= 50)
       &&  (Number(currentLongitude) - Number(consolidatedCoordinates[i].longitude) >= -10)){
+      bullet.tooltip.background.filters.clear();
       bullet.tooltip.background.filters.push(dropShadow1);
       break;
     }
@@ -167,6 +168,7 @@ export const tooltipObj = (line, lineSeries, am4core, flight, displayView, index
     (Number(currentLongitude) - Number(consolidatedCoordinates[i].longitude) >= 0))
     &&  ((Number(currentLatitude) - Number(consolidatedCoordinates[i].latitude) <= 20)
     && (Number(currentLatitude) - Number(consolidatedCoordinates[i].latitude) >= 0))){
+      bullet.tooltip.background.filters.clear();
       bullet.tooltip.background.filters.push(dropShadow1);
       break;
     }
