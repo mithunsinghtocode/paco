@@ -21,6 +21,30 @@ import { clearChartComponents } from '../map/objects/clearChartObjects';
 import { consolidatedCoordinates } from '../map/objects/consolidatedCoordinates';
 
 class InboundPathFinder extends React.PureComponent {
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("Rendering happening due to update");
+    if(nextProps.inboundFlights){
+        console.log(this.props.inboundFlights);
+        console.log(nextProps.inboundFlights);
+        if(this.props.inboundFlights === null && nextProps.inboundFlights !== null) {
+            return true;
+        } 
+        if(this.props.displayView === 'INBOUND' && this.props.inboundFlights !== nextProps.inboundFlights) {
+            return true;
+        }
+        if(this.props.fltToDisplayInMap != null && nextProps.fltToDisplayInMap != null && this.props.inboundFlights === nextProps.inboundFlights){
+          return true;
+        }
+        if (this.props.inboundFlights === nextProps.inboundFlights){
+            console.log("Inside True for the component !!!");
+            return false;
+        }else{
+            return true;
+        }
+    }
+    return false;
+  }
  
   getChartObj = () => this.props.chartObj;
 
@@ -62,9 +86,9 @@ class InboundPathFinder extends React.PureComponent {
 
         requestAnimationFrame (() => {
         Promise.resolve().then(() => {
+          // Adds line or arc based on the coordinates
+          let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
          requestAnimationFrame (() => {
-        // Adds line or arc based on the coordinates
-        let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
         
         /** If you require full control of the arc drawn use  MapArcSeries*/
         //let lineSeries = chartObj.series.push(new am4maps.MapArcSeries());
@@ -77,9 +101,9 @@ class InboundPathFinder extends React.PureComponent {
           // adds tooltip for the flights
           let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView, index, false, coordinatesList, false, this.props.isTest, this.props.testTime) ;
           if(!this.props.isUserClick){
-            bullet.hide();
+            //bullet.hide();
           }
-          bullet.hide();
+          //bullet.hide();
           // Adds click event on the tooltip, icon and line
           mapObjectEvents(bullet, line, lineSeries, flight, this.props.showSelectedFlightInMap);
 
@@ -113,7 +137,7 @@ class InboundPathFinder extends React.PureComponent {
             //requestAnimationFrame (() => {
               goToHome(chartObj);
              // freeUpMemory([chartObj, flightObj]);
-            });
+        });
         //});
       });
         goToHome(chartObj);

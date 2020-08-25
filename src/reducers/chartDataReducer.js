@@ -28,6 +28,7 @@ export const inboundFlightDataReducer = (state = null, action) => {
       let filterState2 = filterState.filter(
         flight => (flight.arrStn === "SIN" || flight.depStn !== "SIN") && flight.eta !== null && flight.eta > (flight.rta || flight.sta)
       );
+      console.log([filterState2, inboundFlightData2])
       payload1.flightList = [...filterState2,...inboundFlightData2];
       payload1.stationcoordinates = getStationCoordinatesFromTheFlightList(payload1.flightList);
       //console.log(payload.stationcoordinates);

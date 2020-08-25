@@ -65,9 +65,9 @@ class OutboundPathFinder extends React.PureComponent {
 
       let coordinatesList = consolidatedCoordinates(filteredFlightList,"OUTBOUND");
         Promise.resolve().then(() => {
-          requestAnimationFrame (() => {
           // Adds line or arc based on the coordinates
           let lineSeries = chartObj.series.push(new am4maps.MapLineSeries());
+          requestAnimationFrame (() => {
         lineSeries.STATUS = "LINESERIES";
         // Add line series
         sortedFlightList.forEach((flight , index) => {
