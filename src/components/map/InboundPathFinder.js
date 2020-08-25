@@ -33,7 +33,7 @@ class InboundPathFinder extends React.PureComponent {
         if(this.props.displayView === 'INBOUND' && this.props.inboundFlights !== nextProps.inboundFlights) {
             return true;
         }
-        if(this.props.fltToDisplayInMap != null && nextProps.fltToDisplayInMap != null && this.props.inboundFlights === nextProps.inboundFlights){
+        if(this.props.fltToDisplayInMap != null && this.props.inboundFlights === nextProps.inboundFlights){
           return true;
         }
         if (this.props.inboundFlights === nextProps.inboundFlights){
