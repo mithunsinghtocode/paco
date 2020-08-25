@@ -220,7 +220,10 @@ adjustHeight = async (e) => {
 
   renderSelectedFlightFocusViewPopup = () => {
 
-    let selectedFlight = this.props.selectedFlightObj;
+    let selectedFlightList = this.getFlightBasedOnFlightIdFromOutbound();      
+    // console.log("##### debug 1 : ");
+    // console.log(selectedFlightList.length );
+      let selectedFlight = selectedFlightList.length>0 ? selectedFlightList[0] : this.props.selectedFlightObj;    
     // if (selectedFlight !== null) {
     //   console.log(selectedFlight);
 
@@ -646,9 +649,8 @@ const mapStateToProps = (state, ownProps) => {
   // console.log(state);
   // console.log("********* state end *********\n");
   return { selectedFlightObj: state.selectedFlight, inboundFlights: state.inboundFlightData
-
             , outboundFlights: state.outboundFlightData, fltToDisplayInMap : state.getFltToShowInMap 
-            , selectedFlightObj: state.selectedFlight , chartObj: state.chartInit  };
+            , chartObj: state.chartInit  };
 };
 
 

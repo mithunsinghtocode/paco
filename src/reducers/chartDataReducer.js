@@ -13,15 +13,22 @@ export const inboundFlightDataReducer = (state = null, action) => {
       case "GET_TRANSITION_INBOUND_FLIGHT_DATA":
       let flightList1 = Array.isArray(action.payload) ? action.payload : action.payload.flightSchedule.flightList;
       let inboundFlightData1 = flightList1.filter(
-        flight => (flight.arrStn === "SIN" || flight.depStn !== "SIN") && flight.eta !== null && flight.eta > (flight.rta || flight.sta)
+        flight => (flight.arrStn === "SIN" || flight.depStn !== "SIN") 
       );
+      // && flight.eta !== null && flight.eta > (flight.rta || flight.sta)
       let newState =  state.flightList;
       let filterState =  newState.filter((flight) => {
           return inboundFlightData1.find((newObj) => flight.flightId === newObj.flightId) === undefined ? true : false;
         });
         //console.log(filterState);
       let payload1 = [];
-      payload1.flightList = [...filterState,...inboundFlightData1];
+      let inboundFlightData2 = inboundFlightData1.filter(
+        flight => (flight.arrStn === "SIN" || flight.depStn !== "SIN") && flight.eta !== null && flight.eta > (flight.rta || flight.sta)
+      );
+      let filterState2 = filterState.filter(
+        flight => (flight.arrStn === "SIN" || flight.depStn !== "SIN") && flight.eta !== null && flight.eta > (flight.rta || flight.sta)
+      );
+      payload1.flightList = [...filterState2,...inboundFlightData2];
       payload1.stationcoordinates = getStationCoordinatesFromTheFlightList(payload1.flightList);
       //console.log(payload.stationcoordinates);
       return payload1;
