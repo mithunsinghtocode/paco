@@ -17,7 +17,7 @@ import { sort } from '../../utils/sortUtils';
 import { setZoomAndGeoPointFocus } from '../map/objects/setZoomPoint';
 import { consolidatedCoordinates } from '../map/objects/consolidatedCoordinates';
 
-class FocusFlight extends React.PureComponent {
+class FocusFlight extends React.Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         console.log("Rendering happening due to update");
@@ -48,7 +48,8 @@ class FocusFlight extends React.PureComponent {
     renderSelectedFlightInMap = () => {
         console.log("Into Flight Display View In Map");
         let chartObj = this.props.chartObj;
-        let selectedFlight = this.props.fltToDisplayInMap;
+        let selectedFlight = this.props.displayView === "INBOUND" ? 
+                            this.props.fltToDisplayInMap: this.props.selectedFlightObj;
         
         if(chartObj != null && selectedFlight != null){
             let selectedFlightArr = [];
@@ -259,7 +260,8 @@ class FocusFlight extends React.PureComponent {
 const mapStateToProps = (state, ownProps) => {
   //console.log(state);
   return { fltToDisplayInMap : state.getFltToShowInMap, chartObj: state.chartInit, displayView: state.getDisplayView, isTest: state.isTest, testTime : state.testTime
-    ,inboundFlights: state.inboundFlightData, outboundFlights: state.outboundFlightData, flightData : state.allFlightData
+    , inboundFlights: state.inboundFlightData, outboundFlights: state.outboundFlightData, flightData : state.allFlightData
+    , selectedFlightObj: state.selectedFlight
 };
 }
 

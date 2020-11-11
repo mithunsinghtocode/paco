@@ -101,7 +101,7 @@ class InboundPathFinder extends React.PureComponent {
           // adds tooltip for the flights
           let bullet = tooltipObj(line, lineSeries, am4core, flight, this.props.displayView, index, false, coordinatesList, false, this.props.isTest, this.props.testTime) ;
           if(!this.props.isUserClick){
-            //bullet.hide();
+            bullet.hide();
           }
           //bullet.hide();
           // Adds click event on the tooltip, icon and line
@@ -121,6 +121,26 @@ class InboundPathFinder extends React.PureComponent {
           let imageSeriesTemplate = imageSeries.mapImages.template;
   
           plotStationObj( am4core, chartObj, flight, imageSeries, imageSeriesTemplate,this.props.displayView, false , this.props.isTest, this.props.testTime);
+          
+          bullet.visible = false;
+
+          // let interval = 10;
+          // var blinkingAircraft =  setInterval(() => {
+          //   console.log(interval);
+          //   if(interval%2 === 0){
+          //     bullet.visible = true;
+          //     interval = interval -1;
+          //   }else{
+          //     bullet.visible = false;
+          //     interval = interval -1;
+          //   }
+          //   setInterval(() => {
+          //   if(interval === 0){
+          //     bullet.visible = true;
+          //     clearInterval(blinkingAircraft);
+          //   }
+          //   },500);
+          // },500);
           bullet.show();
           bullet.show();
           bullet.show();

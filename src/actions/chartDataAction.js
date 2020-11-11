@@ -1,5 +1,5 @@
 import flightJSONData from '../test/flight.json';
-import flightJSONData1 from '../test/flight1.json';
+import flightJSONData1 from '../test/flight.json';
 import backend from '../api/backend';
 
 // export const getFlightData = () => async (dispatch, getState) => {

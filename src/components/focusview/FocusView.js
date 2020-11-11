@@ -38,10 +38,10 @@ class FocusView extends React.PureComponent {
 
   getPaxDetailsFormat = (selectedFlight) => {
       let resultComponent = [];
-      resultComponent.push(this.frameCabinClass('F', selectedFlight.paxCountVo.fclassCnt));
-      resultComponent.push(this.frameCabinClass('J', selectedFlight.paxCountVo.jclassCnt));
-      resultComponent.push(this.frameCabinClass('S', selectedFlight.paxCountVo.sclassCnt));
-      resultComponent.push(this.frameCabinClass('Y', selectedFlight.paxCountVo.yclassCnt));
+      selectedFlight.seatCapacity.fcap!== '0' && resultComponent.push(this.frameCabinClass('F', selectedFlight.paxCountVo.fclassCnt));
+      selectedFlight.seatCapacity.jcap!== '0' && resultComponent.push(this.frameCabinClass('J', selectedFlight.paxCountVo.jclassCnt));
+      selectedFlight.seatCapacity.scap!== '0' && resultComponent.push(this.frameCabinClass('S', selectedFlight.paxCountVo.sclassCnt));
+      selectedFlight.seatCapacity.ycap!== '0' && resultComponent.push(this.frameCabinClass('Y', selectedFlight.paxCountVo.yclassCnt));
       return resultComponent;
   }
   frameCabinClass = (cabinClass, count) =>  {    
@@ -547,8 +547,14 @@ adjustHeight = async (e) => {
     });
   }
   setTheOutboundViewForSelectedFlight(selectedFlight){
-    this.props.userClick(false);
-    this.props.showSelectedFlightInMap(selectedFlight);
+    if(this.props.fltToDisplayInMap !== null 
+      || this.props.fltToDisplayInMap !== undefined
+    ){
+      this.props.userClick(false);
+    }else{
+      this.props.userClick(true);
+    }
+    //this.props.showSelectedFlightInMap(selectedFlight);
     // this.props.fltToDisplayInMap(this.props.fltToDisplayInMap);
     this.props.switchFlightsViewByInBoundOrOutbound("OUTBOUND") ;
     let inboundButton = document.getElementById('INBOUND');
