@@ -59,33 +59,28 @@ class App extends React.PureComponent {
             <>
                 <Header />
                 <Filter goBackFunction={() => {
-                        //this.props.userClick(false); 
-                        //console.log(this.props.selectedFlightObj.flightId);
-                        //console.log(this.props.fltToDisplayInMap.flightId);
                         let fltFocusObj = this.props.fltToDisplayInMap;
-                        let isTransition = false;
+                        let isNotTransition = false;
                         if(this.props.displayView === 'OUTBOUND' && 
                         this.props.fltToDisplayInMap.flightId === this.props.selectedFlightObj.flightId){
                             console.log('Inside User Click')
                             //this.props.userClick(true);
-                            isTransition = true;                            
+                            isNotTransition = true; 
+                            this.props.removeFocusViewForSelectedFlight(null);                            
                         }
                         if(this.props.displayView === 'OUTBOUND' && this.props.fltToDisplayInMap.flightId !== this.props.selectedFlightObj.flightId){
                             this.props.showSelectedFlightInMap(fltFocusObj);
                             this.props.removeFocusViewForSelectedFlight(null);
                         }else{
                             this.props.removeSelectedFlightFromMap(null); 
-                        }
-                        isTransition && this.props.removeFocusViewForSelectedFlight(null);
-                        !isTransition && !this.props.isUserClick && this.props.switchFlightsViewByInBoundOrOutbound("INBOUND") ;
-                        
-                        if(!isTransition && !this.props.isUserClick){
+                        }                     
+                        if(!isNotTransition && !this.props.isUserClick){
+                            this.props.switchFlightsViewByInBoundOrOutbound("INBOUND") ;
                             let inboundButton = document.getElementById('INBOUND');
                             let outboundButton = document.getElementById('OUTBOUND');
                             inboundButton.style.borderRight = "4px solid #00DC88";
                             outboundButton.style.borderRight = "0px";
                         }
-                        console.log(this.props.isUserClick);
                         clearChartComponents(this.props.chartObj, ["ALL"]); 
                         renderChartLayout(this.props.chartObj); 
                         //this.props.userClick(false); 
